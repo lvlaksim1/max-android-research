@@ -1,3 +1,5 @@
-# Project identity
+# Проект MAX Android Research
 
-Capture the project name, purpose, repository role, and what this repository is responsible for.
+Публичный исследовательский репозиторий `lvlaksim1/max-android-research`, созданный через `repo-factory` 15.10.2026.
+
+Цель: воспроизводимое исследование Android-приложения MAX (`ru.oneme.app`) на основании предоставленного владельцем APK и последующих журналов запуска. Репозиторий хранит проверяемые сведения, небольшие файлы исходного архива и инструменты статического анализа; сам не является исходным кодом MAX.

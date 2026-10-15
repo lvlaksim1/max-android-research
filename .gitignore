@@ -1,0 +1,29 @@
+# Repository storage policy
+/dist/
+/build/
+*.exe
+*.msi
+*.zip
+*.7z
+*.rar
+*.dll
+*.pdb
+
+# MAX APK research: generated files and locally acquired binaries
+*.apk
+*.aab
+*.dex
+*.so
+*.odex
+*.vdex
+*.oat
+*.aar
+*.jar
+*.class
+/work/
+/local/
+/unpacked/
+/apk-unpacked/
+/.venv/
+__pycache__/
+*.pyc

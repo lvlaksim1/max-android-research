@@ -1,0 +1,21 @@
+{
+  "file": "base.apk",
+  "application": "MAX",
+  "package": "ru.oneme.app",
+  "version_name": "26.35.1",
+  "version_code": 6867,
+  "min_sdk": 26,
+  "target_sdk": 37,
+  "bytes": 133730048,
+  "sha256": "e809176d6bf6ff69247274433ec170a5db8a5687a02a04299a78a2ae978119fc",
+  "zip_entries": 2685,
+  "dex": [
+    "classes.dex",
+    "classes2.dex",
+    "classes3.dex"
+  ],
+  "native_libraries": 72,
+  "source": "Owner-provided Android APK",
+  "method": "static inspection; no network execution",
+  "notes": "Reference fingerprint only; full signature verification and official provenance not established."
+}

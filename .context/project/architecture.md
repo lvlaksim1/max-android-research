@@ -1,3 +1,9 @@
-# Project architecture
+# Структура исследования
 
-Capture the stable high-level architecture, major components, state boundaries, and important integration contracts.
+- `app-extract/`: небольшие реальные текстовые файлы из APK с исходными путями.
+- `evidence/`: сведения об образце и подтверждённые статические признаки.
+- `docs/`: аналитика и план следующих проверок.
+- `tools/`: автономные программы разбора APK на Python 3.
+- `.context/`: установленный фабрикой менеджер проекта.
+
+Полный APK и результат локальной распаковки не хранятся в Git, а восстанавливаются из точно идентифицированного входного файла.
