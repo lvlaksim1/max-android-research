@@ -1,0 +1,124 @@
+name: Import exact research APK
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/import-verified-apk.yml
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Retrieve APK candidate and verify exact reference SHA-256
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import hashlib
+          import json
+          import os
+          import pathlib
+          import urllib.error
+          import urllib.request
+          from urllib.parse import urlparse
+
+          info = json.loads(pathlib.Path("evidence/sample.json").read_text(encoding="utf-8"))
+          expected = info["sha256"]
+          output = pathlib.Path("work/base.apk")
+          output.parent.mkdir(exist_ok=True)
+          common_headers = {"ruStoreVerCode": "110802", "User-Agent": "RuStore/110802"}
+          def request_json(url, payload=None):
+              headers = dict(common_headers)
+              data = None
+              if payload is not None:
+                  data = json.dumps(payload).encode("utf-8")
+                  headers["Content-Type"] = "application/json; charset=utf-8"
+              req = urllib.request.Request(url, data=data, headers=headers)
+              with urllib.request.urlopen(req, timeout=35) as response:
+                  return json.load(response)
+
+          app = request_json("https://backapi.rustore.ru/applicationData/overallInfo/ru.oneme.app")
+          if app.get("code") != "OK":
+              raise SystemExit("RuStore metadata request returned non-OK")
+          metadata = app["body"]
+          version = str(metadata.get("versionCode"))
+          print("RuStore current version:", metadata.get("versionName"), version)
+          if version != str(info["version_code"]):
+              raise SystemExit("Current public version is not the exact sample version")
+
+          app_id = metadata["appId"]
+          candidates = []
+          for endpoint, payload in [
+              ("https://backapi.rustore.ru/applicationData/download-link",
+               {"appId": app_id, "firstInstall": True}),
+              ("https://backapi.rustore.ru/applicationData/v2/download-link",
+               {"appId": app_id, "firstInstall": True, "withoutSplits": True,
+                "supportedAbis": ["arm64-v8a", "armeabi-v7a", "x86", "x86_64"],
+                "screenDensity": 480, "sdkVersion": 26})
+          ]:
+              try:
+                  response = request_json(endpoint, payload)
+                  if response.get("code") != "OK":
+                      print("Candidate API was not successful:", endpoint.rsplit("/",1)[-1])
+                      continue
+                  b = response.get("body") or {}
+                  if b.get("apkUrl"):
+                      candidates.append(b["apkUrl"])
+                  for item in b.get("downloadUrls") or []:
+                      if isinstance(item, dict) and item.get("url"):
+                          candidates.append(item["url"])
+              except Exception as exc:
+                  print("Candidate API unavailable:", type(exc).__name__)
+
+          seen = set()
+          for url in candidates:
+              if url in seen:
+                  continue
+              seen.add(url)
+              parts = urlparse(url)
+              if parts.scheme != "https" or not parts.hostname:
+                  continue
+              # The checksum below is the binding identity. Never publish a non-matching image.
+              print("Checking candidate from:", parts.hostname)
+              try:
+                  req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+                  h = hashlib.sha256()
+                  size = 0
+                  with urllib.request.urlopen(req, timeout=45) as source, output.open("wb") as target:
+                      while True:
+                          block = source.read(1024 * 1024)
+                          if not block:
+                              break
+                          size += len(block)
+                          if size > 300_000_000:
+                              raise ValueError("Candidate exceeds size bound")
+                          h.update(block)
+                          target.write(block)
+                  sha = h.hexdigest()
+                  print("Candidate bytes:", size, "SHA-256:", sha)
+                  if sha == expected and size == info["bytes"]:
+                      print("MATCH: exact reference sample")
+                      break
+                  output.unlink(missing_ok=True)
+              except Exception as exc:
+                  print("Candidate download failed:", type(exc).__name__)
+                  output.unlink(missing_ok=True)
+          else:
+              raise SystemExit("Exact supplied base.apk unavailable from public source; refusing substitution")
+          PY
+      - name: Publish verified APK as repository Release attachment
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          tag="apk-26.35.1-6867"
+          if gh release view "$tag" >/dev/null 2>&1; then
+            echo "Release already exists; do not overwrite without explicit comparison."
+            exit 1
+          fi
+          gh release create "$tag" work/base.apk --title "MAX Android 26.35.1 (6867) — exact research sample" --notes "Исследовательский образец владельца. SHA-256: e809176d6bf6ff69247274433ec170a5db8a5687a02a04299a78a2ae978119fc. APK хранится только как вложение выпуска, вне истории Git." --latest
