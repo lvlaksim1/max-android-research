@@ -45,7 +45,9 @@
   "rules": [
     ".context/rules/project-rules.md"
   ],
-  "decisions": [],
+  "decisions": [
+    ".context/decisions/2026-10-15-apk-in-release.md"
+  ],
   "dialogues": [],
   "history": [],
   "runtime": {
