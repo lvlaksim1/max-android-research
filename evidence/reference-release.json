@@ -1,0 +1,11 @@
+{
+  "source": "Owner-provided exact reference APK, public mirror retrieved by repository workflow only after matching SHA-256",
+  "release_tag": "apk-26.35.1-6867",
+  "asset_name": "base.apk",
+  "asset_url": "https://github.com/lvlaksim1/max-android-research/releases/download/apk-26.35.1-6867/base.apk",
+  "bytes": 133730048,
+  "sha256": "e809176d6bf6ff69247274433ec170a5db8a5687a02a04299a78a2ae978119fc",
+  "github_release_id": 414213895,
+  "verified_by": "GitHub release asset metadata; successful import workflow run 38797319368",
+  "location": "GitHub Release asset, outside Git history"
+}
