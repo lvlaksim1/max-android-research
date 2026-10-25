@@ -5,6 +5,7 @@ on:
     paths:
       - ".github/workflows/max-auth-analysis.yml"
       - "scripts/max_auth_static_analysis.py"
+      - "scripts/max_auth_deep_trace.py"
 
 concurrency:
   group: max-auth-analysis-${{ github.ref }}
@@ -70,12 +71,15 @@ jobs:
             /tmp/max-auth/out/sources /tmp/max-auth/base.apk
           test -s docs/auth-code-index-26.35.1.md
           test -s evidence/auth-code-matches-26.35.1.md
+          python3 scripts/max_auth_deep_trace.py /tmp/max-auth/out/sources /tmp/max-auth/base.apk
+          test -s evidence/auth-deep-crossrefs-26.35.1.md
+          test -s evidence/auth-deep-source-26.35.1.md
       - name: Commit validated text-only indices
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/auth-code-index-26.35.1.md evidence/auth-code-matches-26.35.1.md evidence/auth-command-constructors-26.35.1.md evidence/auth-command-references-26.35.1.md
+          git add docs/auth-code-index-26.35.1.md evidence/auth-code-matches-26.35.1.md evidence/auth-command-constructors-26.35.1.md evidence/auth-command-references-26.35.1.md evidence/auth-deep-crossrefs-26.35.1.md evidence/auth-deep-source-26.35.1.md
           git diff --cached --quiet && exit 0
           git commit -m "Record static MAX authentication code index from verified APK"
           for attempt in 1 2 3; do
