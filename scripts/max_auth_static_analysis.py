@@ -150,3 +150,38 @@ for rel, windows in focus.items():
         detail.append(chr(96)*3)
 pathlib.Path('evidence/auth-code-matches-26.35.1.md').open('a',encoding='utf-8').write('\n'.join(detail)+'\n')
 print('Focused excerpts added:',len(detail))
+
+# Focus on concrete protocol command constructors, including command family 23.
+# Full class excerpts are bounded and never include live data.
+commands = {
+    "AUTH_REQUEST": "super(tdd.l)",
+    "AUTH_CONFIRM": "super(tdd.u)",
+    "AUTH": "super(tdd.m)",
+    "LOGIN": "super(tdd.n)",
+    "LOGIN2": "super(tdd.o)",
+}
+command_report=[
+    "# MAX 26.35.1 — классы, создающие команды входа", "",
+    "Статический поиск конструкторов команд в декомпилированном APK.",
+    "Названия методов и условные ветви могут быть искажены JADX.",
+    "Источник: оригинал с SHA-256 "+actual, ""
+]
+for name, token in commands.items():
+    found=[]
+    for java_file in java_files:
+        try:
+            source=java_file.read_text(encoding="utf-8", errors="replace")
+        except OSError: continue
+        if token in source:
+            rel=java_file.relative_to(root).as_posix()
+            found.append((rel,source.splitlines()))
+    command_report+=["## "+name+" — "+token, "Найдено классов: "+str(len(found)), ""]
+    for rel, source_lines in found[:12]:
+        command_report+=["### "+rel, chr(96)*3+"java"]
+        for idx,line in enumerate(source_lines[:205],1):
+            command_report.append(str(idx).rjust(4)+": "+safe(line))
+        command_report += [chr(96)*3, ""]
+pathlib.Path("evidence/auth-command-constructors-26.35.1.md").write_text(
+    "\n".join(command_report)+"\n", encoding="utf-8")
+print("Authentication command constructor evidence size:",
+      pathlib.Path("evidence/auth-command-constructors-26.35.1.md").stat().st_size)
