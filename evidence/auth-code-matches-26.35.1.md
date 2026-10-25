@@ -1166,207 +1166,8 @@ SHA-256: e809176d6bf6ff69247274433ec170a5db8a5687a02a04299a78a2ae978119fc
 ```
 
 ### defpackage/yr0.java
-Строки 1–250:
+Строки 200–480:
 ```java
-    1: package defpackage;
-    2: 
-    3: import android.app.Activity;
-    4: import android.content.Context;
-    5: import android.content.Intent;
-    6: import android.net.Uri;
-    7: import android.os.Bundle;
-    8: import android.os.DeadObjectException;
-    9: import android.telephony.TelephonyManager;
-   10: import com.vk.push.core.base.AidlException;
-   11: import com.vk.push.core.base.AidlResult;
-   12: import java.io.File;
-   13: import java.io.Serializable;
-   14: import java.util.ArrayList;
-   15: import java.util.Collection;
-   16: import java.util.Collections;
-   17: import java.util.Iterator;
-   18: import java.util.List;
-   19: import java.util.Set;
-   20: import java.util.concurrent.CancellationException;
-   21: import java.util.concurrent.CopyOnWriteArraySet;
-   22: import java.util.concurrent.atomic.AtomicBoolean;
-   23: import me.leolin.shortcutbadger.BuildConfig;
-   24: import one.me.sdk.transfer.domain.UploadException;
-   25: import org.webrtc.PeerConnectionFactory;
-   26: import ru.oneme.app.R;
-   27: 
-   28: /* JADX INFO: loaded from: classes2.dex */
-   29: public final class yr0 extends x1j implements e18 {
-   30: public final /* synthetic */ byte e;
-   31: public byte f;
-   32: public Object g;
-   33: public Object h;
-   34: public Object i;
-   35: public Object j;
-   36: public final /* synthetic */ Object k;
-   37: 
-   38: /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-   39: public yr0(bvf bvfVar, e10 e10Var, String str, String str2, q08 q08Var, b55 b55Var) {
-   40: super(2, b55Var);
-   41: this.e = (byte) 15;
-   42: this.g = bvfVar;
-   43: this.h = e10Var;
-   44: this.i = str;
-   45: this.j = str2;
-   46: this.k = q08Var;
-   47: }
-   48: 
-   49: /* JADX WARN: Code duplicated, block: B:28:0x00fe A[Catch: all -> 0x011b, CancellationException -> 0x011f, TRY_LEAVE, TryCatch #2 {CancellationException -> 0x011f, all -> 0x011b, blocks: (B:26:0x00ec, B:28:0x00fe), top: B:65:0x00ec }] */
-   50: /* JADX WARN: Code duplicated, block: B:32:0x011d  */
-   51: /* JADX WARN: Code duplicated, block: B:38:0x012d  */
-   52: /* JADX WARN: Code duplicated, block: B:41:0x0132  */
-   53: /* JADX WARN: Code restructure failed: missing block: B:43:0x014d, code lost:
-   54: 
-   55: if (r1 == r12) goto L44;
-   56: */
-   57: /* JADX WARN: Instruction removed from duplicated block: B:28:0x00fe, please report this as an issue */
-   58: /*
-   59: Code decompiled incorrectly, please refer to instructions dump.
-   60: */
-   61: private final Object A(Object obj) {
-   62: Object objG;
-   63: ow5 ow5Var;
-   64: List<vld> list;
-   65: Object n4gVar;
-   66: String str;
-   67: Object objH0;
-   68: TelephonyManager telephonyManager;
-   69: Object obj2;
-   70: mm8 mm8Var = (mm8) this.k;
-   71: rp9 rp9Var = mm8Var.f;
-   72: z3j z3jVar = mm8Var.k;
-   73: ja5 ja5Var = (ja5) this.j;
-   74: byte b = this.f;
-   75: b55 b55Var = null;
-   76: ka5 ka5Var = ka5.a;
-   77: if (b == 0) {
-   78: xnm.y(obj);
-   79: this.j = ja5Var;
-   80: this.f = (byte) 1;
-   81: if (usc.n(3000L, this) != ka5Var) {
-   82: }
-   83: return ka5Var;
-   84: }
-   85: if (b == 1) {
-   86: xnm.y(obj);
-   87: } else if (b == 2) {
-   88: ow5 ow5Var2 = (ow5) this.g;
-   89: xnm.y(obj);
-   90: ow5Var = ow5Var2;
-   91: objG = obj;
-   92: list = (List) objG;
-   93: try {
-   94: telephonyManager = (TelephonyManager) ((Context) mm8Var.h.getValue()).getSystemService(TelephonyManager.class);
-   95: if (telephonyManager != null) {
-   96: n4gVar = telephonyManager.getNetworkOperator() + ":" + telephonyManager.getNetworkOperatorName();
-   97: } else {
-   98: n4gVar = null;
-   99: }
-  100: } catch (CancellationException e) {
-  101: throw e;
-  102: } catch (Throwable th) {
-  103: n4gVar = new n4g(th);
-  104: }
-  105: if (n4gVar instanceof n4g) {
-  106: n4gVar = null;
-  107: }
-  108: str = (String) n4gVar;
-  109: if (str == null) {
-  110: str = "undefined";
-  111: }
-  112: u95 u95Var = new u95(ow5Var, b55Var, (byte) 1);
-  113: this.j = ja5Var;
-  114: this.g = ow5Var;
-  115: this.h = list;
-  116: this.i = str;
-  117: this.f = (byte) 3;
-  118: objH0 = jd0.h0(3000L, u95Var, this);
-  119: obj2 = ow5Var;
-  120: } else {
-  121: if (b != 3) {
-  122: k3g.o("call to 'resume' before 'invoke' with coroutine");
-  123: return null;
-  124: }
-  125: str = (String) this.i;
-  126: List list2 = (List) this.h;
-  127: ow5 ow5Var3 = (ow5) this.g;
-  128: xnm.y(obj);
-  129: list = list2;
-  130: obj2 = ow5Var3;
-  131: objH0 = obj;
-  132: }
-  133: String str2 = (String) objH0;
-  134: ((jg9) obj2).m(null);
-  135: boolean zU0 = lkh.u0(ja5Var.d());
-  136: s1k s1kVar = s1k.a;
-  137: if (!zU0) {
-  138: return s1kVar;
-  139: }
-  140: t5a t5aVar = (t5a) mm8Var.i.getValue();
-  141: dea deaVar = new dea();
-  142: e4c e4cVar = new e4c(list.size());
-  143: for (vld vldVar : list) {
-  144: e4cVar.k(vldVar.a, vldVar.b);
-  145: }
-  146: deaVar.put("hosts", e4cVar);
-  147: deaVar.put("operator", str);
-  148: ms4 ms4Var = (ms4) rp9Var.getValue();
-  149: deaVar.put("connection_type", new Integer(ms4Var.g() ? ms4Var.b().a : (byte) 1));
-  150: if (str2 != null) {
-  151: deaVar.put("ip", str2);
-  152: }
-  153: if (((ms4) rp9Var.getValue()).e()) {
-  154: deaVar.put("vpn", new Integer(1));
-  155: }
-  156: t5a.i(t5aVar, "HOST_REACHABILITY", "GET_HOST_REACHABILITY", deaVar.b(), 8);
-  157: return s1kVar;
-  158: pw5 pw5VarB = nm9.b(ja5Var, (lx6) z3jVar.getValue(), 0, new r25(mm8Var, b55Var, (byte) 14), 2);
-  159: ((yx9) mm8Var.d.getValue()).getClass();
-  160: List listI0 = wa4.i0("api2.oneme.ru", (String) om8.b.getValue(), (String) om8.f.getValue(), (String) om8.h.getValue(), (String) om8.d.getValue());
-  161: x95 x95Var = (lx6) z3jVar.getValue();
-  162: if (x95Var == null) {
-  163: x95Var = this.b;
-  164: }
-  165: t45 t45VarA = fa5.a(x95Var);
-  166: ArrayList arrayList = new ArrayList(xa4.p0(listI0, 10));
-  167: Iterator it = listI0.iterator();
-  168: while (it.hasNext()) {
-  169: arrayList.add(nm9.b(t45VarA, null, 0, new rk(it.next(), (b55) null, mm8Var), 3));
-  170: }
-  171: this.j = ja5Var;
-  172: this.g = pw5VarB;
-  173: this.f = (byte) 2;
-  174: objG = jd0.g(arrayList, this);
-  175: ow5Var = pw5VarB;
-  176: if (objG != ka5Var) {
-  177: list = (List) objG;
-  178: telephonyManager = (TelephonyManager) ((Context) mm8Var.h.getValue()).getSystemService(TelephonyManager.class);
-  179: if (telephonyManager != null) {
-  180: n4gVar = telephonyManager.getNetworkOperator() + ":" + telephonyManager.getNetworkOperatorName();
-  181: } else {
-  182: n4gVar = null;
-  183: }
-  184: if (n4gVar instanceof n4g) {
-  185: n4gVar = null;
-  186: }
-  187: str = (String) n4gVar;
-  188: if (str == null) {
-  189: str = "undefined";
-  190: }
-  191: u95 u95Var2 = new u95(ow5Var, b55Var, (byte) 1);
-  192: this.j = ja5Var;
-  193: this.g = ow5Var;
-  194: this.h = list;
-  195: this.i = str;
-  196: this.f = (byte) 3;
-  197: objH0 = jd0.h0(3000L, u95Var2, this);
-  198: obj2 = ow5Var;
-  199: }
   200: return ka5Var;
   201: }
   202: 
@@ -1418,6 +1219,236 @@ SHA-256: e809176d6bf6ff69247274433ec170a5db8a5687a02a04299a78a2ae978119fc
   248: if (b == 4) {
   249: xnm.y(obj);
   250: return s1kVar;
+  251: }
+  252: k3g.o("call to 'resume' before 'invoke' with coroutine");
+  253: return null;
+  254: }
+  255: String str5 = (String) this.g;
+  256: xnm.y(obj);
+  257: str3 = str5;
+  258: objA = obj;
+  259: }
+  260: bj0Var = (bj0) objA;
+  261: str4 = ((fyc) b79Var.e.getValue()).a;
+  262: cVar = bj0Var.h;
+  263: if (cVar != null) {
+  264: u79Var.l.e(new h79(bj0Var.d, bj0Var.e, bj0Var.c, str3, str4));
+  265: return s1kVar;
+  266: }
+  267: this.g = null;
+  268: this.h = null;
+  269: this.f = (byte) 4;
+  270: long jF = ((hog) ((c74) u79Var.k.getValue())).f() + ((long) cVar.c);
+  271: objD = ((ph0) u79Var.i.getValue()).a(jF, az7.U(cVar.d, me6.d), cVar.b).d(new q79(u79Var, cVar, str3, jF), this);
+  272: if (objD != ka5Var) {
+  273: objD = s1kVar;
+  274: }
+  275: if (objD != ka5Var) {
+  276: return ka5Var;
+  277: }
+  278: return s1kVar;
+  279: if (((Boolean) objG).booleanValue()) {
+  280: nih nihVar = u79Var.m;
+  281: q7a q7aVar = new q7a(new mdj(R.string.oneme_login_already_in_this_profile));
+  282: this.g = null;
+  283: this.h = null;
+  284: this.f = (byte) 2;
+  285: if (nihVar.b(q7aVar, this) != ka5Var) {
+  286: return s1kVar;
+  287: }
+  288: } else {
+  289: zm9[] zm9VarArr = u79.x;
+  290: ej0 ej0Var = (ej0) u79Var.e.getValue();
+  291: this.g = str;
+  292: this.h = null;
+  293: this.f = (byte) 3;
+  294: objA = ej0Var.a(str2, 1, this);
+  295: if (objA != ka5Var) {
+  296: str3 = str;
+  297: bj0Var = (bj0) objA;
+  298: str4 = ((fyc) b79Var.e.getValue()).a;
+  299: cVar = bj0Var.h;
+  300: if (cVar != null) {
+  301: u79Var.l.e(new h79(bj0Var.d, bj0Var.e, bj0Var.c, str3, str4));
+  302: return s1kVar;
+  303: }
+  304: this.g = null;
+  305: this.h = null;
+  306: this.f = (byte) 4;
+  307: long jF2 = ((hog) ((c74) u79Var.k.getValue())).f() + ((long) cVar.c);
+  308: objD = ((ph0) u79Var.i.getValue()).a(jF2, az7.U(cVar.d, me6.d), cVar.b).d(new q79(u79Var, cVar, str3, jF2), this);
+  309: if (objD != ka5Var) {
+  310: objD = s1kVar;
+  311: }
+  312: if (objD != ka5Var) {
+  313: return s1kVar;
+  314: }
+  315: }
+  316: }
+  317: return ka5Var;
+  318: }
+  319: 
+  320: /* JADX WARN: Code duplicated, block: B:25:0x008a  */
+  321: /* JADX WARN: Code duplicated, block: B:29:0x00a9  */
+  322: /* JADX WARN: Code duplicated, block: B:33:0x00d7  */
+  323: private final Object C(Object obj) {
+  324: a0h a0hVar;
+  325: a0h a0hVar2;
+  326: ArrayList arrayList;
+  327: Object objG;
+  328: a0h a0hVar3;
+  329: ArrayList arrayList2;
+  330: Collection collection;
+  331: Object objG2;
+  332: Collection collection2;
+  333: z05 z05Var;
+  334: q29 q29Var;
+  335: ArrayList arrayList3;
+  336: k40 k40Var = (k40) this.k;
+  337: byte b = this.f;
+  338: ka5 ka5Var = ka5.a;
+  339: if (b == 0) {
+  340: xnm.y(obj);
+  341: this.f = (byte) 1;
+  342: obj = k40Var.e(this);
+  343: if (obj != ka5Var) {
+  344: }
+  345: return ka5Var;
+  346: }
+  347: if (b == 1) {
+  348: xnm.y(obj);
+  349: } else {
+  350: if (b == 2) {
+  351: a0hVar = (a0h) this.g;
+  352: xnm.y(obj);
+  353: a0hVar2 = (a0h) obj;
+  354: arrayList = new ArrayList();
+  355: List listT = j0h.T(a0hVar);
+  356: this.g = null;
+  357: this.h = a0hVar2;
+  358: this.i = arrayList;
+  359: this.f = (byte) 3;
+  360: objG = jd0.g(listT, this);
+  361: if (objG != ka5Var) {
+  362: a0hVar3 = a0hVar2;
+  363: obj = objG;
+  364: arrayList2 = arrayList;
+  365: collection = (Collection) obj;
+  366: List listT2 = j0h.T(a0hVar3);
+  367: this.g = null;
+  368: this.h = null;
+  369: this.i = arrayList2;
+  370: this.j = collection;
+  371: this.f = (byte) 4;
+  372: objG2 = jd0.g(listT2, this);
+  373: if (objG2 != ka5Var) {
+  374: collection2 = collection;
+  375: obj = objG2;
+  376: va4.I0(va4.a1((Iterable) obj, collection2), arrayList2);
+  377: z05Var = (z05) ((rp9) k40Var.g).getValue();
+  378: q29Var = new q29((byte) 23);
+  379: this.g = null;
+  380: this.h = null;
+  381: this.i = arrayList2;
+  382: this.j = null;
+  383: this.f = (byte) 5;
+  384: if (z05Var.b(arrayList2, q29Var, this) != ka5Var) {
+  385: arrayList3 = arrayList2;
+  386: }
+  387: }
+  388: }
+  389: return ka5Var;
+  390: }
+  391: if (b == 3) {
+  392: arrayList2 = (ArrayList) this.i;
+  393: a0hVar3 = (a0h) this.h;
+  394: xnm.y(obj);
+  395: collection = (Collection) obj;
+  396: List listT3 = j0h.T(a0hVar3);
+  397: this.g = null;
+  398: this.h = null;
+  399: this.i = arrayList2;
+  400: this.j = collection;
+  401: this.f = (byte) 4;
+  402: objG2 = jd0.g(listT3, this);
+  403: if (objG2 != ka5Var) {
+  404: collection2 = collection;
+  405: obj = objG2;
+  406: va4.I0(va4.a1((Iterable) obj, collection2), arrayList2);
+  407: z05Var = (z05) ((rp9) k40Var.g).getValue();
+  408: q29Var = new q29((byte) 23);
+  409: this.g = null;
+  410: this.h = null;
+  411: this.i = arrayList2;
+  412: this.j = null;
+  413: this.f = (byte) 5;
+  414: if (z05Var.b(arrayList2, q29Var, this) != ka5Var) {
+  415: arrayList3 = arrayList2;
+  416: }
+  417: }
+  418: return ka5Var;
+  419: }
+  420: if (b == 4) {
+  421: Collection collection3 = (Collection) this.j;
+  422: ArrayList arrayList4 = (ArrayList) this.i;
+  423: xnm.y(obj);
+  424: collection2 = collection3;
+  425: arrayList2 = arrayList4;
+  426: va4.I0(va4.a1((Iterable) obj, collection2), arrayList2);
+  427: z05Var = (z05) ((rp9) k40Var.g).getValue();
+  428: q29Var = new q29((byte) 23);
+  429: this.g = null;
+  430: this.h = null;
+  431: this.i = arrayList2;
+  432: this.j = null;
+  433: this.f = (byte) 5;
+  434: if (z05Var.b(arrayList2, q29Var, this) != ka5Var) {
+  435: arrayList3 = arrayList2;
+  436: }
+  437: return ka5Var;
+  438: }
+  439: if (b != 5) {
+  440: k3g.o("call to 'resume' before 'invoke' with coroutine");
+  441: return null;
+  442: }
+  443: arrayList3 = (ArrayList) this.i;
+  444: xnm.y(obj);
+  445: }
+  446: arrayList3.removeIf(new i7(new y20(new n3c(arrayList3.size()), (byte) 2), (byte) 10));
+  447: r4i r4iVar = (r4i) k40Var.j;
+  448: r4iVar.getClass();
+  449: r4iVar.j(null, arrayList3);
+  450: ((AtomicBoolean) k40Var.e).set(false);
+  451: return s1k.a;
+  452: a0hVar = (a0h) obj;
+  453: this.g = a0hVar;
+  454: this.f = (byte) 2;
+  455: obj = k40Var.f(this);
+  456: if (obj != ka5Var) {
+  457: a0hVar2 = (a0h) obj;
+  458: arrayList = new ArrayList();
+  459: List listT4 = j0h.T(a0hVar);
+  460: this.g = null;
+  461: this.h = a0hVar2;
+  462: this.i = arrayList;
+  463: this.f = (byte) 3;
+  464: objG = jd0.g(listT4, this);
+  465: if (objG != ka5Var) {
+  466: a0hVar3 = a0hVar2;
+  467: obj = objG;
+  468: arrayList2 = arrayList;
+  469: collection = (Collection) obj;
+  470: List listT5 = j0h.T(a0hVar3);
+  471: this.g = null;
+  472: this.h = null;
+  473: this.i = arrayList2;
+  474: this.j = collection;
+  475: this.f = (byte) 4;
+  476: objG2 = jd0.g(listT5, this);
+  477: if (objG2 != ka5Var) {
+  478: collection2 = collection;
+  479: obj = objG2;
+  480: va4.I0(va4.a1((Iterable) obj, collection2), arrayList2);
 ```
 
 ### defpackage/u79.java
@@ -2134,6 +2165,1387 @@ SHA-256: e809176d6bf6ff69247274433ec170a5db8a5687a02a04299a78a2ae978119fc
   155: ij4Var.c(476, "ru.ok.tamtam.android.chat.ChatsDao");
 ```
 
+### defpackage/tdd.java
+Строки 1–300:
+```java
+    1: package defpackage;
+    2: 
+    3: import java.util.HashMap;
+    4: import java.util.Iterator;
+    5: 
+    6: /* JADX WARN: $VALUES field not found */
+    7: /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
+    8: /* JADX INFO: loaded from: classes.dex */
+    9: public final class tdd {
+   10: public static final tdd A1;
+   11: public static final tdd G;
+   12: public static final tdd G1;
+   13: public static final tdd H;
+   14: public static final tdd H3;
+   15: public static final tdd I;
+   16: public static final tdd I3;
+   17: public static final tdd J3;
+   18: public static final tdd K3;
+   19: public static final tdd L3;
+   20: public static final tdd M3;
+   21: public static final tdd N3;
+   22: public static final tdd O3;
+   23: public static final tdd P3;
+   24: public static final tdd Q3;
+   25: public static final tdd R3;
+   26: public static final tdd S3;
+   27: public static final tdd T3;
+   28: public static final tdd U3;
+   29: public static final tdd V3;
+   30: public static final tdd W3;
+   31: public static final tdd X3;
+   32: public static final tdd Y3;
+   33: public static final tdd Z;
+   34: public static final /* synthetic */ ut6 Z3;
+   35: public static final cp5 c;
+   36: public static final HashMap d;
+   37: public static final HashMap e;
+   38: public static final tdd f;
+   39: public static final tdd f1;
+   40: public static final tdd g;
+   41: public static final tdd h;
+   42: public static final tdd i;
+   43: public static final tdd i1;
+   44: public static final tdd j;
+   45: public static final tdd j1;
+   46: public static final tdd k;
+   47: public static final tdd k1;
+   48: public static final tdd l;
+   49: public static final tdd l1;
+   50: public static final tdd m1;
+   51: public static final tdd n1;
+   52: public static final tdd p1;
+   53: public static final tdd r1;
+   54: public static final tdd s1;
+   55: public static final tdd t1;
+   56: public static final tdd u1;
+   57: public static final tdd v1;
+   58: public static final tdd w1;
+   59: public static final tdd y1;
+   60: public final short a;
+   61: public final f84 b;
+   62: public static final tdd m = new tdd("AUTH", 7, 18);
+   63: public static final tdd n = new tdd("LOGIN", 8, 19, f0c.f);
+   64: public static final tdd o = new tdd("LOGIN2", 9, 8, bwb.f);
+   65: public static final tdd p = new tdd("GET_PROMOTED_CONTENT", 10, 9, df7.g);
+   66: public static final tdd q = new tdd("PROMOTED_CONTENT_CALLBACK", 11, 10, fj0.f);
+   67: public static final tdd r = new tdd("LOGOUT", 12, 20);
+   68: public static final tdd s = new tdd("SYNC", 13, 21);
+   69: public static final tdd t = new tdd("CONFIG", 14, 22, qzd.e);
+   70: public static final tdd u = new tdd("AUTH_CONFIRM", 15, 23);
+   71: public static final tdd v = new tdd("AUTH_CREATE_TRACK", 16, 112, r74.b);
+   72: public static final tdd w = new tdd("AUTH_CHECK_PASSWORD", 17, 113, lrh.d);
+   73: public static final tdd x = new tdd("AUTH_LOGIN_CHECK_PASSWORD", 18, 115, cp5.c);
+   74: public static final tdd y = new tdd("AUTH_LOGIN_PROFILE_DELETE", 19, 116, cg6.b);
+   75: public static final tdd z = new tdd("AUTH_LOGIN_RESTORE_PASSWORD", 20, 101, bwb.b);
+   76: public static final tdd A = new tdd("AUTH_VALIDATE_PASSWORD", 21, 107, fj0.c);
+   77: public static final tdd B = new tdd("AUTH_VALIDATE_HINT", 22, 108, fj0.b);
+   78: public static final tdd C = new tdd("AUTH_VERIFY_EMAIL", 23, 109, f0c.b);
+   79: public static final tdd D = new tdd("AUTH_CHECK_EMAIL", 24, 110, qzd.c);
+   80: public static final tdd E = new tdd("AUTH_SET_2FA", 25, 111, fj0.a);
+   81: public static final tdd F = new tdd("AUTH_2FA_DETAILS", 26, 104, nt6.c);
+   82: public static final tdd J = new tdd("ASSETS_LIST_MODIFY", 30, 261);
+   83: public static final tdd X = new tdd("ASSETS_REMOVE", 31, 259);
+   84: public static final tdd Y = new tdd("ASSETS_MOVE", 32, 260);
+   85: public static final tdd c1 = new tdd("PRESET_AVATARS", 34, 25, tdc.i);
+   86: public static final tdd d1 = new tdd("CONTACT_INFO", 35, 32, cg6.d);
+   87: public static final tdd e1 = new tdd("CONTACT_INFO_BY_PHONE", 36, 46, cp5.e);
+   88: public static final tdd g1 = new tdd("CONTACT_UPDATE", 38, 34);
+   89: public static final tdd h1 = new tdd("CONTACT_PRESENCE", 39, 35, bwb.d);
+   90: public static final tdd o1 = new tdd("CHAT_INFO", 46, 48);
+   91: public static final tdd q1 = new tdd("CHAT_MARK", 48, 50, cg6.c);
+   92: public static final tdd x1 = new tdd("CHAT_JOIN", 55, 57, lrh.e);
+   93: public static final tdd z1 = new tdd("CHAT_MEMBERS", 57, 59, bwb.c);
+   94: public static final tdd B1 = new tdd("CHAT_PERSONAL_CONFIG", 59, 61, f0c.c);
+   95: public static final tdd C1 = new tdd("REACTIONS_SETTINGS_GET_BY_CHAT_ID", 60, 258, qzd.d);
+   96: public static final tdd D1 = new tdd("CHAT_REACTIONS_SETTINGS_SET", 61, 257, pdc.d);
+   97: public static final tdd E1 = new tdd("CHAT_CHECK_ESIA", 62, 307, fj0.d);
+   98: public static final tdd F1 = new tdd("ENTITY_ORG_INFO", 63, 308, nt6.b);
+   99: public static final tdd H1 = new tdd("MSG_TYPING", 65, 65);
+  100: public static final tdd I1 = new tdd("MSG_DELETE", 66, 66);
+  101: public static final tdd J1 = new tdd("MSG_EDIT", 67, 67);
+  102: public static final tdd K1 = new tdd("GET_COMMENTS_UPDATES", 68, 91, wt0.g);
+  103: public static final tdd L1 = new tdd("MSG_DELETE_RANGE", 69, 92);
+  104: public static final tdd M1 = new tdd("MSG_REACTION", 70, 178, nt6.i);
+  105: public static final tdd N1 = new tdd("MSG_CANCEL_REACTION", 71, 179, tdc.g);
+  106: public static final tdd O1 = new tdd("MSG_GET_REACTIONS", 72, 180, wt0.h);
+  107: public static final tdd P1 = new tdd("MSG_GET_DETAILED_REACTIONS", 73, 181);
+  108: public static final tdd Q1 = new tdd("STORIES_LIST", 74, 208, wt0.k);
+  109: public static final tdd R1 = new tdd("STORIES_LIST_BY_OWNER_ID", 75, 209, ih0.k);
+  110: public static final tdd S1 = new tdd("STORIES_GET_BY_OWNER_ID", 76, 210, f0c.i);
+  111: public static final tdd T1 = new tdd("STORIES_GET_STATS", 77, 211, wdc.j);
+  112: public static final tdd U1 = new tdd("STORIES_GET_DETAILED_STATS", 78, 212, tdc.j);
+  113: public static final tdd V1 = new tdd("STORIES_REACT", 79, 213, df7.k);
+  114: public static final tdd W1 = new tdd("STORIES_MARK", 80, 214, nt6.l);
+  115: public static final tdd X1 = new tdd("STORIES_SEND", 81, 215, qzd.i);
+  116: public static final tdd Y1 = new tdd("NOTIF_STORIES_UPDATE", 82, 216, wt0.i);
+  117: public static final tdd Z1 = new tdd("STORIES_EDIT", 83, 217, bwb.i);
+  118: public static final tdd a2 = new tdd("STORIES_DELETE", 84, 218, cg6.j);
+  119: public static final tdd b2 = new tdd("STORIES_GET_BY_STORY_ID", 85, 220, pdc.i);
+  120: public static final tdd c2 = new tdd("STORIES_HISTORY_GET_BY_OWNER_ID", 86, 219, kwm.j);
+  121: public static final tdd d2 = new tdd("GET_PINNED_MESSAGE_STATES", 87, 240, nt6.h);
+  122: public static final tdd e2 = new tdd("PINNED_MESSAGES_GET", 88, 241, cg6.i);
+  123: public static final tdd f2 = new tdd("PINNED_MESSAGE_UPDATE", 89, 242, cp5.i);
+  124: public static final tdd g2 = new tdd("NOTIF_CHAT_MESSAGE_PINNED", 90, 243, f0c.g);
+  125: public static final tdd h2 = new tdd("CHAT_SEARCH", 91, 68);
+  126: public static final tdd i2 = new tdd("MSG_SHARE_PREVIEW", 92, 70);
+  127: public static final tdd j2 = new tdd("MSG_GET", 93, 71, kwm.g);
+  128: public static final tdd k2 = new tdd("MSG_SEARCH_TOUCH", 94, 72);
+  129: public static final tdd l2 = new tdd("MSG_SEARCH", 95, 73);
+  130: public static final tdd m2 = new tdd("MSG_GET_STAT", 96, 74);
+  131: public static final tdd n2 = new tdd("CHAT_SUBSCRIBE", 97, 75);
+  132: public static final tdd o2 = new tdd("VIDEO_CHAT_START", 98, 76, nt6.d);
+  133: public static final tdd p2 = new tdd("VIDEO_CHAT_START_ACTIVE", 99, 78, wt0.l);
+  134: public static final tdd q2 = new tdd("VIDEO_CHAT_JOIN", 100, 166, ih0.l);
+  135: public static final tdd r2 = new tdd("VIDEO_CHAT_HANGUP", 101, 167, kwm.k);
+  136: public static final tdd s2 = new tdd("CHAT_MEMBERS_UPDATE", 102, 77);
+  137: public static final tdd t2 = new tdd("VIDEO_CHAT_HISTORY", 103, 79);
+  138: public static final tdd u2 = new tdd("PHOTO_UPLOAD", 104, 80, qzd.b);
+  139: public static final tdd v2 = new tdd("STICKER_UPLOAD", 105, 81);
+  140: public static final tdd w2 = new tdd("VIDEO_UPLOAD", 106, 82, nt6.m);
+  141: public static final tdd x2 = new tdd("VIDEO_PLAY", 107, 83);
+  142: public static final tdd y2 = new tdd("VIDEO_CHAT_CREATE_JOIN_LINK", 108, 84, wdc.c);
+  143: public static final tdd z2 = new tdd("CHAT_PIN_SET_VISIBILITY", 109, 86);
+  144: public static final tdd A2 = new tdd("FILE_UPLOAD", 110, 87);
+  145: public static final tdd B2 = new tdd("FILE_DOWNLOAD", 111, 88, bwb.e);
+  146: public static final tdd C2 = new tdd("LINK_INFO", 112, 89, cp5.g);
+  147: public static final tdd D2 = new tdd("SESSIONS_INFO", 113, 96);
+  148: public static final tdd E2 = new tdd("SESSIONS_CLOSE", 114, 97);
+  149: public static final tdd F2 = new tdd("PHONE_BIND_REQUEST", 115, 98);
+  150: public static final tdd G2 = new tdd("PHONE_BIND_CONFIRM", 116, 99);
+  151: public static final tdd H2 = new tdd("GET_INBOUND_CALLS", 117, 103);
+  152: public static final tdd I2 = new tdd("EXTERNAL_CALLBACK", 118, 105, cp5.f);
+  153: public static final tdd J2 = new tdd("PHONE_WEBAPP_SHARE", 119, 106, r74.j);
+  154: public static final tdd K2 = new tdd("OK_TOKEN", 120, 158, nt6.j);
+  155: public static final tdd L2 = new tdd("CHAT_COMPLAIN", 121, 117);
+  156: public static final tdd M2 = new tdd("MSG_SEND_CALLBACK", 122, 118);
+  157: public static final tdd N2 = new tdd("SUSPEND_BOT", 123, 119);
+  158: public static final tdd O2 = new tdd("LOCATION_STOP", 124, 124);
+  159: public static final tdd P2 = new tdd("LOCATION_SEND", 125, 125);
+  160: public static final tdd Q2 = new tdd("LOCATION_REQUEST", 126, 126);
+  161: public static final tdd R2 = new tdd("GET_LAST_MENTIONS", 127, 127);
+  162: public static final tdd S2 = new tdd("STICKER_CREATE", 128, 193);
+  163: public static final tdd T2 = new tdd("STICKER_SUGGEST", 129, 194);
+  164: public static final tdd U2 = new tdd("VIDEO_CHAT_MEMBERS", 130, 195);
+  165: public static final tdd V2 = new tdd("NOTIF_MESSAGE", 131, 128, lgc.a);
+  166: public static final tdd W2 = new tdd("NOTIF_TYPING", 132, 129);
+  167: public static final tdd X2 = new tdd("NOTIF_MARK", 133, 130, tdc.h);
+  168: public static final tdd Y2 = new tdd("NOTIF_CONTACT", 134, 131);
+  169: public static final tdd Z2 = new tdd("NOTIF_PRESENCE", 135, 132);
+  170: public static final tdd a3 = new tdd("NOTIF_CONFIG", 136, 134);
+  171: public static final tdd b3 = new tdd("NOTIF_CHAT", 137, 135);
+  172: public static final tdd c3 = new tdd("NOTIF_ATTACH", 138, 136, cp5.h);
+  173: public static final tdd d3 = new tdd("NOTIF_CALL_START", 139, 137);
+  174: public static final tdd e3 = new tdd("NOTIF_CONTACT_SORT", 140, 139);
+  175: public static final tdd f3 = new tdd("NOTIF_MSG_DELETE_RANGE", 141, 140);
+  176: public static final tdd g3 = new tdd("NOTIF_MSG_DELETE", 142, 142, kwm.h);
+  177: public static final tdd h3 = new tdd("NOTIF_MSG_REACTIONS_CHANGED", 143, 155);
+  178: public static final tdd i3 = new tdd("NOTIF_MSG_YOU_REACTED", 144, 156);
+  179: public static final tdd j3 = new tdd("NOTIF_CALLBACK_ANSWER", 145, 143);
+  180: public static final tdd k3 = new tdd("CHAT_BOT_COMMANDS", 146, 144);
+  181: public static final tdd l3 = new tdd("BOT_INFO", 147, 145, tdc.c);
+  182: public static final tdd m3 = new tdd("NOTIF_LOCATION", 148, 147);
+  183: public static final tdd n3 = new tdd("NOTIF_LOCATION_REQUEST", 149, 148);
+  184: public static final tdd o3 = new tdd("NOTIF_ASSETS_UPDATE", 150, 150);
+  185: public static final tdd p3 = new tdd("CHAT_HIDE", 151, 196);
+  186: public static final tdd q3 = new tdd("CHAT_SEARCH_COMMON_PARTICIPANTS", 152, 198);
+  187: public static final tdd r3 = new tdd("NOTIF_MSG_DELAYED", 153, 154, wdc.h);
+  188: public static final tdd s3 = new tdd("NOTIF_PROFILE", 154, 159, ih0.i);
+  189: public static final tdd t3 = new tdd("PROFILE_DELETE", 155, 199, wdc.i);
+  190: public static final tdd u3 = new tdd("PROFILE_DELETE_TIME", 156, 200, kwm.i);
+  191: public static final tdd v3 = new tdd("WEB_APP_INIT_DATA", 157, 160, qzd.j);
+  192: public static final tdd w3 = new tdd("COMPLAIN", 158, 161, wdc.d);
+  193: public static final tdd x3 = new tdd("COMPLAIN_REASONS_GET", 159, 162, kwm.c);
+  194: public static final tdd y3 = new tdd("CALL_HISTORY", 160, 163, ih0.d);
+  195: public static final tdd z3 = new tdd("CALL_HISTORY_CLEAR", 161, 164, kwm.b);
+  196: public static final tdd A3 = new tdd("NOTIF_CALL_HISTORY", 162, 165, bwb.g);
+  197: public static final tdd B3 = new tdd("FOLDERS_GET", 163, 272, tdc.f);
+  198: public static final tdd C3 = new tdd("FOLDERS_GET_BY_ID", 164, 273, pdc.e);
+  199: public static final tdd D3 = new tdd("FOLDERS_UPDATE", 165, 274, kwm.f);
+  200: public static final tdd E3 = new tdd("FOLDERS_REORDER", 166, 275, wdc.f);
+  201: public static final tdd F3 = new tdd("FOLDERS_DELETE", 167, 276, f0c.e);
+  202: public static final tdd G3 = new tdd("NOTIF_FOLDERS", 168, 277, pdc.g);
+  203: 
+  204: static {
+  205: short s4 = 1;
+  206: f = new tdd("PING", 0, s4);
+  207: short s5 = 2;
+  208: g = new tdd("DEBUG", s4, s5);
+  209: short s6 = 3;
+  210: h = new tdd("RECONNECT", s5, s6);
+  211: short s7 = 5;
+  212: i = new tdd("LOG", s6, s7);
+  213: short s8 = 6;
+  214: j = new tdd("SESSION_INIT", 4, s8);
+  215: k = new tdd("PROFILE", s7, (short) 16);
+  216: l = new tdd("AUTH_REQUEST", s8, (short) 17);
+  217: short s9 = 27;
+  218: G = new tdd("ASSETS_GET", s9, (short) 26);
+  219: short s10 = 28;
+  220: H = new tdd("ASSETS_UPDATE", s10, s9);
+  221: short s11 = 29;
+  222: I = new tdd("ASSETS_GET_BY_IDS", s11, s10);
+  223: short s12 = 33;
+  224: Z = new tdd("ASSETS_ADD", s12, s11);
+  225: short s13 = 37;
+  226: f1 = new tdd("CONTACT_ADD", s13, s12);
+  227: short s14 = 40;
+  228: i1 = new tdd("CONTACT_LIST", s14, (short) 36);
+  229: j1 = new tdd("CONTACT_SEARCH", 41, s13);
+  230: short s15 = 42;
+  231: k1 = new tdd("CONTACT_PHOTOS", s15, (short) 39);
+  232: short s16 = 43;
+  233: l1 = new tdd("CONTACT_SORT", s16, s14);
+  234: m1 = new tdd("CONTACT_VERIFY", 44, s15);
+  235: n1 = new tdd("REMOVE_CONTACT_PHOTO", 45, s16);
+  236: short s17 = 49;
+  237: p1 = new tdd("CHAT_HISTORY", 47, s17);
+  238: short s18 = 51;
+  239: r1 = new tdd("CHAT_MEDIA", s17, s18);
+  240: short s19 = 52;
+  241: s1 = new tdd("CHAT_DELETE", 50, s19);
+  242: short s20 = 53;
+  243: t1 = new tdd("CHATS_LIST", s18, s20);
+  244: short s21 = 54;
+  245: u1 = new tdd("CHAT_CLEAR", s19, s21);
+  246: v1 = new tdd("CHAT_UPDATE", s20, (short) 55);
+  247: short s22 = 56;
+  248: w1 = new tdd("CHAT_CHECK_LINK", s21, s22);
+  249: short s23 = 58;
+  250: y1 = new tdd("CHAT_LEAVE", s22, s23);
+  251: A1 = new tdd("PUBLIC_SEARCH", s23, (short) 60);
+  252: short s24 = 64;
+  253: G1 = new tdd("MSG_SEND", s24, s24);
+  254: cg6 cg6Var = cg6.h;
+  255: H3 = new tdd("AUTH_QR_APPROVE", 169, (short) 290, cg6Var);
+  256: I3 = new tdd("NOTIF_BANNERS", 170, (short) 292, cg6Var);
+  257: J3 = new tdd("AUTH_BY_TRACK", 171, (short) 291, df7.c);
+  258: K3 = new tdd("AUTH_CHECK_CALL", 172, (short) 294, ih0.b);
+  259: L3 = new tdd("BANNERS_GET", 173, (short) 302, wt0.b);
+  260: M3 = new tdd("CHAT_SUGGEST", 174, (short) 300, tdc.d);
+  261: N3 = new tdd("AUDIO_PLAY", 175, (short) 301, wt0.c);
+  262: O3 = new tdd("MSG_DELIVERY", 176, (short) 303, fj0.e);
+  263: P3 = new tdd("SEND_VOTE", 177, (short) 304, f0c.h);
+  264: Q3 = new tdd("VOTERS_LIST_BY_ANSWER", 178, (short) 305, pdc.h);
+  265: R3 = new tdd("GET_POLL_UPDATES", 179, (short) 306, ih0.h);
+  266: S3 = new tdd("TRANSCRIBE_MEDIA", 180, (short) 202, rqj.a);
+  267: T3 = new tdd("NOTIF_TRANSCRIPTION", 181, (short) 293, ehc.a);
+  268: U3 = new tdd("ORG_INFO", 182, (short) 256, lrh.j);
+  269: V3 = new tdd("CHAT_LIVESTREAM_INFO", 183, (short) 62, cp5.d);
+  270: W3 = new tdd("PHOTO_URL_REFRESH", 184, (short) 203, r74.g);
+  271: X3 = new tdd("MSG_DELETE_USER", 185, (short) 94, wdc.g);
+  272: Y3 = new tdd("CHAT_LINKS_LIST", 186, (short) 221, r74.c);
+  273: ut6 ut6VarH0 = lkh.h0(new tdd[]{f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z, A, B, C, D, E, F, G, H, I, J, X, Y, Z, c1, d1, e1, f1, g1, h1, i1, j1, k1, l1, m1, n1, o1, p1, q1, r1, s1, t1, u1, v1, w1, x1, y1, z1, A1, B1, C1, D1, E1, F1, G1, H1, I1, J1, K1, L1, M1, N1, O1, P1, Q1, R1, S1, T1, U1, V1, W1, X1, Y1, Z1, a2, b2, c2, d2, e2, f2, g2, h2, i2, j2, k2, l2, m2, n2, o2, p2, q2
+  274: Z3 = ut6VarH0;
+  275: c = new cp5((byte) 16);
+  276: d = new HashMap();
+  277: e = new HashMap();
+  278: Iterator it = ut6VarH0.iterator();
+  279: while (true) {
+  280: j2 j2Var = (j2) it;
+  281: if (!j2Var.hasNext()) {
+  282: return;
+  283: }
+  284: tdd tddVar = (tdd) j2Var.next();
+  285: d.put(Short.valueOf(tddVar.a), tddVar.name());
+  286: HashMap map = e;
+  287: Short shValueOf = Short.valueOf(tddVar.a);
+  288: String strName = tddVar.name();
+  289: cp5 cp5Var = c;
+  290: short s25 = tddVar.a;
+  291: cp5Var.getClass();
+  292: map.put(shValueOf, strName + "(0x" + Integer.toHexString(s25 & 65535) + ")");
+  293: }
+  294: }
+  295: 
+  296: public tdd(String str, int i4, short s4, f84 f84Var) {
+  297: super(str, i4);
+  298: this.a = s4;
+  299: this.b = f84Var;
+  300: }
+```
+
+### defpackage/d2c.java
+Строки 1–230:
+```java
+    1: package defpackage;
+    2: 
+    3: import java.util.ArrayList;
+    4: import java.util.Collection;
+    5: import java.util.Iterator;
+    6: import java.util.Map;
+    7: import me.leolin.shortcutbadger.BuildConfig;
+    8: 
+    9: /* JADX INFO: loaded from: classes.dex */
+   10: public final class d2c {
+   11: public final r1c a;
+   12: public final s1c b;
+   13: public final String c = d2c.class.getName();
+   14: public final z3j d = new z3j(new wz7(17));
+   15: public final dmf e;
+   16: public final dmf f;
+   17: public final dmf g;
+   18: 
+   19: public d2c(p9g p9gVar, r1c r1cVar, s1c s1cVar) {
+   20: this.a = r1cVar;
+   21: this.b = s1cVar;
+   22: b55 b55Var = null;
+   23: byte b = 0;
+   24: byte b2 = 3;
+   25: dk7 dk7Var = new dk7(new c30(j8.b, (byte) 17), new u1c(this, b55Var, b), b2);
+   26: qzd qzdVar = hjh.a;
+   27: sp6 sp6Var = sp6.a;
+   28: dmf dmfVarL0 = tul.l0(dk7Var, p9gVar, qzdVar, sp6Var);
+   29: this.e = dmfVarL0;
+   30: byte b3 = 1;
+   31: this.f = tul.l0(new dk7(new b2c(xk7.e(dmfVarL0, new qd2(b2, b55Var, (byte) 5)), b), new u1c(this, b55Var, b3), b2), p9gVar, qzdVar, sp6Var);
+   32: this.g = tul.l0(new b2c(xk7.e(dmfVarL0, new qd2(b2, b55Var, (byte) 6)), b3), p9gVar, qzdVar, 0);
+   33: nm9.J(p9gVar, null, 0, new y77(this, b55Var, (byte) 23), 3);
+   34: }
+   35: 
+   36: public final q1a a(long j) {
+   37: q1a q1aVar;
+   38: Iterator it = ((Map) this.f.a.getValue()).entrySet().iterator();
+   39: do {
+   40: q1aVar = null;
+   41: if (!it.hasNext()) {
+   42: break;
+   43: }
+   44: Map.Entry entry = (Map.Entry) it.next();
+   45: if (((hog) ((p1c) entry.getValue()).a()).s() == j) {
+   46: q1aVar = (q1a) entry.getKey();
+   47: }
+   48: } while (q1aVar == null);
+   49: return q1aVar;
+   50: }
+   51: 
+   52: public final q1a b() {
+   53: q1a q1aVar;
+   54: q1a q1aVar2;
+   55: Iterator it = ((Map) this.f.a.getValue()).entrySet().iterator();
+   56: do {
+   57: q1aVar = null;
+   58: if (!it.hasNext()) {
+   59: q1aVar2 = null;
+   60: break;
+   61: }
+   62: q1aVar2 = (q1a) ((Map.Entry) it.next()).getKey();
+   63: } while (q1aVar2 == null);
+   64: if (q1aVar2 != null) {
+   65: return q1aVar2;
+   66: }
+   67: Iterator it2 = ((Map) this.e.a.getValue()).entrySet().iterator();
+   68: while (it2.hasNext()) {
+   69: q1a q1aVar3 = (q1a) ((Map.Entry) it2.next()).getKey();
+   70: if (q1aVar3 != null) {
+   71: q1aVar = q1aVar3;
+   72: break;
+   73: }
+   74: }
+   75: return q1aVar == null ? q1a.b : q1aVar;
+   76: }
+   77: 
+   78: /* JADX WARN: Code duplicated, block: B:27:0x0086  */
+   79: /* JADX WARN: Code duplicated, block: B:29:0x009f  */
+   80: /* JADX WARN: Code duplicated, block: B:30:0x00a2  */
+   81: /* JADX WARN: Code duplicated, block: B:33:0x00b3 A[Catch: all -> 0x0044, CancellationException -> 0x00e5, TRY_ENTER, TRY_LEAVE, TryCatch #2 {CancellationException -> 0x00e5, all -> 0x0044, blocks: (B:13:0x003f, B:33:0x00b3), top: B:66:0x003f }] */
+   82: /* JADX WARN: Code duplicated, block: B:62:0x012f  */
+   83: /* JADX WARN: Code duplicated, block: B:7:0x0017  */
+   84: /* JADX WARN: Unsupported multi-entry loop pattern (BACK_EDGE: B:34:0x00d8 -> B:36:0x00db). Please report as a decompilation issue!!! */
+   85: /* JADX WARN: Unsupported multi-entry loop pattern (BACK_EDGE: B:39:0x00e7 -> B:36:0x00db). Please report as a decompilation issue!!! */
+   86: /*  JADX ERROR: JadxOverflowException in pass: RegionMakerVisitor
+   87: jadx.core.utils.exceptions.JadxOverflowException: Regions stack size limit reached
+   88: at jadx.core.utils.ErrorsCounter.addError(ErrorsCounter.java:59)
+   89: at jadx.core.utils.ErrorsCounter.error(ErrorsCounter.java:31)
+   90: at jadx.core.dex.attributes.nodes.NotificationAttrNode.addError(NotificationAttrNode.java:19)
+   91: */
+   92: public final java.lang.Object c(defpackage.q1a r21, defpackage.d55 r22) {
+   93: /*
+   94: Method dump skipped, instruction units count: 312
+   95: To view this dump add '--comments-level debug' option
+   96: */
+   97: throw new UnsupportedOperationException("Method not decompiled: defpackage.d2c.c(q1a, d55):java.lang.Object");
+   98: }
+   99: 
+  100: public final ArrayList d() {
+  101: Map map = (Map) this.f.a.getValue();
+  102: ArrayList arrayList = new ArrayList();
+  103: Iterator it = map.entrySet().iterator();
+  104: while (it.hasNext()) {
+  105: long jS = ((hog) ((p1c) ((Map.Entry) it.next()).getValue()).a()).s();
+  106: Long lValueOf = Long.valueOf(jS);
+  107: if (jS == -1) {
+  108: lValueOf = null;
+  109: }
+  110: if (lValueOf != null) {
+  111: arrayList.add(lValueOf);
+  112: }
+  113: }
+  114: return arrayList;
+  115: }
+  116: 
+  117: public final boolean e() {
+  118: return ((Map) this.f.a.getValue()).size() < ((Number) this.g.a.getValue()).intValue();
+  119: }
+  120: 
+  121: public final boolean f() {
+  122: return ((Map) this.f.a.getValue()).size() > 1;
+  123: }
+  124: 
+  125: /* JADX WARN: Code duplicated, block: B:7:0x0013  */
+  126: public final Object g(String str, d55 d55Var) {
+  127: w1c w1cVar;
+  128: String str2;
+  129: if (d55Var instanceof w1c) {
+  130: w1cVar = (w1c) d55Var;
+  131: int i = w1cVar.g;
+  132: if ((i & Integer.MIN_VALUE) != 0) {
+  133: w1cVar.g = i - Integer.MIN_VALUE;
+  134: } else {
+  135: w1cVar = new w1c(this, d55Var);
+  136: }
+  137: } else {
+  138: w1cVar = new w1c(this, d55Var);
+  139: }
+  140: Object objR = w1cVar.e;
+  141: int i2 = w1cVar.g;
+  142: z3j z3jVar = this.d;
+  143: boolean z = true;
+  144: if (i2 == 0) {
+  145: xnm.y(objR);
+  146: String strC = ((xuf) z3jVar.getValue()).c(str, BuildConfig.FLAVOR);
+  147: if (strC.length() == 0) {
+  148: return Boolean.FALSE;
+  149: }
+  150: w1cVar.d = strC;
+  151: w1cVar.g = 1;
+  152: objR = hzj.R(this.f, w1cVar);
+  153: ka5 ka5Var = ka5.a;
+  154: if (objR == ka5Var) {
+  155: return ka5Var;
+  156: }
+  157: str2 = strC;
+  158: } else {
+  159: if (i2 != 1) {
+  160: k3g.o("call to 'resume' before 'invoke' with coroutine");
+  161: return null;
+  162: }
+  163: str2 = w1cVar.d;
+  164: xnm.y(objR);
+  165: }
+  166: Collection collectionValues = ((Map) objR).values();
+  167: if ((collectionValues instanceof Collection) && collectionValues.isEmpty()) {
+  168: z = false;
+  169: } else {
+  170: Iterator it = collectionValues.iterator();
+  171: while (it.hasNext()) {
+  172: String strT = ((n3a) ((p1c) it.next()).a()).T();
+  173: if (g4a.c(strT != null ? ((xuf) z3jVar.getValue()).c(strT, BuildConfig.FLAVOR) : null, str2)) {
+  174: }
+  175: }
+  176: z = false;
+  177: }
+  178: return Boolean.valueOf(z);
+  179: }
+  180: 
+  181: public final q1a h() {
+  182: q1a q1aVar;
+  183: q1a q1aVar2;
+  184: c6a c6aVar = c6a.d;
+  185: f09.E(this.c, "getNotLoggedInAccountId()", null);
+  186: Map map = (Map) this.e.a.getValue();
+  187: Iterator it = map.entrySet().iterator();
+  188: do {
+  189: if (!it.hasNext()) {
+  190: q1aVar = null;
+  191: break;
+  192: }
+  193: Map.Entry entry = (Map.Entry) it.next();
+  194: q1aVar = (q1a) entry.getKey();
+  195: if (((hog) ((p1c) entry.getValue()).a()).s() != -1) {
+  196: q1aVar = null;
+  197: }
+  198: } while (q1aVar == null);
+  199: if (q1aVar != null) {
+  200: String str = this.c;
+  201: o1d o1dVar = f09.g;
+  202: if (o1dVar != null && o1dVar.b(c6aVar)) {
+  203: o1dVar.c(c6aVar, str, "getNotLoggedInAccountId() reuse account " + q1aVar, null);
+  204: }
+  205: return q1aVar;
+  206: }
+  207: m99 m99Var = new m99(0, Integer.MAX_VALUE, 1);
+  208: qib qibVar = new qib((byte) 6);
+  209: Iterator it2 = m99Var.iterator();
+  210: do {
+  211: l99 l99Var = (l99) it2;
+  212: if (!l99Var.c) {
+  213: k3g.h("Sequence contains no element matching the predicate.");
+  214: return null;
+  215: }
+  216: q1aVar2 = (q1a) qibVar.d(l99Var.next());
+  217: } while (map.get(q1aVar2) != null);
+  218: String str2 = this.c;
+  219: o1d o1dVar2 = f09.g;
+  220: if (o1dVar2 != null && o1dVar2.b(c6aVar)) {
+  221: o1dVar2.c(c6aVar, str2, "getNotLoggedInAccountId() creating new " + q1aVar2, null);
+  222: }
+  223: so soVar = this.b.f;
+  224: btc btcVar = (btc) (soVar != null ? soVar : null).d(q1aVar2);
+  225: btcVar.b();
+  226: btcVar.a();
+  227: btcVar.c();
+  228: return q1aVar2;
+  229: }
+  230: }
+```
+
+### defpackage/fh0.java
+Строки 1–20:
+```java
+    1: package defpackage;
+    2: 
+    3: /* JADX INFO: loaded from: classes2.dex */
+    4: public final class fh0 {
+    5: public final rp9 a;
+    6: public final rp9 b;
+    7: public final rp9 c;
+    8: public final rp9 d;
+    9: 
+   10: public fh0(rp9 rp9Var, rp9 rp9Var2, rp9 rp9Var3, rp9 rp9Var4) {
+   11: this.a = rp9Var;
+   12: this.b = rp9Var2;
+   13: this.c = rp9Var3;
+   14: this.d = rp9Var4;
+   15: }
+   16: 
+   17: public final Object a(String str, String str2, d55 d55Var) {
+   18: return nm9.i0(((vxc) ((k6j) this.b.getValue())).b(), new wi(this, str, str2, null, (byte) 3), d55Var);
+   19: }
+   20: }
+```
+
+### defpackage/b79.java
+Строки 1–110:
+```java
+    1: package defpackage;
+    2: 
+    3: import android.content.Context;
+    4: import java.util.Iterator;
+    5: import java.util.List;
+    6: import me.leolin.shortcutbadger.BuildConfig;
+    7: import ru.oneme.app.R;
+    8: 
+    9: /* JADX INFO: loaded from: classes.dex */
+   10: public final class b79 {
+   11: public static final /* synthetic */ zm9[] m;
+   12: public final rp9 a;
+   13: public final rp9 b;
+   14: public final rp9 c;
+   15: public final r4i e;
+   16: public final nih g;
+   17: public final cmf h;
+   18: public final xuf i;
+   19: public final r4i j;
+   20: public final dmf k;
+   21: public final e4c l;
+   22: public final z9g d = c45.Q();
+   23: public final r4i f = az7.c(BuildConfig.FLAVOR);
+   24: 
+   25: static {
+   26: c4c c4cVar = new c4c(b79.class, "availableCountriesJob", "getAvailableCountriesJob()Lkotlinx/coroutines/Job;");
+   27: luf.a.getClass();
+   28: m = new zm9[]{c4cVar};
+   29: }
+   30: 
+   31: public b79(rp9 rp9Var, rp9 rp9Var2, rp9 rp9Var3, Context context) {
+   32: this.a = rp9Var;
+   33: this.b = rp9Var2;
+   34: this.c = rp9Var3;
+   35: this.e = az7.c(new fyc("RU", 7, context.getString(R.string.oneme_russia_name), null));
+   36: nih nihVarC = fa5.c(0, Integer.MAX_VALUE, 4);
+   37: this.g = nihVarC;
+   38: this.h = new cmf(nihVarC);
+   39: this.i = new xuf("[^0-9+]");
+   40: r4i r4iVarC = az7.c(qp6.a);
+   41: this.j = r4iVarC;
+   42: this.k = new dmf(r4iVarC);
+   43: qdj qdjVarJ = wdc.j("123 4567 8901");
+   44: qdj qdjVarJ2 = wdc.j("473 123 4567");
+   45: qdj qdjVarJ3 = wdc.j("12 3456 7890");
+   46: qdj qdjVarJ4 = wdc.j("9 123 456 789");
+   47: qdj qdjVarJ5 = wdc.j("1 234 567");
+   48: qdj qdjVarJ6 = wdc.j("869 123 4567");
+   49: e4c e4cVar = new e4c(6);
+   50: e4cVar.k("ID", qdjVarJ);
+   51: e4cVar.k("GD", qdjVarJ2);
+   52: e4cVar.k("EG", qdjVarJ3);
+   53: e4cVar.k("MM", qdjVarJ4);
+   54: e4cVar.k("LB", qdjVarJ5);
+   55: e4cVar.k("KN", qdjVarJ6);
+   56: this.l = e4cVar;
+   57: }
+   58: 
+   59: public final qi7 a(e18 e18Var) {
+   60: return h6c.p(new ol7(new u3(this.f, this, (byte) 24), new ol7(this.e, e18Var, this, (byte) 2), new x69(3, null), (byte) 0), ((vxc) ((k6j) this.c.getValue())).a());
+   61: }
+   62: 
+   63: public final dmf b(t45 t45Var) {
+   64: r4i r4iVar = this.e;
+   65: return tul.l0(new ol7(r4iVar, t45Var, this, (byte) 3), t45Var, hjh.a, new ab5((fyc) r4iVar.getValue(), Integer.MAX_VALUE, new mdj(R.string.oneme_default_phone_hint)));
+   66: }
+   67: 
+   68: public final void c(String str, String str2) {
+   69: Object next;
+   70: r4i r4iVar = this.f;
+   71: r4iVar.getClass();
+   72: r4iVar.j(null, str2);
+   73: String strM = fa5.m(str.concat(str2));
+   74: if (strM != null) {
+   75: Iterator it = ((Iterable) this.k.a.getValue()).iterator();
+   76: do {
+   77: if (!it.hasNext()) {
+   78: next = null;
+   79: break;
+   80: }
+   81: next = it.next();
+   82: } while (!g4a.c(((fyc) next).a, strM));
+   83: fyc fycVar = (fyc) next;
+   84: if (fycVar == null) {
+   85: return;
+   86: }
+   87: r4i r4iVar2 = this.e;
+   88: r4iVar2.getClass();
+   89: r4iVar2.j(null, fycVar);
+   90: }
+   91: }
+   92: 
+   93: public final void d(fyc fycVar, boolean z) {
+   94: int i = fycVar.b;
+   95: if (z && i == 7) {
+   96: String strM = fa5.m("+" + i + this.f.getValue());
+   97: if (strM != null && !strM.equals(fycVar.a)) {
+   98: this.g.l(u69.a);
+   99: }
+  100: }
+  101: r4i r4iVar = this.e;
+  102: r4iVar.getClass();
+  103: r4iVar.j(null, fycVar);
+  104: }
+  105: 
+  106: public final void e(ja5 ja5Var, List list) {
+  107: g0i g0iVarM = e0c.M(h6c.p(new dk7(new u3(((lvf) this.a.getValue()).f, list, (byte) 25), new yj3((Object) this, (b55) null, (byte) 11), (byte) 3), ((vxc) ((k6j) this.c.getValue())).a()), ja5Var);
+  108: this.d.y(this, m[0], g0iVarM);
+  109: }
+  110: }
+```
+
+### defpackage/s79.java
+Строки 1–22:
+```java
+    1: package defpackage;
+    2: 
+    3: /* JADX INFO: loaded from: classes2.dex */
+    4: public final class s79 extends d55 {
+    5: public String d;
+    6: public /* synthetic */ Object e;
+    7: public final /* synthetic */ u79 f;
+    8: public int g;
+    9: 
+   10: /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+   11: public s79(u79 u79Var, d55 d55Var) {
+   12: super(d55Var);
+   13: this.f = u79Var;
+   14: }
+   15: 
+   16: @Override // defpackage.hv0
+   17: public final Object w(Object obj) {
+   18: this.e = obj;
+   19: this.g \|= Integer.MIN_VALUE;
+   20: return this.f.c1(null, null, this);
+   21: }
+   22: }
+```
+
+### defpackage/xfg.java
+Строки 1–250:
+```java
+    1: package defpackage;
+    2: 
+    3: import android.animation.ValueAnimator;
+    4: import android.content.Context;
+    5: import android.content.res.ColorStateList;
+    6: import android.graphics.Bitmap;
+    7: import android.graphics.Rect;
+    8: import android.graphics.RectF;
+    9: import android.net.Uri;
+   10: import android.transition.TransitionManager;
+   11: import android.view.View;
+   12: import android.view.ViewGroup;
+   13: import android.view.ViewOutlineProvider;
+   14: import android.view.ViewParent;
+   15: import android.widget.ImageView;
+   16: import android.widget.LinearLayout;
+   17: import androidx.recyclerview.widget.RecyclerView;
+   18: import com.bluelinelabs.conductor.j;
+   19: import java.io.File;
+   20: import java.io.FileInputStream;
+   21: import java.io.FileOutputStream;
+   22: import java.io.IOException;
+   23: import java.io.InputStream;
+   24: import java.util.ArrayList;
+   25: import java.util.Collection;
+   26: import java.util.Iterator;
+   27: import java.util.List;
+   28: import java.util.Set;
+   29: import java.util.UUID;
+   30: import java.util.WeakHashMap;
+   31: import java.util.concurrent.atomic.AtomicLong;
+   32: import java.util.zip.Inflater;
+   33: import java.util.zip.InflaterInputStream;
+   34: import kotlin.collections.a;
+   35: import one.me.calls.ui.bottomsheet.ratecall.CallRateBottomSheet;
+   36: import one.me.calls.ui.ui.call.panels.CallBottomPanelWidget;
+   37: import one.me.calls.ui.ui.call.panels.CallEventsWidget;
+   38: import one.me.chats.forward.ForwardPickerScreen;
+   39: import one.me.chats.picker.contacts.ContactsPickerScreen;
+   40: import one.me.chatscreen.ChatScreen;
+   41: import one.me.chatscreen.chatpreview.ChatPreviewBottomWidget;
+   42: import one.me.contactadddialog.ContactAddBottomSheet;
+   43: import one.me.keyboardmedia.MediaKeyboardWidget;
+   44: import one.me.mediaeditor.editandreply.EditAndReplyScreen;
+   45: import one.me.profile.screens.addmembers.AddChatMembersScreen;
+   46: import one.me.sdk.arch.Widget;
+   47: import one.me.sdk.messagewrite.MessageWriteWidget;
+   48: import org.webrtc.PeerConnection;
+   49: import org.webrtc.PeerConnectionFactory;
+   50: import ru.ok.tamtam.exception.IssueKeyException;
+   51: import ru.oneme.app.R;
+   52: 
+   53: /* JADX INFO: loaded from: classes2.dex */
+   54: public final class xfg extends x1j implements e18 {
+   55: public final /* synthetic */ byte e;
+   56: public /* synthetic */ Object f;
+   57: public final /* synthetic */ Object g;
+   58: public final /* synthetic */ Object h;
+   59: 
+   60: /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+   61: public /* synthetic */ xfg(Object obj, Object obj2, Object obj3, b55 b55Var, byte b) {
+   62: super(2, b55Var);
+   63: this.e = b;
+   64: this.f = obj;
+   65: this.g = obj2;
+   66: this.h = obj3;
+   67: }
+   68: 
+   69: private final Object A(Object obj) {
+   70: int iIntValue;
+   71: h3j h3jVar;
+   72: ContactAddBottomSheet contactAddBottomSheet = (ContactAddBottomSheet) this.g;
+   73: Object obj2 = this.f;
+   74: xnm.y(obj);
+   75: if (((y6c) obj2) instanceof q74) {
+   76: zm9[] zm9VarArr = ContactAddBottomSheet.x;
+   77: qv4 qv4Var = (qv4) contactAddBottomSheet.n.getValue();
+   78: rz rzVar = contactAddBottomSheet.o;
+   79: zm9[] zm9VarArr2 = ContactAddBottomSheet.x;
+   80: zm9 zm9Var = zm9VarArr2[0];
+   81: long jLongValue = ((Number) rzVar.a(contactAddBottomSheet)).longValue();
+   82: t5a t5aVar = (t5a) qv4Var.a.getValue();
+   83: dea deaVar = new dea();
+   84: deaVar.put("user2Id", Long.valueOf(jLongValue));
+   85: t5a.i(t5aVar, "CONTACT_RENAME_BANNER", "save", deaVar.b(), 8);
+   86: v5d v5dVar = new v5d(contactAddBottomSheet);
+   87: v5dVar.h(new l6d(R.drawable.done_fill_round_animated));
+   88: v5dVar.m(new mdj(R.string.oneme_unknown_contact_snackbar_add_contact));
+   89: v5dVar.l(v6d.a);
+   90: rz rzVar2 = contactAddBottomSheet.p;
+   91: zm9 zm9Var2 = zm9VarArr2[1];
+   92: Integer num = (Integer) rzVar2.a(contactAddBottomSheet);
+   93: if (num != null) {
+   94: iIntValue = num.intValue();
+   95: } else {
+   96: Integer numH = cyk.h((View) this.h);
+   97: iIntValue = numH != null ? numH.intValue() : 0;
+   98: }
+   99: v5dVar.c(new d6d(0, 0, iIntValue, 11));
+  100: u5d u5dVarP = v5dVar.p();
+  101: if (u5dVarP != null && (h3jVar = (h3j) u5dVarP.a.e) != null) {
+  102: n61.e(h3jVar, zf8.e);
+  103: }
+  104: contactAddBottomSheet.y1(true);
+  105: }
+  106: return s1k.a;
+  107: }
+  108: 
+  109: private final Object B(Object obj) {
+  110: n3c n3cVar = (n3c) this.f;
+  111: xnm.y(obj);
+  112: int i = n3cVar.d;
+  113: svc svcVar = (svc) this.g;
+  114: ContactsPickerScreen contactsPickerScreen = (ContactsPickerScreen) this.h;
+  115: if (i == 0) {
+  116: svcVar.setVisibility(8);
+  117: svcVar.j(null);
+  118: } else {
+  119: svcVar.setVisibility(0);
+  120: svcVar.q(c45.D(R.string.contacts_picker_send_btn_title, contactsPickerScreen.getContext()));
+  121: svcVar.j(new Integer(i));
+  122: }
+  123: return s1k.a;
+  124: }
+  125: 
+  126: private final Object C(Object obj) {
+  127: xnm.y(obj);
+  128: Uri uri = (Uri) this.f;
+  129: if (uri == null) {
+  130: ((o08) this.g).c();
+  131: } else {
+  132: ((q08) this.h).d(uri);
+  133: }
+  134: return s1k.a;
+  135: }
+  136: 
+  137: /* JADX WARN: Code duplicated, block: B:26:0x005f  */
+  138: /* JADX WARN: Code duplicated, block: B:46:0x00c9  */
+  139: /* JADX WARN: Code duplicated, block: B:48:0x0109  */
+  140: /* JADX WARN: Code duplicated, block: B:49:0x010b  */
+  141: /* JADX WARN: Code duplicated, block: B:51:0x010e  */
+  142: /* JADX WARN: Code duplicated, block: B:58:0x011f  */
+  143: /* JADX WARN: Code duplicated, block: B:60:0x012f  */
+  144: /* JADX WARN: Code duplicated, block: B:62:0x0132  */
+  145: /* JADX WARN: Code duplicated, block: B:65:0x0150  */
+  146: private final Object D(Object obj) {
+  147: Object obj2;
+  148: String string;
+  149: s82 s82VarO;
+  150: int size;
+  151: int i;
+  152: yp5 yp5Var;
+  153: r82 r82Var;
+  154: o1d o1dVar;
+  155: c6a c6aVar = c6a.d;
+  156: s1k s1kVar = s1k.a;
+  157: xnm.y(obj);
+  158: if (((yp5) this.f).e().o()) {
+  159: f09.p("CallsManager", "outgoing call skipped: waiting for SDK to finish after early decline");
+  160: return s1kVar;
+  161: }
+  162: yp5 yp5Var2 = (yp5) this.f;
+  163: y0i y0iVar = (y0i) this.g;
+  164: yp5Var2.getClass();
+  165: w0i w0iVar = y0iVar.a;
+  166: if (w0iVar instanceof u0i) {
+  167: obj2 = ((u0i) w0iVar).a;
+  168: } else {
+  169: obj2 = w0iVar instanceof v0i ? ((v0i) w0iVar).a : null;
+  170: }
+  171: sc2 sc2Var = obj2 instanceof sc2 ? (sc2) obj2 : null;
+  172: if (sc2Var != null) {
+  173: String str = sc2Var.b;
+  174: e85 e85Var = new e85(str);
+  175: if (e85.b(str)) {
+  176: e85Var = null;
+  177: }
+  178: string = e85Var != null ? e85Var.a : null;
+  179: if (string == null) {
+  180: z3j z3jVar = e85.b;
+  181: string = UUID.randomUUID().toString();
+  182: }
+  183: } else {
+  184: z3j z3jVar2 = e85.b;
+  185: string = UUID.randomUUID().toString();
+  186: }
+  187: Iterable iterable = (Iterable) ((yp5) this.f).i.getValue();
+  188: if (!(iterable instanceof Collection) \|\| !((Collection) iterable).isEmpty()) {
+  189: Iterator it = iterable.iterator();
+  190: while (it.hasNext()) {
+  191: if (g4a.c(((r82) it.next()).g(), string)) {
+  192: o1d o1dVar2 = f09.g;
+  193: if (o1dVar2 != null && o1dVar2.b(c6aVar)) {
+  194: o1dVar2.c(c6aVar, "CallsManager", vg9.y("outgoing call skipped: session ", e85.c(string), " already exists"), null);
+  195: return s1kVar;
+  196: }
+  197: }
+  198: }
+  199: if (((yp5) this.f).c(((y0i) this.g).a) == null) {
+  200: f09.p("CallsManager", "outgoing call can't start because call already started.");
+  201: return s1kVar;
+  202: }
+  203: s82VarO = ((yp5) this.f).o((q1a) this.h);
+  204: size = ((List) ((yp5) this.f).i.getValue()).size();
+  205: ((yp5) this.f).getClass();
+  206: if (((Boolean) ((j9e) ((z3j) s82VarO.l()).getValue()).H().i()).booleanValue()) {
+  207: i = 2;
+  208: } else {
+  209: i = 1;
+  210: }
+  211: if (size >= i) {
+  212: r82 r82VarE = ((yp5) this.f).e();
+  213: yp5Var = (yp5) this.f;
+  214: r82Var = r82VarE != yp5Var.h ? r82VarE : null;
+  215: if (r82Var != null) {
+  216: yp5Var.k(r82Var, 2);
+  217: }
+  218: r82 r82VarB = ((yp5) this.f).b(s82VarO, string);
+  219: s82VarO.a().b(r82VarB.c());
+  220: r82VarB.d((y0i) this.g);
+  221: return s1kVar;
+  222: }
+  223: o1dVar = f09.g;
+  224: if (o1dVar != null && o1dVar.b(c6aVar)) {
+  225: o1dVar.c(c6aVar, "CallsManager", "outgoing call skipped: session limit reached", null);
+  226: }
+  227: } else {
+  228: if (((yp5) this.f).c(((y0i) this.g).a) == null) {
+  229: f09.p("CallsManager", "outgoing call can't start because call already started.");
+  230: return s1kVar;
+  231: }
+  232: s82VarO = ((yp5) this.f).o((q1a) this.h);
+  233: size = ((List) ((yp5) this.f).i.getValue()).size();
+  234: ((yp5) this.f).getClass();
+  235: if (((Boolean) ((j9e) ((z3j) s82VarO.l()).getValue()).H().i()).booleanValue()) {
+  236: i = 2;
+  237: } else {
+  238: i = 1;
+  239: }
+  240: if (size >= i) {
+  241: r82 r82VarE2 = ((yp5) this.f).e();
+  242: yp5Var = (yp5) this.f;
+  243: if (r82VarE2 != yp5Var.h) {
+  244: }
+  245: if (r82Var != null) {
+  246: yp5Var.k(r82Var, 2);
+  247: }
+  248: r82 r82VarB2 = ((yp5) this.f).b(s82VarO, string);
+  249: s82VarO.a().b(r82VarB2.c());
+  250: r82VarB2.d((y0i) this.g);
+```
+
+### defpackage/azc.java
+Строки 1–225:
+```java
+    1: package defpackage;
+    2: 
+    3: import android.content.ContentResolver;
+    4: import android.content.Context;
+    5: import android.content.SharedPreferences;
+    6: import android.hardware.camera2.CaptureResult;
+    7: import android.net.Uri;
+    8: import android.os.Build;
+    9: import android.os.Environment;
+   10: import android.provider.MediaStore;
+   11: import android.text.TextUtils;
+   12: import android.util.Base64;
+   13: import android.util.Log;
+   14: import android.util.LongSparseArray;
+   15: import com.facebook.soloader.SoLoader;
+   16: import java.io.File;
+   17: import java.io.FileInputStream;
+   18: import java.io.IOException;
+   19: import java.io.OutputStream;
+   20: import java.io.Serializable;
+   21: import java.io.UnsupportedEncodingException;
+   22: import java.lang.reflect.InvocationTargetException;
+   23: import java.lang.reflect.Method;
+   24: import java.math.BigInteger;
+   25: import java.nio.ByteBuffer;
+   26: import java.nio.channels.SocketChannel;
+   27: import java.nio.charset.Charset;
+   28: import java.security.InvalidAlgorithmParameterException;
+   29: import java.security.InvalidKeyException;
+   30: import java.security.MessageDigest;
+   31: import java.security.NoSuchAlgorithmException;
+   32: import java.util.ArrayList;
+   33: import java.util.Collection;
+   34: import java.util.Collections;
+   35: import java.util.HashMap;
+   36: import java.util.HashSet;
+   37: import java.util.Iterator;
+   38: import java.util.LinkedHashMap;
+   39: import java.util.LinkedHashSet;
+   40: import java.util.List;
+   41: import java.util.Map;
+   42: import java.util.Set;
+   43: import java.util.concurrent.atomic.AtomicInteger;
+   44: import javax.crypto.Cipher;
+   45: import javax.crypto.NoSuchPaddingException;
+   46: import javax.crypto.SecretKey;
+   47: import javax.crypto.spec.IvParameterSpec;
+   48: import javax.net.ssl.SSLEngine;
+   49: import javax.net.ssl.SSLEngineResult;
+   50: import me.leolin.shortcutbadger.BuildConfig;
+   51: import one.video.calls.sdk.net.signaling.wt.nal.internal.WebTransportSocket;
+   52: import one.video.upload.exceptions.TlsBufferOverflowException;
+   53: import one.video.upload.exceptions.TlsBufferUnderflowException;
+   54: import one.video.upload.exceptions.TlsConnectionClosedException;
+   55: import one.video.upload.exceptions.TlsHandshakeEndOfStreamException;
+   56: import org.json.JSONException;
+   57: import org.json.JSONObject;
+   58: import org.webrtc.SessionDescription;
+   59: import ru.ok.android.externcalls.sdk.h;
+   60: import ru.ok.android.externcalls.sdk.i;
+   61: import ru.ok.android.externcalls.sdk.n;
+   62: import ru.ok.tamtam.android.util.share.ShareData;
+   63: import ru.oneme.app.R;
+   64: 
+   65: /* JADX INFO: loaded from: classes3.dex */
+   66: public final class azc implements rt6, jh5, qkg, yr8, ltb, ct, mxi, pck {
+   67: public static final Object f = new Object();
+   68: public static volatile azc g;
+   69: public final /* synthetic */ byte a;
+   70: public Object b;
+   71: public Object c;
+   72: public Object d;
+   73: public Object e;
+   74: 
+   75: public azc(byte b) {
+   76: this.a = b;
+   77: switch (b) {
+   78: case 9:
+   79: this.b = new HashMap();
+   80: this.c = new HashMap();
+   81: this.d = new LongSparseArray();
+   82: this.e = new HashMap();
+   83: break;
+   84: case 11:
+   85: this.b = new zxb(0);
+   86: this.d = new HashSet();
+   87: long jCurrentTimeMillis = (System.currentTimeMillis() / 1000) + 2082844800;
+   88: this.e = new ayb(jCurrentTimeMillis, jCurrentTimeMillis);
+   89: break;
+   90: case 19:
+   91: this.c = Runtime.getRuntime();
+   92: Method nativeLoadRuntimeMethod = b4j.getNativeLoadRuntimeMethod();
+   93: this.d = nativeLoadRuntimeMethod;
+   94: String strJoin = null;
+   95: String classLoaderLdLoadLibrary = nativeLoadRuntimeMethod != null ? b4j.getClassLoaderLdLoadLibrary() : null;
+   96: this.b = classLoaderLdLoadLibrary;
+   97: if (classLoaderLdLoadLibrary != null) {
+   98: String[] strArrSplit = classLoaderLdLoadLibrary.split(":");
+   99: ArrayList arrayList = new ArrayList(strArrSplit.length);
+  100: for (String str : strArrSplit) {
+  101: if (!str.contains("!")) {
+  102: arrayList.add(str);
+  103: }
+  104: }
+  105: strJoin = TextUtils.join(":", arrayList);
+  106: }
+  107: this.e = strJoin;
+  108: break;
+  109: }
+  110: }
+  111: 
+  112: public static String A() {
+  113: return new String(Base64.decode(new byte[]{98, 51, 90, 106, 99, 51, 77, 116, 77, 84, 69, 121, 78, 65, 61, 61, 10}, 0), o53.a);
+  114: }
+  115: 
+  116: public static String H(String str) {
+  117: try {
+  118: File file = new File(str);
+  119: MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+  120: FileInputStream fileInputStream = new FileInputStream(file);
+  121: try {
+  122: byte[] bArr = new byte[4096];
+  123: while (true) {
+  124: int i = fileInputStream.read(bArr);
+  125: if (i <= 0) {
+  126: String str2 = String.format("%32x", new BigInteger(1, messageDigest.digest()));
+  127: fileInputStream.close();
+  128: return str2;
+  129: }
+  130: messageDigest.update(bArr, 0, i);
+  131: }
+  132: } catch (Throwable th) {
+  133: try {
+  134: fileInputStream.close();
+  135: } catch (Throwable th2) {
+  136: th.addSuppressed(th2);
+  137: }
+  138: throw th;
+  139: }
+  140: } catch (IOException \| SecurityException \| NoSuchAlgorithmException e) {
+  141: return e.toString();
+  142: }
+  143: }
+  144: 
+  145: public static String T(ShareData shareData, Uri uri, z35 z35Var) {
+  146: int i;
+  147: if (z35Var == null ? !((i = shareData.type) == 1 \|\| i == 2) : !(z35Var.a() \|\| z35Var.b())) {
+  148: return null;
+  149: }
+  150: String str = z35Var != null ? z35Var.d : null;
+  151: return (str == null \|\| zti.n0(str)) ? uri.toString() : str;
+  152: }
+  153: 
+  154: public static String V() {
+  155: return new String(Base64.decode(new byte[]{81, 87, 53, 107, 99, 109, 57, 112, 90, 69, 116, 108, 101, 86, 78, 48, 98, 51, 74, 108, 10}, 0), o53.a);
+  156: }
+  157: 
+  158: public static String z() {
+  159: return new String(Base64.decode(new byte[]{81, 85, 86, 84, 76, 48, 78, 67, 81, 121, 57, 81, 83, 48, 78, 84, 78, 49, 66, 104, 90, 71, 82, 112, 98, 109, 99, 61, 10}, 0), o53.a);
+  160: }
+  161: 
+  162: public String B(String str) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, InvalidAlgorithmParameterException {
+  163: byte[] bArrDecode;
+  164: String strD;
+  165: SecretKey secretKey = (SecretKey) ((z3j) this.d).getValue();
+  166: if (secretKey == null) {
+  167: return str;
+  168: }
+  169: byte[] bArrDecode2 = Base64.decode(str, 0);
+  170: Charset charset = o53.a;
+  171: JSONObject jSONObject = new JSONObject(new String(bArrDecode2, charset));
+  172: String strD2 = dom.d("r", jSONObject);
+  173: if (strD2 == null \|\| (bArrDecode = Base64.decode(strD2, 0)) == null \|\| (strD = dom.d("d", jSONObject)) == null) {
+  174: return null;
+  175: }
+  176: byte[] bArrDecode3 = Base64.decode(strD, 0);
+  177: Cipher cipher = Cipher.getInstance(z());
+  178: cipher.init(2, secretKey, new IvParameterSpec(bArrDecode));
+  179: return new String(cipher.doFinal(bArrDecode3), charset);
+  180: }
+  181: 
+  182: public String C(String str) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException {
+  183: if (str == null) {
+  184: return null;
+  185: }
+  186: SecretKey secretKey = (SecretKey) ((z3j) this.d).getValue();
+  187: if (secretKey == null) {
+  188: return str;
+  189: }
+  190: Cipher cipher = Cipher.getInstance(z());
+  191: cipher.init(1, secretKey);
+  192: Charset charset = o53.a;
+  193: String strEncodeToString = Base64.encodeToString(cipher.doFinal(str.getBytes(charset)), 0);
+  194: return Base64.encodeToString(new JSONObject().put("d", strEncodeToString).put("r", Base64.encodeToString(cipher.getIV(), 0)).toString().getBytes(charset), 0);
+  195: }
+  196: 
+  197: public ii0 E() {
+  198: return (ii0) this.e;
+  199: }
+  200: 
+  201: public String F() {
+  202: return (String) this.d;
+  203: }
+  204: 
+  205: public String G() {
+  206: return (String) this.c;
+  207: }
+  208: 
+  209: public lua I() {
+  210: ig1 ig1Var = (ig1) ((h) this.c).c();
+  211: n5h n5hVar = ((ynd) ((ob3) this.e).b).e;
+  212: if (ig1Var != null) {
+  213: o3c o3cVarL = ig1Var.R1.l(n5hVar);
+  214: return new lua(o3cVarL.a, o3cVarL.b, o3cVarL.c, o3cVarL.d);
+  215: }
+  216: kua kuaVar = kua.a;
+  217: return new lua(kuaVar, kuaVar, kuaVar, kuaVar);
+  218: }
+  219: 
+  220: /* JADX WARN: Code duplicated, block: B:7:0x0013  */
+  221: public Object J(ShareData shareData, d55 d55Var) {
+  222: jhh jhhVar;
+  223: if (d55Var instanceof jhh) {
+  224: jhhVar = (jhh) d55Var;
+  225: int i = jhhVar.f;
+```
+
+### defpackage/eh0.java
+Строки 1–5:
+```java
+    1: package defpackage;
+    2: 
+    3: /* JADX INFO: loaded from: classes2.dex */
+    4: public interface eh0 {
+    5: }
+```
+
+### defpackage/dh0.java
+Строки 1–14:
+```java
+    1: package defpackage;
+    2: 
+    3: /* JADX INFO: loaded from: classes2.dex */
+    4: public final class dh0 implements eh0 {
+    5: public final azc a;
+    6: 
+    7: public dh0(azc azcVar) {
+    8: this.a = azcVar;
+    9: }
+   10: 
+   11: public final azc a() {
+   12: return this.a;
+   13: }
+   14: }
+```
+
+### defpackage/ch0.java
+Строки 1–20:
+```java
+    1: package defpackage;
+    2: 
+    3: /* JADX INFO: loaded from: classes2.dex */
+    4: public final class ch0 implements eh0 {
+    5: public final String a;
+    6: public final kme b;
+    7: 
+    8: public ch0(String str, kme kmeVar) {
+    9: this.a = str;
+   10: this.b = kmeVar;
+   11: }
+   12: 
+   13: public final kme a() {
+   14: return this.b;
+   15: }
+   16: 
+   17: public final String b() {
+   18: return this.a;
+   19: }
+   20: }
+```
+
+### defpackage/df7.java
+Строки 1–130:
+```java
+    1: package defpackage;
+    2: 
+    3: import android.os.Build;
+    4: import android.os.SystemClock;
+    5: import io.jsonwebtoken.JwtParser;
+    6: import java.io.File;
+    7: import java.util.ArrayList;
+    8: import java.util.Collection;
+    9: import java.util.Iterator;
+   10: import java.util.LinkedHashMap;
+   11: import java.util.List;
+   12: import java.util.Locale;
+   13: import java.util.Random;
+   14: import java.util.concurrent.CountDownLatch;
+   15: import kotlin.NoWhenBranchMatchedException;
+   16: import me.leolin.shortcutbadger.BuildConfig;
+   17: import one.me.android.initialization.AccountInitializer;
+   18: import org.json.JSONException;
+   19: import org.json.JSONObject;
+   20: 
+   21: /* JADX INFO: loaded from: classes.dex */
+   22: public final class df7 implements f84, wik, ux6, ic5, swf, ek9, ezb, rl4 {
+   23: public static final df7 b = new df7(0);
+   24: public static final df7 c = new df7(1);
+   25: public static final df7 d = new df7(2);
+   26: public static final df7 e = new df7(3);
+   27: public static final df7 f = new df7(4);
+   28: public static final df7 g = new df7(5);
+   29: public static final df7 h = new df7(6);
+   30: public static final df7 i = new df7(7);
+   31: public static final df7 j = new df7(8);
+   32: public static final df7 k = new df7(9);
+   33: public static final df7 l = new df7(10);
+   34: public final /* synthetic */ byte a;
+   35: 
+   36: public /* synthetic */ df7(byte b2) {
+   37: this.a = b2;
+   38: }
+   39: 
+   40: public static boolean b(File file) {
+   41: Object n4gVar;
+   42: try {
+   43: n4gVar = Boolean.valueOf(file.exists() && file.canRead());
+   44: } catch (Throwable th) {
+   45: n4gVar = new n4g(th);
+   46: }
+   47: Object obj = Boolean.FALSE;
+   48: if (n4gVar instanceof n4g) {
+   49: n4gVar = obj;
+   50: }
+   51: return ((Boolean) n4gVar).booleanValue();
+   52: }
+   53: 
+   54: public static boolean e(String str) {
+   55: Object n4gVar;
+   56: try {
+   57: n4gVar = Boolean.valueOf(b(new File(str)));
+   58: } catch (Throwable th) {
+   59: n4gVar = new n4g(th);
+   60: }
+   61: Object obj = Boolean.FALSE;
+   62: if (n4gVar instanceof n4g) {
+   63: n4gVar = obj;
+   64: }
+   65: return ((Boolean) n4gVar).booleanValue();
+   66: }
+   67: 
+   68: public static File f(File file, String str) {
+   69: String str2;
+   70: File file2 = new File(file, str);
+   71: if (file2.exists()) {
+   72: int iP0 = zti.p0(str, JwtParser.SEPARATOR_CHAR, 0, 6);
+   73: int i2 = 0;
+   74: while (i2 < 100) {
+   75: if (iP0 != -1) {
+   76: str2 = str.substring(0, iP0) + "(" + (i2 + 1) + ")" + str.substring(iP0);
+   77: } else {
+   78: str2 = str + "(" + (i2 + 1) + ")";
+   79: }
+   80: File file3 = new File(file, str2);
+   81: if (!file3.exists()) {
+   82: return file3;
+   83: }
+   84: i2++;
+   85: file2 = file3;
+   86: }
+   87: }
+   88: return file2;
+   89: }
+   90: 
+   91: public static List k(List list, Collection collection) {
+   92: if (list.isEmpty()) {
+   93: return va4.j1(collection, md6.b);
+   94: }
+   95: if (collection.isEmpty()) {
+   96: return list;
+   97: }
+   98: fy9 fy9VarG = er0.g();
+   99: fy9VarG.addAll(list);
+  100: Iterator it = collection.iterator();
+  101: while (it.hasNext()) {
+  102: l(fy9VarG, (sd6) it.next());
+  103: }
+  104: if (fy9VarG.a() > 15) {
+  105: mhf mhfVar = nhf.a;
+  106: Random randomA = gdn.a();
+  107: int iB = 0;
+  108: while (fy9VarG.a() > 14) {
+  109: iB += ((sd6) fy9VarG.b(randomA.nextInt(fy9VarG.a()))).b();
+  110: }
+  111: l(fy9VarG, new sd6(iB, "unknown", "max_size_exceeded"));
+  112: }
+  113: return er0.d(fy9VarG);
+  114: }
+  115: 
+  116: public static void l(fy9 fy9Var, sd6 sd6Var) {
+  117: int i2;
+  118: md6 md6Var = md6.b;
+  119: int iA = fy9Var.a();
+  120: wa4.m0(fy9Var.a(), iA);
+  121: int i3 = iA - 1;
+  122: int i4 = 0;
+  123: while (true) {
+  124: if (i4 > i3) {
+  125: i2 = -(i4 + 1);
+  126: break;
+  127: }
+  128: i2 = (i4 + i3) >>> 1;
+  129: int iCompare = md6Var.compare(fy9Var.get(i2), sd6Var);
+  130: if (iCompare >= 0) {
+```
+
 ### defpackage/p0b.java
 Строки 213–280:
 ```java
@@ -2492,141 +3904,6 @@ SHA-256: e809176d6bf6ff69247274433ec170a5db8a5687a02a04299a78a2ae978119fc
   143: inputStream.close();
   144: return new sm0(strNextString, strNextString2, strNextString3, do0Var, 1);
   145: }
-```
-
-### defpackage/df7.java
-Строки 1–130:
-```java
-    1: package defpackage;
-    2: 
-    3: import android.os.Build;
-    4: import android.os.SystemClock;
-    5: import io.jsonwebtoken.JwtParser;
-    6: import java.io.File;
-    7: import java.util.ArrayList;
-    8: import java.util.Collection;
-    9: import java.util.Iterator;
-   10: import java.util.LinkedHashMap;
-   11: import java.util.List;
-   12: import java.util.Locale;
-   13: import java.util.Random;
-   14: import java.util.concurrent.CountDownLatch;
-   15: import kotlin.NoWhenBranchMatchedException;
-   16: import me.leolin.shortcutbadger.BuildConfig;
-   17: import one.me.android.initialization.AccountInitializer;
-   18: import org.json.JSONException;
-   19: import org.json.JSONObject;
-   20: 
-   21: /* JADX INFO: loaded from: classes.dex */
-   22: public final class df7 implements f84, wik, ux6, ic5, swf, ek9, ezb, rl4 {
-   23: public static final df7 b = new df7(0);
-   24: public static final df7 c = new df7(1);
-   25: public static final df7 d = new df7(2);
-   26: public static final df7 e = new df7(3);
-   27: public static final df7 f = new df7(4);
-   28: public static final df7 g = new df7(5);
-   29: public static final df7 h = new df7(6);
-   30: public static final df7 i = new df7(7);
-   31: public static final df7 j = new df7(8);
-   32: public static final df7 k = new df7(9);
-   33: public static final df7 l = new df7(10);
-   34: public final /* synthetic */ byte a;
-   35: 
-   36: public /* synthetic */ df7(byte b2) {
-   37: this.a = b2;
-   38: }
-   39: 
-   40: public static boolean b(File file) {
-   41: Object n4gVar;
-   42: try {
-   43: n4gVar = Boolean.valueOf(file.exists() && file.canRead());
-   44: } catch (Throwable th) {
-   45: n4gVar = new n4g(th);
-   46: }
-   47: Object obj = Boolean.FALSE;
-   48: if (n4gVar instanceof n4g) {
-   49: n4gVar = obj;
-   50: }
-   51: return ((Boolean) n4gVar).booleanValue();
-   52: }
-   53: 
-   54: public static boolean e(String str) {
-   55: Object n4gVar;
-   56: try {
-   57: n4gVar = Boolean.valueOf(b(new File(str)));
-   58: } catch (Throwable th) {
-   59: n4gVar = new n4g(th);
-   60: }
-   61: Object obj = Boolean.FALSE;
-   62: if (n4gVar instanceof n4g) {
-   63: n4gVar = obj;
-   64: }
-   65: return ((Boolean) n4gVar).booleanValue();
-   66: }
-   67: 
-   68: public static File f(File file, String str) {
-   69: String str2;
-   70: File file2 = new File(file, str);
-   71: if (file2.exists()) {
-   72: int iP0 = zti.p0(str, JwtParser.SEPARATOR_CHAR, 0, 6);
-   73: int i2 = 0;
-   74: while (i2 < 100) {
-   75: if (iP0 != -1) {
-   76: str2 = str.substring(0, iP0) + "(" + (i2 + 1) + ")" + str.substring(iP0);
-   77: } else {
-   78: str2 = str + "(" + (i2 + 1) + ")";
-   79: }
-   80: File file3 = new File(file, str2);
-   81: if (!file3.exists()) {
-   82: return file3;
-   83: }
-   84: i2++;
-   85: file2 = file3;
-   86: }
-   87: }
-   88: return file2;
-   89: }
-   90: 
-   91: public static List k(List list, Collection collection) {
-   92: if (list.isEmpty()) {
-   93: return va4.j1(collection, md6.b);
-   94: }
-   95: if (collection.isEmpty()) {
-   96: return list;
-   97: }
-   98: fy9 fy9VarG = er0.g();
-   99: fy9VarG.addAll(list);
-  100: Iterator it = collection.iterator();
-  101: while (it.hasNext()) {
-  102: l(fy9VarG, (sd6) it.next());
-  103: }
-  104: if (fy9VarG.a() > 15) {
-  105: mhf mhfVar = nhf.a;
-  106: Random randomA = gdn.a();
-  107: int iB = 0;
-  108: while (fy9VarG.a() > 14) {
-  109: iB += ((sd6) fy9VarG.b(randomA.nextInt(fy9VarG.a()))).b();
-  110: }
-  111: l(fy9VarG, new sd6(iB, "unknown", "max_size_exceeded"));
-  112: }
-  113: return er0.d(fy9VarG);
-  114: }
-  115: 
-  116: public static void l(fy9 fy9Var, sd6 sd6Var) {
-  117: int i2;
-  118: md6 md6Var = md6.b;
-  119: int iA = fy9Var.a();
-  120: wa4.m0(fy9Var.a(), iA);
-  121: int i3 = iA - 1;
-  122: int i4 = 0;
-  123: while (true) {
-  124: if (i4 > i3) {
-  125: i2 = -(i4 + 1);
-  126: break;
-  127: }
-  128: i2 = (i4 + i3) >>> 1;
-  129: int iCompare = md6Var.compare(fy9Var.get(i2), sd6Var);
-  130: if (iCompare >= 0) {
 ```
 
 ### defpackage/ih0.java
