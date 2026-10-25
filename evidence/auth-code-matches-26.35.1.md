@@ -2883,6 +2883,893 @@ SHA-256: e809176d6bf6ff69247274433ec170a5db8a5687a02a04299a78a2ae978119fc
   385: if (str8 == null \|\| zti.n0(str8)) {
 ```
 
+### defpackage/aj0.java
+Строки 1–35:
+```java
+    1: package defpackage;
+    2: 
+    3: /* JADX INFO: loaded from: classes3.dex */
+    4: public final class aj0 extends u6j {
+    5: public final int c;
+    6: 
+    7: public aj0(int i, int i2, String str, byte[] bArr) {
+    8: String str2;
+    9: super(tdd.l);
+   10: this.c = i2;
+   11: h("phone", str);
+   12: if (i == 1) {
+   13: str2 = "START_AUTH";
+   14: } else {
+   15: if (i != 2) {
+   16: throw null;
+   17: }
+   18: str2 = "RESEND";
+   19: }
+   20: h("type", str2);
+   21: if (bArr != null) {
+   22: this.a.put("mode", bArr);
+   23: }
+   24: }
+   25: 
+   26: @Override // defpackage.u6j
+   27: public final boolean o() {
+   28: return false;
+   29: }
+   30: 
+   31: @Override // defpackage.u6j
+   32: public final int p() {
+   33: return this.c;
+   34: }
+   35: }
+```
+
+### defpackage/ctc.java
+Строки 1–16:
+```java
+    1: package defpackage;
+    2: 
+    3: /* JADX INFO: loaded from: classes.dex */
+    4: public final class ctc {
+    5: public final rp9 a;
+    6: public final rp9 b;
+    7: 
+    8: public ctc(rp9 rp9Var, rp9 rp9Var2) {
+    9: this.a = rp9Var;
+   10: this.b = rp9Var2;
+   11: }
+   12: 
+   13: public final f7j a() {
+   14: return (f7j) this.a.getValue();
+   15: }
+   16: }
+```
+
+### defpackage/v99.java
+Строки 1–33:
+```java
+    1: package defpackage;
+    2: 
+    3: import android.content.Context;
+    4: import java.nio.ByteBuffer;
+    5: import one.me.callssdk.CallsSdkInitializer;
+    6: 
+    7: /* JADX INFO: loaded from: classes.dex */
+    8: public final class v99 {
+    9: public final Context a;
+   10: public final h16 b;
+   11: public final sn4 c;
+   12: public final z3j d = new z3j(new o2(this, (byte) 27));
+   13: 
+   14: public v99(Context context, h16 h16Var, sn4 sn4Var) {
+   15: this.a = context;
+   16: this.b = h16Var;
+   17: this.c = sn4Var;
+   18: }
+   19: 
+   20: public final byte[] a(Long l) {
+   21: byte[] bArr = (byte[]) this.d.getValue();
+   22: if (bArr != null) {
+   23: return bArr;
+   24: }
+   25: if (l == null) {
+   26: return null;
+   27: }
+   28: long jLongValue = l.longValue();
+   29: ByteBuffer byteBufferAllocate = ByteBuffer.allocate(8);
+   30: byteBufferAllocate.putLong(jLongValue);
+   31: return CallsSdkInitializer.INSTANCE.initializeSessionSeed(this.a, byteBufferAllocate.array(), this.b.a().getBytes(o53.a));
+   32: }
+   33: }
+```
+
+### defpackage/beb.java
+Строки 1–250:
+```java
+    1: package defpackage;
+    2: 
+    3: import java.io.Closeable;
+    4: import java.io.IOException;
+    5: import java.math.BigInteger;
+    6: import java.nio.ByteBuffer;
+    7: import java.nio.CharBuffer;
+    8: import java.nio.charset.CharacterCodingException;
+    9: import java.nio.charset.CharsetDecoder;
+   10: import java.nio.charset.CoderResult;
+   11: import java.nio.charset.CodingErrorAction;
+   12: import me.leolin.shortcutbadger.BuildConfig;
+   13: import org.msgpack.core.MessageFormatException;
+   14: import org.msgpack.core.MessageInsufficientBufferException;
+   15: import org.msgpack.core.MessageIntegerOverflowException;
+   16: import org.msgpack.core.MessageNeverUsedFormatException;
+   17: import org.msgpack.core.MessagePackException;
+   18: import org.msgpack.core.MessageSizeException;
+   19: import org.msgpack.core.MessageStringCodingException;
+   20: import org.msgpack.core.MessageTypeException;
+   21: import org.msgpack.core.buffer.ArrayBufferInput;
+   22: import org.msgpack.core.buffer.MessageBuffer;
+   23: import org.webrtc.PeerConnectionFactory;
+   24: 
+   25: /* JADX INFO: loaded from: classes.dex */
+   26: public final class beb implements Closeable {
+   27: public static final MessageBuffer m = MessageBuffer.wrap(new byte[0]);
+   28: public final CodingErrorAction a;
+   29: public final CodingErrorAction b;
+   30: public final int c;
+   31: public final short d;
+   32: public final ArrayBufferInput e;
+   33: public int g;
+   34: public int i;
+   35: public StringBuilder j;
+   36: public CharsetDecoder k;
+   37: public CharBuffer l;
+   38: public MessageBuffer f = m;
+   39: public final MessageBuffer h = MessageBuffer.allocate(8);
+   40: 
+   41: public beb(ArrayBufferInput arrayBufferInput, qcb qcbVar) {
+   42: this.e = arrayBufferInput;
+   43: this.a = qcbVar.a;
+   44: this.b = qcbVar.b;
+   45: this.c = qcbVar.c;
+   46: this.d = qcbVar.e;
+   47: }
+   48: 
+   49: public static MessagePackException R(byte b, String str) {
+   50: qab qabVar = qab.Y[b & 255];
+   51: if (qabVar == qab.g) {
+   52: return new MessageNeverUsedFormatException(vg9.y("Expected ", str, ", but encountered 0xC1 \"NEVER_USED\" byte"));
+   53: }
+   54: String strL = ihk.l(qabVar.a());
+   55: return new MessageTypeException(String.format("Expected %s, but got %s (%02x)", str, strL.substring(0, 1) + strL.substring(1).toLowerCase(), Byte.valueOf(b)));
+   56: }
+   57: 
+   58: public static MessageIntegerOverflowException w(int i) {
+   59: return new MessageIntegerOverflowException(BigInteger.valueOf(((long) (i & Integer.MAX_VALUE)) + 2147483648L));
+   60: }
+   61: 
+   62: public static MessageIntegerOverflowException y(long j) {
+   63: return new MessageIntegerOverflowException(BigInteger.valueOf(j - Long.MIN_VALUE).setBit(63));
+   64: }
+   65: 
+   66: public final long A0() {
+   67: byte b = readByte();
+   68: if (usc.y(b)) {
+   69: return b;
+   70: }
+   71: switch (b) {
+   72: case -52:
+   73: return readByte() & 255;
+   74: case -51:
+   75: return readShort() & 65535;
+   76: case -50:
+   77: int i = readInt();
+   78: return i < 0 ? ((long) (i & Integer.MAX_VALUE)) + 2147483648L : i;
+   79: case -49:
+   80: long j = readLong();
+   81: if (j >= 0) {
+   82: return j;
+   83: }
+   84: throw y(j);
+   85: case -48:
+   86: return readByte();
+   87: case -47:
+   88: return readShort();
+   89: case -46:
+   90: return readInt();
+   91: case -45:
+   92: return readLong();
+   93: default:
+   94: throw R(b, "Integer");
+   95: }
+   96: }
+   97: 
+   98: public final MessageBuffer D(int i) throws IOException {
+   99: int size = this.f.size();
+  100: int i2 = this.g;
+  101: int i3 = size - i2;
+  102: if (i3 >= i) {
+  103: this.i = i2;
+  104: this.g = i2 + i;
+  105: return this.f;
+  106: }
+  107: MessageBuffer messageBuffer = this.h;
+  108: if (i3 > 0) {
+  109: messageBuffer.putMessageBuffer(0, this.f, i2, i3);
+  110: i -= i3;
+  111: } else {
+  112: i3 = 0;
+  113: }
+  114: while (true) {
+  115: u();
+  116: int size2 = this.f.size();
+  117: MessageBuffer messageBuffer2 = this.f;
+  118: if (size2 >= i) {
+  119: messageBuffer.putMessageBuffer(i3, messageBuffer2, 0, i);
+  120: this.g = i;
+  121: this.i = 0;
+  122: return messageBuffer;
+  123: }
+  124: messageBuffer.putMessageBuffer(i3, messageBuffer2, 0, size2);
+  125: i -= size2;
+  126: i3 += size2;
+  127: }
+  128: }
+  129: 
+  130: public final int E() {
+  131: return readShort() & 65535;
+  132: }
+  133: 
+  134: public final int F0() {
+  135: byte b = readByte();
+  136: if ((b & (-16)) == -128) {
+  137: return b & 15;
+  138: }
+  139: if (b == -34) {
+  140: return E();
+  141: }
+  142: if (b == -33) {
+  143: return I();
+  144: }
+  145: throw R(b, "Map");
+  146: }
+  147: 
+  148: public final int I() {
+  149: int i = readInt();
+  150: if (i >= 0) {
+  151: return i;
+  152: }
+  153: throw new MessageSizeException();
+  154: }
+  155: 
+  156: public final int J0() {
+  157: int iE;
+  158: byte b = readByte();
+  159: if ((b & (-32)) == -96) {
+  160: return b & 31;
+  161: }
+  162: int iE2 = -1;
+  163: switch (b) {
+  164: case -39:
+  165: iE = readByte() & 255;
+  166: break;
+  167: case -38:
+  168: iE = E();
+  169: break;
+  170: case -37:
+  171: iE = I();
+  172: break;
+  173: default:
+  174: iE = -1;
+  175: break;
+  176: }
+  177: if (iE >= 0) {
+  178: return iE;
+  179: }
+  180: switch (b) {
+  181: case -60:
+  182: iE2 = readByte() & 255;
+  183: break;
+  184: case -59:
+  185: iE2 = E();
+  186: break;
+  187: case -58:
+  188: iE2 = I();
+  189: break;
+  190: }
+  191: if (iE2 >= 0) {
+  192: return iE2;
+  193: }
+  194: throw R(b, "String");
+  195: }
+  196: 
+  197: public final String K0() {
+  198: int iRemaining;
+  199: MessageBuffer messageBuffer;
+  200: int iJ0 = J0();
+  201: if (iJ0 == 0) {
+  202: return BuildConfig.FLAVOR;
+  203: }
+  204: int i = this.c;
+  205: if (iJ0 > i) {
+  206: throw new MessageSizeException(String.format("cannot unpack a String of size larger than %,d: %,d", Integer.valueOf(i), Integer.valueOf(iJ0)));
+  207: }
+  208: CharsetDecoder charsetDecoder = this.k;
+  209: if (charsetDecoder == null) {
+  210: this.l = CharBuffer.allocate(this.d);
+  211: this.k = rcb.a.newDecoder().onMalformedInput(this.a).onUnmappableCharacter(this.b);
+  212: } else {
+  213: charsetDecoder.reset();
+  214: }
+  215: StringBuilder sb = this.j;
+  216: if (sb == null) {
+  217: this.j = new StringBuilder();
+  218: } else {
+  219: sb.setLength(0);
+  220: }
+  221: if (this.f.size() - this.g >= iJ0) {
+  222: return a(iJ0);
+  223: }
+  224: while (iJ0 > 0) {
+  225: try {
+  226: int size = this.f.size();
+  227: int i2 = this.g;
+  228: int i3 = size - i2;
+  229: if (i3 >= iJ0) {
+  230: this.j.append(a(iJ0));
+  231: break;
+  232: }
+  233: if (i3 == 0) {
+  234: u();
+  235: } else {
+  236: ByteBuffer byteBufferSliceAsByteBuffer = this.f.sliceAsByteBuffer(i2, i3);
+  237: int iPosition = byteBufferSliceAsByteBuffer.position();
+  238: this.l.clear();
+  239: CoderResult coderResultDecode = this.k.decode(byteBufferSliceAsByteBuffer, this.l, false);
+  240: int iPosition2 = byteBufferSliceAsByteBuffer.position() - iPosition;
+  241: this.g += iPosition2;
+  242: iJ0 -= iPosition2;
+  243: this.j.append(this.l.flip());
+  244: if (coderResultDecode.isError()) {
+  245: q(coderResultDecode);
+  246: }
+  247: if (coderResultDecode.isUnderflow() && iPosition2 < i3) {
+  248: ByteBuffer byteBufferAllocate = ByteBuffer.allocate(Integer.numberOfLeadingZeros((~(this.f.getByte(this.g) & 255)) << 24));
+  249: MessageBuffer messageBuffer2 = this.f;
+  250: messageBuffer2.getBytes(this.g, messageBuffer2.size() - this.g, byteBufferAllocate);
+```
+
+### defpackage/bcc.java
+Строки 1–280:
+```java
+    1: package defpackage;
+    2: 
+    3: import java.io.IOException;
+    4: import java.util.ArrayList;
+    5: import java.util.Iterator;
+    6: import java.util.Locale;
+    7: import java.util.Map;
+    8: import java.util.concurrent.ConcurrentHashMap;
+    9: import java.util.concurrent.atomic.AtomicBoolean;
+   10: import java.util.concurrent.atomic.AtomicInteger;
+   11: import java.util.concurrent.atomic.AtomicLong;
+   12: import java.util.concurrent.locks.Lock;
+   13: import java.util.concurrent.locks.ReentrantLock;
+   14: import me.leolin.shortcutbadger.BuildConfig;
+   15: 
+   16: /* JADX INFO: loaded from: classes.dex */
+   17: public final class bcc {
+   18: public static final AtomicInteger N = new AtomicInteger(0);
+   19: public static final AtomicInteger O = new AtomicInteger(0);
+   20: public boolean A;
+   21: public final boolean B;
+   22: public final boolean C;
+   23: public final boolean D;
+   24: public final boolean E;
+   25: public final ruc F;
+   26: public final q7c G;
+   27: public final j6h H;
+   28: public final z3j I;
+   29: public final o57 J;
+   30: public volatile xr4 K;
+   31: public volatile aj4 L;
+   32: public final Object M;
+   33: public final String a;
+   34: public final int m;
+   35: public final o57 p;
+   36: public final vng q;
+   37: public final kuc r;
+   38: public final f6h s;
+   39: public final st5 t;
+   40: public final ArrayList v;
+   41: public final am4 x;
+   42: public final am4 y;
+   43: public final int z;
+   44: public final AtomicInteger b = new AtomicInteger(0);
+   45: public final AtomicInteger c = new AtomicInteger(0);
+   46: public volatile Long d = null;
+   47: public final AtomicLong e = new AtomicLong(0);
+   48: public final AtomicBoolean f = new AtomicBoolean(false);
+   49: public final AtomicBoolean g = new AtomicBoolean();
+   50: public final AtomicBoolean h = new AtomicBoolean(false);
+   51: public final AtomicInteger i = new AtomicInteger(0);
+   52: public final AtomicLong j = new AtomicLong(0);
+   53: public final AtomicBoolean k = new AtomicBoolean(false);
+   54: public final AtomicInteger l = new AtomicInteger(0);
+   55: public final AtomicLong n = new AtomicLong(Long.MIN_VALUE);
+   56: public final AtomicBoolean o = new AtomicBoolean(false);
+   57: public final ConcurrentHashMap u = new ConcurrentHashMap();
+   58: public final Object w = new Object();
+   59: 
+   60: public bcc(ccc cccVar) {
+   61: Object reentrantLock = null;
+   62: new AtomicInteger();
+   63: O.incrementAndGet();
+   64: this.I = cccVar.i;
+   65: int iIncrementAndGet = N.incrementAndGet();
+   66: this.m = iIncrementAndGet;
+   67: this.q = cccVar.c;
+   68: this.r = cccVar.f;
+   69: String strR = w7g.r(iIncrementAndGet, "Session#");
+   70: this.a = strR;
+   71: this.p = cccVar.a;
+   72: this.s = cccVar.e;
+   73: this.t = cccVar.d;
+   74: this.F = cccVar.g;
+   75: this.G = cccVar.h;
+   76: int iMax = Math.max(0, 0);
+   77: this.z = iMax;
+   78: this.B = cccVar.l;
+   79: this.C = cccVar.n;
+   80: this.D = cccVar.j;
+   81: this.E = cccVar.k;
+   82: f09.o(strR, "init, sendLimitIfNoSession=%d", Integer.valueOf(iMax));
+   83: this.x = new am4((byte) 4);
+   84: this.y = new am4((byte) 4);
+   85: j6h j6hVar = cccVar.b;
+   86: this.H = j6hVar;
+   87: this.v = new ArrayList();
+   88: j6hVar.a(new o4h(this), "session-conn-handler").start();
+   89: o1d o1dVar = f09.g;
+   90: if (o1dVar != null) {
+   91: c6a c6aVar = c6a.d;
+   92: if (o1dVar.b(c6aVar)) {
+   93: o1dVar.c(c6aVar, strR, "init, completed=".concat(String.valueOf(this)), null);
+   94: }
+   95: }
+   96: this.J = cccVar.o;
+   97: this.K = new cg6((byte) 15);
+   98: boolean z = this.B;
+   99: if (z && cccVar.m) {
+  100: reentrantLock = new duf();
+  101: } else if (z) {
+  102: reentrantLock = new ReentrantLock();
+  103: }
+  104: this.M = reentrantLock;
+  105: }
+  106: 
+  107: public static String h(int i) {
+  108: if (i == 0) {
+  109: return "DISCONNECTED";
+  110: }
+  111: if (i != 1) {
+  112: return i != 2 ? "<UNKNOWN>" : "LOGGED_IN";
+  113: }
+  114: return "CONNECTED";
+  115: }
+  116: 
+  117: public static final void v(euf eufVar, bcc bccVar, int i) {
+  118: eufVar.a = bccVar.u(i);
+  119: }
+  120: 
+  121: public final void a(long j) {
+  122: f09.o(this.a, "cancelRequest(): %d", Long.valueOf(j));
+  123: synchronized (this.w) {
+  124: try {
+  125: for (fld fldVar : this.v) {
+  126: eld eldVar = fldVar.b;
+  127: if (eldVar != null && eldVar.c.p() == j) {
+  128: String str = this.a;
+  129: short sK = fldVar.b.a.k();
+  130: tdd.c.getClass();
+  131: f09.o(str, "cancelRequest(): remove task from mPacketSenderTasks, opcode=%s, requestId=%s", cp5.l(sK), Long.valueOf(fldVar.b.c.p()));
+  132: this.v.remove(fldVar);
+  133: break;
+  134: }
+  135: }
+  136: } catch (Throwable th) {
+  137: throw th;
+  138: }
+  139: }
+  140: for (Map.Entry entry : this.u.entrySet()) {
+  141: if (((dld) entry.getValue()).a.p() == j) {
+  142: f09.o(this.a, "cancelRequest(): remove task from mPacketReaderTasks, seq=%s, requestId=%s", entry.getKey(), Long.valueOf(((dld) entry.getValue()).a.p()));
+  143: this.u.remove(entry.getKey());
+  144: return;
+  145: }
+  146: }
+  147: }
+  148: 
+  149: public final void b(boolean z) {
+  150: boolean z2 = false;
+  151: boolean zCompareAndSet = this.g.compareAndSet(false, true);
+  152: String str = this.a;
+  153: if (!zCompareAndSet) {
+  154: f09.d0(str, vg9.y("close, ", String.valueOf(this), " has ALREADY been CLOSED, skip re-closing"), new Object[0]);
+  155: return;
+  156: }
+  157: o1d o1dVar = f09.g;
+  158: if (o1dVar != null) {
+  159: c6a c6aVar = c6a.d;
+  160: if (o1dVar.b(c6aVar)) {
+  161: o1dVar.c(c6aVar, str, "close, closing the ".concat(String.valueOf(this)), null);
+  162: }
+  163: }
+  164: w(false);
+  165: this.x.l();
+  166: this.y.l();
+  167: if (!this.o.get() && !k()) {
+  168: z2 = true;
+  169: }
+  170: if (this.K.close()) {
+  171: e(true, z, e46.l);
+  172: }
+  173: this.p.getClass();
+  174: if (z2) {
+  175: this.s.b(Integer.toString(this.m), e46.k);
+  176: }
+  177: O.decrementAndGet();
+  178: f09.p(this.a, "close, " + String.valueOf(this) + " closed");
+  179: }
+  180: 
+  181: public final void c() {
+  182: if (!this.o.get() \|\| this.g.get()) {
+  183: return;
+  184: }
+  185: f09.d0(this.a, "closeSessionIfMarkedToDestroy, closing ".concat(String.valueOf(this)), new Object[0]);
+  186: b(true);
+  187: }
+  188: 
+  189: public final boolean d(fld fldVar, Class cls) {
+  190: eld eldVar = fldVar.b;
+  191: if (eldVar == null \|\| !cls.isInstance(eldVar.a)) {
+  192: k3g.o("wrong usage of method 'containsInPacketReader'");
+  193: return false;
+  194: }
+  195: Iterator it = this.u.entrySet().iterator();
+  196: while (it.hasNext()) {
+  197: eld eldVar2 = ((dld) ((Map.Entry) it.next()).getValue()).b.b;
+  198: if (eldVar2 != null && cls.isInstance(eldVar2.a)) {
+  199: return true;
+  200: }
+  201: }
+  202: return false;
+  203: }
+  204: 
+  205: public final void e(boolean z, boolean z2, e46 e46Var) {
+  206: ArrayList arrayList;
+  207: f09.o(this.a, "disconnect: clearSenderTasks %b, reason=%s", Boolean.valueOf(z), e46Var);
+  208: t(0);
+  209: if (!this.o.get()) {
+  210: r(e46Var);
+  211: }
+  212: g6j g6jVar = new g6j("disconnect");
+  213: Iterator it = this.u.entrySet().iterator();
+  214: while (it.hasNext()) {
+  215: ((dld) ((Map.Entry) it.next()).getValue()).a.f(g6jVar);
+  216: }
+  217: this.u.clear();
+  218: if (z) {
+  219: Object obj = this.w;
+  220: if (z2) {
+  221: synchronized (obj) {
+  222: this.v.clear();
+  223: }
+  224: return;
+  225: }
+  226: synchronized (obj) {
+  227: try {
+  228: arrayList = null;
+  229: for (fld fldVar : this.v) {
+  230: if (fldVar.b != null) {
+  231: if (arrayList == null) {
+  232: arrayList = new ArrayList(1);
+  233: }
+  234: arrayList.add(fldVar);
+  235: }
+  236: }
+  237: this.v.clear();
+  238: } catch (Throwable th) {
+  239: throw th;
+  240: }
+  241: }
+  242: if (arrayList != null) {
+  243: Iterator it2 = arrayList.iterator();
+  244: while (it2.hasNext()) {
+  245: ((fld) it2.next()).b.c.f(g6jVar);
+  246: }
+  247: }
+  248: }
+  249: }
+  250: 
+  251: public final void f(cld cldVar) {
+  252: synchronized (this.w) {
+  253: ArrayList arrayList = this.v;
+  254: qzd qzdVar = fe6.b;
+  255: arrayList.add(new fld(2, null, az7.V(System.currentTimeMillis(), me6.d), cldVar));
+  256: }
+  257: this.y.l();
+  258: }
+  259: 
+  260: public final void g(u6j u6jVar, boolean z, long j, e6j e6jVar) {
+  261: if (u6jVar instanceof d9a) {
+  262: f09.p(this.a, "Received LogoutCmd, clearing all tasks");
+  263: this.u.clear();
+  264: synchronized (this.w) {
+  265: this.v.clear();
+  266: }
+  267: }
+  268: ArrayList arrayList = null;
+  269: if (u6jVar.i()) {
+  270: String str = this.a;
+  271: short sK = u6jVar.k();
+  272: tdd.c.getClass();
+  273: f09.o(str, "clearPreviousDuplicatedTasks() opCode=%s", cp5.l(sK));
+  274: synchronized (this.w) {
+  275: try {
+  276: for (fld fldVar : this.v) {
+  277: eld eldVar = fldVar.b;
+  278: if (eldVar != null && eldVar.a.k() == u6jVar.k() && fldVar.b.a.l() == u6jVar.l()) {
+  279: if (arrayList == null) {
+  280: arrayList = new ArrayList();
+```
+
+### defpackage/f0c.java
+Строки 1–230:
+```java
+    1: package defpackage;
+    2: 
+    3: import android.content.Context;
+    4: import android.net.Uri;
+    5: import java.io.File;
+    6: import java.util.ArrayList;
+    7: import java.util.HashMap;
+    8: import java.util.Iterator;
+    9: import java.util.List;
+   10: import java.util.RandomAccess;
+   11: import java.util.Set;
+   12: import kotlin.NoWhenBranchMatchedException;
+   13: import one.me.android.initialization.AccountInitializer;
+   14: import one.me.chats.list.ChatsListWidget;
+   15: import one.me.sdk.arch.Widget;
+   16: 
+   17: /* JADX INFO: loaded from: classes.dex */
+   18: public final class f0c implements f84, w95, hq7, yda, i6c, rl4 {
+   19: public static final f0c b = new f0c((byte) 1);
+   20: public static final f0c c = new f0c((byte) 2);
+   21: public static final /* synthetic */ f0c d = new f0c((byte) 3);
+   22: public static final f0c e = new f0c((byte) 4);
+   23: public static final f0c f = new f0c((byte) 5);
+   24: public static final f0c g = new f0c((byte) 6);
+   25: public static final f0c h = new f0c((byte) 7);
+   26: public static final f0c i = new f0c((byte) 8);
+   27: public final /* synthetic */ byte a;
+   28: 
+   29: public f0c(Set set) {
+   30: this.a = (byte) 0;
+   31: new HashMap();
+   32: new HashMap();
+   33: Iterator it = set.iterator();
+   34: if (it.hasNext()) {
+   35: s95.D(it.next());
+   36: throw null;
+   37: }
+   38: }
+   39: 
+   40: public static ArrayList c(List list) {
+   41: ArrayList arrayList = new ArrayList();
+   42: for (Object obj : list) {
+   43: if (((o5f) obj) != o5f.b) {
+   44: arrayList.add(obj);
+   45: }
+   46: }
+   47: ArrayList arrayList2 = new ArrayList(xa4.p0(arrayList, 10));
+   48: Iterator it = arrayList.iterator();
+   49: while (it.hasNext()) {
+   50: arrayList2.add(((o5f) it.next()).a);
+   51: }
+   52: return arrayList2;
+   53: }
+   54: 
+   55: public static byte[] e(List list) {
+   56: x91 x91Var = new x91();
+   57: for (String str : c(list)) {
+   58: x91Var.R(str.length());
+   59: x91Var.m0(0, str.length(), str);
+   60: }
+   61: return x91Var.w(x91Var.b);
+   62: }
+   63: 
+   64: /* JADX WARN: Code duplicated, block: B:10:0x001e A[RETURN] */
+   65: /* JADX WARN: Code duplicated, block: B:11:0x001f A[RETURN] */
+   66: public static dx5 f(f0c f0cVar, Number number) {
+   67: dx5 dx5Var = dx5.REGULAR;
+   68: f0cVar.getClass();
+   69: byte bByteValue = number.byteValue();
+   70: for (dx5 dx5Var2 : dx5.values()) {
+   71: if (dx5Var2.a == bByteValue) {
+   72: if (dx5Var2 == null) {
+   73: return dx5Var;
+   74: }
+   75: return dx5Var2;
+   76: }
+   77: }
+   78: dx5Var2 = null;
+   79: if (dx5Var2 == null) {
+   80: return dx5Var;
+   81: }
+   82: return dx5Var2;
+   83: }
+   84: 
+   85: public static File g(Context context, c0c c0cVar) {
+   86: File fileJ = j(context);
+   87: yl5.w(fileJ);
+   88: return ef7.d0(fileJ, c0cVar.b + "_" + System.currentTimeMillis() + ".bin");
+   89: }
+   90: 
+   91: public static int h(int i2) {
+   92: if (i2 >= nb6.t(200.0f * i36.d().getDisplayMetrics().density)) {
+   93: return nb6.t(90.0f * i36.d().getDisplayMetrics().density);
+   94: }
+   95: if (i2 >= nb6.t(72.0f * i36.d().getDisplayMetrics().density)) {
+   96: return nb6.t(36.0f * i36.d().getDisplayMetrics().density);
+   97: }
+   98: if (i2 >= nb6.t(64.0f * i36.d().getDisplayMetrics().density)) {
+   99: return nb6.t(32.0f * i36.d().getDisplayMetrics().density);
+  100: }
+  101: if (i2 >= nb6.t(48.0f * i36.d().getDisplayMetrics().density)) {
+  102: return nb6.t(28.0f * i36.d().getDisplayMetrics().density);
+  103: }
+  104: if (i2 >= nb6.t(36.0f * i36.d().getDisplayMetrics().density)) {
+  105: return nb6.t(24.0f * i36.d().getDisplayMetrics().density);
+  106: }
+  107: if (i2 >= nb6.t(32.0f * i36.d().getDisplayMetrics().density)) {
+  108: return nb6.t(20.0f * i36.d().getDisplayMetrics().density);
+  109: }
+  110: return i2 >= 28 ? nb6.t(16.0f * i36.d().getDisplayMetrics().density) : nb6.t(12.0f * i36.d().getDisplayMetrics().density);
+  111: }
+  112: 
+  113: public static File j(Context context) {
+  114: String str;
+  115: String strL = xnm.l();
+  116: if (strL.equals(context.getPackageName())) {
+  117: str = "tracer";
+  118: } else {
+  119: str = "tracer-" + ((Object) Uri.encode(hui.X(strL, ':', '-', false)));
+  120: }
+  121: return new File(context.getCacheDir(), str);
+  122: }
+  123: 
+  124: public static boolean k() {
+  125: return "Dalvik".equals(System.getProperty("java.vm.name"));
+  126: }
+  127: 
+  128: private final x6j l(beb bebVar) {
+  129: int iP0;
+  130: String strS0;
+  131: if (!bebVar.m()) {
+  132: return null;
+  133: }
+  134: try {
+  135: iP0 = e0c.p0(bebVar);
+  136: } catch (Throwable th) {
+  137: f09.c0("ServerPayload/PayloadCatching", "payloadCatching catch error", th);
+  138: Iterator it = q1h.a.iterator();
+  139: while (it.hasNext()) {
+  140: AccountInitializer accountInitializer = ((z6) it.next()).a;
+  141: try {
+  142: f09.c0("Payload", "error while parse payload", th);
+  143: accountInitializer.c().j().d().a(null, th);
+  144: } catch (Throwable th2) {
+  145: f09.c0("Payload", "failed to collect exception", th2);
+  146: }
+  147: }
+  148: int iG = s95.G(iqg.a);
+  149: if (iG != 0) {
+  150: if (iG == 1) {
+  151: throw th;
+  152: }
+  153: k3g.l();
+  154: return null;
+  155: }
+  156: iP0 = 0;
+  157: }
+  158: r53 r53VarC = null;
+  159: for (int i2 = 0; i2 < iP0; i2++) {
+  160: try {
+  161: strS0 = e0c.s0(bebVar, null);
+  162: } catch (Throwable th3) {
+  163: f09.c0("ServerPayload/PayloadCatching", "payloadCatching catch error", th3);
+  164: Iterator it2 = q1h.a.iterator();
+  165: while (it2.hasNext()) {
+  166: AccountInitializer accountInitializer2 = ((z6) it2.next()).a;
+  167: try {
+  168: f09.c0("Payload", "error while parse payload", th3);
+  169: accountInitializer2.c().j().d().a(null, th3);
+  170: } catch (Throwable th4) {
+  171: f09.c0("Payload", "failed to collect exception", th4);
+  172: }
+  173: }
+  174: int iG2 = s95.G(iqg.a);
+  175: if (iG2 != 0) {
+  176: if (iG2 != 1) {
+  177: throw new NoWhenBranchMatchedException();
+  178: }
+  179: throw th3;
+  180: }
+  181: strS0 = null;
+  182: }
+  183: if (strS0 != null) {
+  184: try {
+  185: if (strS0.equals("chat")) {
+  186: r53VarC = r53.c(bebVar);
+  187: } else {
+  188: try {
+  189: bebVar.N();
+  190: } catch (Throwable th5) {
+  191: f09.c0("ServerPayload/PayloadCatching", "payloadCatching catch error", th5);
+  192: Iterator it3 = q1h.a.iterator();
+  193: while (it3.hasNext()) {
+  194: AccountInitializer accountInitializer3 = ((z6) it3.next()).a;
+  195: try {
+  196: f09.c0("Payload", "error while parse payload", th5);
+  197: accountInitializer3.c().j().d().a(null, th5);
+  198: } catch (Throwable th6) {
+  199: f09.c0("Payload", "failed to collect exception", th6);
+  200: }
+  201: }
+  202: int iG3 = s95.G(iqg.a);
+  203: if (iG3 != 0) {
+  204: if (iG3 != 1) {
+  205: throw new NoWhenBranchMatchedException();
+  206: }
+  207: throw th5;
+  208: }
+  209: }
+  210: }
+  211: } catch (Throwable th7) {
+  212: try {
+  213: f09.c0("ServerPayload/PayloadCatching", "payloadCatching catch error", th7);
+  214: Iterator it4 = q1h.a.iterator();
+  215: while (it4.hasNext()) {
+  216: AccountInitializer accountInitializer4 = ((z6) it4.next()).a;
+  217: try {
+  218: f09.c0("Payload", "error while parse payload", th7);
+  219: accountInitializer4.c().j().d().a(null, th7);
+  220: } catch (Throwable th8) {
+  221: f09.c0("Payload", "failed to collect exception", th8);
+  222: }
+  223: }
+  224: int iG4 = s95.G(iqg.a);
+  225: if (iG4 != 0) {
+  226: if (iG4 != 1) {
+  227: throw new NoWhenBranchMatchedException();
+  228: }
+  229: throw th7;
+  230: }
+```
+
+### defpackage/zl8.java
+Строки 1–8:
+```java
+    1: package defpackage;
+    2: 
+    3: /* JADX INFO: loaded from: classes2.dex */
+    4: public interface zl8 {
+    5: String w();
+    6: 
+    7: String x();
+    8: }
+```
+
 ### defpackage/dj0.java
 Строки 1–26:
 ```java
@@ -3456,7 +4343,7 @@ SHA-256: e809176d6bf6ff69247274433ec170a5db8a5687a02a04299a78a2ae978119fc
 ```
 
 ### defpackage/bj0.java
-Строки 1–175:
+Строки 1–590:
 ```java
     1: package defpackage;
     2: 
@@ -3633,6 +4520,421 @@ SHA-256: e809176d6bf6ff69247274433ec170a5db8a5687a02a04299a78a2ae978119fc
   173: accountInitializer3.c().j().d().a(null, th5);
   174: } catch (Throwable th6) {
   175: f09.c0("Payload", "failed to collect exception", th6);
+  176: }
+  177: }
+  178: int iG3 = s95.G(iqg.a);
+  179: if (iG3 != 0) {
+  180: if (iG3 == 1) {
+  181: throw th5;
+  182: }
+  183: k3g.l();
+  184: return null;
+  185: }
+  186: iM0 = 0;
+  187: r16 = r16;
+  188: }
+  189: } else {
+  190: bebVar.N();
+  191: r15 = r16;
+  192: i = 0;
+  193: r16 = r15;
+  194: }
+  195: b = 1;
+  196: r24 = 0;
+  197: break;
+  198: case -1007074317:
+  199: if (R0.equals("altActionDuration")) {
+  200: j = 0;
+  201: try {
+  202: jO0 = e0c.o0(bebVar, 0L);
+  203: r15 = r16;
+  204: } catch (Throwable th7) {
+  205: f09.c0("ServerPayload/PayloadCatching", "payloadCatching catch error", th7);
+  206: Iterator it4 = q1h.a.iterator();
+  207: while (it4.hasNext()) {
+  208: AccountInitializer accountInitializer4 = ((z6) it4.next()).a;
+  209: try {
+  210: f09.c0("Payload", "error while parse payload", th7);
+  211: accountInitializer4.c().j().d().a(null, th7);
+  212: } catch (Throwable th8) {
+  213: f09.c0("Payload", "failed to collect exception", th8);
+  214: }
+  215: }
+  216: int iG4 = s95.G(iqg.a);
+  217: if (iG4 != 0) {
+  218: if (iG4 == 1) {
+  219: throw th7;
+  220: }
+  221: k3g.l();
+  222: return null;
+  223: }
+  224: jO0 = 0;
+  225: r15 = r16;
+  226: }
+  227: } else {
+  228: j = 0;
+  229: bebVar.N();
+  230: r15 = r16;
+  231: }
+  232: i = 0;
+  233: r16 = r15;
+  234: b = 1;
+  235: r24 = 0;
+  236: break;
+  237: case -941829706:
+  238: if (R0.equals("callOutParams")) {
+  239: try {
+  240: iP1 = e0c.p0(bebVar);
+  241: } catch (Throwable th9) {
+  242: f09.c0("ServerPayload/PayloadCatching", "payloadCatching catch error", th9);
+  243: Iterator it5 = q1h.a.iterator();
+  244: while (it5.hasNext()) {
+  245: AccountInitializer accountInitializer5 = ((z6) it5.next()).a;
+  246: try {
+  247: f09.c0("Payload", "error while parse payload", th9);
+  248: accountInitializer5.c().j().d().a(r7, th9);
+  249: } catch (Throwable th10) {
+  250: f09.c0("Payload", "failed to collect exception", th10);
+  251: }
+  252: }
+  253: int iG5 = s95.G(iqg.a);
+  254: if (iG5 != 0) {
+  255: if (iG5 == b2) {
+  256: throw th9;
+  257: }
+  258: k3g.l();
+  259: return r7;
+  260: }
+  261: iP1 = i3;
+  262: }
+  263: ?? S2 = r7;
+  264: int i5 = 0;
+  265: int iM2 = -1;
+  266: int iM3 = -1;
+  267: while (i5 < iP1) {
+  268: try {
+  269: S0 = e0c.s0(bebVar, r7);
+  270: } catch (Throwable th11) {
+  271: f09.c0("ServerPayload/PayloadCatching", "payloadCatching catch error", th11);
+  272: Iterator it6 = q1h.a.iterator();
+  273: while (it6.hasNext()) {
+  274: AccountInitializer accountInitializer6 = ((z6) it6.next()).a;
+  275: try {
+  276: f09.c0("Payload", "error while parse payload", th11);
+  277: accountInitializer6.c().j().d().a(r7, th11);
+  278: } catch (Throwable th12) {
+  279: f09.c0("Payload", "failed to collect exception", th12);
+  280: }
+  281: }
+  282: int iG6 = s95.G(iqg.a);
+  283: if (iG6 != 0) {
+  284: if (iG6 != b2) {
+  285: throw new NoWhenBranchMatchedException();
+  286: }
+  287: throw th11;
+  288: }
+  289: S0 = r7;
+  290: }
+  291: if (S0 != 0) {
+  292: try {
+  293: int iHashCode = S0.hashCode();
+  294: if (iHashCode != -1067396154) {
+  295: if (iHashCode != -199210584) {
+  296: if (iHashCode == 115180 && S0.equals("ttl")) {
+  297: try {
+  298: iM2 = e0c.m0(bebVar, -1);
+  299: } catch (Throwable th13) {
+  300: f09.c0("ServerPayload/PayloadCatching", "payloadCatching catch error", th13);
+  301: Iterator it7 = q1h.a.iterator();
+  302: while (it7.hasNext()) {
+  303: AccountInitializer accountInitializer7 = ((z6) it7.next()).a;
+  304: try {
+  305: f09.c0("Payload", "error while parse payload", th13);
+  306: accountInitializer7.c().j().d().a(r7, th13);
+  307: } catch (Throwable th14) {
+  308: f09.c0("Payload", "failed to collect exception", th14);
+  309: }
+  310: }
+  311: int iG7 = s95.G(iqg.a);
+  312: if (iG7 != 0) {
+  313: if (iG7 != 1) {
+  314: throw new NoWhenBranchMatchedException();
+  315: }
+  316: throw th13;
+  317: }
+  318: iM2 = -1;
+  319: }
+  320: } else {
+  321: try {
+  322: bebVar.N();
+  323: } catch (Throwable th15) {
+  324: f09.c0("ServerPayload/PayloadCatching", "payloadCatching catch error", th15);
+  325: Iterator it8 = q1h.a.iterator();
+  326: while (it8.hasNext()) {
+  327: AccountInitializer accountInitializer8 = ((z6) it8.next()).a;
+  328: try {
+  329: f09.c0("Payload", "error while parse payload", th15);
+  330: accountInitializer8.c().j().d().a(r7, th15);
+  331: } catch (Throwable th16) {
+  332: f09.c0("Payload", "failed to collect exception", th16);
+  333: }
+  334: }
+  335: int iG8 = s95.G(iqg.a);
+  336: if (iG8 != 0) {
+  337: if (iG8 != 1) {
+  338: throw new NoWhenBranchMatchedException();
+  339: }
+  340: throw th15;
+  341: }
+  342: }
+  343: }
+  344: } else if (S0.equals("pollingInterval")) {
+  345: try {
+  346: iM3 = e0c.m0(bebVar, -1);
+  347: } catch (Throwable th17) {
+  348: f09.c0("ServerPayload/PayloadCatching", "payloadCatching catch error", th17);
+  349: Iterator it9 = q1h.a.iterator();
+  350: while (it9.hasNext()) {
+  351: AccountInitializer accountInitializer9 = ((z6) it9.next()).a;
+  352: try {
+  353: f09.c0("Payload", "error while parse payload", th17);
+  354: accountInitializer9.c().j().d().a(r7, th17);
+  355: } catch (Throwable th18) {
+  356: f09.c0("Payload", "failed to collect exception", th18);
+  357: }
+  358: }
+  359: int iG9 = s95.G(iqg.a);
+  360: if (iG9 != 0) {
+  361: if (iG9 != 1) {
+  362: throw new NoWhenBranchMatchedException();
+  363: }
+  364: throw th17;
+  365: }
+  366: iM3 = -1;
+  367: }
+  368: } else {
+  369: bebVar.N();
+  370: }
+  371: } else if (S0.equals("trackId")) {
+  372: try {
+  373: S2 = e0c.s0(bebVar, r7);
+  374: } catch (Throwable th19) {
+  375: f09.c0("ServerPayload/PayloadCatching", "payloadCatching catch error", th19);
+  376: Iterator it10 = q1h.a.iterator();
+  377: while (it10.hasNext()) {
+  378: AccountInitializer accountInitializer10 = ((z6) it10.next()).a;
+  379: try {
+  380: f09.c0("Payload", "error while parse payload", th19);
+  381: accountInitializer10.c().j().d().a(r7, th19);
+  382: } catch (Throwable th20) {
+  383: f09.c0("Payload", "failed to collect exception", th20);
+  384: }
+  385: }
+  386: int iG10 = s95.G(iqg.a);
+  387: if (iG10 != 0) {
+  388: if (iG10 != 1) {
+  389: throw new NoWhenBranchMatchedException();
+  390: }
+  391: throw th19;
+  392: }
+  393: S2 = r7;
+  394: }
+  395: } else {
+  396: bebVar.N();
+  397: }
+  398: } catch (Throwable th21) {
+  399: try {
+  400: f09.c0("ServerPayload/PayloadCatching", "payloadCatching catch error", th21);
+  401: Iterator it11 = q1h.a.iterator();
+  402: while (it11.hasNext()) {
+  403: AccountInitializer accountInitializer11 = ((z6) it11.next()).a;
+  404: try {
+  405: f09.c0("Payload", "error while parse payload", th21);
+  406: accountInitializer11.c().j().d().a(r7, th21);
+  407: } catch (Throwable th22) {
+  408: f09.c0("Payload", "failed to collect exception", th22);
+  409: }
+  410: }
+  411: int iG11 = s95.G(iqg.a);
+  412: if (iG11 != 0) {
+  413: if (iG11 != 1) {
+  414: throw new NoWhenBranchMatchedException();
+  415: }
+  416: throw th21;
+  417: }
+  418: } catch (Throwable th23) {
+  419: f09.c0("ServerPayload/PayloadCatching", "payloadCatching catch error", th23);
+  420: Iterator it12 = q1h.a.iterator();
+  421: while (it12.hasNext()) {
+  422: AccountInitializer accountInitializer12 = ((z6) it12.next()).a;
+  423: try {
+  424: f09.c0("Payload", "error while parse payload", th23);
+  425: accountInitializer12.c().j().d().a(r7, th23);
+  426: } catch (Throwable th24) {
+  427: f09.c0("Payload", "failed to collect exception", th24);
+  428: }
+  429: }
+  430: int iG12 = s95.G(iqg.a);
+  431: b2 = 1;
+  432: if (iG12 != 0) {
+  433: if (iG12 == 1) {
+  434: throw th23;
+  435: }
+  436: k3g.l();
+  437: return r7;
+  438: }
+  439: }
+  440: }
+  441: }
+  442: i5++;
+  443: b2 = 1;
+  444: S2 = S2;
+  445: break;
+  446: }
+  447: ?? r8 = S2;
+  448: if (r8 == 0 \|\| iM2 <= 0) {
+  449: i2 = iM3;
+  450: } else {
+  451: i2 = iM3;
+  452: if (i2 > 0) {
+  453: cVar = new c(r8, iM2, i2, b2);
+  454: }
+  455: j = 0;
+  456: r15 = r16;
+  457: }
+  458: String name = w12.class.getName();
+  459: o1d o1dVar = f09.g;
+  460: if (o1dVar != null) {
+  461: c6a c6aVar = c6a.f;
+  462: if (o1dVar.b(c6aVar)) {
+  463: o1dVar.c(c6aVar, name, s95.l(iM2, i2, "CallOutVerificationParams: invalid, ttl=", ", pollingInterval="), null);
+  464: }
+  465: }
+  466: cVar = null;
+  467: j = 0;
+  468: r15 = r16;
+  469: } else {
+  470: j = j2;
+  471: bebVar.N();
+  472: r15 = r16;
+  473: }
+  474: i = 0;
+  475: r16 = r15;
+  476: b = 1;
+  477: r24 = 0;
+  478: break;
+  479: case 6808551:
+  480: if (!R0.equals("requestCountLeft")) {
+  481: j = j2;
+  482: bebVar.N();
+  483: r15 = r16;
+  484: i = 0;
+  485: r16 = r15;
+  486: b = 1;
+  487: r24 = 0;
+  488: } else {
+  489: try {
+  490: iM1 = e0c.m0(bebVar, i3);
+  491: } catch (Throwable th25) {
+  492: f09.c0("ServerPayload/PayloadCatching", "payloadCatching catch error", th25);
+  493: Iterator it13 = q1h.a.iterator();
+  494: while (it13.hasNext()) {
+  495: AccountInitializer accountInitializer13 = ((z6) it13.next()).a;
+  496: try {
+  497: f09.c0("Payload", "error while parse payload", th25);
+  498: accountInitializer13.c().j().d().a(r7, th25);
+  499: } catch (Throwable th26) {
+  500: f09.c0("Payload", "failed to collect exception", th26);
+  501: }
+  502: }
+  503: int iG13 = s95.G(iqg.a);
+  504: if (iG13 != 0) {
+  505: if (iG13 == b2) {
+  506: throw th25;
+  507: }
+  508: k3g.l();
+  509: return r7;
+  510: }
+  511: iM1 = i3;
+  512: }
+  513: r24 = r7;
+  514: byte b3 = b2;
+  515: i = i3;
+  516: j = j2;
+  517: b = b3;
+  518: }
+  519: break;
+  520: case 110541305:
+  521: if (R0.equals("token")) {
+  522: try {
+  523: S1 = e0c.s0(bebVar, r7);
+  524: } catch (Throwable th27) {
+  525: f09.c0("ServerPayload/PayloadCatching", "payloadCatching catch error", th27);
+  526: Iterator it14 = q1h.a.iterator();
+  527: while (it14.hasNext()) {
+  528: AccountInitializer accountInitializer14 = ((z6) it14.next()).a;
+  529: try {
+  530: f09.c0("Payload", "error while parse payload", th27);
+  531: accountInitializer14.c().j().d().a(r7, th27);
+  532: } catch (Throwable th28) {
+  533: f09.c0("Payload", "failed to collect exception", th28);
+  534: }
+  535: }
+  536: int iG14 = s95.G(iqg.a);
+  537: if (iG14 != 0) {
+  538: if (iG14 == b2) {
+  539: throw th27;
+  540: }
+  541: k3g.l();
+  542: return r7;
+  543: }
+  544: S1 = r7;
+  545: }
+  546: if (S1 == 0) {
+  547: r24 = r7;
+  548: byte b4 = b2;
+  549: i = i3;
+  550: j = j2;
+  551: b = b4;
+  552: } else {
+  553: r15 = S1;
+  554: j = j2;
+  555: }
+  556: } else {
+  557: j = j2;
+  558: bebVar.N();
+  559: r15 = r16;
+  560: }
+  561: i = 0;
+  562: r16 = r15;
+  563: b = 1;
+  564: r24 = 0;
+  565: break;
+  566: case 575768841:
+  567: if (!R0.equals("requestMaxDuration")) {
+  568: j = j2;
+  569: bebVar.N();
+  570: r15 = r16;
+  571: i = 0;
+  572: r16 = r15;
+  573: b = 1;
+  574: r24 = 0;
+  575: } else {
+  576: try {
+  577: jO1 = e0c.o0(bebVar, j2);
+  578: } catch (Throwable th29) {
+  579: f09.c0("ServerPayload/PayloadCatching", "payloadCatching catch error", th29);
+  580: Iterator it15 = q1h.a.iterator();
+  581: while (it15.hasNext()) {
+  582: AccountInitializer accountInitializer15 = ((z6) it15.next()).a;
+  583: try {
+  584: f09.c0("Payload", "error while parse payload", th29);
+  585: accountInitializer15.c().j().d().a(r7, th29);
+  586: } catch (Throwable th30) {
+  587: f09.c0("Payload", "failed to collect exception", th30);
+  588: }
+  589: }
+  590: int iG15 = s95.G(iqg.a);
 ```
 
 ### defpackage/h79.java
