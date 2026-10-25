@@ -23,10 +23,14 @@ target = [
  "bcc","ccc","z6j","v99","wpc","dq4","yr0","u79","lp4",
  "s1c","r1c","p1c","n3a","h16","azc","fh0","wi",
  "tdd","t6a","ph0","oh0","cj3",
+ "f0f","cqe","th0","i7a","f6f","g0f","d0f","q1a","hog","mag","lag",
+ "r1g","k5a","s5a","dcc","gci","i00","dle","m8a","rh0","gh0",
 ]
 # Exact symbol/constant searches. Ignore incidental shared short strings.
 patterns = collections.OrderedDict([
  ("auth use-case references", r"\b(?:new\s+ki0\s*\(|ki0(?:Var)?\.[a-zA-Z0-9_]+|new\s+ej0\s*\(|new\s+wh0\s*\()"),
+ ("AUTH to LOGIN handoff", r"\bf0f(?:Var)?\.[a-zA-Z0-9_]+\(|new\s+f0f\s*\(|new\s+th0\s*\(|\.containsKey\(\"LOGIN\"\)|\"LOGIN\""),
+ ("network login implementation", r"\b(?:new\s+i7a\s*\(|new\s+r1g\s*\(|r1gVar\.[a-zA-Z0-9_]+\(|new\s+dcc\s*\()"),
  ("LOGIN constructor call sites", r"\bnew\s+k7a\s*\("),
  ("AUTH request / code verification", r"\bnew\s+(?:bqc|aj0)\s*\(\s*tdd\.(?:m|l|u)|\bnew\s+(?:aj0|bqc)\s*\("),
  ("auth response parser", r"AUTH_CONFIRM|authTokenType|verifyCode|session\.sequence|START_AUTH|CHECK_CODE|tokenType"),
@@ -40,6 +44,7 @@ limits = {key: 60 for key in compiled}
 limits["LOGIN constructor call sites"] = 90
 limits["auth use-case references"] = 90
 limits["network / handshake"] = 85
+limits["AUTH to LOGIN handoff"] = 80
 locations={key:[] for key in compiled}
 class_path={}
 for file in files:
@@ -75,7 +80,7 @@ for name in target:
     for rel in paths[:2]:
         rows=(root / rel).read_text(encoding="utf-8",errors="replace").splitlines()
         # Bigger client classes are truncated, preserve initial definitions and method signatures.
-        limit=530 if name in {"ki0","wh0","mvf","k7a","a7a","aj0","bqc","u6j","f7j","ctc","s1c","r1c","p1c"} else 260
+        limit=530 if name in {"ki0","wh0","mvf","k7a","a7a","aj0","bqc","u6j","f7j","ctc","s1c","r1c","p1c","f0f","cqe","th0","i7a","hog","mag","lag","r1g"} else 260
         sources += [f"## {rel} ({len(rows)} строк)", "", "~~~java"]
         for idx, ln in enumerate(rows[:limit],1):
             sources.append(f"{idx:4}: {safe(ln)}")
