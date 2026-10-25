@@ -66,3 +66,52 @@ pathlib.Path('docs/auth-code-index-26.35.1.md').write_text('\n'.join(report)+'\n
 pathlib.Path('evidence/auth-code-matches-26.35.1.md').write_text('\n'.join(match_report)+'\n')
 print('Java files:',len(java_files),'candidates:',len(ranked))
 print('Top files:',[(s,p) for s,p,_ in ranked[:15]])
+
+# Context around the concrete login UI and its invoked, obfuscated handlers.
+# All excerpts are taken from the APK's decompiled text; no runtime secrets.
+focus = {
+ 'one/me/login/inputphone/InputPhoneScreen.java':[(120,160),(260,330),(400,480)],
+ 'one/me/login/confirm/ConfirmPhoneScreen.java':[(118,205),(440,520),(560,705)],
+ 'one/me/login/confirmcallout/ConfirmPhoneCallOutScreen.java':[(75,165)],
+ 'one/me/login/LoginScreen.java':[(1,180)],
+ 'defpackage/ty3.java':[(1,100)],
+ 'defpackage/yr0.java':[(1,250)],
+ 'defpackage/u79.java':[(1,320)],
+ 'defpackage/v79.java':[(1,250)],
+ 'defpackage/dq4.java':[(1,320)],
+ 'defpackage/ka9.java':[(1,130)],
+ 'defpackage/wi3.java':[(1,130)],
+ 'defpackage/k79.java':[(1,120)],
+ 'defpackage/bwb.java':[(995,1033),(130,155)],
+ 'defpackage/p0b.java':[(213,280)],
+ 'defpackage/p73.java':[(493,524)],
+ 'defpackage/qzb.java':[(1,75)],
+ 'defpackage/sm0.java':[(65,125)],
+ 'defpackage/gn0.java':[(80,140)],
+ 'defpackage/wpc.java':[(117,145),(203,225)],
+ 'defpackage/hg7.java':[(95,145)],
+ 'defpackage/df7.java':[(1,130)],
+ 'defpackage/ih0.java':[(1,130)],
+}
+detail = ['',
+ '## Участки исходного кода для ручной проверки цепочки входа',
+ '',
+ 'Нумерация строк соответствует результатам декомпиляции; длинные строки усечены.',
+ 'Публичный отчёт не содержит личных данных или рабочих токенов.',
+ '']
+for rel, windows in focus.items():
+    source = root / rel
+    if not source.is_file():
+        continue
+    lines = source.read_text(encoding='utf-8', errors='replace').splitlines()
+    detail += ['', '### '+rel]
+    for first, last in windows:
+        if first > len(lines):
+            continue
+        detail.append('Строки '+str(first)+'–'+str(min(last,len(lines)))+':')
+        detail.append(chr(96)*3+'java')
+        for i in range(first-1, min(last,len(lines))):
+            detail.append(str(i+1).rjust(5)+': '+safe(lines[i]))
+        detail.append(chr(96)*3)
+pathlib.Path('evidence/auth-code-matches-26.35.1.md').open('a',encoding='utf-8').write('\n'.join(detail)+'\n')
+print('Focused excerpts added:',len(detail))
