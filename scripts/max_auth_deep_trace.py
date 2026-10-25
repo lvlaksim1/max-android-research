@@ -25,6 +25,7 @@ target = [
  "tdd","t6a","ph0","oh0","cj3",
  "f0f","cqe","th0","i7a","f6f","g0f","d0f","q1a","hog","mag","lag",
  "r1g","k5a","s5a","dcc","gci","i00","dle","m8a","rh0","gh0",
+ "u6","c5h","gn0","sk2","mse","l7a","c7j","k8a","gh6","er","e7a","z7a","e9a","k6a","d5h","acc","n4a",
 ]
 # Exact symbol/constant searches. Ignore incidental shared short strings.
 patterns = collections.OrderedDict([
@@ -36,6 +37,8 @@ patterns = collections.OrderedDict([
  ("auth response parser", r"AUTH_CONFIRM|authTokenType|verifyCode|session\.sequence|START_AUTH|CHECK_CODE|tokenType"),
  ("token lifecycle", r"refreshToken|accessToken|authToken|tokenRefresh|AuthToken|LoginToken|SessionToken|refresh_token|access_token"),
  ("account storage", r"EncryptedSharedPreferences|MasterKey|AccountInitializer|SessionRepository|AccountRepository|accountToken"),
+ ("auth token persistence", r"authToken|refreshToken|expiresInSecs|tokenCreationEpochInSecs|putProfile|user\.auth|server\.login|saveToken|tokenStore"),
+ ("session init to LOGIN", r"SESSION_INIT|Send Login command|new\s+i7a\s*\(|new\s+c5h\s*\(|new\s+gn0\s*\("),
  ("network / handshake", r"api2\.oneme\.ru|api-tg\.oneme\.ru|wss://|https://|SESSION_INIT|SESSION_AUTH|sessionSeed|initializeSessionSeed"),
 ])
 compiled = {k: re.compile(p, re.I) for k,p in patterns.items()}
@@ -45,6 +48,8 @@ limits["LOGIN constructor call sites"] = 90
 limits["auth use-case references"] = 90
 limits["network / handshake"] = 85
 limits["AUTH to LOGIN handoff"] = 80
+limits["auth token persistence"] = 95
+limits["session init to LOGIN"] = 90
 locations={key:[] for key in compiled}
 class_path={}
 for file in files:
@@ -80,7 +85,7 @@ for name in target:
     for rel in paths[:2]:
         rows=(root / rel).read_text(encoding="utf-8",errors="replace").splitlines()
         # Bigger client classes are truncated, preserve initial definitions and method signatures.
-        limit=530 if name in {"ki0","wh0","mvf","k7a","a7a","aj0","bqc","u6j","f7j","ctc","s1c","r1c","p1c","f0f","cqe","th0","i7a","hog","mag","lag","r1g"} else 260
+        limit=530 if name in {"ki0","wh0","mvf","k7a","a7a","aj0","bqc","u6j","f7j","ctc","s1c","r1c","p1c","f0f","cqe","th0","i7a","hog","mag","lag","r1g","u6","c5h","gn0","sk2","mse","l7a","c7j","k8a","gh6","er"} else 260
         sources += [f"## {rel} ({len(rows)} строк)", "", "~~~java"]
         for idx, ln in enumerate(rows[:limit],1):
             sources.append(f"{idx:4}: {safe(ln)}")
