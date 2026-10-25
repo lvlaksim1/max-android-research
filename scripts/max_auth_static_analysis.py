@@ -185,3 +185,26 @@ pathlib.Path("evidence/auth-command-constructors-26.35.1.md").write_text(
     "\n".join(command_report)+"\n", encoding="utf-8")
 print("Authentication command constructor evidence size:",
       pathlib.Path("evidence/auth-command-constructors-26.35.1.md").stat().st_size)
+
+# Inspect every reference to AUTH_CONFIRM and AUTH command constants.
+crossrefs=["tdd.u","tdd.m","tdd.n","tdd.l"]
+xlines=["# MAX 26.35.1 — ссылки на команды входа","",
+        "Результаты поиска использований полей каталога команд."] 
+for token in crossrefs:
+    pat=re.compile(r"\b"+re.escape(token)+r"\b")
+    matches=[]
+    for jf in java_files:
+        try: data=jf.read_text(encoding="utf-8",errors="replace").splitlines()
+        except OSError: continue
+        locations=[j for j,line in enumerate(data) if pat.search(line)]
+        if locations: matches.append((jf.relative_to(root).as_posix(),data,locations))
+    xlines.extend(["","## "+token, "Файлов: "+str(len(matches))])
+    for rel,lines,locations in matches[:45]:
+        xlines.append("### "+rel)
+        for loc in locations[:8]:
+            for idx in range(max(0,loc-12),min(len(lines),loc+20)):
+                xlines.append("- "+str(idx+1)+": "+safe(lines[idx]))
+            xlines.append("")
+pathlib.Path("evidence/auth-command-references-26.35.1.md").write_text(
+    "\n".join(xlines)+"\n",encoding="utf-8")
+print("References output:",len(xlines))
