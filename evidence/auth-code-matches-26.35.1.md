@@ -206,7 +206,7 @@ SHA-256: e809176d6bf6ff69247274433ec170a5db8a5687a02a04299a78a2ae978119fc
 - Строка 24; InputPhoneScreen: InputPhoneScreen inputPhoneScreen = this.a;
 - Строка 25; InputPhoneScreen: zm9[] zm9VarArr = InputPhoneScreen.w;
 - Строка 30; InputPhoneScreen: inputPhoneScreen.startActivity(intent);
-- Строка 32; InputPhoneScreen: f09.d0(inputPhoneScreen.b, "open web link with terms is failed, no activity found", new Object[0]);
+- Строка 32; InputPhoneScreen: f09.f0(inputPhoneScreen.b, "open web link with terms is failed, no activity found");
 - Строка 33; InputPhoneScreen: v5d v5dVar = new v5d(inputPhoneScreen);
 
 ## defpackage/wbi.java (приоритет 10)
@@ -246,7 +246,7 @@ SHA-256: e809176d6bf6ff69247274433ec170a5db8a5687a02a04299a78a2ae978119fc
 - Строка 29; ConfirmPhoneScreen: dq4 dq4VarW2 = confirmPhoneScreen.w1();
 
 ## defpackage/ug9.java (приоритет 9)
-- Строка 74; accessToken: f09.d0(ug9.class.getName(), "link or chatAccessToken must not be null", new Object[0]);
+- Строка 74; accessToken: f09.f0(ug9.class.getName(), "link or chatAccessToken must not be null");
 
 ## defpackage/up4.java (приоритет 9)
 - Строка 3; ConfirmPhoneScreen: import one.me.login.confirm.ConfirmPhoneScreen;
@@ -1811,7 +1811,7 @@ SHA-256: e809176d6bf6ff69247274433ec170a5db8a5687a02a04299a78a2ae978119fc
    68: } while (!g4a.c(((zbg) objPrevious).b, "InputPhoneScreen"));
    69: zbg zbgVar2 = (zbg) objPrevious;
    70: if (zbgVar2 == null \|\| (controller = zbgVar2.a) == null) {
-   71: f09.d0(ka9.class.getName(), "Early return in goBackTo cuz of newBackStack.findLast { it.tag() == tag }?.controller is null", new Object[0]);
+   71: f09.f0(ka9.class.getName(), "Early return in goBackTo cuz of newBackStack.findLast { it.tag() == tag }?.controller is null");
    72: return;
    73: }
    74: if (bundle != null) {

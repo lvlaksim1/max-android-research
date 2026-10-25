@@ -1829,7 +1829,7 @@
   64: AtomicReference atomicReference = this.i;
   65: String str = this.k;
   66: if (i == 0) {
-  67: f09.d0(str, "onNoNet", new Object[0]);
+  67: f09.f0(str, "onNoNet");
   68: i((bcc) atomicReference.get());
   69: return;
   70: }
@@ -1953,12 +1953,12 @@
  188: f09.p(str, "updateSession");
  189: rp9 rp9Var = this.h;
  190: if (!((es4) rp9Var.getValue()).a().g()) {
- 191: f09.d0(str, "updateSession, seems there is NO net", new Object[0]);
+ 191: f09.f0(str, "updateSession, seems there is NO net");
  192: bccVar.w(false);
  193: } else if (((es4) rp9Var.getValue()).e()) {
  194: bccVar.w(true);
  195: } else {
- 196: f09.d0(str, "updateSession, connection is NOT permitted", new Object[0]);
+ 196: f09.f0(str, "updateSession, connection is NOT permitted");
  197: bccVar.w(false);
  198: }
  199: }
@@ -4652,5 +4652,2907 @@
  159: this.g = chatMembersScreen;
  160: }
  161: }
+~~~
+
+## defpackage/f0f.java (337 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: import java.util.ArrayList;
+   4: import java.util.Collections;
+   5: import java.util.EnumMap;
+   6: import java.util.HashMap;
+   7: import java.util.Iterator;
+   8: import java.util.LinkedHashMap;
+   9: import java.util.List;
+  10: import java.util.Map;
+  11: import java.util.concurrent.ConcurrentHashMap;
+  12: import java.util.concurrent.atomic.AtomicReference;
+  13: 
+  14: /* JADX INFO: loaded from: classes.dex */
+  15: public final class f0f {
+  16: public final k6j a;
+  17: public final p9g b;
+  18: public final rp9 c;
+  19: public final rp9 d;
+  20: public final rp9 e;
+  21: public final rp9 f;
+  22: public final ConcurrentHashMap g = new ConcurrentHashMap(1);
+  23: public final AtomicReference h;
+  24: 
+  25: public f0f(rp9 rp9Var, rp9 rp9Var2, rp9 rp9Var3, rp9 rp9Var4, p9g p9gVar, k6j k6jVar) {
+  26: this.a = k6jVar;
+  27: this.b = p9gVar;
+  28: this.c = rp9Var2;
+  29: this.d = rp9Var;
+  30: this.e = rp9Var3;
+  31: this.f = rp9Var4;
+  32: AtomicReference atomicReference = new AtomicReference(null);
+  33: this.h = atomicReference;
+  34: atomicReference.set(nm9.J(p9gVar, ((vxc) k6jVar).b(), 0, new er(this, null, (byte) 11), 2));
+  35: }
+  36: 
+  37: /* JADX WARN: Code duplicated, block: B:7:0x0013  */
+  38: public final Object a(d55 d55Var) {
+  39: b0f b0fVar;
+  40: if (d55Var instanceof b0f) {
+  41: b0fVar = (b0f) d55Var;
+  42: int i = b0fVar.f;
+  43: if ((i & Integer.MIN_VALUE) != 0) {
+  44: b0fVar.f = i - Integer.MIN_VALUE;
+  45: } else {
+  46: b0fVar = new b0f(this, d55Var);
+  47: }
+  48: } else {
+  49: b0fVar = new b0f(this, d55Var);
+  50: }
+  51: Object obj = b0fVar.d;
+  52: int i2 = b0fVar.f;
+  53: s1k s1kVar = s1k.a;
+  54: if (i2 == 0) {
+  55: xnm.y(obj);
+  56: mse mseVar = (mse) this.d.getValue();
+  57: b0fVar.f = 1;
+  58: Object objK = az7.K(b0fVar, mseVar.a, false, true, new noe((byte) 2));
+  59: ka5 ka5Var = ka5.a;
+  60: if (objK != ka5Var) {
+  61: objK = s1kVar;
+  62: }
+  63: if (objK == ka5Var) {
+  64: return ka5Var;
+  65: }
+  66: } else {
+  67: if (i2 != 1) {
+  68: k3g.o("call to 'resume' before 'invoke' with coroutine");
+  69: return null;
+  70: }
+  71: xnm.y(obj);
+  72: }
+  73: udn.b(this.g, new noe((byte) 6));
+  74: this.h.set(null);
+  75: return s1kVar;
+  76: }
+  77: 
+  78: /* JADX WARN: Code duplicated, block: B:7:0x0013  */
+  79: public final Object b(long j, d55 d55Var) {
+  80: c0f c0fVar;
+  81: if (d55Var instanceof c0f) {
+  82: c0fVar = (c0f) d55Var;
+  83: int i = c0fVar.g;
+  84: if ((i & Integer.MIN_VALUE) != 0) {
+  85: c0fVar.g = i - Integer.MIN_VALUE;
+  86: } else {
+  87: c0fVar = new c0f(this, d55Var);
+  88: }
+  89: } else {
+  90: c0fVar = new c0f(this, d55Var);
+  91: }
+  92: Object obj = c0fVar.e;
+  93: ka5 ka5Var = ka5.a;
+  94: int i2 = c0fVar.g;
+  95: if (i2 == 0) {
+  96: xnm.y(obj);
+  97: kf9 kf9Var = (kf9) this.h.updateAndGet(new w20(this, (byte) 5));
+  98: if (kf9Var != null) {
+  99: c0fVar.d = j;
+ 100: c0fVar.g = 1;
+ 101: if (kf9Var.q(c0fVar) == ka5Var) {
+ 102: return ka5Var;
+ 103: }
+ 104: }
+ 105: } else {
+ 106: if (i2 != 1) {
+ 107: k3g.o("call to 'resume' before 'invoke' with coroutine");
+ 108: return null;
+ 109: }
+ 110: j = c0fVar.d;
+ 111: xnm.y(obj);
+ 112: }
+ 113: long j2 = j;
+ 114: i4c i4cVar = (i4c) this.g.get(new Long(j2));
+ 115: dqe dqeVar = i4cVar != null ? (dqe) i4cVar.getValue() : null;
+ 116: if (dqeVar != null) {
+ 117: return dqeVar;
+ 118: }
+ 119: String name = f0f.class.getName();
+ 120: o1d o1dVar = f09.g;
+ 121: if (o1dVar != null) {
+ 122: c6a c6aVar = c6a.d;
+ 123: if (o1dVar.b(c6aVar)) {
+ 124: o1dVar.c(c6aVar, name, "getProfile: return stubProfile", null);
+ 125: }
+ 126: }
+ 127: return new dqe(j2, sp6.a, qp6.a, ((c35) this.c.getValue()).g(j2));
+ 128: }
+ 129: 
+ 130: public final l4i c(long j) {
+ 131: return (l4i) this.g.computeIfAbsent(Long.valueOf(j), new ep(new noe((byte) 5), (byte) 20));
+ 132: }
+ 133: 
+ 134: /* JADX WARN: Code duplicated, block: B:46:0x00fe A[LOOP:0: B:44:0x00f8->B:46:0x00fe, LOOP_END] */
+ 135: /* JADX WARN: Code duplicated, block: B:50:0x014e  */
+ 136: /* JADX WARN: Code duplicated, block: B:53:0x0152  */
+ 137: /* JADX WARN: Code duplicated, block: B:57:0x0161 A[RETURN] */
+ 138: /* JADX WARN: Code duplicated, block: B:7:0x001f  */
+ 139: public final Object d(cqe cqeVar, String str, d55 d55Var) {
+ 140: d0f d0fVar;
+ 141: LinkedHashMap linkedHashMap;
+ 142: kve kveVar;
+ 143: Object objK;
+ 144: kve kveVar2;
+ 145: cqe cqeVar2 = cqeVar;
+ 146: Object obj = s1k.a;
+ 147: Object obj2 = ka5.a;
+ 148: if (d55Var instanceof d0f) {
+ 149: d0fVar = (d0f) d55Var;
+ 150: int i = d0fVar.h;
+ 151: if ((i & Integer.MIN_VALUE) != 0) {
+ 152: d0fVar.h = i - Integer.MIN_VALUE;
+ 153: } else {
+ 154: d0fVar = new d0f(this, d55Var);
+ 155: }
+ 156: } else {
+ 157: d0fVar = new d0f(this, d55Var);
+ 158: }
+ 159: Object obj3 = d0fVar.f;
+ 160: int i2 = d0fVar.h;
+ 161: if (i2 == 0) {
+ 162: xnm.y(obj3);
+ 163: String name = f0f.class.getName();
+ 164: o1d o1dVar = f09.g;
+ 165: if (o1dVar != null) {
+ 166: c6a c6aVar = c6a.d;
+ 167: if (o1dVar.b(c6aVar)) {
+ 168: o1dVar.c(c6aVar, name, "putProfile: " + cqeVar2 + "; token=" + ((str == null \|\| zti.n0(str)) ? "null" : "***"), null);
+ 169: }
+ 170: }
+ 171: if (str != null && str.length() != 0) {
+ 172: u6 u6Var = new u6(this, cqeVar2, str, (byte) 11);
+ 173: d0fVar.d = cqeVar2;
+ 174: d0fVar.h = 1;
+ 175: if (qo9.E(jp6.a, u6Var, d0fVar) != obj2) {
+ 176: }
+ 177: }
+ 178: return obj2;
+ 179: }
+ 180: if (i2 == 1) {
+ 181: cqeVar2 = d0fVar.d;
+ 182: xnm.y(obj3);
+ 183: } else {
+ 184: if (i2 == 2) {
+ 185: cqeVar2 = d0fVar.d;
+ 186: xnm.y(obj3);
+ 187: long j = cqeVar2.a.a;
+ 188: LinkedHashMap linkedHashMap2 = cqeVar2.b;
+ 189: linkedHashMap = new LinkedHashMap(jfa.F(linkedHashMap2.size()));
+ 190: for (Map.Entry entry : linkedHashMap2.entrySet()) {
+ 191: linkedHashMap.put(entry.getKey(), new j4g(((k4g) entry.getValue()).a()));
+ 192: }
+ 193: kveVar = new kve(0L, j, new eu8(linkedHashMap, cqeVar2.c));
+ 194: mse mseVar = (mse) this.d.getValue();
+ 195: d0fVar.d = null;
+ 196: d0fVar.e = kveVar;
+ 197: d0fVar.h = 3;
+ 198: objK = az7.K(d0fVar, mseVar.a, false, true, new so((Object) mseVar, (Object) kveVar, (byte) 15));
+ 199: if (objK != obj2) {
+ 200: objK = obj;
+ 201: }
+ 202: if (objK != obj2) {
+ 203: kveVar2 = kveVar;
+ 204: }
+ 205: return obj2;
+ 206: }
+ 207: if (i2 != 3) {
+ 208: if (i2 == 4) {
+ 209: xnm.y(obj3);
+ 210: return obj;
+ 211: }
+ 212: k3g.o("call to 'resume' before 'invoke' with coroutine");
+ 213: return null;
+ 214: }
+ 215: kveVar2 = d0fVar.e;
+ 216: xnm.y(obj3);
+ 217: }
+ 218: d0fVar.d = null;
+ 219: d0fVar.e = null;
+ 220: d0fVar.h = 4;
+ 221: if (e(kveVar2, d0fVar) != obj2) {
+ 222: return obj2;
+ 223: }
+ 224: return obj;
+ 225: ((hog) ((c74) this.e.getValue())).L(cqeVar2.a.a);
+ 226: ey4 ey4Var = cqeVar2.a;
+ 227: c35 c35Var = (c35) this.c.getValue();
+ 228: List listSingletonList = Collections.singletonList(ey4Var);
+ 229: zw4 zw4Var = zw4.a;
+ 230: d0fVar.d = cqeVar2;
+ 231: d0fVar.h = 2;
+ 232: if (c35Var.m(listSingletonList, zw4Var, d0fVar) != obj2) {
+ 233: long j2 = cqeVar2.a.a;
+ 234: LinkedHashMap linkedHashMap3 = cqeVar2.b;
+ 235: linkedHashMap = new LinkedHashMap(jfa.F(linkedHashMap3.size()));
+ 236: while (r7.hasNext()) {
+ 237: linkedHashMap.put(entry.getKey(), new j4g(((k4g) entry.getValue()).a()));
+ 238: }
+ 239: kveVar = new kve(0L, j2, new eu8(linkedHashMap, cqeVar2.c));
+ 240: mse mseVar2 = (mse) this.d.getValue();
+ 241: d0fVar.d = null;
+ 242: d0fVar.e = kveVar;
+ 243: d0fVar.h = 3;
+ 244: objK = az7.K(d0fVar, mseVar2.a, false, true, new so((Object) mseVar2, (Object) kveVar, (byte) 15));
+ 245: if (objK != obj2) {
+ 246: objK = obj;
+ 247: }
+ 248: if (objK != obj2) {
+ 249: kveVar2 = kveVar;
+ 250: d0fVar.d = null;
+ 251: d0fVar.e = null;
+ 252: d0fVar.h = 4;
+ 253: if (e(kveVar2, d0fVar) != obj2) {
+ 254: return obj;
+ 255: }
+ 256: }
+ 257: }
+ 258: return obj2;
+ 259: }
+ 260: 
+ 261: /* JADX WARN: Code duplicated, block: B:7:0x0013  */
+ 262: public final Object e(kve kveVar, d55 d55Var) {
+ 263: e0f e0fVar;
+ 264: Object next;
+ 265: if (d55Var instanceof e0f) {
+ 266: e0fVar = (e0f) d55Var;
+ 267: int i = e0fVar.g;
+ 268: if ((i & Integer.MIN_VALUE) != 0) {
+ 269: e0fVar.g = i - Integer.MIN_VALUE;
+ 270: } else {
+ 271: e0fVar = new e0f(this, d55Var);
+ 272: }
+ 273: } else {
+ 274: e0fVar = new e0f(this, d55Var);
+ 275: }
+ 276: Object objI = e0fVar.e;
+ 277: int i2 = e0fVar.g;
+ 278: if (i2 == 0) {
+ 279: xnm.y(objI);
+ 280: c35 c35Var = (c35) this.c.getValue();
+ 281: long j = kveVar.b;
+ 282: e0fVar.d = kveVar;
+ 283: e0fVar.g = 1;
+ 284: objI = c35Var.i(j);
+ 285: ka5 ka5Var = ka5.a;
+ 286: if (objI == ka5Var) {
+ 287: return ka5Var;
+ 288: }
+ 289: } else {
+ 290: if (i2 != 1) {
+ 291: k3g.o("call to 'resume' before 'invoke' with coroutine");
+ 292: return null;
+ 293: }
+ 294: kveVar = e0fVar.d;
+ 295: xnm.y(objI);
+ 296: }
+ 297: kv4 kv4Var = (kv4) objI;
+ 298: s1k s1kVar = s1k.a;
+ 299: if (kv4Var == null) {
+ 300: return s1kVar;
+ 301: }
+ 302: HashMap map = kveVar.c.a;
+ 303: ArrayList arrayList = new ArrayList();
+ 304: for (Map.Entry entry : map.entrySet()) {
+ 305: int iIntValue = ((Number) entry.getKey()).intValue();
+ 306: j4g j4gVar = (j4g) entry.getValue();
+ 307: Iterator it = l4g.b.iterator();
+ 308: do {
+ 309: if (!it.hasNext()) {
+ 310: next = null;
+ 311: break;
+ 312: }
+ 313: next = it.next();
+ 314: ((l4g) next).getClass();
+ 315: } while (1 != iIntValue);
+ 316: l4g l4gVar = (l4g) next;
+ 317: vld vldVar = l4gVar == null ? null : new vld(l4gVar, new j4g(j4gVar.a()));
+ 318: if (vldVar != null) {
+ 319: arrayList.add(vldVar);
+ 320: }
+ 321: }
+ 322: EnumMap enumMap = new EnumMap(l4g.class);
+ 323: jfa.K(enumMap, arrayList);
+ 324: ArrayList arrayList2 = kveVar.c.b;
+ 325: ArrayList arrayList3 = new ArrayList();
+ 326: Iterator it2 = arrayList2.iterator();
+ 327: while (it2.hasNext()) {
+ 328: eze ezeVarB = cfn.b(((Number) it2.next()).intValue());
+ 329: if (ezeVarB != null) {
+ 330: arrayList3.add(ezeVarB);
+ 331: }
+ 332: }
+ 333: long j2 = kveVar.b;
+ 334: this.g.compute(new Long(j2), new pz7(new s40(new dqe(j2, enumMap, arrayList3, kv4Var), (byte) 5), (byte) 4));
+ 335: return s1kVar;
+ 336: }
+ 337: }
+~~~
+
+## defpackage/cqe.java (36 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: import java.util.ArrayList;
+   4: import java.util.LinkedHashMap;
+   5: 
+   6: /* JADX INFO: loaded from: classes.dex */
+   7: public final class cqe {
+   8: public final ey4 a;
+   9: public final LinkedHashMap b;
+  10: public final ArrayList c;
+  11: 
+  12: public cqe(ey4 ey4Var, LinkedHashMap linkedHashMap, ArrayList arrayList) {
+  13: this.a = ey4Var;
+  14: this.b = linkedHashMap;
+  15: this.c = arrayList;
+  16: }
+  17: 
+  18: public final boolean equals(Object obj) {
+  19: if (this == obj) {
+  20: return true;
+  21: }
+  22: if (!(obj instanceof cqe)) {
+  23: return false;
+  24: }
+  25: cqe cqeVar = (cqe) obj;
+  26: return this.a.equals(cqeVar.a) && this.b.equals(cqeVar.b) && this.c.equals(cqeVar.c);
+  27: }
+  28: 
+  29: public final int hashCode() {
+  30: return this.c.hashCode() + ((this.b.hashCode() + (this.a.hashCode() * 31)) * 31);
+  31: }
+  32: 
+  33: public final String toString() {
+  34: return "Profile(contactInfo=" + this.a + ", restrictions=" + this.b + ", profileOptions=" + this.c + ")";
+  35: }
+  36: }
+~~~
+
+## defpackage/th0.java (339 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: import java.util.ArrayList;
+   4: import java.util.Collection;
+   5: import java.util.Iterator;
+   6: import java.util.LinkedHashMap;
+   7: import java.util.List;
+   8: import one.me.android.initialization.AccountInitializer;
+   9: 
+  10: /* JADX INFO: loaded from: classes2.dex */
+  11: public final class th0 extends x6j {
+  12: public static final /* synthetic */ int g = 0;
+  13: public final LinkedHashMap c;
+  14: public final ArrayList d;
+  15: public final azc e;
+  16: public final cqe f;
+  17: 
+  18: public th0(LinkedHashMap linkedHashMap, ArrayList arrayList, azc azcVar, cqe cqeVar) {
+  19: this.c = linkedHashMap;
+  20: this.d = arrayList;
+  21: this.e = azcVar;
+  22: this.f = cqeVar;
+  23: }
+  24: 
+  25: /* JADX WARN: Code duplicated, block: B:47:0x00b5  */
+  26: /* JADX WARN: Multi-variable type inference failed */
+  27: /* JADX WARN: Type inference failed for: r0v18 */
+  28: /* JADX WARN: Type inference failed for: r0v25, types: [pb5] */
+  29: /* JADX WARN: Type inference failed for: r0v26, types: [java.lang.String] */
+  30: /* JADX WARN: Type inference failed for: r0v34 */
+  31: /* JADX WARN: Type inference failed for: r0v41, types: [pb5] */
+  32: /* JADX WARN: Type inference failed for: r0v42, types: [java.lang.Integer] */
+  33: /* JADX WARN: Type inference failed for: r0v65 */
+  34: /* JADX WARN: Type inference failed for: r0v66, types: [java.lang.Iterable] */
+  35: /* JADX WARN: Type inference failed for: r0v67 */
+  36: /* JADX WARN: Type inference failed for: r0v68 */
+  37: /* JADX WARN: Type inference failed for: r0v69 */
+  38: /* JADX WARN: Type inference failed for: r0v71, types: [qp6] */
+  39: /* JADX WARN: Type inference failed for: r0v73, types: [java.util.ArrayList] */
+  40: /* JADX WARN: Type inference failed for: r0v89 */
+  41: /* JADX WARN: Type inference failed for: r0v90 */
+  42: /* JADX WARN: Type inference failed for: r0v91 */
+  43: /* JADX WARN: Type inference failed for: r17v0 */
+  44: /* JADX WARN: Type inference failed for: r17v1 */
+  45: /* JADX WARN: Type inference failed for: r17v3 */
+  46: /* JADX WARN: Type inference failed for: r17v4 */
+  47: /* JADX WARN: Type inference failed for: r17v6 */
+  48: /* JADX WARN: Type inference failed for: r17v7 */
+  49: /* JADX WARN: Type inference failed for: r6v0 */
+  50: /* JADX WARN: Type inference failed for: r6v1, types: [java.lang.String, th0] */
+  51: /* JADX WARN: Type inference failed for: r6v10 */
+  52: /* JADX WARN: Type inference failed for: r6v11 */
+  53: /* JADX WARN: Type inference failed for: r6v4, types: [java.lang.String] */
+  54: /* JADX WARN: Type inference failed for: r6v6 */
+  55: public static final th0 f(beb bebVar) {
+  56: int iP0;
+  57: ?? R0;
+  58: beb bebVar2;
+  59: int i;
+  60: ?? r17;
+  61: ?? ValueOf;
+  62: ?? r6;
+  63: int i2;
+  64: String strS0;
+  65: int i3;
+  66: ?? arrayList;
+  67: ?? r0;
+  68: List listH0;
+  69: ?? r7 = 0;
+  70: if (!bebVar.m()) {
+  71: return null;
+  72: }
+  73: int i4 = 1;
+  74: try {
+  75: iP0 = e0c.p0(bebVar);
+  76: } catch (Throwable th) {
+  77: f09.c0("ServerPayload/PayloadCatching", "payloadCatching catch error", th);
+  78: Iterator it = q1h.a.iterator();
+  79: while (it.hasNext()) {
+  80: AccountInitializer accountInitializer = ((z6) it.next()).a;
+  81: try {
+  82: f09.c0("Payload", "error while parse payload", th);
+  83: accountInitializer.c().j().d().a(null, th);
+  84: } catch (Throwable th2) {
+  85: f09.c0("Payload", "failed to collect exception", th2);
+  86: }
+  87: }
+  88: int iG = s95.G(iqg.a);
+  89: if (iG != 0) {
+  90: if (iG == 1) {
+  91: throw th;
+  92: }
+  93: k3g.l();
+  94: return null;
+  95: }
+  96: iP0 = 0;
+  97: }
+  98: if (iP0 == 0) {
+  99: return null;
+ 100: }
+ 101: LinkedHashMap linkedHashMap = new LinkedHashMap();
+ 102: ArrayList arrayList2 = new ArrayList();
+ 103: azc azcVarB = null;
+ 104: cqe cqeVarS = null;
+ 105: int i5 = 0;
+ 106: while (i5 < iP0) {
+ 107: try {
+ 108: R0 = e0c.r0(bebVar);
+ 109: } catch (Throwable th3) {
+ 110: f09.c0("ServerPayload/PayloadCatching", "payloadCatching catch error", th3);
+ 111: Iterator it2 = q1h.a.iterator();
+ 112: while (it2.hasNext()) {
+ 113: AccountInitializer accountInitializer2 = ((z6) it2.next()).a;
+ 114: try {
+ 115: f09.c0("Payload", "error while parse payload", th3);
+ 116: accountInitializer2.c().j().d().a(r7, th3);
+ 117: } catch (Throwable th4) {
+ 118: f09.c0("Payload", "failed to collect exception", th4);
+ 119: }
+ 120: }
+ 121: int iG2 = s95.G(iqg.a);
+ 122: if (iG2 != 0) {
+ 123: if (iG2 == i4) {
+ 124: throw th3;
+ 125: }
+ 126: k3g.l();
+ 127: return r7;
+ 128: }
+ 129: R0 = r7;
+ 130: }
+ 131: if (R0 != 0) {
+ 132: switch (R0.hashCode()) {
+ 133: case -309425751:
+ 134: bebVar2 = bebVar;
+ 135: if (R0.equals("profile")) {
+ 136: i = 1;
+ 137: r17 = 0;
+ 138: cqeVarS = wt3.s(bebVar2);
+ 139: } else {
+ 140: try {
+ 141: bebVar2.N();
+ 142: } catch (Throwable th5) {
+ 143: f09.c0("ServerPayload/PayloadCatching", "payloadCatching catch error", th5);
+ 144: Iterator it3 = q1h.a.iterator();
+ 145: while (it3.hasNext()) {
+ 146: AccountInitializer accountInitializer3 = ((z6) it3.next()).a;
+ 147: try {
+ 148: f09.c0("Payload", "error while parse payload", th5);
+ 149: accountInitializer3.c().j().d().a(null, th5);
+ 150: } catch (Throwable th6) {
+ 151: f09.c0("Payload", "failed to collect exception", th6);
+ 152: }
+ 153: }
+ 154: int iG3 = s95.G(iqg.a);
+ 155: if (iG3 != 0) {
+ 156: if (iG3 == 1) {
+ 157: throw th5;
+ 158: }
+ 159: k3g.l();
+ 160: return null;
+ 161: }
+ 162: }
+ 163: i = 1;
+ 164: r17 = 0;
+ 165: }
+ 166: break;
+ 167: case 73797161:
+ 168: if (R0.equals("tokenAttrs")) {
+ 169: try {
+ 170: ValueOf = Integer.valueOf(e0c.p0(bebVar));
+ 171: } catch (Throwable th7) {
+ 172: f09.c0("ServerPayload/PayloadCatching", "payloadCatching catch error", th7);
+ 173: Iterator it4 = q1h.a.iterator();
+ 174: while (it4.hasNext()) {
+ 175: AccountInitializer accountInitializer4 = ((z6) it4.next()).a;
+ 176: try {
+ 177: f09.c0("Payload", "error while parse payload", th7);
+ 178: accountInitializer4.c().j().d().a(r7, th7);
+ 179: } catch (Throwable th8) {
+ 180: f09.c0("Payload", "failed to collect exception", th8);
+ 181: }
+ 182: }
+ 183: int iG4 = s95.G(iqg.a);
+ 184: if (iG4 != 0) {
+ 185: if (iG4 == 1) {
+ 186: throw th7;
+ 187: }
+ 188: k3g.l();
+ 189: return r7;
+ 190: }
+ 191: ValueOf = r7;
+ 192: }
+ 193: if (ValueOf != 0) {
+ 194: int iIntValue = ValueOf.intValue();
+ 195: int i6 = 0;
+ 196: while (i6 < iIntValue) {
+ 197: r6 = r7;
+ 198: try {
+ 199: strS0 = e0c.s0(bebVar, r6);
+ 200: i2 = iIntValue;
+ 201: } catch (Throwable th9) {
+ 202: f09.c0("ServerPayload/PayloadCatching", "payloadCatching catch error", th9);
+ 203: Iterator it5 = q1h.a.iterator();
+ 204: while (it5.hasNext()) {
+ 205: AccountInitializer accountInitializer5 = ((z6) it5.next()).a;
+ 206: try {
+ 207: f09.c0("Payload", "error while parse payload", th9);
+ 208: i3 = iIntValue;
+ 209: try {
+ 210: accountInitializer5.c().j().d().a(null, th9);
+ 211: } catch (Throwable th10) {
+ 212: th = th10;
+ 213: f09.c0("Payload", "failed to collect exception", th);
+ 214: iIntValue = i3;
+ 215: }
+ 216: } catch (Throwable th11) {
+ 217: th = th11;
+ 218: i3 = iIntValue;
+ 219: }
+ 220: iIntValue = i3;
+ 221: }
+ 222: i2 = iIntValue;
+ 223: int iG5 = s95.G(iqg.a);
+ 224: if (iG5 != 0) {
+ 225: if (iG5 == 1) {
+ 226: throw th9;
+ 227: }
+ 228: k3g.l();
+ 229: return null;
+ 230: }
+ 231: strS0 = null;
+ 232: }
+ 233: if (strS0 != null) {
+ 234: linkedHashMap.put(strS0, zzm.c(bebVar).a);
+ 235: }
+ 236: i6++;
+ 237: iIntValue = i2;
+ 238: r6 = 0;
+ 239: }
+ 240: r6 = r7;
+ 241: r17 = r6;
+ 242: i = 1;
+ 243: } else {
+ 244: i = 1;
+ 245: r17 = 0;
+ 246: }
+ 247: } else {
+ 248: bebVar2 = bebVar;
+ 249: bebVar2.N();
+ 250: i = 1;
+ 251: r17 = 0;
+ 252: }
+ 253: break;
+ 254: case 269284955:
+ 255: if (R0.equals("presetAvatars")) {
+ 256: if (bebVar.p().a() == 7) {
+ 257: arrayList = new ArrayList();
+ 258: int iS = bebVar.S();
+ 259: for (int i7 = 0; i7 < iS; i7++) {
+ 260: arrayList.add(gd9.g(bebVar));
+ 261: }
+ 262: } else {
+ 263: bebVar.N();
+ 264: arrayList = r7;
+ 265: }
+ 266: if (arrayList != 0) {
+ 267: listH0 = va4.H0(arrayList);
+ 268: } else {
+ 269: r0 = r7;
+ 270: }
+ 271: if (r0 == 0) {
+ 272: r0 = listH0;
+ 273: r0 = qp6.a;
+ 274: }
+ 275: r0 = listH0;
+ 276: arrayList2.addAll((Collection) r0);
+ 277: i = 1;
+ 278: r17 = r7;
+ 279: } else {
+ 280: bebVar2 = bebVar;
+ 281: bebVar2.N();
+ 282: i = 1;
+ 283: r17 = 0;
+ 284: }
+ 285: break;
+ 286: case 1363910664:
+ 287: if (R0.equals("passwordChallenge")) {
+ 288: azcVarB = b0n.b(bebVar);
+ 289: r17 = r7;
+ 290: i = i4;
+ 291: } else {
+ 292: bebVar2 = bebVar;
+ 293: bebVar2.N();
+ 294: i = 1;
+ 295: r17 = 0;
+ 296: }
+ 297: break;
+ 298: default:
+ 299: bebVar2 = bebVar;
+ 300: bebVar2.N();
+ 301: i = 1;
+ 302: r17 = 0;
+ 303: break;
+ 304: }
+ 305: } else {
+ 306: i = 1;
+ 307: r17 = 0;
+ 308: }
+ 309: i5++;
+ 310: i4 = i;
+ 311: r7 = r17;
+ 312: }
+ 313: return new th0(linkedHashMap, arrayList2, azcVarB, cqeVarS);
+ 314: }
+ 315: 
+ 316: public final boolean equals(Object obj) {
+ 317: if (this == obj) {
+ 318: return true;
+ 319: }
+ 320: if (!(obj instanceof th0)) {
+ 321: return false;
+ 322: }
+ 323: th0 th0Var = (th0) obj;
+ 324: return this.c.equals(th0Var.c) && this.d.equals(th0Var.d) && g4a.c(this.e, th0Var.e) && g4a.c(this.f, th0Var.f);
+ 325: }
+ 326: 
+ 327: public final int hashCode() {
+ 328: int iD = vw4.d(this.d, this.c.hashCode() * 31, 31);
+ 329: azc azcVar = this.e;
+ 330: int iHashCode = (iD + (azcVar == null ? 0 : azcVar.hashCode())) * 31;
+ 331: cqe cqeVar = this.f;
+ 332: return iHashCode + (cqeVar != null ? cqeVar.hashCode() : 0);
+ 333: }
+ 334: 
+ 335: @Override // defpackage.mv0
+ 336: public final String toString() {
+ 337: return "{profile=" + this.f + ",tokenTypes=" + f09.O(this.c) + ",passwordChallenge=" + this.e + ",}";
+ 338: }
+ 339: }
+~~~
+
+## defpackage/i7a.java (277 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: import java.util.concurrent.CancellationException;
+   4: import kotlin.NoWhenBranchMatchedException;
+   5: import one.me.sdk.tasks.login.LoginException;
+   6: import ru.ok.tamtam.errors.TamErrorException;
+   7: 
+   8: /* JADX INFO: loaded from: classes.dex */
+   9: public final class i7a extends ft implements d7j {
+  10: public final int f;
+  11: public final byte[] g;
+  12: public final String h;
+  13: public final String i;
+  14: public final c7j j;
+  15: public long k;
+  16: 
+  17: public i7a(long j, int i, Long l, byte[] bArr, String str) {
+  18: super(j);
+  19: this.f = i;
+  20: this.g = bArr;
+  21: this.h = str;
+  22: String name = i7a.class.getName();
+  23: this.i = name;
+  24: f09.p(name, "Creating Login task");
+  25: this.j = new c7j();
+  26: }
+  27: 
+  28: @Override // defpackage.d7j, defpackage.rwd
+  29: public final boolean a() {
+  30: return true;
+  31: }
+  32: 
+  33: @Override // defpackage.d7j
+  34: public final void b(x6j x6jVar) {
+  35: l7a l7aVar = (l7a) x6jVar;
+  36: gt gtVar = this.e;
+  37: b55 b55Var = null;
+  38: if (gtVar == null) {
+  39: gtVar = null;
+  40: }
+  41: vck vckVarL = gtVar.l();
+  42: gt gtVar2 = this.e;
+  43: if (gtVar2 == null) {
+  44: gtVar2 = null;
+  45: }
+  46: nm9.J(vckVarL, ((vxc) gtVar2.h()).a(), 0, new gh6((byte) 28, b55Var, this, l7aVar, false), 2);
+  47: }
+  48: 
+  49: @Override // defpackage.d7j
+  50: public final c7j d() {
+  51: return this.j;
+  52: }
+  53: 
+  54: @Override // defpackage.d7j
+  55: public final Object e(l6j l6jVar, d55 d55Var) {
+  56: gt gtVar = this.e;
+  57: if (gtVar == null) {
+  58: gtVar = null;
+  59: }
+  60: Object objE = qo9.E(((vxc) gtVar.h()).a(), new dv8(this, l6jVar, (byte) 7), d55Var);
+  61: return objE == ka5.a ? objE : s1k.a;
+  62: }
+  63: 
+  64: @Override // defpackage.d7j
+  65: public final void f(l6j l6jVar) {
+  66: gt gtVar = this.e;
+  67: if (gtVar == null) {
+  68: gtVar = null;
+  69: }
+  70: ((d8a) gtVar.m.getValue()).a(l6jVar, 0);
+  71: }
+  72: 
+  73: /* JADX WARN: Code duplicated, block: B:25:0x006b  */
+  74: /* JADX WARN: Code duplicated, block: B:26:0x006e  */
+  75: /* JADX WARN: Multi-variable type inference failed */
+  76: @Override // defpackage.ft
+  77: public final Object n() {
+  78: byte[] bArr;
+  79: char c;
+  80: gt gtVar;
+  81: String str;
+  82: c6a c6aVar = c6a.d;
+  83: gt gtVar2 = this.e;
+  84: if (gtVar2 == null) {
+  85: gtVar2 = null;
+  86: }
+  87: xt3 xt3Var = (xt3) gtVar2.p0.getValue();
+  88: xt3Var.getClass();
+  89: try {
+  90: int iT = xt3Var.b.heightPixels / nb6.t(80.0f * Math.max(xt3Var.b.density, 1.0f));
+  91: int i = 50;
+  92: if (iT > 50) {
+  93: iT = 50;
+  94: }
+  95: if (((ms4) xt3Var.a.getValue()).g()) {
+  96: int iOrdinal = ((ms4) xt3Var.a.getValue()).b().ordinal();
+  97: if (iOrdinal == 0) {
+  98: i = 20;
+  99: } else if (iOrdinal != 1) {
+ 100: if (iOrdinal == 2) {
+ 101: i = 12;
+ 102: } else if (iOrdinal == 3) {
+ 103: i = 20;
+ 104: } else if (iOrdinal != 4) {
+ 105: throw new NoWhenBranchMatchedException();
+ 106: }
+ 107: }
+ 108: } else {
+ 109: i = 12;
+ 110: }
+ 111: bArr = new byte[]{(byte) iT, (byte) i};
+ 112: } catch (Throwable th) {
+ 113: String str2 = xt3.c;
+ 114: vt3 vt3Var = new vt3(th);
+ 115: o1d o1dVar = f09.g;
+ 116: if (o1dVar != null) {
+ 117: c6a c6aVar2 = c6a.f;
+ 118: if (o1dVar.b(c6aVar2)) {
+ 119: o1dVar.c(c6aVar2, str2, "failed to count chats for login", vt3Var);
+ 120: }
+ 121: }
+ 122: bArr = null;
+ 123: }
+ 124: u07 u07Var = new u07(bArr);
+ 125: dle dleVarU = u();
+ 126: n3a n3aVar = dleVarU.a;
+ 127: this.k = n3aVar.w();
+ 128: long jI = n3aVar.i();
+ 129: String name = i7a.class.getName();
+ 130: o1d o1dVar2 = f09.g;
+ 131: if (o1dVar2 != null && o1dVar2.b(c6aVar)) {
+ 132: c = '\f';
+ 133: vg9.J(pq0.s("LoginApiTask: chatsLastSync = ", qo9.C(new Long(this.k)), ", lastChatMarker = ", qo9.C(new Long(((Number) n3aVar.L.s(n3aVar, hog.i0[34])).longValue())), ", contactLastSync = "), qo9.C(new Long(jI)), o1dVar2, c6aVar, name);
+ 134: } else {
+ 135: c = '\f';
+ 136: }
+ 137: String str3 = (String) dleVarU.b.D().i();
+ 138: int i2 = dleVarU.b.b().a.y().getInt("version", 1);
+ 139: String str4 = this.i;
+ 140: o1d o1dVar3 = f09.g;
+ 141: if (o1dVar3 != null) {
+ 142: c6a c6aVar3 = c6a.e;
+ 143: if (o1dVar3.b(c6aVar3)) {
+ 144: ihk.k("version=", i2, o1dVar3, c6aVar3, str4);
+ 145: }
+ 146: }
+ 147: if (i2 < 7) {
+ 148: dleVarU.b.b().a.D().a(null);
+ 149: if (i2 != 6) {
+ 150: String name2 = i7a.class.getName();
+ 151: o1d o1dVar4 = f09.g;
+ 152: if (o1dVar4 != null && o1dVar4.b(c6aVar)) {
+ 153: o1dVar4.c(c6aVar, name2, "LoginApiTask: clear chatsLastSync and lastChatMarker", null);
+ 154: }
+ 155: this.k = 0L;
+ 156: f09.p(n3aVar.c, "clear chatsLastSync");
+ 157: zcg zcgVar = n3aVar.a0;
+ 158: zm9[] zm9VarArr = hog.i0;
+ 159: zcgVar.z(n3aVar, zm9VarArr[49], 0L);
+ 160: n3aVar.L.z(n3aVar, zm9VarArr[34], 0L);
+ 161: }
+ 162: dleVarU.b.b().a.y().edit().putInt("version", 7).commit();
+ 163: str3 = null;
+ 164: }
+ 165: char c2 = c;
+ 166: String str5 = this.h;
+ 167: if (str5 == null) {
+ 168: gt gtVar3 = this.e;
+ 169: if (gtVar3 == null) {
+ 170: gtVar3 = null;
+ 171: }
+ 172: String strC = ((dtc) gtVar3.f.getValue()).c();
+ 173: if (strC == null) {
+ 174: k3g.t("Required value was null.");
+ 175: return null;
+ 176: }
+ 177: str = strC;
+ 178: gtVar = null;
+ 179: } else {
+ 180: gtVar = null;
+ 181: str = str5;
+ 182: }
+ 183: gt gtVar4 = this.e;
+ 184: if (gtVar4 == null) {
+ 185: gtVar4 = gtVar;
+ 186: }
+ 187: boolean zA = ((rd9) gtVar4.k0.getValue()).a();
+ 188: int i3 = this.f;
+ 189: byte[] bArr2 = this.g;
+ 190: long j = this.k;
+ 191: zcg zcgVar2 = n3aVar.o;
+ 192: zm9[] zm9VarArr2 = hog.i0;
+ 193: return new k7a(str, zA, i3, bArr2, j, jI, str3, ((Number) zcgVar2.s(n3aVar, zm9VarArr2[9])).longValue(), ((Number) n3aVar.K.s(n3aVar, zm9VarArr2[33])).longValue(), dleVarU.b.a().s() ? ((Number) n3aVar.O0.s(n3aVar, n3a.g1[33])).longValue() : 0L, u07Var, ((Boolean) dleVarU.b.j7.a(j9e.w8[427]).i()).booleanValue() ? (String) n3aVar.r.s(n3aVar
+ 194: }
+ 195: 
+ 196: /* JADX WARN: Code duplicated, block: B:8:0x0016  */
+ 197: /* JADX WARN: Code restructure failed: missing block: B:27:0x0062, code lost:
+ 198: 
+ 199: if (r14 == r13) goto L33;
+ 200: */
+ 201: /* JADX WARN: Code restructure failed: missing block: B:32:0x0075, code lost:
+ 202: 
+ 203: if (r14.e(r0.a, r10) == r13) goto L33;
+ 204: */
+ 205: /* JADX WARN: Code restructure failed: missing block: B:33:0x0077, code lost:
+ 206: 
+ 207: return r13;
+ 208: */
+ 209: /* JADX WARN: Multi-variable type inference failed */
+ 210: /* JADX WARN: Type inference failed for: r14v10 */
+ 211: @Override // defpackage.d7j
+ 212: /* JADX INFO: renamed from: x, reason: merged with bridge method [inline-methods] */
+ 213: /*
+ 214: Code decompiled incorrectly, please refer to instructions dump.
+ 215: */
+ 216: public final Object k(l7a l7aVar, d55 d55Var) {
+ 217: h7a h7aVar;
+ 218: if (d55Var instanceof h7a) {
+ 219: h7aVar = (h7a) d55Var;
+ 220: int i = h7aVar.g;
+ 221: if ((i & Integer.MIN_VALUE) != 0) {
+ 222: h7aVar.g = i - Integer.MIN_VALUE;
+ 223: } else {
+ 224: h7aVar = new h7a(this, d55Var);
+ 225: }
+ 226: } else {
+ 227: h7aVar = new h7a(this, d55Var);
+ 228: }
+ 229: h7a h7aVar2 = h7aVar;
+ 230: Object obj = h7aVar2.e;
+ 231: int i2 = h7aVar2.g;
+ 232: ka5 ka5Var = ka5.a;
+ 233: try {
+ 234: if (i2 != 0) {
+ 235: if (i2 == 1) {
+ 236: i2 = h7aVar2.d;
+ 237: xnm.y(obj);
+ 238: this = this;
+ 239: } else {
+ 240: if (i2 != 2) {
+ 241: k3g.o("call to 'resume' before 'invoke' with coroutine");
+ 242: return null;
+ 243: }
+ 244: xnm.y(obj);
+ 245: }
+ 246: return s1k.a;
+ 247: }
+ 248: xnm.y(obj);
+ 249: i2 = 0;
+ 250: gt gtVar = this.e;
+ 251: if (gtVar == null) {
+ 252: gtVar = null;
+ 253: }
+ 254: k8a k8aVar = (k8a) gtVar.j.getValue();
+ 255: long j = this.a;
+ 256: long j2 = this.k;
+ 257: int i3 = this.f;
+ 258: String str = this.h;
+ 259: h7aVar2.d = 0;
+ 260: h7aVar2.g = 1;
+ 261: Object objF = k8aVar.f(j, l7aVar, j2, i3, str, h7aVar2);
+ 262: this = objF;
+ 263: } catch (CancellationException e) {
+ 264: throw e;
+ 265: } catch (Throwable th) {
+ 266: if (th instanceof TamErrorException) {
+ 267: h7aVar2.d = i2;
+ 268: h7aVar2.g = 2;
+ 269: } else {
+ 270: f09.c0(this.i, "login failed", new LoginException(th));
+ 271: gt gtVar2 = this.e;
+ 272: (gtVar2 != null ? gtVar2 : null).a.E(th.getClass().getName(), n8a.n);
+ 273: }
+ 274: }
+ 275: return s1k.a;
+ 276: }
+ 277: }
+~~~
+
+## defpackage/f6f.java (96 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: import com.google.protobuf.nano.CodedOutputByteBufferNano$OutOfSpaceException;
+   4: import com.google.protobuf.nano.InvalidProtocolBufferNanoException;
+   5: import me.leolin.shortcutbadger.BuildConfig;
+   6: 
+   7: /* JADX INFO: loaded from: classes3.dex */
+   8: public final class f6f extends mcb {
+   9: public static volatile f6f[] g;
+  10: public String b = BuildConfig.FLAVOR;
+  11: public int c = 0;
+  12: public int d = 0;
+  13: public y5f e = null;
+  14: public long f = 0;
+  15: 
+  16: public f6f() {
+  17: this.a = -1;
+  18: }
+  19: 
+  20: @Override // defpackage.mcb
+  21: public final int a() {
+  22: int iU = !this.b.equals(BuildConfig.FLAVOR) ? d0i.u(1, this.b) : 0;
+  23: int i = this.c;
+  24: if (i != 0) {
+  25: iU += d0i.o(2, i);
+  26: }
+  27: int i2 = this.d;
+  28: if (i2 != 0) {
+  29: iU += d0i.o(3, i2);
+  30: }
+  31: y5f y5fVar = this.e;
+  32: if (y5fVar != null) {
+  33: iU += d0i.r(4, y5fVar);
+  34: }
+  35: long j = this.f;
+  36: return j != 0 ? d0i.q(5, j) + iU : iU;
+  37: }
+  38: 
+  39: @Override // defpackage.mcb
+  40: public final mcb b(s84 s84Var) throws InvalidProtocolBufferNanoException {
+  41: while (true) {
+  42: int iR = s84Var.r();
+  43: if (iR == 0) {
+  44: break;
+  45: }
+  46: if (iR == 10) {
+  47: this.b = s84Var.q();
+  48: } else if (iR == 16) {
+  49: int iO = s84Var.o();
+  50: if (iO == 0 \|\| iO == 1 \|\| iO == 2 \|\| iO == 3 \|\| iO == 4) {
+  51: this.c = iO;
+  52: }
+  53: } else if (iR == 24) {
+  54: int iO2 = s84Var.o();
+  55: if (iO2 == 0 \|\| iO2 == 1 \|\| iO2 == 2 \|\| iO2 == 3) {
+  56: this.d = iO2;
+  57: }
+  58: } else if (iR == 34) {
+  59: y5f y5fVar = this.e;
+  60: if (y5fVar == null) {
+  61: y5fVar = new y5f();
+  62: this.e = y5fVar;
+  63: }
+  64: s84Var.i(y5fVar);
+  65: } else if (iR == 40) {
+  66: this.f = s84Var.p();
+  67: } else if (!s84Var.t(iR)) {
+  68: break;
+  69: }
+  70: }
+  71: return this;
+  72: }
+  73: 
+  74: @Override // defpackage.mcb
+  75: public final void f(d0i d0iVar) throws CodedOutputByteBufferNano$OutOfSpaceException {
+  76: if (!this.b.equals(BuildConfig.FLAVOR)) {
+  77: d0iVar.X(1, this.b);
+  78: }
+  79: int i = this.c;
+  80: if (i != 0) {
+  81: d0iVar.P(2, i);
+  82: }
+  83: int i2 = this.d;
+  84: if (i2 != 0) {
+  85: d0iVar.P(3, i2);
+  86: }
+  87: y5f y5fVar = this.e;
+  88: if (y5fVar != null) {
+  89: d0iVar.R(4, y5fVar);
+  90: }
+  91: long j = this.f;
+  92: if (j != 0) {
+  93: d0iVar.Q(5, j);
+  94: }
+  95: }
+  96: }
+~~~
+
+## defpackage/g0f.java (227 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: import android.view.View;
+   4: import android.view.ViewGroup;
+   5: import android.widget.FrameLayout;
+   6: import android.widget.LinearLayout;
+   7: import android.widget.TextView;
+   8: import androidx.appcompat.widget.AppCompatTextView;
+   9: import androidx.appcompat.widget.Toolbar;
+  10: import androidx.core.widget.NestedScrollView;
+  11: import one.me.profile.ProfileScreen;
+  12: import one.video.calls.sdk.net.signaling.wt.nal.internal.WebTransportSocket;
+  13: import org.webrtc.PeerConnection;
+  14: import ru.oneme.app.R;
+  15: 
+  16: /* JADX INFO: loaded from: classes2.dex */
+  17: public final /* synthetic */ class g0f implements q08 {
+  18: public final /* synthetic */ byte a;
+  19: public final /* synthetic */ ProfileScreen b;
+  20: 
+  21: public /* synthetic */ g0f(ProfileScreen profileScreen, byte b) {
+  22: this.a = b;
+  23: this.b = profileScreen;
+  24: }
+  25: 
+  26: /* JADX WARN: Type inference fix 'apply assigned field type' failed
+  27: java.lang.UnsupportedOperationException: ArgType.getObject(), call class: class jadx.core.dex.instructions.args.ArgType$UnknownArg
+  28: at jadx.core.dex.instructions.args.ArgType.getObject(ArgType.java:596)
+  29: at jadx.core.dex.attributes.nodes.ClassTypeVarsAttr.getTypeVarsMapFor(ClassTypeVarsAttr.java:35)
+  30: at jadx.core.dex.nodes.utils.TypeUtils.replaceClassGenerics(TypeUtils.java:177)
+  31: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.insertExplicitUseCast(FixTypesVisitor.java:397)
+  32: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryFieldTypeWithNewCasts(FixTypesVisitor.java:359)
+  33: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
+  34: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+  35: */
+  36: @Override // defpackage.q08
+  37: public final Object d(Object obj) {
+  38: byte b = this.a;
+  39: byte b2 = 4;
+  40: lrh lrhVar = u34.j;
+  41: byte b3 = 3;
+  42: ProfileScreen profileScreen = this.b;
+  43: s1k s1kVar = s1k.a;
+  44: byte b4 = 0;
+  45: byte b5 = 1;
+  46: switch (b) {
+  47: case 0:
+  48: LinearLayout linearLayout = (LinearLayout) obj;
+  49: fd9 fd9Var = ProfileScreen.D;
+  50: vtc vtcVar = new vtc(linearLayout.getContext());
+  51: vtcVar.setId(R.id.profile_screen_avatar_view);
+  52: int iT = nb6.t(ProfileScreen.F * i36.d().getDisplayMetrics().density);
+  53: vtc.F(vtcVar, iT);
+  54: LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(iT, iT);
+  55: layoutParams.gravity = 1;
+  56: layoutParams.topMargin = nb6.t(i36.d().getDisplayMetrics().density * 8.0f);
+  57: vtcVar.setLayoutParams(layoutParams);
+  58: linearLayout.addView(vtcVar);
+  59: TextView textView = new TextView(linearLayout.getContext());
+  60: textView.setId(R.id.profile_screen_expandedtitle_view);
+  61: textView.setSaveEnabled(false);
+  62: LinearLayout.LayoutParams layoutParams2 = new LinearLayout.LayoutParams(-2, -2);
+  63: layoutParams2.leftMargin = nb6.t(i36.d().getDisplayMetrics().density * 20.0f);
+  64: layoutParams2.rightMargin = nb6.t(i36.d().getDisplayMetrics().density * 20.0f);
+  65: layoutParams2.topMargin = nb6.t(16.0f * i36.d().getDisplayMetrics().density);
+  66: layoutParams2.gravity = 1;
+  67: textView.setLayoutParams(layoutParams2);
+  68: qo9.H(textView);
+  69: textView.setMaxLines(3);
+  70: textView.setGravity(1);
+  71: fej fejVar = tzj.a;
+  72: tzj.a(tzj.b, textView);
+  73: textView.setTextColor(lrhVar.f(textView).getText().a);
+  74: linearLayout.addView(textView);
+  75: g0f g0fVar = new g0f(profileScreen, b5);
+  76: LinearLayout linearLayout2 = new LinearLayout(linearLayout.getContext());
+  77: linearLayout2.setLayoutParams(new ViewGroup.LayoutParams(-1, -2));
+  78: linearLayout2.setPaddingRelative(nb6.t(i36.d().getDisplayMetrics().density * 12.0f), nb6.t(4.0f * i36.d().getDisplayMetrics().density), nb6.t(i36.d().getDisplayMetrics().density * 12.0f), linearLayout2.getPaddingBottom());
+  79: linearLayout2.setOrientation(0);
+  80: linearLayout2.setBackground(null);
+  81: linearLayout2.setGravity(1);
+  82: g0fVar.d(linearLayout2);
+  83: linearLayout.addView(linearLayout2);
+  84: break;
+  85: case 1:
+  86: LinearLayout linearLayout3 = (LinearLayout) obj;
+  87: fd9 fd9Var2 = ProfileScreen.D;
+  88: linearLayout3.addView(new cx9(linearLayout3.getContext(), new b3b(2, this.b, ProfileScreen.class, "copyLinkToClipboardWithNotif", "copyLinkToClipboardWithNotif(Ljava/lang/String;Lru/ok/tamtam/android/link/LinkType;)V", 0, (byte) 16)));
+  89: AppCompatTextView appCompatTextView = new AppCompatTextView(linearLayout3.getContext());
+  90: appCompatTextView.setId(R.id.profile_dot_divider_view);
+  91: appCompatTextView.setSaveEnabled(false);
+  92: LinearLayout.LayoutParams layoutParams3 = new LinearLayout.LayoutParams(-2, -2);
+  93: layoutParams3.setMarginEnd(nb6.t(4.0f * er2.e(4.0f, i36.d().getDisplayMetrics().density, layoutParams3).density));
+  94: appCompatTextView.setLayoutParams(layoutParams3);
+  95: appCompatTextView.setText("·");
+  96: appCompatTextView.setGravity(1);
+  97: fej fejVar2 = tzj.a;
+  98: fej fejVar3 = tzj.i;
+  99: tzj.a(fejVar3, appCompatTextView);
+ 100: c45.J(new b57(3, (b55) null), appCompatTextView);
+ 101: linearLayout3.addView(appCompatTextView);
+ 102: TextView textView2 = new TextView(linearLayout3.getContext());
+ 103: textView2.setId(R.id.profile_screen_expandedsubtitle_view);
+ 104: textView2.setSaveEnabled(false);
+ 105: LinearLayout.LayoutParams layoutParams4 = new LinearLayout.LayoutParams(-2, -2);
+ 106: layoutParams4.rightMargin = nb6.t(i36.d().getDisplayMetrics().density * 20.0f);
+ 107: textView2.setLayoutParams(layoutParams4);
+ 108: textView2.setGravity(1);
+ 109: tzj.a(fejVar3, textView2);
+ 110: textView2.setTextColor(lrhVar.f(textView2).getText().c);
+ 111: linearLayout3.addView(textView2);
+ 112: break;
+ 113: case 2:
+ 114: g95 g95Var = (g95) obj;
+ 115: fd9 fd9Var3 = ProfileScreen.D;
+ 116: cu cuVar = new cu(g95Var.getContext());
+ 117: cuVar.setId(R.id.profile_screen_appbarlayout);
+ 118: cuVar.setSaveEnabled(false);
+ 119: cuVar.setLayoutParams(new ViewGroup.LayoutParams(-1, -2));
+ 120: cuVar.setBackground(null);
+ 121: fd9 fd9Var4 = ProfileScreen.D;
+ 122: g0f g0fVar2 = new g0f(profileScreen, b2);
+ 123: oa4 oa4Var = new oa4(cuVar.getContext());
+ 124: zt ztVar = new zt();
+ 125: ztVar.a = 19;
+ 126: oa4Var.setLayoutParams(ztVar);
+ 127: oa4Var.e();
+ 128: g0fVar2.d(oa4Var);
+ 129: cuVar.addView(oa4Var);
+ 130: g95Var.addView(cuVar);
+ 131: NestedScrollView nestedScrollView = new NestedScrollView(g95Var.getContext());
+ 132: nestedScrollView.setId(R.id.profile_screen_nestedscrollview);
+ 133: d95 d95Var = new d95(-1, -1);
+ 134: d95Var.b(new bu());
+ 135: nestedScrollView.setLayoutParams(d95Var);
+ 136: g0f g0fVar3 = new g0f(profileScreen, b3);
+ 137: LinearLayout linearLayout4 = new LinearLayout(nestedScrollView.getContext());
+ 138: linearLayout4.setLayoutParams(new LinearLayout.LayoutParams(-1, -2));
+ 139: linearLayout4.setOrientation(1);
+ 140: g0fVar3.d(linearLayout4);
+ 141: nestedScrollView.addView(linearLayout4);
+ 142: g95Var.addView(nestedScrollView);
+ 143: break;
+ 144: case 3:
+ 145: LinearLayout linearLayout5 = (LinearLayout) obj;
+ 146: fd9 fd9Var5 = ProfileScreen.D;
+ 147: ks6 ks6Var = new ks6(linearLayout5.getContext());
+ 148: ks6Var.setId(R.id.profile_screen_recyclerview);
+ 149: ks6Var.setLayoutParams(new ViewGroup.LayoutParams(-1, -2));
+ 150: ks6Var.A0(null);
+ 151: ks6Var.getContext();
+ 152: ks6Var.B0(new zs9());
+ 153: ks6Var.setOverScrollMode(2);
+ 154: qtf qtfVar = new qtf();
+ 155: qtfVar.e(1, 1);
+ 156: qtfVar.e(2, 1);
+ 157: qtfVar.e(128, 1);
+ 158: qtfVar.e(2097152, 1);
+ 159: qtfVar.e(16777216, 1);
+ 160: qtfVar.e(64, 1);
+ 161: qtfVar.e(PeerConnection.PORTALLOCATOR_ENABLE_ANY_ADDRESS_PORTS, 1);
+ 162: qtfVar.e(32, 1);
+ 163: qtfVar.e(16, 1);
+ 164: qtfVar.e(8, 1);
+ 165: qtfVar.e(65536, 1);
+ 166: qtfVar.e(4096, 1);
+ 167: ks6Var.C0(qtfVar);
+ 168: uua uuaVar = profileScreen.c;
+ 169: ks6Var.y0(new o0f(uuaVar.getExecutors().a(), uuaVar.getAccessor().d(31), profileScreen));
+ 170: ugd ugdVar = new ugd((ihd) uuaVar.getAccessor().d(1143).getValue(), (o0f) ks6Var.m, ((j9e) uuaVar.getAccessor().d(31).getValue()).p());
+ 171: profileScreen.C = ugdVar;
+ 172: ks6Var.k(ugdVar);
+ 173: ks6Var.setClipToPadding(false);
+ 174: ks6Var.setClipChildren(false);
+ 175: ks6Var.V0(new uv3(profileScreen, (byte) 8));
+ 176: g3c g3cVar = o99.a;
+ 177: g3c g3cVar2 = new g3c(3);
+ 178: g3cVar2.h(1);
+ 179: g3cVar2.h(4);
+ 180: g3cVar2.h(2);
+ 181: yrd yrdVar = new yrd(ks6Var, g3cVar2, (byte) 8);
+ 182: ckd ckdVar = new ckd(ks6Var, (byte) 10);
+ 183: ks6Var.h(new wsg(lrhVar.f(ks6Var), yrdVar, null, null, null, 60), -1);
+ 184: ks6Var.h(new ll8(lrhVar.f(ks6Var), ckdVar), -1);
+ 185: ks6Var.h(new lfa(z9m.a(nb6.t(i36.d().getDisplayMetrics().density * 12.0f), nb6.t(i36.d().getDisplayMetrics().density * 12.0f), nb6.t(i36.d().getDisplayMetrics().density * 24.0f), nb6.t(i36.d().getDisplayMetrics().density * 12.0f), nb6.t(i36.d().getDisplayMetrics().density * 12.0f), nb6.t(i36.d().getDisplayMetrics().density * 12.0f), nb6.t
+ 186: linearLayout5.addView(ks6Var);
+ 187: View pz2Var = new pz2(linearLayout5.getContext());
+ 188: pz2Var.setId(R.id.profile_screen_memberlist_container);
+ 189: pz2Var.setSaveEnabled(false);
+ 190: LinearLayout.LayoutParams layoutParams5 = new LinearLayout.LayoutParams(-1, -2);
+ 191: layoutParams5.rightMargin = nb6.t(12.0f * i36.d().getDisplayMetrics().density);
+ 192: layoutParams5.leftMargin = nb6.t(12.0f * i36.d().getDisplayMetrics().density);
+ 193: layoutParams5.bottomMargin = nb6.t(24.0f * i36.d().getDisplayMetrics().density);
+ 194: layoutParams5.topMargin = nb6.t(3.0f * i36.d().getDisplayMetrics().density);
+ 195: pz2Var.setLayoutParams(layoutParams5);
+ 196: pz2Var.setOutlineProvider(new p95(i36.d().getDisplayMetrics().density * 16.0f));
+ 197: c45.J(new p4a(3, (b55) null, (byte) 20), pz2Var);
+ 198: linearLayout5.addView(pz2Var);
+ 199: break;
+ 200: default:
+ 201: oa4 oa4Var2 = (oa4) obj;
+ 202: fd9 fd9Var6 = ProfileScreen.D;
+ 203: noe noeVar = new noe(profileScreen);
+ 204: Toolbar toolbar = new Toolbar(oa4Var2.getContext());
+ 205: ma4 ma4Var = new ma4(-1, -2);
+ 206: ma4Var.a = 1;
+ 207: toolbar.setLayoutParams(ma4Var);
+ 208: toolbar.x(null);
+ 209: toolbar.u(0, 0);
+ 210: noeVar.d(toolbar);
+ 211: oa4Var2.addView(toolbar);
+ 212: g0f g0fVar4 = new g0f(profileScreen, b4);
+ 213: LinearLayout linearLayout6 = new LinearLayout(oa4Var2.getContext());
+ 214: linearLayout6.setId(R.id.profile_screen_collapsiblecontainerlinearlayout);
+ 215: linearLayout6.setSaveEnabled(false);
+ 216: ma4 ma4Var2 = new ma4(-1, -2);
+ 217: ma4Var2.a = 2;
+ 218: ((FrameLayout.LayoutParams) ma4Var2).bottomMargin = nb6.t(16.0f * i36.d().getDisplayMetrics().density);
+ 219: linearLayout6.setLayoutParams(ma4Var2);
+ 220: linearLayout6.setOrientation(1);
+ 221: g0fVar4.d(linearLayout6);
+ 222: oa4Var2.addView(linearLayout6);
+ 223: break;
+ 224: }
+ 225: return s1kVar;
+ 226: }
+ 227: }
+~~~
+
+## defpackage/d0f.java (23 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: /* JADX INFO: loaded from: classes.dex */
+   4: public final class d0f extends d55 {
+   5: public cqe d;
+   6: public kve e;
+   7: public /* synthetic */ Object f;
+   8: public final /* synthetic */ f0f g;
+   9: public int h;
+  10: 
+  11: /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+  12: public d0f(f0f f0fVar, d55 d55Var) {
+  13: super(d55Var);
+  14: this.g = f0fVar;
+  15: }
+  16: 
+  17: @Override // defpackage.hv0
+  18: public final Object w(Object obj) {
+  19: this.f = obj;
+  20: this.h \|= Integer.MIN_VALUE;
+  21: return this.g.d(null, null, this);
+  22: }
+  23: }
+~~~
+
+## defpackage/q1a.java (34 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: import me.leolin.shortcutbadger.BuildConfig;
+   4: 
+   5: /* JADX INFO: loaded from: classes.dex */
+   6: public final class q1a {
+   7: public static final q1a b = new q1a(0);
+   8: public static final q1a c = new q1a(-1);
+   9: public final int a;
+  10: 
+  11: public q1a(int i) {
+  12: this.a = i;
+  13: }
+  14: 
+  15: public final String a(String str, String str2) {
+  16: String strR = equals(b) ? BuildConfig.FLAVOR : w7g.r(this.a, "_");
+  17: return str2 == null ? str.concat(strR) : pq0.k(str, strR, ".", str2);
+  18: }
+  19: 
+  20: public final boolean equals(Object obj) {
+  21: if (this == obj) {
+  22: return true;
+  23: }
+  24: return (obj instanceof q1a) && this.a == ((q1a) obj).a;
+  25: }
+  26: 
+  27: public final int hashCode() {
+  28: return Integer.hashCode(this.a);
+  29: }
+  30: 
+  31: public final String toString() {
+  32: return vg9.v(this.a, "LocalAccountId(raw=", ")");
+  33: }
+  34: }
+~~~
+
+## defpackage/hog.java (335 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: import android.content.Context;
+   4: import android.content.SharedPreferences;
+   5: import java.util.Locale;
+   6: import java.util.concurrent.atomic.AtomicInteger;
+   7: import me.leolin.shortcutbadger.BuildConfig;
+   8: 
+   9: /* JADX INFO: loaded from: classes.dex */
+  10: public abstract class hog extends a4 implements c74 {
+  11: public static final /* synthetic */ zm9[] i0 = {new c4c(hog.class, "_userId", "get_userId()J"), a15.f(luf.a, hog.class, "contactsLastSync", "getContactsLastSync()J"), new c4c(hog.class, "currentProxyList", "getCurrentProxyList()Ljava/lang/String;"), new c4c(hog.class, "currentProxyListTtlInSec", "getCurrentProxyListTtlInSec()I"), new c4c(
+  12: public final zcg A;
+  13: public final zcg B;
+  14: public final zcg C;
+  15: public final zcg D;
+  16: public final zcg E;
+  17: public final zcg F;
+  18: public final zcg G;
+  19: public final zcg H;
+  20: public final zcg I;
+  21: public final zcg J;
+  22: public final zcg K;
+  23: public final zcg L;
+  24: public final zcg M;
+  25: public final zcg N;
+  26: public final zcg O;
+  27: public final zcg P;
+  28: public final zcg Q;
+  29: public final zcg R;
+  30: public final zcg S;
+  31: public final zcg T;
+  32: public final zcg U;
+  33: public final zcg V;
+  34: public final zcg W;
+  35: public final zcg X;
+  36: public final zcg Y;
+  37: public final zcg Z;
+  38: public final zcg a0;
+  39: public final zcg b0;
+  40: public final zcg c0;
+  41: public final zcg d0;
+  42: public final rp9 e;
+  43: public final zcg e0;
+  44: public volatile f34 f;
+  45: public final zcg f0;
+  46: public final nih g;
+  47: public final zcg g0;
+  48: public final zcg h;
+  49: public final zcg h0;
+  50: public final zcg i;
+  51: public final zcg j;
+  52: public final zcg k;
+  53: public final zcg l;
+  54: public final zcg m;
+  55: public final zcg n;
+  56: public final zcg o;
+  57: public final zcg p;
+  58: public final zcg q;
+  59: public final zcg r;
+  60: public final zcg s;
+  61: public final zcg t;
+  62: public final zcg u;
+  63: public final zcg v;
+  64: public final zcg w;
+  65: public final zcg x;
+  66: public final zcg y;
+  67: public final zcg z;
+  68: 
+  69: public hog(Context context, String str, uc7 uc7Var, rp9 rp9Var) {
+  70: super(context, str, uc7Var);
+  71: this.e = rp9Var;
+  72: this.g = fa5.c(1, 0, 2);
+  73: this.h = new zcg(luf.a(Long.class), (SharedPreferences) this.d, (Object) (-1L), "user.Id");
+  74: this.i = new zcg(luf.a(Long.class), (SharedPreferences) this.d, (Object) 0L, "user.contactsLastSync");
+  75: this.j = new zcg(luf.a(String.class), (SharedPreferences) this.d, (Object) null, "app.currentProxyList");
+  76: this.k = new zcg(luf.a(Integer.class), (SharedPreferences) this.d, (Object) 299, "app.currentProxyListTtl");
+  77: luf.a(String.class);
+  78: this.l = new zcg(luf.a(String.class), (SharedPreferences) this.d, (Object) null, "app.lastSuccessProxy");
+  79: luf.a(Long.class);
+  80: Boolean bool = Boolean.FALSE;
+  81: this.m = new zcg(luf.a(Boolean.class), (SharedPreferences) this.d, (Object) bool, "app.debugHostRotation");
+  82: this.n = new zcg(luf.a(Boolean.class), (SharedPreferences) this.d, (Object) bool, "app.debugUaDnsEmulation");
+  83: this.o = new zcg(luf.a(Long.class), (SharedPreferences) this.d, (Object) 0L, "user.callsLastSync");
+  84: this.p = new zcg(luf.a(Long.class), (SharedPreferences) this.d, (Object) 0L, "user.newCallHistorySync");
+  85: this.q = new zcg(luf.a(String.class), (SharedPreferences) this.d, (Object) null, "user.deviceAvatarPath");
+  86: this.r = new zcg(luf.a(String.class), (SharedPreferences) this.d, (Object) null, "user.aId");
+  87: this.s = new zcg(luf.a(Long.class), (SharedPreferences) this.d, (Object) 0L, "server.timeDelta");
+  88: luf.a(Boolean.class);
+  89: this.t = new zcg(luf.a(Integer.class), (SharedPreferences) this.d, (Object) 0, "user.unexpectedLogErrorCount");
+  90: this.u = new zcg(luf.a(Long.class), (SharedPreferences) this.d, (Object) 0L, "user.lastLogSendTime");
+  91: luf.a(String.class);
+  92: this.v = new zcg(luf.a(Long.class), (SharedPreferences) this.d, (Object) 0L, "user.stickersLastSync");
+  93: this.w = new zcg(luf.a(Long.class), (SharedPreferences) this.d, (Object) 0L, "user.favoritesLastSync");
+  94: this.x = new zcg(luf.a(Boolean.class), (SharedPreferences) this.d, (Object) bool, "notif.isVisible");
+  95: this.y = new zcg(luf.a(Boolean.class), (SharedPreferences) this.d, (Object) bool, "app.forceConnection");
+  96: this.z = new zcg(luf.a(Long.class), (SharedPreferences) this.d, (Object) 0L, "app.lastSuccessfulRequestTime");
+  97: this.A = new zcg(luf.a(Long.class), (SharedPreferences) this.d, (Object) 0L, "user.contactSortLastSync");
+  98: this.B = new zcg(luf.a(Long.class), (SharedPreferences) this.d, (Object) 0L, "user.phonesSortLastSync");
+  99: this.C = new zcg(luf.a(String.class), (SharedPreferences) this.d, (Object) null, "user.reservedPushToken");
+ 100: this.D = new zcg(luf.a(Long.class), (SharedPreferences) this.d, (Object) (-1L), "user.pushOptions");
+ 101: this.E = new zcg(luf.a(String.class), (SharedPreferences) this.d, (Object) null, "user.okToken");
+ 102: this.F = new zcg(luf.a(Long.class), (SharedPreferences) this.d, (Object) 0L, "app.last.firebase_push_time");
+ 103: this.G = new zcg(luf.a(Long.class), (SharedPreferences) this.d, (Object) 0L, "app.ok.update_time");
+ 104: this.H = new zcg(luf.a(Boolean.class), (SharedPreferences) this.d, (Object) bool, "app.writeConctatsRequested");
+ 105: this.I = new zcg(luf.a(Boolean.class), (SharedPreferences) this.d, (Object) bool, "app.pushNotificationsRequested");
+ 106: this.J = new zcg(luf.a(Long.class), (SharedPreferences) this.d, (Object) 0L, "app.first.login.time");
+ 107: this.K = new zcg(luf.a(Long.class), (SharedPreferences) this.d, (Object) 0L, "app.last.login.time");
+ 108: this.L = new zcg(luf.a(Long.class), (SharedPreferences) this.d, (Object) 0L, "app.last.chat.marker");
+ 109: this.M = new zcg(luf.a(Integer.class), (SharedPreferences) this.d, (Object) (-1), "app.cache.clear.ver");
+ 110: this.N = new zcg(luf.a(Integer.class), (SharedPreferences) this.d, (Object) 0, "app.cache.clear.mask");
+ 111: this.O = new zcg(luf.a(Boolean.class), (SharedPreferences) this.d, (Object) bool, "app.invalidate.exception.flag");
+ 112: this.P = new zcg(luf.a(String.class), (SharedPreferences) this.d, (Object) BuildConfig.FLAVOR, "install-market");
+ 113: this.Q = new zcg(luf.a(String.class), (SharedPreferences) this.d, (Object) BuildConfig.FLAVOR, "install-version");
+ 114: this.R = new zcg(luf.a(Long.class), (SharedPreferences) this.d, (Object) 0L, "user.favorites.stickers.updateTime");
+ 115: this.S = new zcg(luf.a(Long.class), (SharedPreferences) this.d, (Object) 0L, "user.favorites.stickerSets.updateTime");
+ 116: this.T = new zcg(luf.a(Long.class), (SharedPreferences) this.d, (Object) 0L, "user.animojiSetsLastSync");
+ 117: this.U = new zcg(luf.a(Long.class), (SharedPreferences) this.d, (Object) 0L, "user.reactionsLastSync");
+ 118: this.V = new zcg(luf.a(Boolean.class), (SharedPreferences) this.d, (Object) bool, "user.inviteLinkClicked");
+ 119: this.W = new zcg(luf.a(Long.class), (SharedPreferences) this.d, (Object) 0L, "app.last.push.state.time");
+ 120: this.X = new zcg(luf.a(String.class), (SharedPreferences) this.d, (Object) null, "user.systemLang");
+ 121: this.Y = new zcg(luf.a(String.class), (SharedPreferences) this.d, (Object) "ru", "user.lang");
+ 122: this.Z = new zcg(luf.a(Boolean.class), (SharedPreferences) this.d, (Object) bool, "app.lang.customLang");
+ 123: this.a0 = new zcg(luf.a(Long.class), (SharedPreferences) this.d, (Object) 0L, "user.chatsLastSync");
+ 124: this.b0 = new zcg(luf.a(Boolean.class), (SharedPreferences) this.d, (Object) bool, "user.shownDigitalIdTooltip");
+ 125: this.c0 = new zcg(luf.a(Boolean.class), (SharedPreferences) this.d, (Object) bool, "background.wake.enabled");
+ 126: this.d0 = new zcg(luf.a(Long.class), (SharedPreferences) this.d, (Object) 0L, "background.wake.suggestion.shown.time");
+ 127: this.e0 = new zcg(luf.a(Integer.class), (SharedPreferences) this.d, (Object) 0, "transmit.version");
+ 128: luf.a(Integer.class);
+ 129: this.f0 = new zcg(luf.a(Integer.class), (SharedPreferences) this.d, (Object) 0, "user.channelHubLastSeenBadge");
+ 130: this.g0 = new zcg(luf.a(Integer.class), (SharedPreferences) this.d, (Object) 0, "app.calls_sdk.ice_candidate_emulation");
+ 131: this.h0 = new zcg(luf.a(Boolean.class), (SharedPreferences) this.d, (Object) bool, "debug.stories.layers.highlight");
+ 132: }
+ 133: 
+ 134: public final void A(long j) {
+ 135: this.w.z(this, i0[19], Long.valueOf(j));
+ 136: }
+ 137: 
+ 138: public final void B(boolean z) {
+ 139: this.y.z(this, i0[21], Boolean.valueOf(z));
+ 140: }
+ 141: 
+ 142: public final void C(boolean z) {
+ 143: this.O.z(this, i0[37], Boolean.valueOf(z));
+ 144: }
+ 145: 
+ 146: public final void D(String str) {
+ 147: this.Y.z(this, i0[47], str);
+ 148: }
+ 149: 
+ 150: public final void E(long j) {
+ 151: this.K.z(this, i0[33], Long.valueOf(j));
+ 152: }
+ 153: 
+ 154: public final void F(long j) {
+ 155: this.p.z(this, i0[10], Long.valueOf(j));
+ 156: }
+ 157: 
+ 158: public final void G(long j) {
+ 159: this.U.z(this, i0[43], Long.valueOf(j));
+ 160: }
+ 161: 
+ 162: public final void H(String str) {
+ 163: this.C.z(this, i0[25], str);
+ 164: }
+ 165: 
+ 166: public final void I(long j) {
+ 167: this.v.z(this, i0[18], Long.valueOf(j));
+ 168: }
+ 169: 
+ 170: public final void J(int i) {
+ 171: this.e0.z(this, i0[53], Integer.valueOf(i));
+ 172: }
+ 173: 
+ 174: public final void K(int i) {
+ 175: this.t.z(this, i0[15], Integer.valueOf(i));
+ 176: }
+ 177: 
+ 178: public final void L(long j) {
+ 179: this.h.z(this, i0[0], Long.valueOf(j));
+ 180: this.g.l(Long.valueOf(j));
+ 181: }
+ 182: 
+ 183: public final void M(lcf lcfVar) {
+ 184: rc7 rc7Var = (rc7) this.d.edit();
+ 185: rc7Var.remove("user.fcmToken");
+ 186: rc7Var.remove("user.pushDeviceType");
+ 187: String str = this.c;
+ 188: if (lcfVar == null) {
+ 189: rc7Var.remove("user.vendor.pushtoken");
+ 190: try {
+ 191: rc7Var.commit();
+ 192: return;
+ 193: } catch (Exception e) {
+ 194: f09.c0(str, "fail to remove vendor push token", e);
+ 195: return;
+ 196: }
+ 197: }
+ 198: try {
+ 199: mj9 mj9Var = (mj9) this.e.getValue();
+ 200: mj9Var.getClass();
+ 201: rc7Var.putString("user.vendor.pushtoken", mj9Var.b(lcf.Companion.serializer(), lcfVar));
+ 202: rc7Var.commit();
+ 203: } catch (Exception e2) {
+ 204: f09.c0(str, "fail to save vendorPushToken", e2);
+ 205: }
+ 206: }
+ 207: 
+ 208: public final void N() {
+ 209: this.H.z(this, i0[30], Boolean.TRUE);
+ 210: }
+ 211: 
+ 212: @Override // defpackage.a4
+ 213: public void b() {
+ 214: super.b();
+ 215: this.f = null;
+ 216: this.g.l(Long.valueOf(s()));
+ 217: }
+ 218: 
+ 219: public final long f() {
+ 220: return q() + System.currentTimeMillis();
+ 221: }
+ 222: 
+ 223: public final synchronized long g() {
+ 224: f34 f34Var;
+ 225: try {
+ 226: if (this.f == null) {
+ 227: this.f = new f34(new gog(this, (byte) 0), new f83(this));
+ 228: }
+ 229: f34Var = this.f;
+ 230: if (f34Var == null) {
+ 231: throw new IllegalArgumentException("Required value was null.");
+ 232: }
+ 233: } catch (Throwable th) {
+ 234: throw th;
+ 235: }
+ 236: return f34Var.b + ((long) ((AtomicInteger) f34Var.c).getAndIncrement());
+ 237: }
+ 238: 
+ 239: public final int h() {
+ 240: return ((Number) this.M.s(this, i0[35])).intValue();
+ 241: }
+ 242: 
+ 243: public final long i() {
+ 244: return ((Number) this.i.s(this, i0[1])).longValue();
+ 245: }
+ 246: 
+ 247: public final String j() {
+ 248: return (String) this.q.s(this, i0[11]);
+ 249: }
+ 250: 
+ 251: public final long k() {
+ 252: return ((Number) this.J.s(this, i0[32])).longValue();
+ 253: }
+ 254: 
+ 255: public final String l() {
+ 256: return (String) this.Y.s(this, i0[47]);
+ 257: }
+ 258: 
+ 259: public final long m() {
+ 260: return ((Number) this.p.s(this, i0[10])).longValue();
+ 261: }
+ 262: 
+ 263: public final String n() {
+ 264: return (String) this.E.s(this, i0[27]);
+ 265: }
+ 266: 
+ 267: public final long o() {
+ 268: return ((Number) this.G.s(this, i0[29])).longValue();
+ 269: }
+ 270: 
+ 271: public final long p() {
+ 272: return ((Number) this.D.s(this, i0[26])).longValue();
+ 273: }
+ 274: 
+ 275: public final long q() {
+ 276: return ((Number) this.s.s(this, i0[13])).longValue();
+ 277: }
+ 278: 
+ 279: public final int r() {
+ 280: return ((Number) this.e0.s(this, i0[53])).intValue();
+ 281: }
+ 282: 
+ 283: public final long s() {
+ 284: return ((Number) this.h.s(this, i0[0])).longValue();
+ 285: }
+ 286: 
+ 287: public final dk7 t() {
+ 288: return new dk7(this.g, new fw8(this, null, (byte) 20));
+ 289: }
+ 290: 
+ 291: public final Locale u() {
+ 292: return Locale.forLanguageTag(l());
+ 293: }
+ 294: 
+ 295: public final lcf v() {
+ 296: wp9 wp9Var = this.d;
+ 297: String string = wp9Var.getString("user.vendor.pushtoken", null);
+ 298: if (string != null && string.length() != 0) {
+ 299: try {
+ 300: mj9 mj9Var = (mj9) this.e.getValue();
+ 301: mj9Var.getClass();
+ 302: return (lcf) mj9Var.a(qo9.u(lcf.Companion.serializer()), string);
+ 303: } catch (Exception e) {
+ 304: f09.c0(this.c, "fail to get vendorPushToken", e);
+ 305: return null;
+ 306: }
+ 307: }
+ 308: String string2 = wp9Var.getString("user.fcmToken", null);
+ 309: String string3 = wp9Var.getString("user.pushDeviceType", null);
+ 310: baf bafVar = string3 != null ? (baf) Enum.valueOf(baf.class, string3) : null;
+ 311: if (bafVar == null \|\| string2 == null) {
+ 312: return null;
+ 313: }
+ 314: return new lcf(bafVar, string2, new tbf(p()));
+ 315: }
+ 316: 
+ 317: public final long w() {
+ 318: return ((Number) this.a0.s(this, i0[49])).longValue();
+ 319: }
+ 320: 
+ 321: public final void x(int i) {
+ 322: this.M.z(this, i0[35], Integer.valueOf(i));
+ 323: }
+ 324: 
+ 325: public final void y(int i) {
+ 326: this.N.z(this, i0[36], Integer.valueOf(i));
+ 327: }
+ 328: 
+ 329: public final void z(long j) {
+ 330: if (j > w()) {
+ 331: f09.o(this.c, "setChatsLastSync %d", Long.valueOf(j));
+ 332: this.a0.z(this, i0[49], Long.valueOf(j));
+ 333: }
+ 334: }
+ 335: }
+~~~
+
+## defpackage/mag.java (27 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: import android.content.Context;
+   4: import android.content.SharedPreferences;
+   5: 
+   6: /* JADX INFO: loaded from: classes.dex */
+   7: public final class mag extends a4 implements lag {
+   8: public static final /* synthetic */ zm9[] i = {new v4f(mag.class, "fontSizeModeFlow", "getFontSizeModeFlow()Lkotlinx/coroutines/flow/MutableStateFlow;", 0), a15.f(luf.a, mag.class, "isDisableIncomingCalls", "isDisableIncomingCalls()Z"), new v4f(mag.class, "deviceIdFlow", "getDeviceIdFlow()Lkotlinx/coroutines/flow/MutableStateFlow;", 0), n
+   9: public final y3 e;
+  10: public final zcg f;
+  11: public final y3 g;
+  12: public final zcg h;
+  13: 
+  14: public mag(Context context, uc7 uc7Var) {
+  15: super(context, "root", uc7Var);
+  16: this.e = new y3("font.size", 1, this.d, this.b, luf.a(Integer.class));
+  17: Boolean bool = Boolean.FALSE;
+  18: this.f = new zcg(luf.a(Boolean.class), (SharedPreferences) this.d, (Object) bool, "dev.calls.disable_incoming");
+  19: this.g = new y3("device.id", null, this.d, this.b, luf.a(String.class));
+  20: this.h = new zcg(luf.a(Integer.class), (SharedPreferences) this.d, (Object) 0, "emoji.remote_sprites.version");
+  21: }
+  22: 
+  23: public final x3 f() {
+  24: zm9 zm9Var = i[0];
+  25: return (x3) this.e.g;
+  26: }
+  27: }
+~~~
+
+## defpackage/lag.java (5 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: /* JADX INFO: loaded from: classes.dex */
+   4: public interface lag {
+   5: }
+~~~
+
+## defpackage/r1g.java (504 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: import java.util.ArrayList;
+   4: import java.util.List;
+   5: import java.util.concurrent.CancellationException;
+   6: import java.util.concurrent.ConcurrentHashMap;
+   7: import java.util.concurrent.atomic.AtomicBoolean;
+   8: 
+   9: /* JADX INFO: loaded from: classes.dex */
+  10: public final class r1g implements b6h {
+  11: public final f4j a;
+  12: public final f4j b;
+  13: public final xu3 c;
+  14: public final rp9 d;
+  15: public final rp9 e;
+  16: public final rp9 f;
+  17: public final rp9 g;
+  18: public final rp9 h;
+  19: public final rp9 i;
+  20: public final z3j j;
+  21: public final z3j k;
+  22: public final z3j l;
+  23: public final rp9 m;
+  24: public final wyi n;
+  25: public volatile boolean o;
+  26: public final z3j p;
+  27: public final ConcurrentHashMap q;
+  28: public final ConcurrentHashMap.KeySetView r;
+  29: public final String s;
+  30: 
+  31: public r1g(rp9 rp9Var, rp9 rp9Var2, rp9 rp9Var3, z3j z3jVar, z3j z3jVar2, z3j z3jVar3, rp9 rp9Var4, rp9 rp9Var5, st5 st5Var, rp9 rp9Var6, c6h c6hVar, rp9 rp9Var7, p9g p9gVar, xu3 xu3Var) {
+  32: f4j f4jVar = new f4j((byte) 0);
+  33: f4j f4jVar2 = new f4j((byte) 2);
+  34: this.a = f4jVar;
+  35: this.b = f4jVar2;
+  36: this.c = xu3Var;
+  37: this.d = rp9Var;
+  38: this.e = rp9Var2;
+  39: this.f = rp9Var3;
+  40: this.g = rp9Var4;
+  41: this.h = rp9Var5;
+  42: this.i = rp9Var7;
+  43: this.j = z3jVar;
+  44: this.k = z3jVar2;
+  45: this.l = z3jVar3;
+  46: this.m = rp9Var6;
+  47: this.n = a8g.a();
+  48: this.p = new z3j(new u6(p9gVar, this, z3jVar2, (byte) 12));
+  49: this.q = new ConcurrentHashMap();
+  50: this.r = ConcurrentHashMap.newKeySet();
+  51: this.s = r1g.class.getName();
+  52: ((f6h) c6hVar).c(this);
+  53: st5Var.n = this;
+  54: }
+  55: 
+  56: /* JADX WARN: Code duplicated, block: B:7:0x0019  */
+  57: /* JADX WARN: Code restructure failed: missing block: B:32:0x00e9, code lost:
+  58: 
+  59: if (r0.e(r7, r3) == r4) goto L33;
+  60: */
+  61: /*
+  62: Code decompiled incorrectly, please refer to instructions dump.
+  63: */
+  64: public final Object a(swd swdVar, q08 q08Var, d55 d55Var) {
+  65: c1g c1gVar;
+  66: q08 q08Var2;
+  67: swd swdVar2 = swdVar;
+  68: if (d55Var instanceof c1g) {
+  69: c1gVar = (c1g) d55Var;
+  70: int i = c1gVar.h;
+  71: if ((i & Integer.MIN_VALUE) != 0) {
+  72: c1gVar.h = i - Integer.MIN_VALUE;
+  73: } else {
+  74: c1gVar = new c1g(this, d55Var);
+  75: }
+  76: } else {
+  77: c1gVar = new c1g(this, d55Var);
+  78: }
+  79: Object objF = c1gVar.f;
+  80: ka5 ka5Var = ka5.a;
+  81: int i2 = c1gVar.h;
+  82: if (i2 == 0) {
+  83: xnm.y(objF);
+  84: i9g i9gVar = (i9g) this.e.getValue();
+  85: c1gVar.d = swdVar2;
+  86: q08Var2 = q08Var;
+  87: c1gVar.e = q08Var2;
+  88: c1gVar.h = 1;
+  89: objF = i9gVar.f(swdVar2, c1gVar);
+  90: if (objF != ka5Var) {
+  91: }
+  92: return ka5Var;
+  93: }
+  94: if (i2 == 1) {
+  95: q08 q08Var3 = c1gVar.e;
+  96: swd swdVar3 = c1gVar.d;
+  97: xnm.y(objF);
+  98: q08Var2 = q08Var3;
+  99: swdVar2 = swdVar3;
+ 100: } else {
+ 101: if (i2 != 2) {
+ 102: k3g.o("call to 'resume' before 'invoke' with coroutine");
+ 103: return null;
+ 104: }
+ 105: xnm.y(objF);
+ 106: }
+ 107: return s1k.a;
+ 108: ArrayList arrayList = new ArrayList();
+ 109: for (g8j g8jVar : (List) objF) {
+ 110: if (((Boolean) q08Var2.d(g8jVar.f)).booleanValue()) {
+ 111: String str = this.s;
+ 112: o1d o1dVar = f09.g;
+ 113: if (o1dVar != null) {
+ 114: c6a c6aVar = c6a.e;
+ 115: if (o1dVar.b(c6aVar)) {
+ 116: o1dVar.c(c6aVar, str, "Cancelling task of type=" + swdVar2 + ",task=" + g8jVar + ",id=" + g8jVar.a + ",status=" + g8jVar.b, null);
+ 117: }
+ 118: }
+ 119: this.r.add(new Long(g8jVar.a));
+ 120: s95.C(g8jVar.a, arrayList);
+ 121: }
+ 122: }
+ 123: b9j b9jVar = (b9j) this.d.getValue();
+ 124: c1gVar.d = null;
+ 125: c1gVar.e = null;
+ 126: c1gVar.h = 2;
+ 127: }
+ 128: 
+ 129: public final Object b(u6j u6jVar, b55 b55Var) {
+ 130: cu2 cu2Var = new cu2(1, e0c.K(b55Var));
+ 131: cu2Var.w();
+ 132: cu2Var.y(new hy3(this, u6jVar, (byte) 2));
+ 133: g().e(false);
+ 134: cv3 cv3Var = new cv3();
+ 135: cv3Var.b = cu2Var;
+ 136: cv3Var.c = u6jVar;
+ 137: cv3Var.a = new AtomicBoolean(false);
+ 138: z6j z6jVarG = g();
+ 139: long jF = f(u6jVar);
+ 140: bcc bccVar = (bcc) z6jVarG.i.get();
+ 141: if (bccVar != null) {
+ 142: bccVar.g(u6jVar, false, jF, cv3Var);
+ 143: }
+ 144: return cu2Var.u();
+ 145: }
+ 146: 
+ 147: @Override // defpackage.b6h
+ 148: public final void c(int i) {
+ 149: if (i == 2) {
+ 150: c5h c5hVar = new c5h(((hog) e()).g());
+ 151: d(c5hVar, c5hVar, false);
+ 152: }
+ 153: }
+ 154: 
+ 155: public final long d(ft ftVar, d7j d7jVar, boolean z) {
+ 156: String str = this.s;
+ 157: o1d o1dVar = f09.g;
+ 158: if (o1dVar != null) {
+ 159: c6a c6aVar = c6a.e;
+ 160: if (o1dVar.b(c6aVar)) {
+ 161: o1dVar.c(c6aVar, str, "executeTask " + ftVar + ", isRetry=" + z, null);
+ 162: }
+ 163: }
+ 164: g().e(false);
+ 165: nm9.J(h(), (z95) this.j.getValue(), 0, new f1g(ftVar, this, z, new m1g(this, ftVar, d7jVar), d7jVar, null), 2);
+ 166: return ftVar.a;
+ 167: }
+ 168: 
+ 169: public final c74 e() {
+ 170: return (c74) this.f.getValue();
+ 171: }
+ 172: 
+ 173: public final long f(u6j u6jVar) {
+ 174: long jK = fe6.k(this.a.V0());
+ 175: b1g b1gVar = (b1g) this.q.get(Short.valueOf(u6jVar.k()));
+ 176: if (b1gVar == null) {
+ 177: return jK;
+ 178: }
+ 179: float fB = nhf.b.b() * 0.2f;
+ 180: return u6jVar.n().a(fB, b1gVar.a, b1gVar.b);
+ 181: }
+ 182: 
+ 183: public final z6j g() {
+ 184: return (z6j) this.m.getValue();
+ 185: }
+ 186: 
+ 187: public final ja5 h() {
+ 188: return (ja5) this.p.getValue();
+ 189: }
+ 190: 
+ 191: /* JADX WARN: Code duplicated, block: B:7:0x0013  */
+ 192: public final Object i(long j, d55 d55Var) {
+ 193: n1g n1gVar;
+ 194: boolean zRemove;
+ 195: boolean z;
+ 196: if (d55Var instanceof n1g) {
+ 197: n1gVar = (n1g) d55Var;
+ 198: int i = n1gVar.g;
+ 199: if ((i & Integer.MIN_VALUE) != 0) {
+ 200: n1gVar.g = i - Integer.MIN_VALUE;
+ 201: } else {
+ 202: n1gVar = new n1g(this, d55Var);
+ 203: }
+ 204: } else {
+ 205: n1gVar = new n1g(this, d55Var);
+ 206: }
+ 207: Object obj = n1gVar.e;
+ 208: int i2 = n1gVar.g;
+ 209: if (i2 == 0) {
+ 210: xnm.y(obj);
+ 211: zRemove = this.r.remove(new Long(j));
+ 212: if (zRemove) {
+ 213: b9j b9jVar = (b9j) this.d.getValue();
+ 214: n1gVar.d = zRemove;
+ 215: n1gVar.g = 1;
+ 216: Object objM = b9jVar.m(j, n1gVar);
+ 217: ka5 ka5Var = ka5.a;
+ 218: if (objM == ka5Var) {
+ 219: return ka5Var;
+ 220: }
+ 221: z = zRemove;
+ 222: }
+ 223: return Boolean.valueOf(zRemove);
+ 224: }
+ 225: if (i2 != 1) {
+ 226: k3g.o("call to 'resume' before 'invoke' with coroutine");
+ 227: return null;
+ 228: }
+ 229: z = n1gVar.d;
+ 230: xnm.y(obj);
+ 231: zRemove = z;
+ 232: return Boolean.valueOf(zRemove);
+ 233: }
+ 234: 
+ 235: /* JADX WARN: Code duplicated, block: B:7:0x0013  */
+ 236: public final Object j(d55 d55Var) {
+ 237: o1g o1gVar;
+ 238: if (d55Var instanceof o1g) {
+ 239: o1gVar = (o1g) d55Var;
+ 240: int i = o1gVar.f;
+ 241: if ((i & Integer.MIN_VALUE) != 0) {
+ 242: o1gVar.f = i - Integer.MIN_VALUE;
+ 243: } else {
+ 244: o1gVar = new o1g(this, d55Var);
+ 245: }
+ 246: } else {
+ 247: o1gVar = new o1g(this, d55Var);
+ 248: }
+ 249: Object objI0 = o1gVar.d;
+ 250: ka5 ka5Var = ka5.a;
+ 251: int i2 = o1gVar.f;
+ 252: b55 b55Var = null;
+ 253: try {
+ 254: if (i2 == 0) {
+ 255: xnm.y(objI0);
+ 256: f09.E(this.s, "logoutAndSessionClose started", null);
+ 257: this.o = true;
+ 258: lkh.V(this.n);
+ 259: d9a d9aVar = (d9a) this.c.c();
+ 260: qzd qzdVar = fe6.b;
+ 261: long jU = az7.U(5, me6.e);
+ 262: rve rveVar = new rve(this, d9aVar, b55Var, (byte) 21);
+ 263: o1gVar.f = 1;
+ 264: objI0 = jd0.i0(jU, rveVar, o1gVar);
+ 265: if (objI0 == ka5Var) {
+ 266: return ka5Var;
+ 267: }
+ 268: } else {
+ 269: if (i2 != 1) {
+ 270: k3g.o("call to 'resume' before 'invoke' with coroutine");
+ 271: return null;
+ 272: }
+ 273: xnm.y(objI0);
+ 274: }
+ 275: if (((x6j) objI0) == null) {
+ 276: f09.f0(this.s, "logoutAndSessionClose: timeout!");
+ 277: }
+ 278: ((bcc) g().i.get()).b(true);
+ 279: f09.E(this.s, "logoutAndSessionClose finished", null);
+ 280: this.o = false;
+ 281: return s1k.a;
+ 282: } catch (Throwable th) {
+ 283: this.o = false;
+ 284: throw th;
+ 285: }
+ 286: }
+ 287: 
+ 288: public final void k(boolean z) {
+ 289: z6j z6jVarG = g();
+ 290: z6jVarG.j.set(fe6.k(z6jVarG.b.V0()));
+ 291: if (z) {
+ 292: this.q.clear();
+ 293: if (this.m.d()) {
+ 294: bcc bccVar = (bcc) g().i.get();
+ 295: bccVar.j.set(0L);
+ 296: bccVar.i.set(0);
+ 297: f09.p(bccVar.a, "resetConnectionTimeout");
+ 298: }
+ 299: }
+ 300: }
+ 301: 
+ 302: /* JADX WARN: Code duplicated, block: B:7:0x0015  */
+ 303: /* JADX WARN: Code restructure failed: missing block: B:37:0x00bd, code lost:
+ 304: 
+ 305: if (r10 == r2) goto L38;
+ 306: */
+ 307: /* JADX WARN: Multi-variable type inference failed */
+ 308: /* JADX WARN: Type inference failed for: r10v0, types: [ft, java.lang.Object] */
+ 309: /* JADX WARN: Type inference failed for: r10v1, types: [java.lang.Object] */
+ 310: /* JADX WARN: Type inference failed for: r10v12 */
+ 311: /* JADX WARN: Type inference failed for: r10v13 */
+ 312: /* JADX WARN: Type inference failed for: r10v14 */
+ 313: /* JADX WARN: Type inference failed for: r10v15 */
+ 314: /* JADX WARN: Type inference failed for: r10v7, types: [ft] */
+ 315: /* JADX WARN: Type inference failed for: r10v9 */
+ 316: /* JADX WARN: Type inference failed for: r11v5 */
+ 317: /* JADX WARN: Type inference failed for: r2v2 */
+ 318: /* JADX WARN: Type inference failed for: r3v1, types: [java.lang.StringBuilder] */
+ 319: /*
+ 320: Code decompiled incorrectly, please refer to instructions dump.
+ 321: */
+ 322: public final Object l(ft ftVar, l6j l6jVar, d55 d55Var) {
+ 323: p1g p1gVar;
+ 324: ?? r10;
+ 325: Object objC;
+ 326: c6a c6aVar = c6a.f;
+ 327: if (d55Var instanceof p1g) {
+ 328: p1gVar = (p1g) d55Var;
+ 329: int i = p1gVar.h;
+ 330: if ((i & Integer.MIN_VALUE) != 0) {
+ 331: p1gVar.h = i - Integer.MIN_VALUE;
+ 332: } else {
+ 333: p1gVar = new p1g(this, d55Var);
+ 334: }
+ 335: } else {
+ 336: p1gVar = new p1g(this, d55Var);
+ 337: }
+ 338: Object obj = p1gVar.f;
+ 339: ka5 ka5Var = ka5.a;
+ 340: int i2 = p1gVar.h;
+ 341: try {
+ 342: if (i2 != 0) {
+ 343: if (i2 == 1) {
+ 344: l6jVar = p1gVar.e;
+ 345: ft ftVar2 = p1gVar.d;
+ 346: xnm.y(obj);
+ 347: r10 = ftVar2;
+ 348: } else {
+ 349: if (i2 != 2) {
+ 350: k3g.o("call to 'resume' before 'invoke' with coroutine");
+ 351: return null;
+ 352: }
+ 353: ft ftVar3 = p1gVar.d;
+ 354: xnm.y(obj);
+ 355: ftVar = ftVar3;
+ 356: }
+ 357: ftVar = objC;
+ 358: ((q8j) this.h.getValue()).a();
+ 359: ((dwl) this.g.getValue()).d();
+ 360: return s1k.a;
+ 361: }
+ 362: xnm.y(obj);
+ 363: String str = this.s;
+ 364: o1d o1dVar = f09.g;
+ 365: if (o1dVar != null && o1dVar.b(c6aVar)) {
+ 366: o1dVar.c(c6aVar, str, "onTaskFailed " + ((Object) ftVar) + "\|" + l6jVar, null);
+ 367: }
+ 368: if ("proto.ver".equals(l6jVar.b)) {
+ 369: f09.E(this.s, "got version error: mark current version as deprecated, close connection", null);
+ 370: ((bcc) g().i.get()).w(false);
+ 371: }
+ 372: if (ftVar instanceof rwd) {
+ 373: i9g i9gVar = (i9g) this.e.getValue();
+ 374: long j = ftVar.a;
+ 375: p1gVar.d = ftVar;
+ 376: p1gVar.e = l6jVar;
+ 377: p1gVar.h = 1;
+ 378: if (i9gVar.a(j, p1gVar) != ka5Var) {
+ 379: }
+ 380: r10 = ftVar;
+ 381: ftVar = objC;
+ 382: return ka5Var;
+ 383: }
+ 384: return s1k.a;
+ 385: r10 = ftVar;
+ 386: if ("proto.payload".equals(l6jVar.b)) {
+ 387: p1gVar.d = r10;
+ 388: p1gVar.e = null;
+ 389: p1gVar.h = 2;
+ 390: objC = ((rwd) r10).c(p1gVar);
+ 391: }
+ 392: } catch (CancellationException e) {
+ 393: throw e;
+ 394: } catch (Throwable th) {
+ 395: String str2 = this.s;
+ 396: o1d o1dVar2 = f09.g;
+ 397: if (o1dVar2 != null && o1dVar2.b(c6aVar)) {
+ 398: o1dVar2.c(c6aVar, str2, "fail to onMaxFailCount for " + ftVar + " type=" + ((rwd) ftVar).getType(), th);
+ 399: }
+ 400: }
+ 401: ((q8j) this.h.getValue()).a();
+ 402: ((dwl) this.g.getValue()).d();
+ 403: return s1k.a;
+ 404: }
+ 405: 
+ 406: /* JADX WARN: Code duplicated, block: B:7:0x0015  */
+ 407: /* JADX WARN: Code restructure failed: missing block: B:40:0x00e7, code lost:
+ 408: 
+ 409: if (r15 == r2) goto L55;
+ 410: */
+ 411: /* JADX WARN: Code restructure failed: missing block: B:54:0x0118, code lost:
+ 412: 
+ 413: if (r15 == r2) goto L55;
+ 414: */
+ 415: /*
+ 416: Code decompiled incorrectly, please refer to instructions dump.
+ 417: */
+ 418: public final Object m(ft ftVar, d55 d55Var) {
+ 419: q1g q1gVar;
+ 420: c6a c6aVar = c6a.e;
+ 421: if (d55Var instanceof q1g) {
+ 422: q1gVar = (q1g) d55Var;
+ 423: int i = q1gVar.g;
+ 424: if ((i & Integer.MIN_VALUE) != 0) {
+ 425: q1gVar.g = i - Integer.MIN_VALUE;
+ 426: } else {
+ 427: q1gVar = new q1g(this, d55Var);
+ 428: }
+ 429: } else {
+ 430: q1gVar = new q1g(this, d55Var);
+ 431: }
+ 432: Object objV = q1gVar.e;
+ 433: ka5 ka5Var = ka5.a;
+ 434: int i2 = q1gVar.g;
+ 435: if (i2 == 0) {
+ 436: xnm.y(objV);
+ 437: String str = this.s;
+ 438: o1d o1dVar = f09.g;
+ 439: if (o1dVar != null && o1dVar.b(c6aVar)) {
+ 440: o1dVar.c(c6aVar, str, "onTaskSuccess " + ftVar.getClass().getName() + " requestId=" + ftVar.a, null);
+ 441: }
+ 442: if (ftVar instanceof i7a) {
+ 443: z6j z6jVarG = g();
+ 444: z6jVarG.j.set(fe6.k(z6jVarG.b.V0()));
+ 445: ((dwl) this.g.getValue()).d();
+ 446: }
+ 447: if (ftVar instanceof rwd) {
+ 448: b9j b9jVar = (b9j) this.d.getValue();
+ 449: long j = ftVar.a;
+ 450: q1gVar.d = ftVar;
+ 451: q1gVar.g = 1;
+ 452: if (b9jVar.m(j, q1gVar) != ka5Var) {
+ 453: }
+ 454: }
+ 455: return ka5Var;
+ 456: }
+ 457: if (i2 == 1) {
+ 458: ftVar = q1gVar.d;
+ 459: xnm.y(objV);
+ 460: } else if (i2 == 2) {
+ 461: ftVar = q1gVar.d;
+ 462: xnm.y(objV);
+ 463: u6j u6jVar = (u6j) objV;
+ 464: if (u6jVar != null && u6jVar.o()) {
+ 465: String str2 = this.s;
+ 466: o1d o1dVar2 = f09.g;
+ 467: if (o1dVar2 != null && o1dVar2.b(c6aVar)) {
+ 468: o1dVar2.c(c6aVar, str2, "onTaskSuccess: set force connection to false after success tam task", null);
+ 469: }
+ 470: ((hog) e()).B(false);
+ 471: }
+ 472: q1gVar.d = null;
+ 473: q1gVar.g = 3;
+ 474: objV = ftVar.v(q1gVar);
+ 475: } else {
+ 476: if (i2 != 3) {
+ 477: k3g.o("call to 'resume' before 'invoke' with coroutine");
+ 478: return null;
+ 479: }
+ 480: xnm.y(objV);
+ 481: }
+ 482: u6j u6jVar2 = (u6j) objV;
+ 483: if (u6jVar2 != null && u6jVar2.o()) {
+ 484: hog hogVar = (hog) e();
+ 485: hogVar.z.z(hogVar, hog.i0[22], Long.valueOf(fe6.k(this.b.V0())));
+ 486: }
+ 487: g().g();
+ 488: return s1k.a;
+ 489: if ((ftVar instanceof ozb) \|\| (ftVar instanceof od4)) {
+ 490: ((dwl) this.g.getValue()).d();
+ 491: }
+ 492: hog hogVar2 = (hog) e();
+ 493: if (((Boolean) hogVar2.y.s(hogVar2, hog.i0[21])).booleanValue()) {
+ 494: q1gVar.d = ftVar;
+ 495: q1gVar.g = 2;
+ 496: objV = ftVar.v(q1gVar);
+ 497: } else {
+ 498: q1gVar.d = null;
+ 499: q1gVar.g = 3;
+ 500: objV = ftVar.v(q1gVar);
+ 501: }
+ 502: return ka5Var;
+ 503: }
+ 504: }
+~~~
+
+## defpackage/k5a.java (50 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: import java.util.ArrayList;
+   4: import java.util.Iterator;
+   5: import java.util.List;
+   6: import java.util.Map;
+   7: 
+   8: /* JADX INFO: loaded from: classes.dex */
+   9: public final class k5a extends u6j {
+  10: public k5a(List list) {
+  11: super(null);
+  12: if (list == null \|\| list.isEmpty()) {
+  13: k3g.t("status can't be null or empty");
+  14: throw null;
+  15: }
+  16: ArrayList arrayList = new ArrayList();
+  17: Iterator it = list.iterator();
+  18: while (it.hasNext()) {
+  19: os osVar = (os) it.next();
+  20: osVar.getClass();
+  21: dea deaVar = new dea();
+  22: deaVar.put("time", Long.valueOf(osVar.a));
+  23: deaVar.put("userId", Long.valueOf(osVar.b));
+  24: deaVar.put("type", osVar.d);
+  25: deaVar.put("event", osVar.e);
+  26: Map map = osVar.f;
+  27: if (map != null) {
+  28: deaVar.put("params", map);
+  29: }
+  30: long j = osVar.c;
+  31: Long lValueOf = j <= 0 ? null : Long.valueOf(j);
+  32: if (lValueOf != null) {
+  33: deaVar.put("sessionId", Long.valueOf(lValueOf.longValue()));
+  34: }
+  35: arrayList.add(deaVar.b());
+  36: }
+  37: d("events", arrayList);
+  38: }
+  39: 
+  40: @Override // defpackage.u6j
+  41: public final short k() {
+  42: cp5 cp5Var = tdd.c;
+  43: return (short) 5;
+  44: }
+  45: 
+  46: @Override // defpackage.u6j
+  47: public final boolean o() {
+  48: return true;
+  49: }
+  50: }
+~~~
+
+## defpackage/s5a.java (1145 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: import java.util.ArrayList;
+   4: import java.util.Iterator;
+   5: import java.util.List;
+   6: import java.util.Set;
+   7: import java.util.concurrent.CancellationException;
+   8: import ru.ok.tamtam.errors.TamErrorException;
+   9: 
+  10: /* JADX INFO: loaded from: classes.dex */
+  11: public final class s5a extends x1j implements e18 {
+  12: public List e;
+  13: public iuf f;
+  14: public int g;
+  15: public int h;
+  16: public byte i;
+  17: public /* synthetic */ Object j;
+  18: public final /* synthetic */ t5a k;
+  19: public final /* synthetic */ boolean l;
+  20: public final /* synthetic */ String m;
+  21: 
+  22: /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+  23: public s5a(t5a t5aVar, boolean z, String str, b55 b55Var) {
+  24: super(2, b55Var);
+  25: this.k = t5aVar;
+  26: this.l = z;
+  27: this.m = str;
+  28: }
+  29: 
+  30: @Override // defpackage.e18
+  31: public final Object invoke(Object obj, Object obj2) {
+  32: return ((s5a) u((b55) obj2, (ja5) obj)).w(s1k.a);
+  33: }
+  34: 
+  35: @Override // defpackage.hv0
+  36: public final b55 u(b55 b55Var, Object obj) {
+  37: s5a s5aVar = new s5a(this.k, this.l, this.m, b55Var);
+  38: s5aVar.j = obj;
+  39: return s5aVar;
+  40: }
+  41: 
+  42: /* JADX WARN: Code duplicated, block: B:101:0x01f4 A[Catch: all -> 0x0157, CancellationException -> 0x0164, Exception -> 0x0205, TamErrorException -> 0x020a, LOOP:0: B:99:0x01ee->B:101:0x01f4, LOOP_END, TryCatch #23 {CancellationException -> 0x0164, all -> 0x0157, blocks: (B:121:0x0293, B:122:0x029f, B:84:0x0193, B:86:0x0197, B:88:0x019f,
+  43: /* JADX WARN: Code duplicated, block: B:109:0x0238  */
+  44: /* JADX WARN: Code duplicated, block: B:113:0x025c A[Catch: all -> 0x0157, CancellationException -> 0x0164, Exception -> 0x0271, TamErrorException -> 0x0275, LOOP:1: B:111:0x0256->B:113:0x025c, LOOP_END, TryCatch #30 {TamErrorException -> 0x0275, Exception -> 0x0271, blocks: (B:110:0x023a, B:111:0x0256, B:113:0x025c, B:118:0x0279), top: B
+  45: /* JADX WARN: Code duplicated, block: B:140:0x02f0  */
+  46: /* JADX WARN: Code duplicated, block: B:141:0x02f3  */
+  47: /* JADX WARN: Code duplicated, block: B:173:0x03c7 A[Catch: all -> 0x03b8, TryCatch #13 {all -> 0x03b8, blocks: (B:179:0x03ee, B:181:0x0415, B:165:0x0372, B:171:0x03bb, B:173:0x03c7, B:175:0x03cf, B:176:0x03e9), top: B:188:0x001a }] */
+  48: /* JADX WARN: Code duplicated, block: B:175:0x03cf A[Catch: all -> 0x03b8, TryCatch #13 {all -> 0x03b8, blocks: (B:179:0x03ee, B:181:0x0415, B:165:0x0372, B:171:0x03bb, B:173:0x03c7, B:175:0x03cf, B:176:0x03e9), top: B:188:0x001a }] */
+  49: /* JADX WARN: Code duplicated, block: B:181:0x0415 A[Catch: all -> 0x03b8, TRY_LEAVE, TryCatch #13 {all -> 0x03b8, blocks: (B:179:0x03ee, B:181:0x0415, B:165:0x0372, B:171:0x03bb, B:173:0x03c7, B:175:0x03cf, B:176:0x03e9), top: B:188:0x001a }] */
+  50: /* JADX WARN: Code duplicated, block: B:190:0x02fe A[EXC_TOP_SPLITTER, SYNTHETIC] */
+  51: /* JADX WARN: Code duplicated, block: B:209:0x00fe A[EXC_TOP_SPLITTER, SYNTHETIC] */
+  52: /* JADX WARN: Code duplicated, block: B:56:0x0124  */
+  53: /* JADX WARN: Code duplicated, block: B:58:0x0128  */
+  54: /* JADX WARN: Code duplicated, block: B:86:0x0197 A[Catch: all -> 0x0157, Exception -> 0x015c, CancellationException -> 0x0164, TamErrorException -> 0x0169, TryCatch #26 {TamErrorException -> 0x0169, Exception -> 0x015c, blocks: (B:84:0x0193, B:86:0x0197, B:88:0x019f, B:92:0x01ad, B:95:0x01d2, B:61:0x0131), top: B:210:0x0193 }] */
+  55: /* JADX WARN: Code duplicated, block: B:88:0x019f A[Catch: all -> 0x0157, Exception -> 0x015c, CancellationException -> 0x0164, TamErrorException -> 0x0169, TryCatch #26 {TamErrorException -> 0x0169, Exception -> 0x015c, blocks: (B:84:0x0193, B:86:0x0197, B:88:0x019f, B:92:0x01ad, B:95:0x01d2, B:61:0x0131), top: B:210:0x0193 }] */
+  56: /* JADX WARN: Code duplicated, block: B:90:0x01a9 A[ADDED_TO_REGION] */
+  57: /* JADX WARN: Code duplicated, block: B:94:0x01d0  */
+  58: /* JADX WARN: Code duplicated, block: B:95:0x01d2 A[Catch: all -> 0x0157, Exception -> 0x015c, CancellationException -> 0x0164, TamErrorException -> 0x0169, PHI: r4 r5 r6 r10 r20 r21
+  59: 0x01d2: PHI (r4v16 int) = (r4v6 int), (r4v30 int) binds: [B:38:0x009f, B:93:0x01ce] A[DONT_GENERATE, DONT_INLINE]
+  60: 0x01d2: PHI (r5v23 int) = (r5v4 int), (r5v34 int) binds: [B:38:0x009f, B:93:0x01ce] A[DONT_GENERATE, DONT_INLINE]
+  61: 0x01d2: PHI (r6v15 java.lang.Object) = (r6v3 java.lang.Object), (r6v40 java.lang.Object) binds: [B:38:0x009f, B:93:0x01ce] A[DONT_GENERATE, DONT_INLINE]
+  62: 0x01d2: PHI (r10v9 iuf) = (r10v35 iuf), (r10v36 iuf) binds: [B:38:0x009f, B:93:0x01ce] A[DONT_GENERATE, DONT_INLINE]
+  63: 0x01d2: PHI (r20v10 java.lang.String) = (r20v1 java.lang.String), (r20v23 java.lang.String) binds: [B:38:0x009f, B:93:0x01ce] A[DONT_GENERATE, DONT_INLINE]
+  64: 0x01d2: PHI (r21v7 java.lang.String) = (r21v0 java.lang.String), (r6v29 java.lang.String) binds: [B:38:0x009f, B:93:0x01ce] A[DONT_GENERATE, DONT_INLINE], TRY_LEAVE, TryCatch #26 {TamErrorException -> 0x0169, Exception -> 0x015c, blocks: (B:84:0x0193, B:86:0x0197, B:88:0x019f, B:92:0x01ad, B:95:0x01d2, B:61:0x0131), top: B:210:0x0193 }] *
+  65: /* JADX WARN: Code duplicated, block: B:98:0x01da A[Catch: all -> 0x0157, CancellationException -> 0x0164, Exception -> 0x0205, TamErrorException -> 0x020a, TryCatch #23 {CancellationException -> 0x0164, all -> 0x0157, blocks: (B:121:0x0293, B:122:0x029f, B:84:0x0193, B:86:0x0197, B:88:0x019f, B:144:0x02fe, B:150:0x0322, B:92:0x01ad, B:95
+  66: /* JADX WARN: Code restructure failed: missing block: B:119:0x028f, code lost:
+  67: 
+  68: if (((defpackage.c9g) r6).a(r11, r22) == r3) goto L183;
+  69: */
+  70: /* JADX WARN: Code restructure failed: missing block: B:166:0x03a7, code lost:
+  71: 
+  72: if (r2.c(r6, r5, r0, r22) == r3) goto L183;
+  73: */
+  74: /* JADX WARN: Code restructure failed: missing block: B:182:0x042b, code lost:
+  75: 
+  76: if (r2.c(r6, r5, r0, r22) == r3) goto L183;
+  77: */
+  78: /* JADX WARN: Instruction removed from duplicated block: B:175:0x03cf, please report this as an issue */
+  79: /* JADX WARN: Multi-variable type inference failed */
+  80: /* JADX WARN: Path cross not found for [B:50:0x0108, B:51:0x0110], limit reached: 207 */
+  81: /* JADX WARN: Type inference failed for: r10v0 */
+  82: /* JADX WARN: Type inference failed for: r10v11, types: [iuf] */
+  83: /* JADX WARN: Type inference failed for: r10v13, types: [iuf] */
+  84: /* JADX WARN: Type inference failed for: r10v18 */
+  85: /* JADX WARN: Type inference failed for: r10v23 */
+  86: /* JADX WARN: Type inference failed for: r10v24 */
+  87: /* JADX WARN: Type inference failed for: r10v25 */
+  88: /* JADX WARN: Type inference failed for: r10v26 */
+  89: /* JADX WARN: Type inference failed for: r10v27 */
+  90: /* JADX WARN: Type inference failed for: r10v28 */
+  91: /* JADX WARN: Type inference failed for: r10v29 */
+  92: /* JADX WARN: Type inference failed for: r10v30 */
+  93: /* JADX WARN: Type inference failed for: r10v31 */
+  94: /* JADX WARN: Type inference failed for: r10v32 */
+  95: /* JADX WARN: Type inference failed for: r2v10, types: [t5a] */
+  96: /* JADX WARN: Type inference failed for: r2v18, types: [t5a] */
+  97: /* JADX WARN: Type inference failed for: r3v1, types: [java.util.Set] */
+  98: /* JADX WARN: Type inference failed for: r4v0, types: [byte] */
+  99: /* JADX WARN: Type inference failed for: r4v1 */
+ 100: /* JADX WARN: Type inference failed for: r4v18 */
+ 101: /* JADX WARN: Type inference failed for: r4v3, types: [java.lang.Object] */
+ 102: /* JADX WARN: Type inference failed for: r5v17 */
+ 103: /* JADX WARN: Type inference failed for: r5v18 */
+ 104: /* JADX WARN: Type inference failed for: r5v2 */
+ 105: /* JADX WARN: Type inference failed for: r5v29, types: [java.util.List] */
+ 106: /* JADX WARN: Type inference failed for: r5v3 */
+ 107: /* JADX WARN: Type inference failed for: r5v31, types: [java.util.List] */
+ 108: /* JADX WARN: Type inference failed for: r5v35 */
+ 109: /* JADX WARN: Type inference failed for: r5v42 */
+ 110: /* JADX WARN: Type inference failed for: r5v43 */
+ 111: /* JADX WARN: Type inference failed for: r5v44 */
+ 112: /* JADX WARN: Type inference failed for: r5v45 */
+ 113: /* JADX WARN: Type inference failed for: r5v46 */
+ 114: /* JADX WARN: Type inference failed for: r5v47 */
+ 115: /* JADX WARN: Type inference failed for: r5v48 */
+ 116: /* JADX WARN: Type inference fix 'apply assigned field type' failed
+ 117: java.lang.UnsupportedOperationException: ArgType.getObject(), call class: class jadx.core.dex.instructions.args.ArgType$UnknownArg
+ 118: at jadx.core.dex.instructions.args.ArgType.getObject(ArgType.java:596)
+ 119: at jadx.core.dex.attributes.nodes.ClassTypeVarsAttr.getTypeVarsMapFor(ClassTypeVarsAttr.java:35)
+ 120: at jadx.core.dex.nodes.utils.TypeUtils.replaceClassGenerics(TypeUtils.java:177)
+ 121: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.insertExplicitUseCast(FixTypesVisitor.java:397)
+ 122: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryFieldTypeWithNewCasts(FixTypesVisitor.java:359)
+ 123: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
+ 124: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+ 125: */
+ 126: /* JADX WARN: Unsupported multi-entry loop pattern (BACK_EDGE: B:133:0x02e0 -> B:206:0x00f8). Please report as a decompilation issue!!! */
+ 127: @Override // defpackage.hv0
+ 128: /*
+ 129: Code decompiled incorrectly, please refer to instructions dump.
+ 130: */
+ 131: public final Object w(Object obj) throws Throwable {
+ 132: String str;
+ 133: String str2;
+ 134: boolean z;
+ 135: o1d o1dVar;
+ 136: c6a c6aVar;
+ 137: int i;
+ 138: String str3;
+ 139: ?? r5;
+ 140: String str4;
+ 141: ?? r6;
+ 142: int i2;
+ 143: int i3;
+ 144: Object objB;
+ 145: int i4;
+ 146: List list;
+ 147: iuf iufVar;
+ 148: List list2;
+ 149: List list3;
+ 150: ArrayList arrayList;
+ 151: Iterator it;
+ 152: List list4;
+ 153: t5a t5aVar;
+ 154: ArrayList arrayList2;
+ 155: f7j f7jVarB;
+ 156: k5a k5aVar;
+ 157: iuf iufVar2;
+ 158: List list5;
+ 159: Set set;
+ 160: z6j z6jVar;
+ 161: List list6;
+ 162: List list7;
+ 163: t5a t5aVar2;
+ 164: String str5;
+ 165: boolean z2;
+ 166: o1d o1dVar2;
+ 167: boolean z3;
+ 168: List list8;
+ 169: c6a c6aVar2 = c6a.d;
+ 170: ja5 ja5Var = (ja5) this.j;
+ 171: ka5 ka5Var = ka5.a;
+ 172: ?? r4 = this.i;
+ 173: String str6 = "LOG_DISCONNECTION_BLOCKER";
+ 174: String str7 = "Failed to send logs ";
+ 175: ?? r10 = 5;
+ 176: ?? r11 = 5;
+ 177: try {
+ 178: try {
+ 179: try {
+ 180: if (r4 != 0) {
+ 181: try {
+ 182: if (r4 == 1) {
+ 183: i2 = this.h;
+ 184: i3 = this.g;
+ 185: iuf iufVar3 = this.f;
+ 186: List list9 = this.e;
+ 187: xnm.y(obj);
+ 188: str6 = "LOG_DISCONNECTION_BLOCKER";
+ 189: str3 = "Failed to send logs ";
+ 190: objB = obj;
+ 191: iufVar = iufVar3;
+ 192: list4 = (List) objB;
+ 193: if (!list4.isEmpty()) {
+ 194: List<w3i> list10 = list4;
+ 195: t5aVar = this.k;
+ 196: arrayList2 = new ArrayList(xa4.p0(list10, 10));
+ 197: for (w3i w3iVar : list10) {
+ 198: t5aVar.getClass();
+ 199: arrayList2.add(t5a.j(w3iVar));
+ 200: }
+ 201: iufVar.a = arrayList2;
+ 202: f7jVarB = this.k.b();
+ 203: k5aVar = new k5a((List) iufVar.a);
+ 204: this.j = ja5Var;
+ 205: this.e = list4;
+ 206: this.f = iufVar;
+ 207: this.g = i3;
+ 208: this.h = i2;
+ 209: this.i = (byte) 2;
+ 210: if (f7jVarB.e(k5aVar, this) != ka5Var) {
+ 211: i4 = i3;
+ 212: list = list4;
+ 213: iufVar = iufVar;
+ 214: u5i u5iVar = (u5i) this.k.f.getValue();
+ 215: List list11 = list;
+ 216: arrayList = new ArrayList(xa4.p0(list11, 10));
+ 217: for (it = list11.iterator(); it.hasNext(); it = it) {
+ 218: arrayList.add(f09.e(((w3i) it.next()).a));
+ 219: }
+ 220: this.j = ja5Var;
+ 221: this.e = list;
+ 222: this.f = iufVar;
+ 223: this.g = i4;
+ 224: this.h = i2;
+ 225: this.i = (byte) 3;
+ 226: list2 = list;
+ 227: iufVar = iufVar;
+ 228: }
+ 229: return ka5Var;
+ 230: }
+ 231: i = i3;
+ 232: list = list4;
+ 233: if (i != 0) {
+ 234: iufVar = iufVar;
+ 235: hog hogVar = (hog) this.k.a();
+ 236: hogVar.u.z(hogVar, hog.i0[16], Long.valueOf(this.k.c.getAsLong()));
+ 237: }
+ 238: iufVar = iufVar;
+ 239: f09.p(this.k.m, "Finished sending logs");
+ 240: z6jVar = (z6j) this.k.j.getValue();
+ 241: set = z6jVar.l;
+ 242: str6 = str6;
+ 243: } else if (r4 == 2) {
+ 244: i2 = this.h;
+ 245: int i5 = this.g;
+ 246: iuf iufVar4 = this.f;
+ 247: List list12 = this.e;
+ 248: xnm.y(obj);
+ 249: i4 = i5;
+ 250: list = list12;
+ 251: str6 = "LOG_DISCONNECTION_BLOCKER";
+ 252: str3 = "Failed to send logs ";
+ 253: iufVar = iufVar4;
+ 254: u5i u5iVar2 = (u5i) this.k.f.getValue();
+ 255: List list13 = list;
+ 256: arrayList = new ArrayList(xa4.p0(list13, 10));
+ 257: while (it.hasNext()) {
+ 258: arrayList.add(f09.e(((w3i) it.next()).a));
+ 259: }
+ 260: this.j = ja5Var;
+~~~
+
+Поздние сигнатуры: 
+
+## defpackage/dcc.java (30 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: /* JADX INFO: loaded from: classes.dex */
+   4: public final class dcc {
+   5: public final z3j a;
+   6: public final boolean b;
+   7: public final boolean c;
+   8: public final rp9 d;
+   9: public final rp9 e;
+  10: public final rp9 f;
+  11: public final z3j g;
+  12: public final rp9 h;
+  13: public final rp9 i;
+  14: public final rp9 j;
+  15: public final z3j k;
+  16: 
+  17: public dcc(rp9 rp9Var, rp9 rp9Var2, rp9 rp9Var3, z3j z3jVar, rp9 rp9Var4, rp9 rp9Var5, rp9 rp9Var6, rp9 rp9Var7, z3j z3jVar2, boolean z, boolean z2) {
+  18: this.a = z3jVar2;
+  19: this.b = z;
+  20: this.c = z2;
+  21: this.d = rp9Var;
+  22: this.e = rp9Var2;
+  23: this.f = rp9Var3;
+  24: this.g = z3jVar;
+  25: this.h = rp9Var5;
+  26: this.i = rp9Var6;
+  27: this.j = rp9Var7;
+  28: this.k = new z3j(new zx(rp9Var4, (byte) 9));
+  29: }
+  30: }
+~~~
+
+## defpackage/gci.java (22 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: /* JADX INFO: loaded from: classes.dex */
+   4: public interface gci {
+   5: String a();
+   6: 
+   7: int b();
+   8: 
+   9: String c();
+  10: 
+  11: Object d(b55 b55Var);
+  12: 
+  13: boolean e();
+  14: 
+  15: Object f(b55 b55Var);
+  16: 
+  17: baf g();
+  18: 
+  19: int h();
+  20: 
+  21: Object i(b55 b55Var);
+  22: }
+~~~
+
+## defpackage/i00.java (83 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: import java.util.Collection;
+   4: import java.util.Iterator;
+   5: import java.util.Map;
+   6: import java.util.Set;
+   7: 
+   8: /* JADX INFO: loaded from: classes.dex */
+   9: public final class i00 extends uph implements Map {
+  10: public c00 d;
+  11: public e00 e;
+  12: public g00 f;
+  13: 
+  14: @Override // java.util.Map
+  15: public final Set entrySet() {
+  16: c00 c00Var = this.d;
+  17: if (c00Var != null) {
+  18: return c00Var;
+  19: }
+  20: c00 c00Var2 = new c00(this);
+  21: this.d = c00Var2;
+  22: return c00Var2;
+  23: }
+  24: 
+  25: public final boolean j(Collection collection) {
+  26: Iterator it = collection.iterator();
+  27: while (it.hasNext()) {
+  28: if (!super.containsKey(it.next())) {
+  29: return false;
+  30: }
+  31: }
+  32: return true;
+  33: }
+  34: 
+  35: public final boolean k(Collection collection) {
+  36: int i = this.c;
+  37: Iterator it = collection.iterator();
+  38: while (it.hasNext()) {
+  39: super.remove(it.next());
+  40: }
+  41: return i != this.c;
+  42: }
+  43: 
+  44: @Override // java.util.Map
+  45: public final Set keySet() {
+  46: e00 e00Var = this.e;
+  47: if (e00Var != null) {
+  48: return e00Var;
+  49: }
+  50: e00 e00Var2 = new e00(this);
+  51: this.e = e00Var2;
+  52: return e00Var2;
+  53: }
+  54: 
+  55: public final boolean l(Collection collection) {
+  56: int i = this.c;
+  57: for (int i2 = i - 1; i2 >= 0; i2--) {
+  58: if (!collection.contains(f(i2))) {
+  59: g(i2);
+  60: }
+  61: }
+  62: return i != this.c;
+  63: }
+  64: 
+  65: @Override // java.util.Map
+  66: public final void putAll(Map map) {
+  67: b(map.size() + this.c);
+  68: for (Map.Entry entry : map.entrySet()) {
+  69: put(entry.getKey(), entry.getValue());
+  70: }
+  71: }
+  72: 
+  73: @Override // java.util.Map
+  74: public final Collection values() {
+  75: g00 g00Var = this.f;
+  76: if (g00Var != null) {
+  77: return g00Var;
+  78: }
+  79: g00 g00Var2 = new g00(this);
+  80: this.f = g00Var2;
+  81: return g00Var2;
+  82: }
+  83: }
+~~~
+
+## defpackage/dle.java (37 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: import android.content.SharedPreferences;
+   4: 
+   5: /* JADX INFO: loaded from: classes.dex */
+   6: public final class dle {
+   7: public final n3a a;
+   8: public final j9e b;
+   9: public final mdk c;
+  10: public final qi0 d;
+  11: public final h7d e;
+  12: 
+  13: public dle(n3a n3aVar, j9e j9eVar, mdk mdkVar, qi0 qi0Var, h7d h7dVar) {
+  14: this.a = n3aVar;
+  15: this.b = j9eVar;
+  16: this.c = mdkVar;
+  17: this.d = qi0Var;
+  18: this.e = h7dVar;
+  19: }
+  20: 
+  21: public final void a() {
+  22: this.a.b();
+  23: j9e j9eVar = this.b;
+  24: j9eVar.y().edit().clear().commit();
+  25: ((SharedPreferences) j9eVar.g.getValue()).edit().clear().commit();
+  26: ((SharedPreferences) j9eVar.f.getValue()).edit().clear().commit();
+  27: for (o9e o9eVar : j9eVar.v().values()) {
+  28: o9eVar.g().edit().remove(o9eVar.a).commit();
+  29: o9eVar.o = 5;
+  30: o9eVar.p.a();
+  31: ((i4c) o9eVar.q.getValue()).setValue(o9eVar.b);
+  32: }
+  33: this.c.b();
+  34: this.d.b();
+  35: this.e.b();
+  36: }
+  37: }
+~~~
+
+## defpackage/m8a.java (32 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: /* JADX INFO: loaded from: classes2.dex */
+   4: public final class m8a extends x6c {
+   5: public static final m8a b = new m8a();
+   6: 
+   7: public final an5 k() {
+   8: return new an5(":chat-list", null);
+   9: }
+  10: 
+  11: public final an5 l() {
+  12: return new an5(":webview/faq", null);
+  13: }
+  14: 
+  15: public final an5 m(final String str, final String str2, final String str3, final String str4, final int i, final int i2, final int i3) {
+  16: return g(new q08() { // from class: l8a
+  17: @Override // defpackage.q08
+  18: public final Object d(Object obj) {
+  19: en5 en5Var = (en5) obj;
+  20: en5Var.a = ":twofa/auth/password/check";
+  21: en5Var.d(str, "track_id");
+  22: en5Var.c("hint", str2);
+  23: en5Var.d(str3, "email");
+  24: en5Var.d(str4, "phone");
+  25: en5Var.d(Integer.valueOf(i), "p_mn_l");
+  26: en5Var.d(Integer.valueOf(i2), "p_mx_l");
+  27: en5Var.d(Integer.valueOf(i3), "h_mx_l");
+  28: return s1k.a;
+  29: }
+  30: });
+  31: }
+  32: }
+~~~
+
+## defpackage/rh0.java (26 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: /* JADX INFO: loaded from: classes3.dex */
+   4: public final class rh0 extends x6j {
+   5: public final String c;
+   6: 
+   7: public rh0(String str) {
+   8: this.c = str;
+   9: }
+  10: 
+  11: public final boolean equals(Object obj) {
+  12: if (this == obj) {
+  13: return true;
+  14: }
+  15: return (obj instanceof rh0) && this.c.equals(((rh0) obj).c);
+  16: }
+  17: 
+  18: public final int hashCode() {
+  19: return this.c.hashCode();
+  20: }
+  21: 
+  22: @Override // defpackage.mv0
+  23: public final String toString() {
+  24: return vg9.y("Response(trackId='", this.c, "')");
+  25: }
+  26: }
+~~~
+
+## defpackage/gh0.java (15 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: /* JADX WARN: $VALUES field not found */
+   4: /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
+   5: /* JADX INFO: loaded from: classes2.dex */
+   6: public final class gh0 {
+   7: public static final /* synthetic */ ut6 b = new ut6(new gh0[]{new gh0("NUMBER_NOT_ASSIGNED", 0, 0), new gh0("NUMBER_ASSIGNED", 1, 1), new gh0("VERIFICATION_PASSED", 2, 2), new gh0("VERIFICATION_TIMEOUT", 3, 3)});
+   8: public final byte a;
+   9: 
+  10: /* JADX WARN: Multi-variable type inference failed */
+  11: public gh0(String str, int i, short s) {
+  12: super(str, i);
+  13: this.a = s;
+  14: }
+  15: }
 ~~~
 
