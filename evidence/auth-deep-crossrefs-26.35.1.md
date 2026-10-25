@@ -973,18 +973,18 @@
 
 ### defpackage/l7.java
 ~~~text
- 453: j8 j8Var = j8.a;
- 454: zwc zwcVar = new zwc(j8.e(q1a.b));
- 455: r1g r1gVar = (r1g) zwcVar.getAccessor().c(382);
- 456: f09.E(r1gVar.s, "onBootCompleted", null);
- 457: ((hog) r1gVar.e()).B(true);
- 458: r1gVar.g().e(false);
- 459: ((q8j) r1gVar.h.getValue()).a();
- 460: v2d v2dVar = (v2d) zwcVar.getAccessor().c(713);
- 461: v2dVar.c().f();
- 462: v2dVar.f();
+ 450: j8 j8Var = j8.a;
+ 451: zwc zwcVar = new zwc(j8.e(q1a.b));
+ 452: r1g r1gVar = (r1g) zwcVar.getAccessor().c(382);
+ 453: f09.E(r1gVar.s, "onBootCompleted", null);
+ 454: ((hog) r1gVar.e()).B(true);
+ 455: r1gVar.g().e(false);
+ 456: ((q8j) r1gVar.h.getValue()).a();
+ 457: v2d v2dVar = (v2d) zwcVar.getAccessor().c(713);
+ 458: v2dVar.c().f();
+ 459: v2dVar.f();
 --
- 463: return;
+ 460: return;
 --
 ~~~
 
@@ -5312,6 +5312,626 @@
  101: }
  102: }
  103: int iG2 = s95.G(iqg.a);
+--
+~~~
+
+## auth token persistence
+Файлов с совпадениями (первые 95): 22
+
+### com/google/android/gms/auth/api/signin/GoogleSignInOptions.java
+~~~text
+ 100: for (int i = 0; i < length; i++) {
+ 101: hashSet.add(new Scope(1, jSONArray.getString(i)));
+ 102: }
+ 103: String strOptString = jSONObject.has("accountName") ? jSONObject.optString("accountName") : null;
+ 104: return new GoogleSignInOptions(3, new ArrayList(hashSet), !TextUtils.isEmpty(strOptString) ? new Account(strOptString, "com.google") : null, jSONObject.getBoolean("idTokenRequested"), jSONObject.getBoolean("serverAuthRequested"), jSONObject.getBoolean("forceCodeForRefreshToken"), jSONObject.has("serverClientId") ? jSONObject.optString("se
+ 105: }
+ 106: 
+ 107: public static HashMap c(ArrayList arrayList) {
+ 108: HashMap map = new HashMap();
+ 109: if (arrayList != null) {
+--
+~~~
+
+### com/vk/push/core/auth/AuthTokenResult.java
+~~~text
+   6: import defpackage.mj0;
+   7: import kotlin.Metadata;
+   8: 
+   9: /* JADX INFO: loaded from: classes2.dex */
+  10: @Metadata(d1 = {"\u0000\f\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0003\b\u0087\b\u0018\u0000 \u00022\u00020\u0001:\u0001\u0003¨\u0006\u0004"}, d2 = {"Lcom/vk/push/core/auth/AuthTokenResult;", "Landroid/os/Parcelable;", "CREATOR", "mj0", "core_release"}, k = 1, mv = {1, 7, 1}, xi = 48)
+  11: public final /* data */ class AuthTokenResult implements Parcelable {
+  12: public static final mj0 CREATOR = new mj0();
+  13: public final String a;
+  14: 
+  15: public AuthTokenResult(String str) {
+--
+  16: this.a = str;
+--
+  17: }
+  18: 
+  19: @Override // android.os.Parcelable
+  20: public final int describeContents() {
+--
+  24: public final boolean equals(Object obj) {
+  25: if (this == obj) {
+  26: return true;
+  27: }
+  28: return (obj instanceof AuthTokenResult) && this.a.equals(((AuthTokenResult) obj).a);
+  29: }
+  30: 
+  31: public final int hashCode() {
+  32: return this.a.hashCode();
+  33: }
+--
+  34: 
+  35: public final String toString() {
+  36: return a15.q(new StringBuilder("AuthTokenResult(token="), this.a, ')');
+  37: }
+  38: 
+  39: @Override // android.os.Parcelable
+  40: public final void writeToParcel(Parcel parcel, int i) {
+  41: parcel.writeString(this.a);
+--
+~~~
+
+### defpackage/f0f.java
+~~~text
+ 164: o1d o1dVar = f09.g;
+ 165: if (o1dVar != null) {
+ 166: c6a c6aVar = c6a.d;
+ 167: if (o1dVar.b(c6aVar)) {
+ 168: o1dVar.c(c6aVar, name, "putProfile: " + cqeVar2 + "; token=" + ((str == null \|\| zti.n0(str)) ? "null" : "***"), null);
+ 169: }
+ 170: }
+ 171: if (str != null && str.length() != 0) {
+ 172: u6 u6Var = new u6(this, cqeVar2, str, (byte) 11);
+ 173: d0fVar.d = cqeVar2;
+--
+~~~
+
+### defpackage/fn0.java
+~~~text
+  20: 
+  21: public gn0 a() {
+  22: String strConcat = this.a == 0 ? " registrationStatus" : BuildConfig.FLAVOR;
+  23: if (((Long) this.f) == null) {
+  24: strConcat = strConcat.concat(" expiresInSecs");
+  25: }
+  26: if (((Long) this.g) == null) {
+  27: strConcat = strConcat.concat(" tokenCreationEpochInSecs");
+  28: }
+  29: if (strConcat.isEmpty()) {
+--
+  30: return new gn0(this.a, ((Long) this.f).longValue(), ((Long) this.g).longValue(), (String) this.b, (String) this.c, (String) this.d, (String) this.e);
+  31: }
+  32: k3g.o("Missing required properties:".concat(strConcat));
+--
+~~~
+
+### defpackage/gn0.java
+~~~text
+ 113: } else {
+ 114: str = "REGISTERED";
+ 115: }
+ 116: sb.append(str);
+ 117: sb.append(", authToken=");
+ 118: sb.append(this.c);
+ 119: sb.append(", refreshToken=");
+ 120: sb.append(this.d);
+ 121: sb.append(", expiresInSecs=");
+ 122: sb.append(this.e);
+--
+ 123: sb.append(", tokenCreationEpochInSecs=");
+ 124: sb.append(this.f);
+--
+ 125: sb.append(", fisError=");
+ 126: return w7g.w(sb, this.g, "}");
+--
+ 127: }
+ 128: }
+--
+~~~
+
+### defpackage/hg7.java
+~~~text
+ 116: if (strNextName.equals("name")) {
+ 117: strNextString = jsonReader.nextString();
+ 118: } else if (strNextName.equals("fid")) {
+ 119: strNextString2 = jsonReader.nextString();
+ 120: } else if (strNextName.equals("refreshToken")) {
+ 121: strNextString3 = jsonReader.nextString();
+ 122: } else if (strNextName.equals("authToken")) {
+ 123: jsonReader.beginObject();
+ 124: while (jsonReader.hasNext()) {
+ 125: String strNextName2 = jsonReader.nextName();
+--
+ 126: if (strNextName2.equals("token")) {
+ 127: jy7VarA.c = jsonReader.nextString();
+--
+~~~
+
+### defpackage/jg7.java
+~~~text
+ 124: ui1 ui1Var = hg7Var.c;
+ 125: if (!ui1Var.f()) {
+ 126: throw new FirebaseInstallationsException("Firebase Installations Service is unavailable. Please try again later.");
+ 127: }
+ 128: URL urlA = hg7.a("projects/" + str3 + "/installations/" + str2 + "/authTokens:generate");
+ 129: int i = 0;
+ 130: while (true) {
+ 131: if (i > 1) {
+ 132: throw new FirebaseInstallationsException("Firebase Installations Service is unavailable. Please try again later.");
+ 133: }
+--
+~~~
+
+### defpackage/jj0.java
+~~~text
+  17: byte b = this.b;
+  18: u6a u6aVar = this.c;
+  19: switch (b) {
+  20: case 0:
+  21: return u6aVar.f("AuthTokenIPC");
+  22: case 1:
+  23: return u6aVar.f("PushesIPC");
+  24: default:
+  25: return u6aVar.f("Notifier");
+  26: }
+--
+~~~
+
+### defpackage/k27.java
+~~~text
+   1: package defpackage;
+   2: 
+   3: import com.vk.push.core.auth.Auth;
+   4: import com.vk.push.core.auth.AuthTokenResult;
+   5: import com.vk.push.core.auth.AuthorizedResult;
+   6: import com.vk.push.core.base.AidlResult;
+   7: import com.vk.push.core.base.AsyncCallback;
+   8: import com.vk.push.core.hostinfo.MasterElections;
+   9: import com.vk.push.core.masterhost.MasterHost;
+--
+ 174: case 19:
+ 175: ((Auth) obj).A((AsyncCallback) obj2);
+ 176: return s1kVar;
+ 177: case 20:
+ 178: return new p4g(((AuthTokenResult) ((AidlResult) obj).a).a);
+ 179: case 21:
+ 180: return new p4g(new d0m((RegisterForPushesResult) ((AidlResult) obj).a, (yw) obj2));
+ 181: case 22:
+ 182: ((Auth) obj).z((AsyncCallback) obj2);
+ 183: return s1kVar;
+--
+~~~
+
+### defpackage/ki0.java
+~~~text
+  39: return null;
+  40: }
+  41: bqcVar.h("token", str2);
+  42: if (str == null \|\| str.length() == 0) {
+  43: k3g.t("AuthCmd param 'verifyCode' can't be null when param 'authTokenType' is 'PHONE' or 'PHONE_CONFIRM'");
+  44: return null;
+  45: }
+  46: bqcVar.h("verifyCode", str);
+  47: bqcVar.h("authTokenType", "CHECK_CODE");
+  48: objB = f7jVarA.a.b(bqcVar, ji0Var);
+--
+  49: if (objB != ka5Var) {
+  50: }
+  51: return ka5Var;
+  52: }
+--
+~~~
+
+### defpackage/kj0.java
+~~~text
+   1: package defpackage;
+   2: 
+   3: import com.vk.push.core.auth.AuthTokenResult;
+   4: 
+   5: /* JADX INFO: loaded from: classes2.dex */
+   6: public final class kj0 {
+   7: public final g68 a;
+   8: public final d68 b;
+--
+ 119: obj = ((p4g) objB).a;
+ 120: }
+ 121: kj0Var.f.a(new x1g(kj0Var.g.a("request_intermediate_token"), obj, ywVar.a, yh0Var.a));
+ 122: xnm.y(obj);
+ 123: return new AuthTokenResult(((ba9) obj).a);
+ 124: yh0 yh0Var2 = (yh0) objB;
+ 125: String str2 = yh0Var2.b;
+ 126: String str3 = yh0Var2.a;
+ 127: if (zti.n0(str2)) {
+ 128: k3g.o("Auth token is blank");
+--
+ 147: kj0Var = this;
+ 148: yh0Var = yh0Var2;
+ 149: kj0Var.f.a(new x1g(kj0Var.g.a("request_intermediate_token"), obj, ywVar.a, yh0Var.a));
+ 150: xnm.y(obj);
+ 151: return new AuthTokenResult(((ba9) obj).a);
+ 152: }
+ 153: return ka5Var;
+ 154: }
+ 155: 
+ 156: public final void c() {
+--
+~~~
+
+### defpackage/lbj.java
+~~~text
+   4: import android.os.IBinder;
+   5: import android.os.Parcel;
+   6: import android.os.RemoteException;
+   7: import com.vk.push.common.exception.SdkIsNotInitializedException;
+   8: import com.vk.push.core.auth.AuthTokenResult;
+   9: import com.vk.push.core.base.AidlResult;
+  10: import com.vk.push.core.base.AsyncCallback;
+  11: import com.vk.push.core.test.TestPushPayload;
+  12: import com.vk.push.core.test.TestPushProvider;
+  13: import java.util.UUID;
+--
+  69: if (asyncCallbackC2 != null) {
+  70: c().d("receive IPC getIntermediateToken", null);
+  71: ((lzg) this.h.getValue()).getClass();
+  72: try {
+  73: asyncCallbackC2.Y(new AidlResult(new AuthTokenResult(UUID.randomUUID().toString())));
+  74: } catch (RemoteException e) {
+  75: c().e("Test get intermediate token has failed", e);
+  76: }
+  77: }
+  78: } else if (asyncCallbackC2 != null) {
+--
+~~~
+
+### defpackage/li0.java
+~~~text
+  33: return this.a.hashCode();
+  34: }
+  35: 
+  36: public final String toString() {
+  37: return "AuthTokenData(appToToken=" + this.a + ')';
+  38: }
+  39: }
+--
+~~~
+
+### defpackage/mj0.java
+~~~text
+   1: package defpackage;
+   2: 
+   3: import android.os.Parcel;
+   4: import android.os.Parcelable;
+   5: import com.vk.push.core.auth.AuthTokenResult;
+   6: import me.leolin.shortcutbadger.BuildConfig;
+   7: 
+   8: /* JADX INFO: loaded from: classes2.dex */
+   9: public final class mj0 implements Parcelable.Creator {
+  10: @Override // android.os.Parcelable.Creator
+--
+  12: String string = parcel.readString();
+  13: if (string == null) {
+  14: string = BuildConfig.FLAVOR;
+  15: }
+  16: return new AuthTokenResult(string);
+  17: }
+  18: 
+  19: @Override // android.os.Parcelable.Creator
+  20: public final Object[] newArray(int i) {
+  21: return new AuthTokenResult[i];
+--
+  22: }
+  23: }
+--
+~~~
+
+### defpackage/n3a.java
+~~~text
+  67: this.n0 = new zcg(luf.a(String.class), (SharedPreferences) this.d, (Object) null, "server.host");
+  68: this.o0 = new zcg(luf.a(String.class), (SharedPreferences) this.d, (Object) null, "server.port");
+  69: Boolean bool = Boolean.TRUE;
+  70: this.p0 = new zcg(luf.a(Boolean.class), (SharedPreferences) this.d, (Object) bool, "server.useTls");
+  71: this.q0 = new zcg(luf.a(String.class), (SharedPreferences) this.d, (Object) null, "server.loginError");
+  72: Boolean bool2 = Boolean.FALSE;
+  73: new zcg(luf.a(Boolean.class), (SharedPreferences) this.d, (Object) bool2, "user.dev.options.roaming");
+  74: this.r0 = new zcg(luf.a(Boolean.class), (SharedPreferences) this.d, (Object) bool2, "app.call.add.dontshowconfirmation");
+  75: luf.a(Integer.class);
+  76: this.s0 = new zcg(luf.a(Long.class), (SharedPreferences) this.d, (Object) 0L, "app.last.push.alert.time");
+--
+~~~
+
+### defpackage/ojm.java
+~~~text
+  27: bundle.putBoolean("com.google.android.gms.signin.internal.offlineAccessRequested", false);
+  28: bundle.putBoolean("com.google.android.gms.signin.internal.idTokenRequested", false);
+  29: bundle.putString("com.google.android.gms.signin.internal.serverClientId", null);
+  30: bundle.putBoolean("com.google.android.gms.signin.internal.usePromptModeForAuthCode", true);
+  31: bundle.putBoolean("com.google.android.gms.signin.internal.forceCodeForRefreshToken", false);
+  32: bundle.putString("com.google.android.gms.signin.internal.hostedDomain", null);
+  33: bundle.putString("com.google.android.gms.signin.internal.logSessionId", null);
+  34: bundle.putBoolean("com.google.android.gms.signin.internal.waitForAccessTokenRefresh", false);
+  35: return new onh(context, looper, nt4Var, bundle, xa8Var, ya8Var);
+  36: case 1:
+--
+~~~
+
+### defpackage/sm0.java
+~~~text
+  86: StringBuilder sb = new StringBuilder("InstallationResponse{uri=");
+  87: sb.append(this.a);
+  88: sb.append(", fid=");
+  89: sb.append(this.b);
+  90: sb.append(", refreshToken=");
+  91: sb.append(this.c);
+  92: sb.append(", authToken=");
+  93: sb.append(this.d);
+  94: sb.append(", responseCode=");
+  95: int i = this.e;
+--
+  96: if (i != 1) {
+  97: str = i != 2 ? "null" : "BAD_CONFIG";
+--
+~~~
+
+### defpackage/wbi.java
+~~~text
+ 129: if (account != null) {
+ 130: jSONObject2.put("accountName", account.name);
+ 131: }
+ 132: jSONObject2.put("idTokenRequested", googleSignInOptions.d);
+ 133: jSONObject2.put("forceCodeForRefreshToken", googleSignInOptions.f);
+ 134: jSONObject2.put("serverAuthRequested", googleSignInOptions.e);
+ 135: if (!TextUtils.isEmpty(str10)) {
+ 136: jSONObject2.put("serverClientId", str10);
+ 137: }
+ 138: if (!TextUtils.isEmpty(str9)) {
+--
+~~~
+
+### defpackage/wi.java
+~~~text
+  11: import android.os.CancellationSignal;
+  12: import android.os.RemoteException;
+  13: import android.util.Log;
+  14: import androidx.camera.core.ImageCaptureException;
+  15: import com.vk.push.core.auth.AuthTokenResult;
+  16: import com.vk.push.core.base.AidlException;
+  17: import com.vk.push.core.base.AidlResult;
+  18: import com.vk.push.core.base.AsyncCallback;
+  19: import java.io.File;
+  20: import java.util.ArrayList;
+--
+2254: ((u6a) z3jVar.getValue()).a("Getting intermediate token has failed", aidlResultA.a());
+2255: ((AsyncCallback) this.i).Y(aidlResultA);
+2256: return s1kVar;
+2257: shVar.getClass();
+2258: aidlResultA = new AidlResult((AuthTokenResult) objB4);
+2259: } catch (Exception e) {
+2260: aidlResultA = sh.a(e);
+2261: }
+2262: ((AsyncCallback) this.i).Y(aidlResultA);
+2263: break;
+--
+~~~
+
+### defpackage/wpc.java
+~~~text
+ 127: try {
+ 128: JSONObject jSONObject = new JSONObject();
+ 129: jSONObject.put("Fid", gn0Var.a);
+ 130: jSONObject.put("Status", s95.G(gn0Var.b));
+ 131: jSONObject.put("AuthToken", gn0Var.c);
+ 132: jSONObject.put("RefreshToken", gn0Var.d);
+ 133: jSONObject.put("TokenCreationEpochInSecs", gn0Var.f);
+ 134: jSONObject.put("ExpiresInSecs", gn0Var.e);
+ 135: jSONObject.put("FisError", gn0Var.g);
+ 136: gg7 gg7Var = (gg7) this.c;
+--
+ 137: gg7Var.a();
+--
+ 138: File fileCreateTempFile = File.createTempFile("PersistedInstallation", "tmp", gg7Var.a.getFilesDir());
+--
+ 139: FileOutputStream fileOutputStream = new FileOutputStream(fileCreateTempFile);
+--
+ 213: jSONObject = new JSONObject();
+ 214: }
+ 215: String strOptString = jSONObject.optString("Fid", null);
+ 216: int iOptInt = jSONObject.optInt("Status", 0);
+ 217: String strOptString2 = jSONObject.optString("AuthToken", null);
+ 218: String strOptString3 = jSONObject.optString("RefreshToken", null);
+ 219: long jOptLong = jSONObject.optLong("TokenCreationEpochInSecs", 0L);
+ 220: long jOptLong2 = jSONObject.optLong("ExpiresInSecs", 0L);
+ 221: String strOptString4 = jSONObject.optString("FisError", null);
+ 222: int i2 = s95.J(5)[iOptInt];
+--
+~~~
+
+### defpackage/yh0.java
+~~~text
+  27: 
+  28: public final String toString() {
+  29: StringBuilder sb = new StringBuilder("AuthData(authType=");
+  30: sb.append(this.a);
+  31: sb.append(", authToken=");
+  32: return a15.q(sb, this.b, ')');
+  33: }
+  34: }
+--
+~~~
+
+### defpackage/zjn.java
+~~~text
+  74: jy7 jy7Var = x0n.a;
+  75: if (jy7Var.b <= 3) {
+  76: Log.d((String) jy7Var.c, ((String) jy7Var.d).concat("Revoking access"));
+  77: }
+  78: String strD3 = wbi.a(context).d("refreshToken");
+  79: x0n.a(context);
+  80: if (!z) {
+  81: b3n b3nVar = new b3n(wjmVar, (byte) 1);
+  82: wjmVar.a(b3nVar);
+  83: basePendingResult2 = b3nVar;
+--
+~~~
+
+## session init to LOGIN
+Файлов с совпадениями (первые 90): 9
+
+### defpackage/acc.java
+~~~text
+  96: } else if (this.b.h.get() \|\| z3) {
+  97: if (z3) {
+  98: bcc bccVar2 = this.b;
+  99: if (bccVar2.h.get()) {
+ 100: fldVar.b.c.f(new l6j("session.state", "SESSION_INIT already initialized", null));
+ 101: } else if (bccVar2.d(fldVar, d5h.class)) {
+ 102: fldVar.b.c.f(new l6j("session.state", "SESSION_INIT already requested", null));
+ 103: }
+ 104: f09.d0(this.b.a, "Double session init detected, skipping", new Object[0]);
+ 105: arrayList.add(fldVar);
+--
+ 106: }
+ 107: if (fldVar.e) {
+--
+~~~
+
+### defpackage/c5h.java
+~~~text
+  88: o1dVar.c(c6aVar, str3, "Invoked 'onSessionInitHandled', but traceId is null or empty!", null);
+  89: }
+  90: }
+  91: } else {
+  92: wud.h(s8a.i, "session_init_handled", 5, str2, false, null, null, 120);
+  93: }
+  94: if (strC == null \|\| strC.length() == 0) {
+  95: return;
+  96: }
+  97: f09.p(this.f, "SessionInit: Send Login command");
+--
+  98: gt gtVar8 = this.e;
+  99: if (gtVar8 == null) {
+ 100: gtVar8 = null;
+ 101: }
+ 102: byte[] bArrA = ((v99) gtVar8.k.getValue()).a(e5hVar.g);
+--
+ 104: k8a k8aVar = (k8a) (gtVar9 != null ? gtVar9 : null).j.getValue();
+ 105: int i = e5hVar.h;
+ 106: Long l = e5hVar.g;
+ 107: ctc ctcVar = (ctc) k8aVar.D.getValue();
+ 108: f7j.b(ctcVar.a(), new i7a(((hog) ((c74) ctcVar.b.getValue())).g(), i, l, bArrA, null));
+ 109: }
+ 110: 
+ 111: @Override // defpackage.d7j
+ 112: public final void f(l6j l6jVar) {
+ 113: gt gtVar = this.e;
+--
+~~~
+
+### defpackage/f5h.java
+~~~text
+  26: }
+  27: if (l6jVar instanceof g6j) {
+  28: if (((f6h) ((c6h) this.c.getValue())).q == 2) {
+  29: zsc zscVar = (zsc) this.d.getValue();
+  30: zsc.q(zscVar, new c5h(zscVar.s().a.g()));
+  31: return;
+  32: }
+  33: return;
+  34: }
+  35: if ("proto.state".equals(l6jVar.b)) {
+--
+~~~
+
+### defpackage/fn0.java
+~~~text
+  26: if (((Long) this.g) == null) {
+  27: strConcat = strConcat.concat(" tokenCreationEpochInSecs");
+  28: }
+  29: if (strConcat.isEmpty()) {
+  30: return new gn0(this.a, ((Long) this.f).longValue(), ((Long) this.g).longValue(), (String) this.b, (String) this.c, (String) this.d, (String) this.e);
+  31: }
+  32: k3g.o("Missing required properties:".concat(strConcat));
+  33: return null;
+  34: }
+  35: 
+--
+~~~
+
+### defpackage/r1g.java
+~~~text
+ 146: 
+ 147: @Override // defpackage.b6h
+ 148: public final void c(int i) {
+ 149: if (i == 2) {
+ 150: c5h c5hVar = new c5h(((hog) e()).g());
+ 151: d(c5hVar, c5hVar, false);
+ 152: }
+ 153: }
+ 154: 
+ 155: public final long d(ft ftVar, d7j d7jVar, boolean z) {
+--
+~~~
+
+### defpackage/t3g.java
+~~~text
+  81: xnm.y(obj);
+  82: }
+  83: f09.p(str, "reinitSession: receive STATE_CONNECTED");
+  84: zsc zscVar = (zsc) this.c.getValue();
+  85: zsc.q(zscVar, new c5h(zscVar.s().a.g()));
+  86: f09.p(str, "reinitSession: session initialized");
+  87: return s1kVar;
+  88: }
+  89: xnm.y(obj);
+  90: ((z6j) rp9Var.getValue()).h();
+--
+~~~
+
+### defpackage/tdd.java
+~~~text
+ 210: h = new tdd("RECONNECT", s5, s6);
+ 211: short s7 = 5;
+ 212: i = new tdd("LOG", s6, s7);
+ 213: short s8 = 6;
+ 214: j = new tdd("SESSION_INIT", 4, s8);
+ 215: k = new tdd("PROFILE", s7, (short) 16);
+ 216: l = new tdd("AUTH_REQUEST", s8, (short) 17);
+ 217: short s9 = 27;
+ 218: G = new tdd("ASSETS_GET", s9, (short) 26);
+ 219: short s10 = 28;
+--
+~~~
+
+### defpackage/wpc.java
+~~~text
+ 225: return null;
+ 226: }
+ 227: String str = i2 == 0 ? " registrationStatus" : BuildConfig.FLAVOR;
+ 228: if (str.isEmpty()) {
+ 229: return new gn0(i2, jOptLong2, jOptLong, strOptString, strOptString2, strOptString3, strOptString4);
+ 230: }
+ 231: k3g.o("Missing required properties:".concat(str));
+ 232: return null;
+ 233: }
+ 234: 
+--
+~~~
+
+### defpackage/x8a.java
+~~~text
+1026: ((n3a) ((c74) ((y8a) this.i).c.getValue())).j0((String) this.g);
+1027: ctc ctcVar = (ctc) ((y8a) this.i).b.getValue();
+1028: String str2 = (String) this.h;
+1029: this.f = true;
+1030: if (ctcVar.a().f(new i7a(((hog) ((c74) ctcVar.b.getValue())).g(), -1, l2, bArrA, str2), this) == ka5Var) {
+1031: return ka5Var;
+1032: }
+1033: } else {
+1034: if (!z2) {
+1035: k3g.o("call to 'resume' before 'invoke' with coroutine");
 --
 ~~~
 

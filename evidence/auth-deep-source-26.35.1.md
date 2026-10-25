@@ -7556,3 +7556,2784 @@
   15: }
 ~~~
 
+## defpackage/u6.java (271 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: import android.os.Build;
+   4: import androidx.work.impl.WorkDatabase;
+   5: import java.util.ArrayList;
+   6: import java.util.Collections;
+   7: import java.util.Iterator;
+   8: import java.util.List;
+   9: import java.util.Set;
+  10: import java.util.concurrent.atomic.AtomicBoolean;
+  11: import java.util.concurrent.atomic.AtomicReference;
+  12: import one.me.android.initialization.AccountInitializer;
+  13: 
+  14: /* JADX INFO: loaded from: classes.dex */
+  15: public final /* synthetic */ class u6 implements o08 {
+  16: public final /* synthetic */ byte a;
+  17: public final /* synthetic */ Object b;
+  18: public final /* synthetic */ Object c;
+  19: public final /* synthetic */ Object d;
+  20: 
+  21: public /* synthetic */ u6(Object obj, Object obj2, Object obj3, byte b) {
+  22: this.a = b;
+  23: this.b = obj;
+  24: this.c = obj2;
+  25: this.d = obj3;
+  26: }
+  27: 
+  28: /* JADX WARN: Multi-variable type inference failed */
+  29: @Override // defpackage.o08
+  30: public final Object c() throws IllegalAccessException {
+  31: String[] strArr;
+  32: q53 q53Var;
+  33: final boolean z;
+  34: int i = 0;
+  35: Object[] objArr = 0;
+  36: Object[] objArr2 = 0;
+  37: b55 b55Var = null;
+  38: switch (this.a) {
+  39: case 0:
+  40: AccountInitializer accountInitializer = (AccountInitializer) this.b;
+  41: AtomicBoolean atomicBoolean = (AtomicBoolean) this.c;
+  42: AtomicReference atomicReference = (AtomicReference) this.d;
+  43: s1k s1kVar = s1k.a;
+  44: l6 l6Var = new l6(accountInitializer, objArr2 == true ? 1 : 0);
+  45: boolean zB = accountInitializer.c().a().b();
+  46: if (zB && !atomicBoolean.get()) {
+  47: long jNanoTime = System.nanoTime();
+  48: ((qw4) vg9.u(accountInitializer, 241)).a();
+  49: o1d o1dVar = f09.g;
+  50: if (o1dVar != null) {
+  51: c6a c6aVar = c6a.d;
+  52: if (o1dVar.b(c6aVar)) {
+  53: qzd qzdVar = fe6.b;
+  54: o1dVar.c(c6aVar, "InitialDataStorage", "bannersInitialDataStorage.load by ".concat(fe6.x(az7.V(System.nanoTime() - jNanoTime, me6.b))), null);
+  55: }
+  56: }
+  57: }
+  58: if (((Boolean) atomicReference.get()).booleanValue() \|\| !zB) {
+  59: f09.p(accountInitializer.d, "LegacyChats: async load");
+  60: ((vxc) ((k6j) accountInitializer.c().getAccessor().d(7).getValue())).b().A0(jec.b, new n6((Object) l6Var, (byte) (objArr == true ? 1 : 0)));
+  61: } else {
+  62: f09.p(accountInitializer.d, "LegacyChats: sync load");
+  63: l6Var.c();
+  64: }
+  65: return s1kVar;
+  66: case 1:
+  67: mz4 mz4Var = (mz4) this.b;
+  68: return new ble("contactlist-presence", mz4Var.b, ((vxc) ((k6j) ((rp9) this.c).getValue())).a().K0(1, "presences"), new y30((rp9) this.d, mz4Var, b55Var, (byte) 17));
+  69: case 2:
+  70: return Integer.valueOf(((c35) this.b).a.n((List) this.c, (zw4) this.d));
+  71: case 3:
+  72: vck vckVar = (vck) this.b;
+  73: st5 st5Var = (st5) this.c;
+  74: return new d23(vckVar, new ov4((byte) 16), new dp5(st5Var, (byte) 3), new rt5(st5Var, (rp9) this.d, null));
+  75: case 4:
+  76: ep6 ep6Var = (ep6) this.b;
+  77: return new jo6(ep6Var.b, ep6Var.f, ep6Var.a, ep6Var.c, (rp9) this.c, (rp9) this.d);
+  78: case 5:
+  79: f87 f87Var = (f87) this.b;
+  80: thc thcVar = (thc) this.c;
+  81: iuf iufVar = (iuf) this.d;
+  82: ((n83) f87Var.i.getValue()).i0(thcVar.a, ((i87) iufVar.a).g(), ((i87) iufVar.a).m(), ((i87) iufVar.a).l());
+  83: return s1k.a;
+  84: case 6:
+  85: vb8 vb8Var = (vb8) this.b;
+  86: rp9 rp9Var = (rp9) this.c;
+  87: rp9 rp9Var2 = (rp9) this.d;
+  88: boolean zE = vb8Var.e();
+  89: String str = vb8Var.b;
+  90: if (!zE) {
+  91: f09.p(str, "Can't init firebaseApp because !areServicesAvailable()");
+  92: return null;
+  93: }
+  94: f09.p(str, "Start creating FirebaseApp");
+  95: long jNanoTime2 = System.nanoTime();
+  96: if (Build.VERSION.SDK_INT <= 36 && ((Boolean) ((l4i) ((kag) rp9Var.getValue()).c.getValue()).getValue()).booleanValue()) {
+  97: Set set = (Set) ((l4i) ((kag) rp9Var.getValue()).d.getValue()).getValue();
+  98: if (set == null \|\| (strArr = (String[]) set.toArray(new String[0])) == null) {
+  99: strArr = new String[0];
+ 100: }
+ 101: ngm.b(rp9Var2, strArr);
+ 102: }
+ 103: gg7 gg7VarE = gg7.e(vb8Var.a);
+ 104: qzd qzdVar2 = fe6.b;
+ 105: f09.p(str, "End creating FirebaseApp. Takes ".concat(fe6.x(az7.V(System.nanoTime() - jNanoTime2, me6.b))));
+ 106: return gg7VarE;
+ 107: case 7:
+ 108: k6j k6jVar = (k6j) this.b;
+ 109: ja5 ja5Var = (ja5) this.c;
+ 110: pu8 pu8Var = (pu8) this.d;
+ 111: vxc vxcVar = (vxc) k6jVar;
+ 112: z95 z95VarA = vxcVar.a();
+ 113: z95 z95VarA2 = vxcVar.a();
+ 114: qzd qzdVar3 = fe6.b;
+ 115: return new y91("image-stat-measurement", z95VarA, z95VarA2, ja5Var, az7.U(2, me6.e), new klc((Object) pu8Var, b55Var, (byte) 29), new r3((Object) pu8Var, (byte) 12), null, 128);
+ 116: case 8:
+ 117: return Integer.valueOf(((u8g) ((k8a) this.b).c().c()).D((d7b) this.c, ((q53) this.d).a, 0L, false, null, false));
+ 118: case 9:
+ 119: return new xub((rp9) this.b, (rp9) this.c, (q1a) this.d);
+ 120: case 10:
+ 121: j3e j3eVar = (j3e) this.b;
+ 122: gc1 gc1Var = (gc1) this.c;
+ 123: k6j k6jVar2 = (k6j) this.d;
+ 124: l4i l4iVar = j3eVar.d.c;
+ 125: return new o4e((l4iVar == null \|\| (q53Var = (q53) l4iVar.getValue()) == null) ? 0L : q53Var.a, gc1Var, k6jVar2, j3eVar.b);
+ 126: case 11:
+ 127: f0f f0fVar = (f0f) this.b;
+ 128: cqe cqeVar = (cqe) this.c;
+ 129: String str2 = (String) this.d;
+ 130: dtc dtcVar = (dtc) f0fVar.f.getValue();
+ 131: String strA = cqeVar.a.a();
+ 132: qi0 qi0Var = dtcVar.a().d;
+ 133: if (strA != null) {
+ 134: qi0Var.e("auth.account.name", strA);
+ 135: }
+ 136: qi0Var.e("auth.token", str2);
+ 137: return s1k.a;
+ 138: case 12:
+ 139: return fa5.F(fa5.F((p9g) this.b, ((r1g) this.c).n), (x95) ((z3j) this.d).getValue());
+ 140: case 13:
+ 141: f6h f6hVar = (f6h) this.b;
+ 142: b6h b6hVar = (b6h) this.c;
+ 143: euf eufVar = (euf) this.d;
+ 144: ArrayList arrayList = f6hVar.l;
+ 145: while (true) {
+ 146: if (i < arrayList.size()) {
+ 147: int i2 = i + 1;
+ 148: if (!g4a.c(((vld) arrayList.get(i)).a, b6hVar)) {
+ 149: i = i2;
+ 150: }
+ 151: } else {
+ 152: i = -1;
+ 153: }
+ 154: }
+ 155: if (i != -1 && !((Boolean) ((vld) arrayList.get(i)).b).booleanValue()) {
+ 156: eufVar.a = true;
+ 157: }
+ 158: return s1k.a;
+ 159: default:
+ 160: rul rulVar = (rul) this.b;
+ 161: String str3 = (String) this.c;
+ 162: lvl lvlVar = (lvl) this.d;
+ 163: s1k s1kVar2 = s1k.a;
+ 164: vvl vvlVarC = rulVar.c.C();
+ 165: List listE = vvlVarC.e(str3);
+ 166: if (listE.size() > 1) {
+ 167: m00.i("Can't apply UPDATE policy to the chains of work.");
+ 168: return null;
+ 169: }
+ 170: ovl ovlVar = (ovl) va4.M0(listE);
+ 171: if (ovlVar == null) {
+ 172: ct6.a(new gul(rulVar, str3, 2, Collections.singletonList(lvlVar), null));
+ 173: } else {
+ 174: String str4 = ovlVar.a;
+ 175: qvl qvlVarD = vvlVarC.d(str4);
+ 176: if (qvlVarD == null) {
+ 177: k3g.o(w7g.v("WorkSpec with ", str4, ", that matches a name \"", str3, "\", wasn't found"));
+ 178: return null;
+ 179: }
+ 180: if (!qvlVarD.c()) {
+ 181: m00.i("Can't update OneTimeWorker to Periodic Worker. Update operation must preserve worker's type.");
+ 182: return null;
+ 183: }
+ 184: if (ovlVar.b == nul.f) {
+ 185: az7.I(vvlVarC.a, false, true, new py5((byte) 13, str4));
+ 186: ct6.a(new gul(rulVar, str3, 2, Collections.singletonList(lvlVar), null));
+ 187: } else {
+ 188: final qvl qvlVarB = qvl.b(lvlVar.b, ovlVar.a, null, null, 0, 0L, 0, 0, 0L, 0, 33554430);
+ 189: rpe rpeVar = rulVar.f;
+ 190: final WorkDatabase workDatabase = rulVar.c;
+ 191: to4 to4Var = rulVar.b;
+ 192: final List list = rulVar.e;
+ 193: final Set set2 = lvlVar.c;
+ 194: final String str5 = qvlVarB.a;
+ 195: final qvl qvlVarD2 = workDatabase.C().d(str5);
+ 196: if (qvlVarD2 == null) {
+ 197: k3g.t(vg9.y("Worker with ", str5, " doesn't exist"));
+ 198: return null;
+ 199: }
+ 200: if (!qvlVarD2.b.a()) {
+ 201: if (qvlVarD2.c() ^ qvlVarB.c()) {
+ 202: StringBuilder sb = new StringBuilder("Can't update ");
+ 203: sb.append(qvlVarD2.c() ? "Periodic" : "OneTime");
+ 204: sb.append(" Worker to ");
+ 205: throw new UnsupportedOperationException(w7g.w(sb, qvlVarB.c() ? "Periodic" : "OneTime", " Worker. Update operation must preserve worker's type."));
+ 206: }
+ 207: synchronized (rpeVar.k) {
+ 208: z = rpeVar.c(str5) != null;
+ 209: break;
+ 210: }
+ 211: if (!z) {
+ 212: Iterator it = list.iterator();
+ 213: while (it.hasNext()) {
+ 214: ((ujg) it.next()).d(str5);
+ 215: }
+ 216: }
+ 217: workDatabase.s(new gzc(new Runnable(qvlVarD2, qvlVarB, list, str5, set2, z) { // from class: ewl
+ 218: public final /* synthetic */ qvl b;
+ 219: public final /* synthetic */ qvl c;
+ 220: public final /* synthetic */ String d;
+ 221: public final /* synthetic */ Set e;
+ 222: public final /* synthetic */ boolean f;
+ 223: 
+ 224: {
+ 225: this.d = str5;
+ 226: this.e = set2;
+ 227: this.f = z;
+ 228: }
+ 229: 
+ 230: @Override // java.lang.Runnable
+ 231: public final void run() {
+ 232: WorkDatabase workDatabase2 = this.a;
+ 233: vvl vvlVarC2 = workDatabase2.C();
+ 234: yvl yvlVarD = workDatabase2.D();
+ 235: qvl qvlVar = this.b;
+ 236: nul nulVar = qvlVar.b;
+ 237: int i3 = qvlVar.k;
+ 238: long j = qvlVar.n;
+ 239: byte b = 1;
+ 240: int i4 = qvlVar.t + 1;
+ 241: int i5 = qvlVar.s;
+ 242: long j2 = qvlVar.u;
+ 243: int i6 = qvlVar.v;
+ 244: qvl qvlVar2 = this.c;
+ 245: qvl qvlVarB2 = qvl.b(qvlVar2, null, nulVar, null, i3, j, i5, i4, j2, i6, 29613053);
+ 246: if (qvlVar2.v == 1) {
+ 247: qvlVarB2.u = qvlVar2.u;
+ 248: qvlVarB2.v++;
+ 249: }
+ 250: az7.I(vvlVarC2.a, false, true, new svl(vvlVarC2, usc.K(qvlVarB2), b));
+ 251: x7g x7gVar = yvlVarD.a;
+ 252: String str6 = this.d;
+ 253: az7.I(x7gVar, false, true, new py5((byte) 16, str6));
+ 254: yvlVarD.a(str6, this.e);
+ 255: if (this.f) {
+ 256: return;
+ 257: }
+ 258: vvlVarC2.f(-1L, str6);
+ 259: az7.I(workDatabase2.B().a, false, true, new py5((byte) 4, str6));
+ 260: }
+ 261: }, (byte) 1));
+ 262: if (!z) {
+ 263: dkg.b(to4Var, workDatabase, list);
+ 264: }
+ 265: }
+ 266: }
+ 267: }
+ 268: return s1kVar2;
+ 269: }
+ 270: }
+ 271: }
+~~~
+
+## defpackage/c5h.java (162 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: import java.util.ArrayList;
+   4: import java.util.Collections;
+   5: 
+   6: /* JADX INFO: loaded from: classes.dex */
+   7: public final class c5h extends ft implements d7j {
+   8: public final String f;
+   9: 
+  10: public c5h(long j) {
+  11: super(j);
+  12: this.f = c5h.class.getName();
+  13: }
+  14: 
+  15: @Override // defpackage.d7j
+  16: public final void b(x6j x6jVar) {
+  17: Object value;
+  18: e5h e5hVar = (e5h) x6jVar;
+  19: u().b.b().a.w.a(j9e.w8[14]).a(Integer.valueOf(e5hVar.d));
+  20: u().b.L().k(e5hVar.f);
+  21: if (e5hVar.d == 1) {
+  22: gt gtVar = this.e;
+  23: if (gtVar == null) {
+  24: gtVar = null;
+  25: }
+  26: quc qucVar = (quc) gtVar.i.getValue();
+  27: c74 c74Var = qucVar.b;
+  28: qucVar.d.getClass();
+  29: n3a n3aVar = (n3a) c74Var;
+  30: n3aVar.A0.z(n3aVar, n3a.g1[18], "26.35.1");
+  31: gt gtVar2 = this.e;
+  32: if (gtVar2 == null) {
+  33: gtVar2 = null;
+  34: }
+  35: ((quc) gtVar2.i.getValue()).b();
+  36: gt gtVar3 = this.e;
+  37: if (gtVar3 == null) {
+  38: gtVar3 = null;
+  39: }
+  40: s8a s8aVar = gtVar3.a;
+  41: n8a n8aVar = n8a.i;
+  42: s8a s8aVar2 = s8a.i;
+  43: s8aVar.E(null, n8aVar);
+  44: return;
+  45: }
+  46: if (e5hVar.c != null) {
+  47: n3a n3aVar2 = u().a;
+  48: n3aVar2.m0.z(n3aVar2, n3a.g1[2], e5hVar.c);
+  49: }
+  50: if (!(e5hVar.e == null ? Collections.EMPTY_LIST : new ArrayList(e5hVar.e)).isEmpty()) {
+  51: gt gtVar4 = this.e;
+  52: if (gtVar4 == null) {
+  53: gtVar4 = null;
+  54: }
+  55: za5 za5Var = (za5) gtVar4.o0.getValue();
+  56: Object arrayList = e5hVar.e == null ? Collections.EMPTY_LIST : new ArrayList(e5hVar.e);
+  57: r4i r4iVar = za5Var.a;
+  58: do {
+  59: value = r4iVar.getValue();
+  60: } while (!r4iVar.f(value, arrayList));
+  61: }
+  62: if (e5hVar.i) {
+  63: gt gtVar5 = this.e;
+  64: if (gtVar5 == null) {
+  65: gtVar5 = null;
+  66: }
+  67: ((i3l) gtVar5.q0.getValue()).c(e5hVar.i);
+  68: }
+  69: gt gtVar6 = this.e;
+  70: if (gtVar6 == null) {
+  71: gtVar6 = null;
+  72: }
+  73: String strC = ((dtc) gtVar6.f.getValue()).c();
+  74: gt gtVar7 = this.e;
+  75: if (gtVar7 == null) {
+  76: gtVar7 = null;
+  77: }
+  78: s8a s8aVar3 = gtVar7.a;
+  79: String str = s8aVar3.g;
+  80: lmj lmjVar = str != null ? new lmj(str) : null;
+  81: String str2 = lmjVar != null ? lmjVar.a : null;
+  82: if (str2 == null) {
+  83: String str3 = s8aVar3.b;
+  84: o1d o1dVar = f09.g;
+  85: if (o1dVar != null) {
+  86: c6a c6aVar = c6a.f;
+  87: if (o1dVar.b(c6aVar)) {
+  88: o1dVar.c(c6aVar, str3, "Invoked 'onSessionInitHandled', but traceId is null or empty!", null);
+  89: }
+  90: }
+  91: } else {
+  92: wud.h(s8a.i, "session_init_handled", 5, str2, false, null, null, 120);
+  93: }
+  94: if (strC == null \|\| strC.length() == 0) {
+  95: return;
+  96: }
+  97: f09.p(this.f, "SessionInit: Send Login command");
+  98: gt gtVar8 = this.e;
+  99: if (gtVar8 == null) {
+ 100: gtVar8 = null;
+ 101: }
+ 102: byte[] bArrA = ((v99) gtVar8.k.getValue()).a(e5hVar.g);
+ 103: gt gtVar9 = this.e;
+ 104: k8a k8aVar = (k8a) (gtVar9 != null ? gtVar9 : null).j.getValue();
+ 105: int i = e5hVar.h;
+ 106: Long l = e5hVar.g;
+ 107: ctc ctcVar = (ctc) k8aVar.D.getValue();
+ 108: f7j.b(ctcVar.a(), new i7a(((hog) ((c74) ctcVar.b.getValue())).g(), i, l, bArrA, null));
+ 109: }
+ 110: 
+ 111: @Override // defpackage.d7j
+ 112: public final void f(l6j l6jVar) {
+ 113: gt gtVar = this.e;
+ 114: if (gtVar == null) {
+ 115: gtVar = null;
+ 116: }
+ 117: ((f5h) gtVar.h.getValue()).a(this.a, l6jVar);
+ 118: }
+ 119: 
+ 120: @Override // defpackage.ft
+ 121: public final Object n() {
+ 122: gt gtVar = this.e;
+ 123: if (gtVar == null) {
+ 124: gtVar = null;
+ 125: }
+ 126: rck rckVarA = ((tck) gtVar.s0.getValue()).a();
+ 127: gt gtVar2 = this.e;
+ 128: if (gtVar2 == null) {
+ 129: gtVar2 = null;
+ 130: }
+ 131: String strA = ((h16) gtVar2.r0.getValue()).a();
+ 132: long jW = u().a.W();
+ 133: gt gtVar3 = this.e;
+ 134: if (gtVar3 == null) {
+ 135: gtVar3 = null;
+ 136: }
+ 137: String str = (String) ((h16) gtVar3.r0.getValue()).f.get();
+ 138: d5h d5hVar = new d5h(null);
+ 139: i00 i00Var = new i00(0);
+ 140: i00Var.put("deviceType", "ANDROID");
+ 141: baf bafVar = rckVarA.g;
+ 142: if (bafVar != null) {
+ 143: i00Var.put("pushDeviceType", bafVar.a);
+ 144: }
+ 145: i00Var.put("appVersion", "26.35.1");
+ 146: i00Var.put("arch", rckVarA.b);
+ 147: i00Var.put("buildNumber", 6867);
+ 148: i00Var.put("osVersion", rckVarA.a);
+ 149: i00Var.put("locale", rckVarA.c);
+ 150: i00Var.put("deviceLocale", rckVarA.d);
+ 151: i00Var.put("deviceName", rckVarA.e);
+ 152: i00Var.put("screen", rckVarA.f);
+ 153: i00Var.put("timezone", rckVarA.h.getID());
+ 154: d5hVar.g("userAgent", i00Var);
+ 155: d5hVar.h("deviceId", strA);
+ 156: d5hVar.f(jW, "clientSessionId");
+ 157: if (f09.J(str)) {
+ 158: d5hVar.h("mt_instanceid", str);
+ 159: }
+ 160: return d5hVar;
+ 161: }
+ 162: }
+~~~
+
+## defpackage/gn0.java (128 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: /* JADX INFO: loaded from: classes2.dex */
+   4: public final class gn0 {
+   5: public final String a;
+   6: public final int b;
+   7: public final String c;
+   8: public final String d;
+   9: public final long e;
+  10: public final long f;
+  11: public final String g;
+  12: 
+  13: public gn0(int i, long j, long j2, String str, String str2, String str3, String str4) {
+  14: this.a = str;
+  15: this.b = i;
+  16: this.c = str2;
+  17: this.d = str3;
+  18: this.e = j;
+  19: this.f = j2;
+  20: this.g = str4;
+  21: }
+  22: 
+  23: public final fn0 a() {
+  24: fn0 fn0Var = new fn0();
+  25: fn0Var.b = this.a;
+  26: fn0Var.a = this.b;
+  27: fn0Var.c = this.c;
+  28: fn0Var.d = this.d;
+  29: fn0Var.f = Long.valueOf(this.e);
+  30: fn0Var.g = Long.valueOf(this.f);
+  31: fn0Var.e = this.g;
+  32: return fn0Var;
+  33: }
+  34: 
+  35: public final boolean equals(Object obj) {
+  36: if (obj == this) {
+  37: return true;
+  38: }
+  39: if (!(obj instanceof gn0)) {
+  40: return false;
+  41: }
+  42: gn0 gn0Var = (gn0) obj;
+  43: String str = gn0Var.a;
+  44: String str2 = this.a;
+  45: if (str2 == null) {
+  46: if (str != null) {
+  47: return false;
+  48: }
+  49: } else if (!str2.equals(str)) {
+  50: return false;
+  51: }
+  52: if (!s95.e(this.b, gn0Var.b)) {
+  53: return false;
+  54: }
+  55: String str3 = gn0Var.c;
+  56: String str4 = this.c;
+  57: if (str4 == null) {
+  58: if (str3 != null) {
+  59: return false;
+  60: }
+  61: } else if (!str4.equals(str3)) {
+  62: return false;
+  63: }
+  64: String str5 = gn0Var.d;
+  65: String str6 = this.d;
+  66: if (str6 == null) {
+  67: if (str5 != null) {
+  68: return false;
+  69: }
+  70: } else if (!str6.equals(str5)) {
+  71: return false;
+  72: }
+  73: if (this.e != gn0Var.e \|\| this.f != gn0Var.f) {
+  74: return false;
+  75: }
+  76: String str7 = gn0Var.g;
+  77: String str8 = this.g;
+  78: if (str8 == null) {
+  79: return str7 == null;
+  80: }
+  81: return str8.equals(str7);
+  82: }
+  83: 
+  84: public final int hashCode() {
+  85: String str = this.a;
+  86: int iHashCode = ((((str == null ? 0 : str.hashCode()) ^ 1000003) * 1000003) ^ s95.G(this.b)) * 1000003;
+  87: String str2 = this.c;
+  88: int iHashCode2 = (iHashCode ^ (str2 == null ? 0 : str2.hashCode())) * 1000003;
+  89: String str3 = this.d;
+  90: int iHashCode3 = (iHashCode2 ^ (str3 == null ? 0 : str3.hashCode())) * 1000003;
+  91: long j = this.e;
+  92: int i = (iHashCode3 ^ ((int) (j ^ (j >>> 32)))) * 1000003;
+  93: long j2 = this.f;
+  94: int i2 = (i ^ ((int) (j2 ^ (j2 >>> 32)))) * 1000003;
+  95: String str4 = this.g;
+  96: return i2 ^ (str4 != null ? str4.hashCode() : 0);
+  97: }
+  98: 
+  99: public final String toString() {
+ 100: String str;
+ 101: StringBuilder sb = new StringBuilder("PersistedInstallationEntry{firebaseInstallationId=");
+ 102: sb.append(this.a);
+ 103: sb.append(", registrationStatus=");
+ 104: int i = this.b;
+ 105: if (i == 1) {
+ 106: str = "ATTEMPT_MIGRATION";
+ 107: } else if (i == 2) {
+ 108: str = "NOT_GENERATED";
+ 109: } else if (i == 3) {
+ 110: str = "UNREGISTERED";
+ 111: } else if (i != 4) {
+ 112: str = i != 5 ? "null" : "REGISTER_ERROR";
+ 113: } else {
+ 114: str = "REGISTERED";
+ 115: }
+ 116: sb.append(str);
+ 117: sb.append(", authToken=");
+ 118: sb.append(this.c);
+ 119: sb.append(", refreshToken=");
+ 120: sb.append(this.d);
+ 121: sb.append(", expiresInSecs=");
+ 122: sb.append(this.e);
+ 123: sb.append(", tokenCreationEpochInSecs=");
+ 124: sb.append(this.f);
+ 125: sb.append(", fisError=");
+ 126: return w7g.w(sb, this.g, "}");
+ 127: }
+ 128: }
+~~~
+
+## defpackage/sk2.java (88 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: import android.os.Looper;
+   4: 
+   5: /* JADX INFO: loaded from: classes.dex */
+   6: public final class sk2 {
+   7: public static final /* synthetic */ zm9[] f;
+   8: public final yi2 a;
+   9: public final rp9 b;
+  10: public final rp9 c;
+  11: public final rp9 d;
+  12: public final z9g e = c45.Q();
+  13: 
+  14: static {
+  15: c4c c4cVar = new c4c(sk2.class, "tokenRefreshJob", "getTokenRefreshJob()Lkotlinx/coroutines/Job;");
+  16: luf.a.getClass();
+  17: f = new zm9[]{c4cVar};
+  18: }
+  19: 
+  20: public sk2(yi2 yi2Var, rp9 rp9Var, rp9 rp9Var2, rp9 rp9Var3) {
+  21: this.a = yi2Var;
+  22: this.b = rp9Var;
+  23: this.c = rp9Var2;
+  24: this.d = rp9Var3;
+  25: }
+  26: 
+  27: /* JADX WARN: Code duplicated, block: B:7:0x0013  */
+  28: public final Object a(d55 d55Var) {
+  29: rk2 rk2Var;
+  30: if (d55Var instanceof rk2) {
+  31: rk2Var = (rk2) d55Var;
+  32: int i = rk2Var.f;
+  33: if ((i & Integer.MIN_VALUE) != 0) {
+  34: rk2Var.f = i - Integer.MIN_VALUE;
+  35: } else {
+  36: rk2Var = new rk2(this, d55Var);
+  37: }
+  38: } else {
+  39: rk2Var = new rk2(this, d55Var);
+  40: }
+  41: Object objA = rk2Var.d;
+  42: ka5 ka5Var = ka5.a;
+  43: int i2 = rk2Var.f;
+  44: if (i2 == 0) {
+  45: xnm.y(objA);
+  46: if (Looper.getMainLooper().isCurrentThread()) {
+  47: ((nvc) this.d.getValue()).getClass();
+  48: f09.c0("CallsCredRepositoryTag", "Ok token was called from the main thread.", new IllegalStateException("Ok token was called from the main thread."));
+  49: }
+  50: long jF = ((hog) ((c74) this.b.getValue())).f();
+  51: long jO = ((hog) ((c74) this.b.getValue())).o();
+  52: if (jF >= jO) {
+  53: fwc fwcVar = (fwc) this.c.getValue();
+  54: rk2Var.f = 1;
+  55: objA = fwcVar.a(rk2Var);
+  56: if (objA == ka5Var) {
+  57: return ka5Var;
+  58: }
+  59: } else {
+  60: o1d o1dVar = f09.g;
+  61: if (o1dVar != null) {
+  62: c6a c6aVar = c6a.d;
+  63: if (o1dVar.b(c6aVar)) {
+  64: o1dVar.c(c6aVar, "CallsCredRepositoryTag", s95.p("Ok token will be expired in ", ".", jO), null);
+  65: }
+  66: }
+  67: }
+  68: return s1k.a;
+  69: }
+  70: if (i2 != 1) {
+  71: k3g.o("call to 'resume' before 'invoke' with coroutine");
+  72: return null;
+  73: }
+  74: xnm.y(objA);
+  75: cqc cqcVar = (cqc) objA;
+  76: c74 c74Var = (c74) this.b.getValue();
+  77: String strH = cqcVar.h();
+  78: hog hogVar = (hog) c74Var;
+  79: zcg zcgVar = hogVar.E;
+  80: zm9[] zm9VarArr = hog.i0;
+  81: zcgVar.z(hogVar, zm9VarArr[27], strH);
+  82: c74 c74Var2 = (c74) this.b.getValue();
+  83: hog hogVar2 = (hog) c74Var2;
+  84: hogVar2.G.z(hogVar2, zm9VarArr[29], Long.valueOf(cqcVar.i()));
+  85: f09.p("CallsCredRepositoryTag", "Ok token updated.");
+  86: return s1k.a;
+  87: }
+  88: }
+~~~
+
+## defpackage/mse.java (11 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: /* JADX INFO: loaded from: classes.dex */
+   4: public final class mse {
+   5: public final x7g a;
+   6: public final to b = new to(13);
+   7: 
+   8: public mse(x7g x7gVar) {
+   9: this.a = x7gVar;
+  10: }
+  11: }
+~~~
+
+## defpackage/l7a.java (145 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: import java.util.ArrayList;
+   4: import java.util.HashMap;
+   5: import java.util.List;
+   6: import java.util.Map;
+   7: 
+   8: /* JADX INFO: loaded from: classes.dex */
+   9: public final class l7a extends x6j implements s6a {
+  10: public final cqe c;
+  11: public final List d;
+  12: public final List e;
+  13: public final String f;
+  14: public final long g;
+  15: public final so4 h;
+  16: public final HashMap i;
+  17: public final long j;
+  18: public final ArrayList k;
+  19: public final boolean l;
+  20: public final long m;
+  21: public final int n;
+  22: public final d7a o;
+  23: 
+  24: public l7a(cqe cqeVar, List list, List list2, String str, long j, so4 so4Var, HashMap map, long j2, ArrayList arrayList, boolean z, long j3, int i, d7a d7aVar) {
+  25: this.c = cqeVar;
+  26: this.d = list;
+  27: this.e = list2;
+  28: this.f = str;
+  29: this.g = j;
+  30: this.h = so4Var;
+  31: this.i = map;
+  32: this.j = j2;
+  33: this.k = arrayList;
+  34: this.l = z;
+  35: this.m = j3;
+  36: this.n = i;
+  37: this.o = d7aVar;
+  38: this.a = Math.abs(System.nanoTime() - j3) / 1000000;
+  39: }
+  40: 
+  41: @Override // defpackage.s6a
+  42: public final String a(boolean z, boolean z2) {
+  43: String string;
+  44: d0i d0iVar;
+  45: d0i d0iVar2;
+  46: so4 so4Var = this.h;
+  47: if (so4Var != null && (d0iVar2 = so4Var.b) != null) {
+  48: Map map = (Map) d0iVar2.b;
+  49: if (map.containsKey("log-full")) {
+  50: Object obj = map.get("log-full");
+  51: z = Boolean.parseBoolean(obj != null ? obj.toString() : null);
+  52: } else {
+  53: z = false;
+  54: }
+  55: }
+  56: if (so4Var != null && (d0iVar = so4Var.b) != null) {
+  57: Map map2 = (Map) d0iVar.b;
+  58: if (map2.containsKey("log-sensitive")) {
+  59: Object obj2 = map2.get("log-sensitive");
+  60: z2 = Boolean.parseBoolean(obj2 != null ? obj2.toString() : null);
+  61: } else {
+  62: z2 = false;
+  63: }
+  64: }
+  65: StringBuilder sb = new StringBuilder("LOGIN.Response(login2Flags=");
+  66: sb.append(this.o);
+  67: sb.append(",profile=");
+  68: sb.append(String.valueOf(this.c));
+  69: sb.append(",token=");
+  70: String str = this.f;
+  71: sb.append(z2 ? str != null ? str.toString() : "NULL" : f09.N(str));
+  72: sb.append(",time=");
+  73: sb.append(this.g);
+  74: sb.append(",chatMarker=");
+  75: sb.append(this.j);
+  76: sb.append(",videoChatHistory=");
+  77: sb.append(this.l);
+  78: sb.append(",contactInfos=");
+  79: sb.append(g4a.z(this.e, z, z2));
+  80: sb.append(",config=");
+  81: sb.append(so4Var);
+  82: sb.append(",messages=");
+  83: HashMap map3 = this.i;
+  84: if (z) {
+  85: StringBuilder sb2 = new StringBuilder("{");
+  86: for (Map.Entry entry : map3.entrySet()) {
+  87: Object key = entry.getKey();
+  88: Object value = entry.getValue();
+  89: sb2.append(String.valueOf(key));
+  90: sb2.append('=');
+  91: sb2.append(g4a.R(value, z, z2));
+  92: sb2.append(',');
+  93: }
+  94: sb2.append('}');
+  95: string = sb2.toString();
+  96: } else {
+  97: string = String.valueOf(map3.size());
+  98: }
+  99: sb.append(string);
+ 100: sb.append(",chats=");
+ 101: sb.append(g4a.z(this.d, z, z2));
+ 102: sb.append(",calls=");
+ 103: sb.append(g4a.z(this.k, z, z2));
+ 104: sb.append(",updates=");
+ 105: return pq0.h(this.n, ",)", sb);
+ 106: }
+ 107: 
+ 108: public final boolean equals(Object obj) {
+ 109: if (this == obj) {
+ 110: return true;
+ 111: }
+ 112: if (!(obj instanceof l7a)) {
+ 113: return false;
+ 114: }
+ 115: l7a l7aVar = (l7a) obj;
+ 116: return g4a.c(this.c, l7aVar.c) && g4a.c(this.d, l7aVar.d) && g4a.c(this.e, l7aVar.e) && g4a.c(this.f, l7aVar.f) && this.g == l7aVar.g && g4a.c(this.h, l7aVar.h) && this.i.equals(l7aVar.i) && this.j == l7aVar.j && this.k.equals(l7aVar.k) && this.l == l7aVar.l && this.m == l7aVar.m && this.n == l7aVar.n && g4a.c(this.o, l7aVar.o);
+ 117: }
+ 118: 
+ 119: public final ArrayList h() {
+ 120: List list = this.e;
+ 121: ArrayList arrayList = new ArrayList();
+ 122: for (Object obj : list) {
+ 123: if (((ey4) obj) != dy4.t) {
+ 124: arrayList.add(obj);
+ 125: }
+ 126: }
+ 127: return arrayList;
+ 128: }
+ 129: 
+ 130: public final int hashCode() {
+ 131: cqe cqeVar = this.c;
+ 132: int iC = pq0.c(this.e, pq0.c(this.d, (cqeVar == null ? 0 : cqeVar.hashCode()) * 31, 31), 31);
+ 133: String str = this.f;
+ 134: int iH = s95.h((iC + (str == null ? 0 : str.hashCode())) * 31, 31, this.g);
+ 135: so4 so4Var = this.h;
+ 136: int iD = a15.d(this.n, s95.h(w7g.n(vw4.d(this.k, s95.h((this.i.hashCode() + ((iH + (so4Var == null ? 0 : so4Var.hashCode())) * 31)) * 31, 31, this.j), 31), 31, this.l), 31, this.m), 31);
+ 137: d7a d7aVar = this.o;
+ 138: return iD + (d7aVar != null ? d7aVar.hashCode() : 0);
+ 139: }
+ 140: 
+ 141: @Override // defpackage.mv0
+ 142: public final String toString() {
+ 143: return a(false, false);
+ 144: }
+ 145: }
+~~~
+
+## defpackage/c7j.java (14 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: import java.util.concurrent.atomic.AtomicBoolean;
+   4: 
+   5: /* JADX INFO: loaded from: classes.dex */
+   6: public class c7j {
+   7: public static final b7j b = new b7j();
+   8: public final AtomicBoolean a = new AtomicBoolean(false);
+   9: 
+  10: public Object a(q08 q08Var, x1j x1jVar) {
+  11: Object objD;
+  12: return (this.a.compareAndSet(false, true) && (objD = q08Var.d(x1jVar)) == ka5.a) ? objD : s1k.a;
+  13: }
+  14: }
+~~~
+
+## defpackage/k8a.java (904 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: /* JADX INFO: loaded from: classes.dex */
+   4: public final class k8a {
+   5: public final rp9 A;
+   6: public final rp9 B;
+   7: public final rp9 C;
+   8: public final rp9 D;
+   9: public final rp9 E;
+  10: public final rp9 F;
+  11: public final rp9 G;
+  12: public final r4i H;
+  13: public final dmf I;
+  14: public final String J;
+  15: public final f0f a;
+  16: public final ho7 b;
+  17: public final yt0 c;
+  18: public final s8a d;
+  19: public final rp9 e;
+  20: public final rp9 f;
+  21: public final rp9 g;
+  22: public final rp9 h;
+  23: public final rp9 i;
+  24: public final rp9 j;
+  25: public final rp9 k;
+  26: public final rp9 l;
+  27: public final rp9 m;
+  28: public final rp9 n;
+  29: public final rp9 o;
+  30: public final rp9 p;
+  31: public final rp9 q;
+  32: public final rp9 r;
+  33: public final rp9 s;
+  34: public final rp9 t;
+  35: public final rp9 u;
+  36: public final rp9 v;
+  37: public final rp9 w;
+  38: public final rp9 x;
+  39: public final rp9 y;
+  40: public final rp9 z;
+  41: 
+  42: public k8a(rp9 rp9Var, rp9 rp9Var2, rp9 rp9Var3, rp9 rp9Var4, rp9 rp9Var5, rp9 rp9Var6, rp9 rp9Var7, rp9 rp9Var8, rp9 rp9Var9, rp9 rp9Var10, rp9 rp9Var11, rp9 rp9Var12, rp9 rp9Var13, rp9 rp9Var14, rp9 rp9Var15, rp9 rp9Var16, rp9 rp9Var17, rp9 rp9Var18, rp9 rp9Var19, rp9 rp9Var20, rp9 rp9Var21, rp9 rp9Var22, rp9 rp9Var23, rp9 rp9Var24, rp9
+  43: this.a = f0fVar;
+  44: this.b = ho7Var;
+  45: this.c = yt0Var;
+  46: this.d = s8aVar;
+  47: this.e = rp9Var;
+  48: this.f = rp9Var2;
+  49: this.g = rp9Var3;
+  50: this.h = rp9Var4;
+  51: this.i = rp9Var5;
+  52: this.j = rp9Var6;
+  53: this.k = rp9Var7;
+  54: this.l = rp9Var9;
+  55: this.m = rp9Var10;
+  56: this.n = rp9Var11;
+  57: this.o = rp9Var12;
+  58: this.p = rp9Var13;
+  59: this.q = rp9Var14;
+  60: this.r = rp9Var15;
+  61: this.s = rp9Var16;
+  62: this.t = rp9Var17;
+  63: this.u = rp9Var18;
+  64: this.v = rp9Var19;
+  65: this.w = rp9Var20;
+  66: this.x = rp9Var21;
+  67: this.y = rp9Var22;
+  68: this.z = rp9Var23;
+  69: this.A = rp9Var24;
+  70: this.B = rp9Var25;
+  71: this.C = rp9Var8;
+  72: this.D = rp9Var26;
+  73: this.E = rp9Var27;
+  74: this.F = rp9Var29;
+  75: this.G = rp9Var28;
+  76: r4i r4iVarC = az7.c(Boolean.TRUE);
+  77: this.H = r4iVarC;
+  78: this.I = new dmf(r4iVarC);
+  79: this.J = k8a.class.getName();
+  80: }
+  81: 
+  82: public static final String g(guf gufVar, huf hufVar) {
+  83: StringBuilder sb = new StringBuilder("#");
+  84: int i = gufVar.a;
+  85: gufVar.a = i + 1;
+  86: sb.append(i);
+  87: sb.append('(');
+  88: long jNanoTime = System.nanoTime();
+  89: long j = jNanoTime - hufVar.a;
+  90: hufVar.a = jNanoTime;
+  91: qzd qzdVar = fe6.b;
+  92: sb.append(fe6.x(az7.V(j, me6.b)));
+  93: sb.append(')');
+  94: return sb.toString();
+  95: }
+  96: 
+  97: public final n83 a() {
+  98: return (n83) this.j.getValue();
+  99: }
+ 100: 
+ 101: public final n3a b() {
+ 102: return e().a;
+ 103: }
+ 104: 
+ 105: public final wi5 c() {
+ 106: return (wi5) this.h.getValue();
+ 107: }
+ 108: 
+ 109: public final k6j d() {
+ 110: return (k6j) this.y.getValue();
+ 111: }
+ 112: 
+ 113: public final dle e() {
+ 114: return (dle) this.g.getValue();
+ 115: }
+ 116: 
+ 117: /*  JADX ERROR: Type inference failed
+ 118: jadx.core.utils.exceptions.JadxOverflowException: Type inference error: updates count limit reached with updateSeq = 43541. Try increasing type updates limit count.
+ 119: at jadx.core.utils.ErrorsCounter.addError(ErrorsCounter.java:59)
+ 120: at jadx.core.utils.ErrorsCounter.error(ErrorsCounter.java:31)
+ 121: at jadx.core.dex.attributes.nodes.NotificationAttrNode.addError(NotificationAttrNode.java:19)
+ 122: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.visit(TypeInferenceVisitor.java:79)
+ 123: */
+ 124: public final java.lang.Object f(long r54, defpackage.l7a r56, long r57, int r59, java.lang.String r60, defpackage.d55 r61) {
+ 125: /*
+ 126: Method dump skipped, instruction units count: 4354
+ 127: To view this dump add '--comments-level debug' option
+ 128: */
+ 129: throw new UnsupportedOperationException("Method not decompiled: defpackage.k8a.f(long, l7a, long, int, java.lang.String, d55):java.lang.Object");
+ 130: }
+ 131: 
+ 132: /* JADX WARN: Code duplicated, block: B:21:0x01af  */
+ 133: /* JADX WARN: Code duplicated, block: B:23:0x0201  */
+ 134: /* JADX WARN: Code duplicated, block: B:26:0x0214  */
+ 135: /* JADX WARN: Code duplicated, block: B:29:0x021b  */
+ 136: /* JADX WARN: Code duplicated, block: B:35:0x0236  */
+ 137: /* JADX WARN: Code duplicated, block: B:7:0x0019  */
+ 138: /* JADX WARN: Failed to calculate best type for var: r11v22 ??
+ 139: jadx.core.utils.exceptions.JadxRuntimeException: Type update failed for variable: r11v22 ??, new type: java.util.Iterator
+ 140: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:109)
+ 141: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:59)
+ 142: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.calculateFromBounds(FixTypesVisitor.java:159)
+ 143: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.setBestType(FixTypesVisitor.java:136)
+ 144: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.deduceType(FixTypesVisitor.java:241)
+ 145: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryDeduceTypes(FixTypesVisitor.java:224)
+ 146: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+ 147: Caused by: java.lang.NullPointerException
+ 148: */
+ 149: /* JADX WARN: Failed to calculate best type for var: r11v22 ??
+ 150: jadx.core.utils.exceptions.JadxRuntimeException: Type update failed for variable: r11v22 ??, new type: java.util.Iterator
+ 151: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:109)
+ 152: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:59)
+ 153: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.calculateFromBounds(TypeInferenceVisitor.java:147)
+ 154: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.setBestType(TypeInferenceVisitor.java:125)
+ 155: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.lambda$runTypePropagation$2(TypeInferenceVisitor.java:103)
+ 156: at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+ 157: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.runTypePropagation(TypeInferenceVisitor.java:103)
+ 158: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.visit(TypeInferenceVisitor.java:75)
+ 159: Caused by: java.lang.NullPointerException
+ 160: */
+ 161: /* JADX WARN: Failed to calculate best type for var: r11v6 ??
+ 162: jadx.core.utils.exceptions.JadxRuntimeException: Type update failed for variable: r11v6 ??, new type: java.util.Iterator
+ 163: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:109)
+ 164: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:59)
+ 165: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.calculateFromBounds(FixTypesVisitor.java:159)
+ 166: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.setBestType(FixTypesVisitor.java:136)
+ 167: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.deduceType(FixTypesVisitor.java:241)
+ 168: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryDeduceTypes(FixTypesVisitor.java:224)
+ 169: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryInsertAdditionalMove(FixTypesVisitor.java:681)
+ 170: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+ 171: Caused by: java.lang.NullPointerException
+ 172: */
+ 173: /* JADX WARN: Failed to calculate best type for var: r11v6 ??
+ 174: jadx.core.utils.exceptions.JadxRuntimeException: Type update failed for variable: r11v6 ??, new type: java.util.Iterator
+ 175: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:109)
+ 176: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:59)
+ 177: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.calculateFromBounds(FixTypesVisitor.java:159)
+ 178: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.setBestType(FixTypesVisitor.java:136)
+ 179: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.deduceType(FixTypesVisitor.java:241)
+ 180: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryDeduceTypes(FixTypesVisitor.java:224)
+ 181: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+ 182: Caused by: java.lang.NullPointerException
+ 183: */
+ 184: /* JADX WARN: Failed to calculate best type for var: r11v6 ??
+ 185: jadx.core.utils.exceptions.JadxRuntimeException: Type update failed for variable: r11v6 ??, new type: java.util.Iterator
+ 186: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:109)
+ 187: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:59)
+ 188: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.calculateFromBounds(TypeInferenceVisitor.java:147)
+ 189: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.setBestType(TypeInferenceVisitor.java:125)
+ 190: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.lambda$runTypePropagation$2(TypeInferenceVisitor.java:103)
+ 191: at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+ 192: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.runTypePropagation(TypeInferenceVisitor.java:103)
+ 193: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryInsertAdditionalMove(FixTypesVisitor.java:678)
+ 194: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+ 195: Caused by: java.lang.NullPointerException
+ 196: */
+ 197: /* JADX WARN: Failed to calculate best type for var: r11v6 ??
+ 198: jadx.core.utils.exceptions.JadxRuntimeException: Type update failed for variable: r11v6 ??, new type: java.util.Iterator
+ 199: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:109)
+ 200: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:59)
+ 201: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.calculateFromBounds(TypeInferenceVisitor.java:147)
+ 202: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.setBestType(TypeInferenceVisitor.java:125)
+ 203: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.lambda$runTypePropagation$2(TypeInferenceVisitor.java:103)
+ 204: at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+ 205: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.runTypePropagation(TypeInferenceVisitor.java:103)
+ 206: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.visit(TypeInferenceVisitor.java:75)
+ 207: Caused by: java.lang.NullPointerException
+ 208: */
+ 209: /* JADX WARN: Failed to calculate best type for var: r12v0 ??
+ 210: jadx.core.utils.exceptions.JadxRuntimeException: Type update failed for variable: r12v0 ??, new type: java.util.Iterator
+ 211: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:109)
+ 212: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:59)
+ 213: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.calculateFromBounds(FixTypesVisitor.java:159)
+ 214: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.setBestType(FixTypesVisitor.java:136)
+ 215: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.deduceType(FixTypesVisitor.java:241)
+ 216: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryDeduceTypes(FixTypesVisitor.java:224)
+ 217: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryInsertAdditionalMove(FixTypesVisitor.java:681)
+ 218: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+ 219: Caused by: java.lang.NullPointerException
+ 220: */
+ 221: /* JADX WARN: Failed to calculate best type for var: r12v0 ??
+ 222: jadx.core.utils.exceptions.JadxRuntimeException: Type update failed for variable: r12v0 ??, new type: java.util.Iterator
+ 223: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:109)
+ 224: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:59)
+ 225: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.calculateFromBounds(FixTypesVisitor.java:159)
+ 226: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.setBestType(FixTypesVisitor.java:136)
+ 227: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.deduceType(FixTypesVisitor.java:241)
+ 228: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryDeduceTypes(FixTypesVisitor.java:224)
+ 229: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+ 230: Caused by: java.lang.NullPointerException
+ 231: */
+ 232: /* JADX WARN: Failed to calculate best type for var: r12v0 ??
+ 233: jadx.core.utils.exceptions.JadxRuntimeException: Type update failed for variable: r12v0 ??, new type: java.util.Iterator
+ 234: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:109)
+ 235: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:59)
+ 236: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.calculateFromBounds(TypeInferenceVisitor.java:147)
+ 237: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.setBestType(TypeInferenceVisitor.java:125)
+ 238: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.lambda$runTypePropagation$2(TypeInferenceVisitor.java:103)
+ 239: at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+ 240: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.runTypePropagation(TypeInferenceVisitor.java:103)
+ 241: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryInsertAdditionalMove(FixTypesVisitor.java:678)
+ 242: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+ 243: Caused by: java.lang.NullPointerException
+ 244: */
+ 245: /* JADX WARN: Failed to calculate best type for var: r12v0 ??
+ 246: jadx.core.utils.exceptions.JadxRuntimeException: Type update failed for variable: r12v0 ??, new type: java.util.Iterator
+ 247: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:109)
+ 248: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:59)
+ 249: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.calculateFromBounds(TypeInferenceVisitor.java:147)
+ 250: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.setBestType(TypeInferenceVisitor.java:125)
+ 251: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.lambda$runTypePropagation$2(TypeInferenceVisitor.java:103)
+ 252: at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+ 253: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.runTypePropagation(TypeInferenceVisitor.java:103)
+ 254: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.visit(TypeInferenceVisitor.java:75)
+ 255: Caused by: java.lang.NullPointerException
+ 256: */
+ 257: /* JADX WARN: Failed to calculate best type for var: r12v12 ??
+ 258: jadx.core.utils.exceptions.JadxRuntimeException: Type update failed for variable: r12v12 ??, new type: java.util.Iterator
+ 259: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:109)
+ 260: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:59)
+ 261: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.calculateFromBounds(FixTypesVisitor.java:159)
+ 262: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.setBestType(FixTypesVisitor.java:136)
+ 263: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.deduceType(FixTypesVisitor.java:241)
+ 264: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryDeduceTypes(FixTypesVisitor.java:224)
+ 265: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryInsertAdditionalMove(FixTypesVisitor.java:681)
+ 266: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+ 267: Caused by: java.lang.NullPointerException
+ 268: */
+ 269: /* JADX WARN: Failed to calculate best type for var: r12v12 ??
+ 270: jadx.core.utils.exceptions.JadxRuntimeException: Type update failed for variable: r12v12 ??, new type: java.util.Iterator
+ 271: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:109)
+ 272: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:59)
+ 273: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.calculateFromBounds(FixTypesVisitor.java:159)
+ 274: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.setBestType(FixTypesVisitor.java:136)
+ 275: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.deduceType(FixTypesVisitor.java:241)
+ 276: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryDeduceTypes(FixTypesVisitor.java:224)
+ 277: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+ 278: Caused by: java.lang.NullPointerException
+ 279: */
+ 280: /* JADX WARN: Failed to calculate best type for var: r12v12 ??
+ 281: jadx.core.utils.exceptions.JadxRuntimeException: Type update failed for variable: r12v12 ??, new type: java.util.Iterator
+ 282: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:109)
+ 283: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:59)
+ 284: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.calculateFromBounds(TypeInferenceVisitor.java:147)
+ 285: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.setBestType(TypeInferenceVisitor.java:125)
+ 286: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.lambda$runTypePropagation$2(TypeInferenceVisitor.java:103)
+ 287: at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+ 288: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.runTypePropagation(TypeInferenceVisitor.java:103)
+ 289: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryInsertAdditionalMove(FixTypesVisitor.java:678)
+ 290: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+ 291: Caused by: java.lang.NullPointerException
+ 292: */
+ 293: /* JADX WARN: Failed to calculate best type for var: r12v12 ??
+ 294: jadx.core.utils.exceptions.JadxRuntimeException: Type update failed for variable: r12v12 ??, new type: java.util.Iterator
+ 295: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:109)
+ 296: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:59)
+ 297: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.calculateFromBounds(TypeInferenceVisitor.java:147)
+ 298: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.setBestType(TypeInferenceVisitor.java:125)
+ 299: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.lambda$runTypePropagation$2(TypeInferenceVisitor.java:103)
+ 300: at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+ 301: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.runTypePropagation(TypeInferenceVisitor.java:103)
+ 302: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.visit(TypeInferenceVisitor.java:75)
+ 303: Caused by: java.lang.NullPointerException
+ 304: */
+ 305: /* JADX WARN: Failed to calculate best type for var: r12v16 ??
+ 306: jadx.core.utils.exceptions.JadxRuntimeException: Type update failed for variable: r12v16 ??, new type: java.util.Iterator
+ 307: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:109)
+ 308: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:59)
+ 309: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.calculateFromBounds(FixTypesVisitor.java:159)
+ 310: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.setBestType(FixTypesVisitor.java:136)
+ 311: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.deduceType(FixTypesVisitor.java:241)
+ 312: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryDeduceTypes(FixTypesVisitor.java:224)
+ 313: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryInsertAdditionalMove(FixTypesVisitor.java:681)
+ 314: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+ 315: Caused by: java.lang.NullPointerException
+ 316: */
+ 317: /* JADX WARN: Failed to calculate best type for var: r12v16 ??
+ 318: jadx.core.utils.exceptions.JadxRuntimeException: Type update failed for variable: r12v16 ??, new type: java.util.Iterator
+ 319: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:109)
+ 320: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:59)
+ 321: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.calculateFromBounds(FixTypesVisitor.java:159)
+ 322: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.setBestType(FixTypesVisitor.java:136)
+ 323: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.deduceType(FixTypesVisitor.java:241)
+ 324: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryDeduceTypes(FixTypesVisitor.java:224)
+ 325: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+ 326: Caused by: java.lang.NullPointerException
+ 327: */
+ 328: /* JADX WARN: Failed to calculate best type for var: r12v16 ??
+ 329: jadx.core.utils.exceptions.JadxRuntimeException: Type update failed for variable: r12v16 ??, new type: java.util.Iterator
+ 330: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:109)
+ 331: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:59)
+ 332: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.calculateFromBounds(TypeInferenceVisitor.java:147)
+ 333: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.setBestType(TypeInferenceVisitor.java:125)
+ 334: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.lambda$runTypePropagation$2(TypeInferenceVisitor.java:103)
+ 335: at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+ 336: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.runTypePropagation(TypeInferenceVisitor.java:103)
+ 337: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryInsertAdditionalMove(FixTypesVisitor.java:678)
+ 338: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+ 339: Caused by: java.lang.NullPointerException
+ 340: */
+ 341: /* JADX WARN: Failed to calculate best type for var: r12v16 ??
+ 342: jadx.core.utils.exceptions.JadxRuntimeException: Type update failed for variable: r12v16 ??, new type: java.util.Iterator
+ 343: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:109)
+ 344: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:59)
+ 345: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.calculateFromBounds(TypeInferenceVisitor.java:147)
+ 346: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.setBestType(TypeInferenceVisitor.java:125)
+ 347: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.lambda$runTypePropagation$2(TypeInferenceVisitor.java:103)
+ 348: at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+ 349: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.runTypePropagation(TypeInferenceVisitor.java:103)
+ 350: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.visit(TypeInferenceVisitor.java:75)
+ 351: Caused by: java.lang.NullPointerException
+ 352: */
+ 353: /* JADX WARN: Failed to calculate best type for var: r12v33 ??
+ 354: jadx.core.utils.exceptions.JadxRuntimeException: Type update failed for variable: r12v33 ??, new type: java.util.Iterator
+ 355: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:109)
+ 356: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:59)
+ 357: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.calculateFromBounds(FixTypesVisitor.java:159)
+ 358: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.setBestType(FixTypesVisitor.java:136)
+ 359: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.deduceType(FixTypesVisitor.java:241)
+ 360: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryDeduceTypes(FixTypesVisitor.java:224)
+ 361: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryInsertAdditionalMove(FixTypesVisitor.java:681)
+ 362: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+ 363: Caused by: java.lang.NullPointerException
+ 364: */
+ 365: /* JADX WARN: Failed to calculate best type for var: r12v33 ??
+ 366: jadx.core.utils.exceptions.JadxRuntimeException: Type update failed for variable: r12v33 ??, new type: java.util.Iterator
+ 367: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:109)
+ 368: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:59)
+ 369: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.calculateFromBounds(TypeInferenceVisitor.java:147)
+ 370: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.setBestType(TypeInferenceVisitor.java:125)
+ 371: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.lambda$runTypePropagation$2(TypeInferenceVisitor.java:103)
+ 372: at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+ 373: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.runTypePropagation(TypeInferenceVisitor.java:103)
+ 374: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryInsertAdditionalMove(FixTypesVisitor.java:678)
+ 375: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+ 376: Caused by: java.lang.NullPointerException
+ 377: */
+ 378: /* JADX WARN: Failed to calculate best type for var: r12v4 ??
+ 379: jadx.core.utils.exceptions.JadxRuntimeException: Type update failed for variable: r12v4 ??, new type: java.util.Iterator
+ 380: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:109)
+ 381: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:59)
+ 382: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.calculateFromBounds(FixTypesVisitor.java:159)
+ 383: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.setBestType(FixTypesVisitor.java:136)
+ 384: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.deduceType(FixTypesVisitor.java:241)
+ 385: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryDeduceTypes(FixTypesVisitor.java:224)
+ 386: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryInsertAdditionalMove(FixTypesVisitor.java:681)
+ 387: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+ 388: Caused by: java.lang.NullPointerException
+ 389: */
+ 390: /* JADX WARN: Failed to calculate best type for var: r12v4 ??
+ 391: jadx.core.utils.exceptions.JadxRuntimeException: Type update failed for variable: r12v4 ??, new type: java.util.Iterator
+ 392: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:109)
+ 393: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:59)
+ 394: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.calculateFromBounds(FixTypesVisitor.java:159)
+ 395: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.setBestType(FixTypesVisitor.java:136)
+ 396: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.deduceType(FixTypesVisitor.java:241)
+ 397: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryDeduceTypes(FixTypesVisitor.java:224)
+ 398: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+ 399: Caused by: java.lang.NullPointerException
+ 400: */
+ 401: /* JADX WARN: Failed to calculate best type for var: r12v4 ??
+ 402: jadx.core.utils.exceptions.JadxRuntimeException: Type update failed for variable: r12v4 ??, new type: java.util.Iterator
+ 403: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:109)
+ 404: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:59)
+ 405: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.calculateFromBounds(TypeInferenceVisitor.java:147)
+ 406: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.setBestType(TypeInferenceVisitor.java:125)
+ 407: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.lambda$runTypePropagation$2(TypeInferenceVisitor.java:103)
+ 408: at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+ 409: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.runTypePropagation(TypeInferenceVisitor.java:103)
+ 410: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryInsertAdditionalMove(FixTypesVisitor.java:678)
+ 411: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+ 412: Caused by: java.lang.NullPointerException
+ 413: */
+ 414: /* JADX WARN: Failed to calculate best type for var: r12v4 ??
+ 415: jadx.core.utils.exceptions.JadxRuntimeException: Type update failed for variable: r12v4 ??, new type: java.util.Iterator
+ 416: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:109)
+ 417: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:59)
+ 418: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.calculateFromBounds(TypeInferenceVisitor.java:147)
+ 419: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.setBestType(TypeInferenceVisitor.java:125)
+ 420: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.lambda$runTypePropagation$2(TypeInferenceVisitor.java:103)
+ 421: at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+ 422: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.runTypePropagation(TypeInferenceVisitor.java:103)
+ 423: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.visit(TypeInferenceVisitor.java:75)
+ 424: Caused by: java.lang.NullPointerException
+ 425: */
+ 426: /* JADX WARN: Failed to calculate best type for var: r15v48 ??
+ 427: jadx.core.utils.exceptions.JadxRuntimeException: Type update failed for variable: r15v48 ??, new type: java.util.Iterator
+ 428: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:109)
+ 429: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:59)
+ 430: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.calculateFromBounds(FixTypesVisitor.java:159)
+ 431: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.setBestType(FixTypesVisitor.java:136)
+ 432: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.deduceType(FixTypesVisitor.java:241)
+ 433: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryDeduceTypes(FixTypesVisitor.java:224)
+ 434: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryInsertAdditionalMove(FixTypesVisitor.java:681)
+ 435: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+ 436: Caused by: java.lang.NullPointerException
+ 437: */
+ 438: /* JADX WARN: Failed to calculate best type for var: r15v48 ??
+ 439: jadx.core.utils.exceptions.JadxRuntimeException: Type update failed for variable: r15v48 ??, new type: java.util.Iterator
+ 440: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:109)
+ 441: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:59)
+ 442: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.calculateFromBounds(FixTypesVisitor.java:159)
+ 443: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.setBestType(FixTypesVisitor.java:136)
+ 444: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.deduceType(FixTypesVisitor.java:241)
+ 445: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryDeduceTypes(FixTypesVisitor.java:224)
+ 446: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+ 447: Caused by: java.lang.NullPointerException
+ 448: */
+ 449: /* JADX WARN: Failed to calculate best type for var: r15v48 ??
+ 450: jadx.core.utils.exceptions.JadxRuntimeException: Type update failed for variable: r15v48 ??, new type: java.util.Iterator
+ 451: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:109)
+ 452: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:59)
+ 453: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.calculateFromBounds(TypeInferenceVisitor.java:147)
+ 454: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.setBestType(TypeInferenceVisitor.java:125)
+ 455: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.lambda$runTypePropagation$2(TypeInferenceVisitor.java:103)
+ 456: at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+ 457: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.runTypePropagation(TypeInferenceVisitor.java:103)
+ 458: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryInsertAdditionalMove(FixTypesVisitor.java:678)
+ 459: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+ 460: Caused by: java.lang.NullPointerException
+ 461: */
+ 462: /* JADX WARN: Failed to calculate best type for var: r15v48 ??
+ 463: jadx.core.utils.exceptions.JadxRuntimeException: Type update failed for variable: r15v48 ??, new type: java.util.Iterator
+ 464: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:109)
+ 465: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:59)
+ 466: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.calculateFromBounds(TypeInferenceVisitor.java:147)
+ 467: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.setBestType(TypeInferenceVisitor.java:125)
+ 468: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.lambda$runTypePropagation$2(TypeInferenceVisitor.java:103)
+ 469: at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+ 470: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.runTypePropagation(TypeInferenceVisitor.java:103)
+ 471: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.visit(TypeInferenceVisitor.java:75)
+ 472: Caused by: java.lang.NullPointerException
+ 473: */
+ 474: /* JADX WARN: Failed to calculate best type for var: r1v10 ??
+ 475: jadx.core.utils.exceptions.JadxRuntimeException: Type update failed for variable: r1v10 ??, new type: java.util.Iterator
+ 476: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:109)
+ 477: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:59)
+ 478: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.calculateFromBounds(FixTypesVisitor.java:159)
+ 479: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.setBestType(FixTypesVisitor.java:136)
+ 480: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.deduceType(FixTypesVisitor.java:241)
+ 481: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryDeduceTypes(FixTypesVisitor.java:224)
+ 482: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryInsertAdditionalMove(FixTypesVisitor.java:681)
+ 483: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+ 484: Caused by: java.lang.NullPointerException
+ 485: */
+ 486: /* JADX WARN: Failed to calculate best type for var: r1v10 ??
+ 487: jadx.core.utils.exceptions.JadxRuntimeException: Type update failed for variable: r1v10 ??, new type: java.util.Iterator
+ 488: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:109)
+ 489: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:59)
+ 490: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.calculateFromBounds(FixTypesVisitor.java:159)
+ 491: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.setBestType(FixTypesVisitor.java:136)
+ 492: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.deduceType(FixTypesVisitor.java:241)
+ 493: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryDeduceTypes(FixTypesVisitor.java:224)
+ 494: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+ 495: Caused by: java.lang.NullPointerException
+ 496: */
+ 497: /* JADX WARN: Failed to calculate best type for var: r1v10 ??
+ 498: jadx.core.utils.exceptions.JadxRuntimeException: Type update failed for variable: r1v10 ??, new type: java.util.Iterator
+ 499: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:109)
+ 500: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:59)
+ 501: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.calculateFromBounds(TypeInferenceVisitor.java:147)
+ 502: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.setBestType(TypeInferenceVisitor.java:125)
+ 503: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.lambda$runTypePropagation$2(TypeInferenceVisitor.java:103)
+ 504: at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+ 505: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.runTypePropagation(TypeInferenceVisitor.java:103)
+ 506: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryInsertAdditionalMove(FixTypesVisitor.java:678)
+ 507: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+ 508: Caused by: java.lang.NullPointerException
+ 509: */
+ 510: /* JADX WARN: Failed to calculate best type for var: r1v10 ??
+ 511: jadx.core.utils.exceptions.JadxRuntimeException: Type update failed for variable: r1v10 ??, new type: java.util.Iterator
+ 512: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:109)
+ 513: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:59)
+ 514: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.calculateFromBounds(TypeInferenceVisitor.java:147)
+ 515: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.setBestType(TypeInferenceVisitor.java:125)
+ 516: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.lambda$runTypePropagation$2(TypeInferenceVisitor.java:103)
+ 517: at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+ 518: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.runTypePropagation(TypeInferenceVisitor.java:103)
+ 519: at jadx.core.dex.visitors.typeinference.TypeInferenceVisitor.visit(TypeInferenceVisitor.java:75)
+ 520: Caused by: java.lang.NullPointerException
+ 521: */
+ 522: /* JADX WARN: Failed to calculate best type for var: r2v29 ??
+ 523: jadx.core.utils.exceptions.JadxRuntimeException: Type update failed for variable: r2v29 ??, new type: java.util.Iterator
+ 524: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:109)
+ 525: at jadx.core.dex.visitors.typeinference.TypeUpdate.apply(TypeUpdate.java:59)
+ 526: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.calculateFromBounds(FixTypesVisitor.java:159)
+ 527: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.setBestType(FixTypesVisitor.java:136)
+ 528: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.deduceType(FixTypesVisitor.java:241)
+ 529: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryDeduceTypes(FixTypesVisitor.java:224)
+ 530: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryInsertAdditionalMove(FixTypesVisitor.java:681)
+~~~
+
+Поздние сигнатуры: 897 public final java.lang.Object h(java.util.HashMap r39, defpackage.d55 r40) {
+
+## defpackage/gh6.java (376 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: import android.content.IntentFilter;
+   4: import android.os.Bundle;
+   5: import java.io.File;
+   6: import java.util.List;
+   7: import one.me.devmenu.logsviewer.IntegrityLogsViewerScreen;
+   8: import one.me.webview.FaqWebViewWidget;
+   9: import org.webrtc.PeerConnectionFactory;
+  10: 
+  11: /* JADX INFO: loaded from: classes2.dex */
+  12: public final class gh6 extends x1j implements e18 {
+  13: public final /* synthetic */ byte e;
+  14: public boolean f;
+  15: public final /* synthetic */ Object g;
+  16: public Object h;
+  17: 
+  18: /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+  19: public gh6(gl8 gl8Var, jl8 jl8Var, boolean z, b55 b55Var) {
+  20: super(2, b55Var);
+  21: this.e = (byte) 17;
+  22: this.h = gl8Var;
+  23: this.g = jl8Var;
+  24: this.f = z;
+  25: }
+  26: 
+  27: private final Object A(Object obj) throws Throwable {
+  28: boolean z = this.f;
+  29: if (!z) {
+  30: xnm.y(obj);
+  31: nih nihVar = ((pt9) this.h).a;
+  32: xv0 xv0Var = (xv0) this.g;
+  33: long j = xv0Var.a;
+  34: l6j l6jVar = xv0Var.b;
+  35: String str = l6jVar.d;
+  36: if (str == null) {
+  37: str = l6jVar.c;
+  38: }
+  39: it9 it9Var = new it9(j, str);
+  40: this.f = true;
+  41: Object objB = nihVar.b(it9Var, this);
+  42: ka5 ka5Var = ka5.a;
+  43: if (objB == ka5Var) {
+  44: return ka5Var;
+  45: }
+  46: } else {
+  47: if (!z) {
+  48: k3g.o("call to 'resume' before 'invoke' with coroutine");
+  49: return null;
+  50: }
+  51: xnm.y(obj);
+  52: }
+  53: return s1k.a;
+  54: }
+  55: 
+  56: private final Object B(Object obj) {
+  57: k4a k4aVar = (k4a) this.g;
+  58: wpe wpeVar = (wpe) this.h;
+  59: boolean z = this.f;
+  60: if (!z) {
+  61: xnm.y(obj);
+  62: j4a j4aVar = new j4a(k4aVar, new n00(0));
+  63: IntentFilter intentFilter = new IntentFilter();
+  64: intentFilter.addAction("action.LOCALE_CHANGED");
+  65: intentFilter.addAction("action.CONFIGURATION_UPDATED");
+  66: c45.P(k4aVar.e, j4aVar, intentFilter, null, 4);
+  67: dv8 dv8Var = new dv8(k4aVar, j4aVar, (byte) 6);
+  68: this.h = null;
+  69: this.f = true;
+  70: Object objH = jd0.h(wpeVar, dv8Var, this);
+  71: ka5 ka5Var = ka5.a;
+  72: if (objH == ka5Var) {
+  73: return ka5Var;
+  74: }
+  75: } else {
+  76: if (!z) {
+  77: k3g.o("call to 'resume' before 'invoke' with coroutine");
+  78: return null;
+  79: }
+  80: xnm.y(obj);
+  81: }
+  82: return s1k.a;
+  83: }
+  84: 
+  85: private final Object C(Object obj) {
+  86: boolean z = this.f;
+  87: if (!z) {
+  88: xnm.y(obj);
+  89: i7a i7aVar = (i7a) this.h;
+  90: l7a l7aVar = (l7a) this.g;
+  91: this.f = true;
+  92: Object objX = i7aVar.k(l7aVar, this);
+  93: ka5 ka5Var = ka5.a;
+  94: if (objX == ka5Var) {
+  95: return ka5Var;
+  96: }
+  97: } else {
+  98: if (!z) {
+  99: k3g.o("call to 'resume' before 'invoke' with coroutine");
+ 100: return null;
+ 101: }
+ 102: xnm.y(obj);
+ 103: }
+ 104: return s1k.a;
+ 105: }
+ 106: 
+ 107: private final Object y(Object obj) {
+ 108: boolean z = this.f;
+ 109: try {
+ 110: if (!z) {
+ 111: xnm.y(obj);
+ 112: hh7 hh7Var = (hh7) ((ir9) this.g).f.getValue();
+ 113: this.h = null;
+ 114: this.f = true;
+ 115: Object objA = hh7Var.a(this);
+ 116: ka5 ka5Var = ka5.a;
+ 117: if (objA == ka5Var) {
+ 118: return ka5Var;
+ 119: }
+ 120: } else {
+ 121: if (!z) {
+ 122: k3g.o("call to 'resume' before 'invoke' with coroutine");
+ 123: return null;
+ 124: }
+ 125: xnm.y(obj);
+ 126: }
+ 127: } catch (Throwable unused) {
+ 128: }
+ 129: return s1k.a;
+ 130: }
+ 131: 
+ 132: private final Object z(Object obj) throws Throwable {
+ 133: ot9 ot9Var = (ot9) this.g;
+ 134: boolean z = this.f;
+ 135: if (!z) {
+ 136: xnm.y(obj);
+ 137: nih nihVar = ((pt9) this.h).a;
+ 138: jt9 jt9Var = new jt9(ot9Var.a, ot9Var.b, new Long(ot9Var.c), ot9Var.d, ot9Var.e, ot9Var.f, ot9Var.g, ot9Var.h);
+ 139: this.f = true;
+ 140: Object objB = nihVar.b(jt9Var, this);
+ 141: ka5 ka5Var = ka5.a;
+ 142: if (objB == ka5Var) {
+ 143: return ka5Var;
+ 144: }
+ 145: } else {
+ 146: if (!z) {
+ 147: k3g.o("call to 'resume' before 'invoke' with coroutine");
+ 148: return null;
+ 149: }
+ 150: xnm.y(obj);
+ 151: }
+ 152: return s1k.a;
+ 153: }
+ 154: 
+ 155: @Override // defpackage.e18
+ 156: public final Object invoke(Object obj, Object obj2) throws Exception {
+ 157: byte b = this.e;
+ 158: s1k s1kVar = s1k.a;
+ 159: switch (b) {
+ 160: case 0:
+ 161: return ((gh6) u((b55) obj2, (ri7) obj)).w(s1kVar);
+ 162: case 1:
+ 163: return ((gh6) u((b55) obj2, (ja5) obj)).w(s1kVar);
+ 164: case 2:
+ 165: return ((gh6) u((b55) obj2, (ja5) obj)).w(s1kVar);
+ 166: case 3:
+ 167: return ((gh6) u((b55) obj2, (ja5) obj)).w(s1kVar);
+ 168: case 4:
+ 169: return ((gh6) u((b55) obj2, (ja5) obj)).w(s1kVar);
+ 170: case 5:
+ 171: return ((gh6) u((b55) obj2, (ja5) obj)).w(s1kVar);
+ 172: case 6:
+ 173: return ((gh6) u((b55) obj2, (ja5) obj)).w(s1kVar);
+ 174: case 7:
+ 175: ((gh6) u((b55) obj2, (ja5) obj)).w(s1kVar);
+ 176: return s1kVar;
+ 177: case 8:
+ 178: return ((gh6) u((b55) obj2, (ja5) obj)).w(s1kVar);
+ 179: case 9:
+ 180: return ((gh6) u((b55) obj2, (wr4) obj)).w(s1kVar);
+ 181: case 10:
+ 182: return ((gh6) u((b55) obj2, (ja5) obj)).w(s1kVar);
+ 183: case 11:
+ 184: return ((gh6) u((b55) obj2, (ja5) obj)).w(s1kVar);
+ 185: case 12:
+ 186: return ((gh6) u((b55) obj2, (ja5) obj)).w(s1kVar);
+ 187: case 13:
+ 188: return ((gh6) u((b55) obj2, (ja5) obj)).w(s1kVar);
+ 189: case 14:
+ 190: return ((gh6) u((b55) obj2, (ja5) obj)).w(s1kVar);
+ 191: case 15:
+ 192: return ((gh6) u((b55) obj2, (ja5) obj)).w(s1kVar);
+ 193: case PeerConnectionFactory.Options.ADAPTER_TYPE_LOOPBACK /* 16 */:
+ 194: return ((gh6) u((b55) obj2, (ja5) obj)).w(s1kVar);
+ 195: case 17:
+ 196: ((gh6) u((b55) obj2, (ja5) obj)).w(s1kVar);
+ 197: return s1kVar;
+ 198: case 18:
+ 199: return ((gh6) u((b55) obj2, (ja5) obj)).w(s1kVar);
+ 200: case 19:
+ 201: return ((gh6) u((b55) obj2, (ja5) obj)).w(s1kVar);
+ 202: case 20:
+ 203: return ((gh6) u((b55) obj2, (ja5) obj)).w(s1kVar);
+ 204: case 21:
+ 205: return ((gh6) u((b55) obj2, (ja5) obj)).w(s1kVar);
+ 206: case 22:
+ 207: return ((gh6) u((b55) obj2, (dj9) obj)).w(s1kVar);
+ 208: case 23:
+ 209: return ((gh6) u((b55) obj2, (ja5) obj)).w(s1kVar);
+ 210: case 24:
+ 211: return ((gh6) u((b55) obj2, (ja5) obj)).w(s1kVar);
+ 212: case 25:
+ 213: return ((gh6) u((b55) obj2, (ja5) obj)).w(s1kVar);
+ 214: case 26:
+ 215: return ((gh6) u((b55) obj2, (ja5) obj)).w(s1kVar);
+ 216: case 27:
+ 217: return ((gh6) u((b55) obj2, (wpe) obj)).w(s1kVar);
+ 218: case 28:
+ 219: return ((gh6) u((b55) obj2, (ja5) obj)).w(s1kVar);
+ 220: default:
+ 221: return ((gh6) u((b55) obj2, (ja5) obj)).w(s1kVar);
+ 222: }
+ 223: }
+ 224: 
+ 225: @Override // defpackage.hv0
+ 226: public final b55 u(b55 b55Var, Object obj) {
+ 227: byte b = this.e;
+ 228: Object obj2 = this.g;
+ 229: switch (b) {
+ 230: case 0:
+ 231: gh6 gh6Var = new gh6((lh6) obj2, b55Var, (byte) 0);
+ 232: gh6Var.h = obj;
+ 233: return gh6Var;
+ 234: case 1:
+ 235: return new gh6(obj2, this.h, b55Var, (byte) 1);
+ 236: case 2:
+ 237: return new gh6(obj2, this.h, b55Var, (byte) 2);
+ 238: case 3:
+ 239: return new gh6((byte) 3, b55Var, (j37) this.h, (a19) obj2, false);
+ 240: case 4:
+ 241: return new gh6((FaqWebViewWidget) obj2, b55Var, (byte) 4);
+ 242: case 5:
+ 243: gh6 gh6Var2 = new gh6((FaqWebViewWidget) obj2, b55Var, (byte) 5);
+ 244: gh6Var2.h = obj;
+ 245: return gh6Var2;
+ 246: case 6:
+ 247: return new gh6((byte) 6, b55Var, (n0b) this.h, (vo2) obj2, false);
+ 248: case 7:
+ 249: return new gh6((File) this.h, this.f, (wb7) obj2, b55Var);
+ 250: case 8:
+ 251: return new gh6((byte) 8, b55Var, (kc7) this.h, (List) obj2, false);
+ 252: case 9:
+ 253: gh6 gh6Var3 = new gh6((se7) obj2, b55Var, (byte) 9);
+ 254: gh6Var3.h = obj;
+ 255: return gh6Var3;
+ 256: case 10:
+ 257: return new gh6(obj2, this.h, b55Var, (byte) 10);
+ 258: case 11:
+ 259: return new gh6((byte) 11, b55Var, (zm7) this.h, (a19) obj2, false);
+ 260: case 12:
+ 261: return new gh6((byte) 12, b55Var, (bn7) this.h, (pm7) obj2, false);
+ 262: case 13:
+ 263: return new gh6((co7) obj2, b55Var, (byte) 13);
+ 264: case 14:
+ 265: return new gh6((byte) 14, b55Var, (tr7) this.h, (String) obj2, false);
+ 266: case 15:
+ 267: return new gh6((byte) 15, b55Var, (tb8) this.h, (Bundle) obj2, false);
+ 268: case PeerConnectionFactory.Options.ADAPTER_TYPE_LOOPBACK /* 16 */:
+ 269: return new gh6((yg8) obj2, b55Var, (byte) 16);
+ 270: case 17:
+ 271: return new gh6((gl8) this.h, (jl8) obj2, this.f, b55Var);
+ 272: case 18:
+ 273: gh6 gh6Var4 = new gh6((jl8) obj2, b55Var, (byte) 18);
+ 274: gh6Var4.h = obj;
+ 275: return gh6Var4;
+ 276: case 19:
+ 277: return new gh6((byte) 19, b55Var, (e09) this.h, (z28) obj2, false);
+ 278: case 20:
+ 279: return new gh6((byte) 20, b55Var, (s39) this.h, (r39) obj2, false);
+ 280: case 21:
+ 281: return new gh6((byte) 21, b55Var, (r6a) this.h, (IntegrityLogsViewerScreen) obj2, false);
+ 282: case 22:
+ 283: gh6 gh6Var5 = new gh6((fj9) obj2, b55Var, (byte) 22);
+ 284: gh6Var5.h = obj;
+ 285: return gh6Var5;
+ 286: case 23:
+ 287: gh6 gh6Var6 = new gh6((ir9) obj2, b55Var, (byte) 23);
+ 288: gh6Var6.h = obj;
+ 289: return gh6Var6;
+ 290: case 24:
+ 291: return new gh6((byte) 24, b55Var, (vr9) this.h, (r25) obj2, false);
+ 292: case 25:
+ 293: return new gh6((byte) 25, b55Var, (pt9) this.h, (ot9) obj2, false);
+ 294: case 26:
+ 295: return new gh6((byte) 26, b55Var, (pt9) this.h, (xv0) obj2, false);
+ 296: case 27:
+ 297: gh6 gh6Var7 = new gh6((k4a) obj2, b55Var, (byte) 27);
+ 298: gh6Var7.h = obj;
+ 299: return gh6Var7;
+ 300: case 28:
+ 301: return new gh6((byte) 28, b55Var, (i7a) this.h, (l7a) obj2, false);
+ 302: default:
+ 303: return new gh6((byte) 29, b55Var, (baa) this.h, (CharSequence) obj2, false);
+ 304: }
+ 305: }
+ 306: 
+ 307: /* JADX WARN: Code duplicated, block: B:201:0x0471  */
+ 308: /* JADX WARN: Code duplicated, block: B:209:0x048f  */
+ 309: /* JADX WARN: Code duplicated, block: B:211:0x0497  */
+ 310: /* JADX WARN: Code duplicated, block: B:212:0x0499  */
+ 311: /* JADX WARN: Code duplicated, block: B:216:0x04a7  */
+ 312: /* JADX WARN: Code duplicated, block: B:524:0x0502 A[SYNTHETIC] */
+ 313: /* JADX WARN: Code duplicated, block: B:525:0x04ce A[SYNTHETIC] */
+ 314: /* JADX WARN: Code duplicated, block: B:526:0x04ca A[SYNTHETIC] */
+ 315: /* JADX WARN: Code duplicated, block: B:527:0x04a5 A[SYNTHETIC] */
+ 316: /* JADX WARN: Code duplicated, block: B:528:0x04a3 A[SYNTHETIC] */
+ 317: /* JADX WARN: Multi-variable type inference failed */
+ 318: /* JADX WARN: Type inference failed for: r11v0, types: [b55] */
+ 319: /* JADX WARN: Type inference failed for: r11v53 */
+ 320: /*  JADX ERROR: JadxRuntimeException in pass: IfRegionVisitor
+ 321: jadx.core.utils.exceptions.JadxRuntimeException: Can't remove SSA var: r12v15 java.lang.Object, still in use, count: 2, list:
+ 322: (r12v15 java.lang.Object) from 0x0423: PHI (r12 I:??) = (r12v12 java.lang.Object), (r12v15 java.lang.Object) binds: [B:185:0x0422, B:534:0x0423] A[DONT_GENERATE, DONT_INLINE]
+ 323: (r12v15 java.lang.Object) from 0x0417: CHECK_CAST (mo7) (r12v15 java.lang.Object)
+ 324: at jadx.core.utils.InsnRemover.removeSsaVar(InsnRemover.java:164)
+ 325: at jadx.core.utils.InsnRemover.unbindResult(InsnRemover.java:129)
+ 326: at jadx.core.utils.InsnRemover.unbindInsn(InsnRemover.java:93)
+ 327: at jadx.core.dex.visitors.regions.TernaryMod.makeTernaryInsn(TernaryMod.java:132)
+ 328: at jadx.core.dex.visitors.regions.TernaryMod.processRegion(TernaryMod.java:67)
+ 329: at jadx.core.dex.visitors.regions.TernaryMod.enterRegion(TernaryMod.java:50)
+ 330: at jadx.core.dex.visitors.regions.DepthRegionTraversal.traverseInternal(DepthRegionTraversal.java:96)
+ 331: at jadx.core.dex.visitors.regions.DepthRegionTraversal.traverse(DepthRegionTraversal.java:27)
+ 332: at jadx.core.dex.visitors.regions.TernaryMod.process(TernaryMod.java:36)
+ 333: at jadx.core.dex.visitors.regions.IfRegionVisitor.process(IfRegionVisitor.java:44)
+ 334: at jadx.core.dex.visitors.regions.IfRegionVisitor.visit(IfRegionVisitor.java:30)
+ 335: */
+ 336: @Override // defpackage.hv0
+ 337: public final java.lang.Object w(java.lang.Object r22) throws java.lang.Exception {
+ 338: /*
+ 339: Method dump skipped, instruction units count: 3056
+ 340: To view this dump add '--comments-level debug' option
+ 341: */
+ 342: throw new UnsupportedOperationException("Method not decompiled: defpackage.gh6.w(java.lang.Object):java.lang.Object");
+ 343: }
+ 344: 
+ 345: /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+ 346: public /* synthetic */ gh6(byte b, b55 b55Var, Object obj, Object obj2, boolean z) {
+ 347: super(2, b55Var);
+ 348: this.e = b;
+ 349: this.h = obj;
+ 350: this.g = obj2;
+ 351: }
+ 352: 
+ 353: /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+ 354: public gh6(File file, boolean z, wb7 wb7Var, b55 b55Var) {
+ 355: super(2, b55Var);
+ 356: this.e = (byte) 7;
+ 357: this.h = file;
+ 358: this.f = z;
+ 359: this.g = wb7Var;
+ 360: }
+ 361: 
+ 362: /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+ 363: public /* synthetic */ gh6(Object obj, b55 b55Var, byte b) {
+ 364: super(2, b55Var);
+ 365: this.e = b;
+ 366: this.g = obj;
+ 367: }
+ 368: 
+ 369: /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+ 370: public /* synthetic */ gh6(Object obj, Object obj2, b55 b55Var, byte b) {
+ 371: super(2, b55Var);
+ 372: this.e = b;
+ 373: this.g = obj;
+ 374: this.h = obj2;
+ 375: }
+ 376: }
+~~~
+
+## defpackage/er.java (905 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: import java.util.List;
+   4: import one.me.sdk.statistics.perf.utils.MissingMetricNameException;
+   5: import one.me.sdk.statistics.perf.utils.PerfListenerException;
+   6: 
+   7: /* JADX INFO: loaded from: classes.dex */
+   8: public final class er extends x1j implements e18 {
+   9: public final /* synthetic */ byte e;
+  10: public byte f;
+  11: public Object g;
+  12: public final /* synthetic */ Object h;
+  13: 
+  14: /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+  15: public /* synthetic */ er(Object obj, Object obj2, b55 b55Var, byte b) {
+  16: super(2, b55Var);
+  17: this.e = b;
+  18: this.g = obj;
+  19: this.h = obj2;
+  20: }
+  21: 
+  22: /* JADX WARN: Code duplicated, block: B:123:0x023d  */
+  23: /* JADX WARN: Code duplicated, block: B:125:0x0248  */
+  24: /* JADX WARN: Code duplicated, block: B:126:0x025a  */
+  25: /* JADX WARN: Code duplicated, block: B:128:0x0260  */
+  26: /* JADX WARN: Code duplicated, block: B:131:0x0298  */
+  27: /* JADX WARN: Code duplicated, block: B:137:0x02b8  */
+  28: /* JADX WARN: Code duplicated, block: B:140:0x02d1  */
+  29: /* JADX WARN: Code duplicated, block: B:147:0x02f0  */
+  30: /* JADX WARN: Code duplicated, block: B:153:0x0316  */
+  31: /* JADX WARN: Code duplicated, block: B:157:0x031f  */
+  32: /* JADX WARN: Code duplicated, block: B:166:0x0345  */
+  33: /* JADX WARN: Code duplicated, block: B:172:0x0369  */
+  34: /* JADX WARN: Code duplicated, block: B:175:0x036f  */
+  35: /* JADX WARN: Code duplicated, block: B:176:0x0372  */
+  36: /* JADX WARN: Code duplicated, block: B:185:0x03b7  */
+  37: /* JADX WARN: Code duplicated, block: B:191:0x03d0  */
+  38: /* JADX WARN: Code duplicated, block: B:223:0x0470  */
+  39: /* JADX WARN: Code duplicated, block: B:409:0x0321 A[SYNTHETIC] */
+  40: /* JADX WARN: Code restructure failed: missing block: B:224:0x0472, code lost:
+  41: 
+  42: if (r2 == r0) goto L363;
+  43: */
+  44: /* JADX WARN: Code restructure failed: missing block: B:261:0x053d, code lost:
+  45: 
+  46: if (r2 == r0) goto L363;
+  47: */
+  48: /* JADX WARN: Code restructure failed: missing block: B:280:0x0597, code lost:
+  49: 
+  50: if (r2 == r0) goto L363;
+  51: */
+  52: /* JADX WARN: Code restructure failed: missing block: B:329:0x06a0, code lost:
+  53: 
+  54: if (r2 == r0) goto L363;
+  55: */
+  56: /* JADX WARN: Code restructure failed: missing block: B:362:0x0797, code lost:
+  57: 
+  58: if (r3.q(r1) == r0) goto L363;
+  59: */
+  60: /* JADX WARN: Multi-variable type inference failed */
+  61: /* JADX WARN: Type inference failed for: r15v13 */
+  62: /* JADX WARN: Type inference failed for: r15v6 */
+  63: /* JADX WARN: Type inference failed for: r15v7, types: [aul] */
+  64: /* JADX WARN: Type inference failed for: r2v27, types: [wud] */
+  65: /* JADX WARN: Type inference failed for: r3v58 */
+  66: /* JADX WARN: Type inference failed for: r3v59, types: [xsb] */
+  67: /* JADX WARN: Type inference failed for: r3v69 */
+  68: /* JADX WARN: Type inference failed for: r9v14 */
+  69: /* JADX WARN: Type inference failed for: r9v15, types: [java.lang.String, rud] */
+  70: /* JADX WARN: Type inference failed for: r9v16 */
+  71: /* JADX WARN: Type inference fix 'apply assigned field type' failed
+  72: java.lang.UnsupportedOperationException: ArgType.getObject(), call class: class jadx.core.dex.instructions.args.ArgType$UnknownArg
+  73: at jadx.core.dex.instructions.args.ArgType.getObject(ArgType.java:596)
+  74: at jadx.core.dex.attributes.nodes.ClassTypeVarsAttr.getTypeVarsMapFor(ClassTypeVarsAttr.java:35)
+  75: at jadx.core.dex.nodes.utils.TypeUtils.replaceClassGenerics(TypeUtils.java:177)
+  76: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.insertExplicitUseCast(FixTypesVisitor.java:397)
+  77: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.tryFieldTypeWithNewCasts(FixTypesVisitor.java:359)
+  78: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.applyFieldType(FixTypesVisitor.java:309)
+  79: at jadx.core.dex.visitors.typeinference.FixTypesVisitor.visit(FixTypesVisitor.java:94)
+  80: */
+  81: /*
+  82: Code decompiled incorrectly, please refer to instructions dump.
+  83: */
+  84: private final Object y(Object obj) {
+  85: s1k s1kVar;
+  86: String str;
+  87: xsb xsbVar;
+  88: x3c x3cVar;
+  89: ?? r9;
+  90: String str2;
+  91: String str3;
+  92: kig kigVar;
+  93: long j;
+  94: boolean zB;
+  95: String str4;
+  96: xsb xsbVarY;
+  97: e4c e4cVar;
+  98: e4c e4cVar2;
+  99: Object[] objArr;
+ 100: int i;
+ 101: int i2;
+ 102: e4c e4cVar3;
+ 103: Object n4gVar;
+ 104: Throwable thA;
+ 105: e4c e4cVar4;
+ 106: Object obj2;
+ 107: String str5;
+ 108: o1d o1dVar;
+ 109: String str6;
+ 110: xsb xsbVar2;
+ 111: String str7;
+ 112: o1d o1dVar2;
+ 113: String name;
+ 114: String str8;
+ 115: PerfListenerException perfListenerException;
+ 116: o1d o1dVar3;
+ 117: wtd wtdVar;
+ 118: Object obj3;
+ 119: Object n4gVar2;
+ 120: Throwable thA2;
+ 121: int i3;
+ 122: int i4;
+ 123: String name2;
+ 124: String str9;
+ 125: PerfListenerException perfListenerException2;
+ 126: o1d o1dVar4;
+ 127: String str10;
+ 128: String str11;
+ 129: o1d o1dVar5;
+ 130: Object objD;
+ 131: ?? r15;
+ 132: ?? Y;
+ 133: aul aulVar;
+ 134: er erVar = this;
+ 135: c6a c6aVar = c6a.d;
+ 136: s1k s1kVar2 = s1k.a;
+ 137: c6a c6aVar2 = c6a.c;
+ 138: c6a c6aVar3 = c6a.f;
+ 139: ptd ptdVar = (ptd) erVar.g;
+ 140: ka5 ka5Var = ka5.a;
+ 141: byte b = erVar.f;
+ 142: if (b == 0) {
+ 143: xnm.y(obj);
+ 144: wud wudVar = (wud) erVar.h;
+ 145: boolean z = ptdVar instanceof aul;
+ 146: aul aulVar2 = z ? (aul) ptdVar : null;
+ 147: String strA = aulVar2 != null ? aulVar2.a() : null;
+ 148: xsb xsbVarY2 = strA != null ? f09.y(wudVar.c, strA) : null;
+ 149: String str12 = wudVar.b;
+ 150: if (xsbVarY2 != null) {
+ 151: o1d o1dVar6 = f09.g;
+ 152: if (o1dVar6 != null && o1dVar6.b(c6aVar)) {
+ 153: o1dVar6.c(c6aVar, str12, pq0.j(wud.y(xsbVarY2), ": ", String.valueOf(ptdVar)), null);
+ 154: }
+ 155: } else {
+ 156: o1d o1dVar7 = f09.g;
+ 157: if (o1dVar7 != null && o1dVar7.b(c6aVar)) {
+ 158: o1dVar7.c(c6aVar, str12, pq0.j(wudVar.z(strA), ": ", String.valueOf(ptdVar)), null);
+ 159: }
+ 160: }
+ 161: if (ptdVar instanceof wtl) {
+ 162: wud wudVar2 = (wud) erVar.h;
+ 163: aul aulVar3 = z ? (aul) ptdVar : null;
+ 164: String strA2 = aulVar3 != null ? aulVar3.a() : null;
+ 165: xsb xsbVarY3 = strA2 != null ? f09.y(wudVar2.c, strA2) : null;
+ 166: String str13 = wudVar2.b;
+ 167: if (xsbVarY3 != null) {
+ 168: o1d o1dVar8 = f09.g;
+ 169: if (o1dVar8 != null && o1dVar8.b(c6aVar2)) {
+ 170: o1dVar8.c(c6aVar2, str13, wud.y(xsbVarY3).concat(": Adding local properties"), null);
+ 171: }
+ 172: } else {
+ 173: o1d o1dVar9 = f09.g;
+ 174: if (o1dVar9 != null && o1dVar9.b(c6aVar2)) {
+ 175: o1dVar9.c(c6aVar2, str13, wudVar2.z(strA2).concat(": Adding local properties"), null);
+ 176: }
+ 177: }
+ 178: e4c e4cVar5 = ((wud) erVar.h).c;
+ 179: String strA3 = ((aul) ptdVar).a();
+ 180: kig kigVarC = ((wtl) ptdVar).c();
+ 181: xsb xsbVar3 = (xsb) e4cVar5.d(new lmj(strA3));
+ 182: if (xsbVar3 == null) {
+ 183: String str14 = h09.a;
+ 184: o1d o1dVar10 = f09.g;
+ 185: if (o1dVar10 != null && o1dVar10.b(c6aVar3)) {
+ 186: o1dVar10.c(c6aVar3, str14, "No metric for such traceId->".concat(lmj.a(strA3)), null);
+ 187: }
+ 188: } else {
+ 189: xsbVar3.g.l(kigVarC);
+ 190: }
+ 191: }
+ 192: if (ptdVar instanceof ytl) {
+ 193: wud wudVar3 = (wud) erVar.h;
+ 194: aul aulVar4 = z ? (aul) ptdVar : null;
+ 195: String strA4 = aulVar4 != null ? aulVar4.a() : null;
+ 196: xsb xsbVarY4 = strA4 != null ? f09.y(wudVar3.c, strA4) : null;
+ 197: String str15 = wudVar3.b;
+ 198: if (xsbVarY4 != null) {
+ 199: o1d o1dVar11 = f09.g;
+ 200: if (o1dVar11 != null && o1dVar11.b(c6aVar2)) {
+ 201: o1dVar11.c(c6aVar2, str15, wud.y(xsbVarY4).concat(": Clearing previous timeout jobs"), null);
+ 202: }
+ 203: } else {
+ 204: o1d o1dVar12 = f09.g;
+ 205: if (o1dVar12 != null && o1dVar12.b(c6aVar2)) {
+ 206: o1dVar12.c(c6aVar2, str15, wudVar3.z(strA4).concat(": Clearing previous timeout jobs"), null);
+ 207: }
+ 208: }
+ 209: aul aulVar5 = (aul) ptdVar;
+ 210: kf9 kf9Var = (kf9) ((wud) erVar.h).d.m(new lmj(aulVar5.a()));
+ 211: if (kf9Var != null) {
+ 212: kf9Var.m(null);
+ 213: }
+ 214: ((wud) erVar.h).i(aulVar5.a());
+ 215: }
+ 216: if (ptdVar instanceof ntd) {
+ 217: wud wudVar4 = (wud) erVar.h;
+ 218: ntd ntdVar = (ntd) ptdVar;
+ 219: e4c e4cVar6 = wudVar4.c;
+ 220: fk3 fk3Var = wudVar4.a.c;
+ 221: if (fk3Var instanceof ytd) {
+ 222: str2 = (String) va4.K0((List) fk3Var.b);
+ 223: } else {
+ 224: if (!(fk3Var instanceof xtd)) {
+ 225: k3g.l();
+ 226: return null;
+ 227: }
+ 228: String str16 = ntdVar.d;
+ 229: if (str16 != null) {
+ 230: s1kVar2 = s1kVar2;
+ 231: c6aVar2 = c6aVar2;
+ 232: str3 = str16;
+ 233: } else {
+ 234: str2 = (String) va4.K0((List) fk3Var.b);
+ 235: String str17 = ntdVar.a;
+ 236: MissingMetricNameException missingMetricNameException = new MissingMetricNameException(wudVar4.p(), str2);
+ 237: String str18 = wudVar4.b;
+ 238: o1d o1dVar13 = f09.g;
+ 239: if (o1dVar13 != null && o1dVar13.b(c6aVar3)) {
+ 240: o1dVar13.c(c6aVar3, str18, pq0.j(wudVar4.z(str17), ": ", vg9.y("Multi-metric registrar started without explicit name, falling back to '", str2, "'")), missingMetricNameException);
+ 241: }
+ 242: str3 = str2;
+ 243: }
+ 244: kigVar = ntdVar.b;
+ 245: j = ntdVar.c;
+ 246: zB = e4cVar6.b(new lmj(ntdVar.a));
+ 247: str4 = ntdVar.a;
+ 248: if (zB) {
+ 249: objD = e4cVar6.d(new lmj(str4));
+ 250: if (objD != null) {
+ 251: k3g.t("Required value was null.");
+ 252: return null;
+ 253: }
+ 254: xsb xsbVar4 = (xsb) objD;
+ 255: xsbVar4.f.b(new rxh(j));
+ 256: xsbVar4.g.l(kigVar);
+ 257: } else {
+ 258: lmj lmjVar = new lmj(str4);
+ 259: x3c x3cVarC = inc.c(new rxh(j));
+ 260: e4c e4cVar7 = new e4c(kigVar.e);
+ 261: e4cVar7.l(kigVar);
+ 262: qzd qzdVar = fe6.b;
+ 263: e4cVar6.o(lmjVar, new xsb(str3, str4, 0L, 0L, false, x3cVarC, e4cVar7));
+ 264: }
+ 265: xsbVarY = f09.y(wudVar4.c, ntdVar.a);
+ 266: if (xsbVarY == null) {
+ 267: str10 = ntdVar.a;
+ 268: str11 = wudVar4.b;
+ 269: o1dVar5 = f09.g;
+ 270: if (o1dVar5 != null && o1dVar5.b(c6aVar3)) {
+ 271: o1dVar5.c(c6aVar3, str11, wudVar4.z(str10).concat(": handleStartMetric: metric not found in storage right after start, skipping"), null);
+ 272: }
+ 273: } else {
+ 274: long[] jArr = lig.a;
+ 275: e4cVar = new e4c();
+ 276: e4cVar2 = new e4c();
+ 277: objArr = wudVar4.a.e.a;
+ 278: i2 = 0;
+ 279: for (i = r0.b; i2 < i; i = i3) {
+ 280: Object[] objArr2 = objArr;
+ 281: wtdVar = (wtd) objArr[i2];
+ 282: obj3 = lig.b;
+ 283: try {
+ 284: n4gVar2 = wtdVar.d(xsbVarY);
+ 285: } catch (Throwable th) {
+ 286: n4gVar2 = new n4g(th);
+ 287: }
+ 288: thA2 = p4g.a(n4gVar2);
+ 289: if (thA2 != null) {
+ 290: i3 = i;
+ 291: name2 = wtdVar.getClass().getName();
+ 292: i4 = i2;
+ 293: str9 = wudVar4.b;
+ 294: perfListenerException2 = new PerfListenerException(name2, thA2);
+ 295: o1dVar4 = f09.g;
+ 296: if (o1dVar4 != null && o1dVar4.b(c6aVar3)) {
+ 297: o1dVar4.c(c6aVar3, str9, "PerfListener callback failed, listener=".concat(name2), perfListenerException2);
+ 298: }
+ 299: } else {
+ 300: i3 = i;
+ 301: i4 = i2;
+ 302: }
+ 303: if (n4gVar2 instanceof n4g) {
+ 304: obj3 = n4gVar2;
+ 305: }
+ 306: e4cVar2.l((kig) obj3);
+ 307: i2 = i4 + 1;
+ 308: objArr = objArr2;
+ 309: }
+ 310: e4cVar3 = lig.b;
+ 311: try {
+ 312: n4gVar = wudVar4.d(xsbVarY);
+ 313: } catch (Throwable th2) {
+ 314: n4gVar = new n4g(th2);
+ 315: }
+ 316: thA = p4g.a(n4gVar);
+ 317: if (thA != null) {
+ 318: name = wudVar4.getClass().getName();
+ 319: str8 = wudVar4.b;
+ 320: e4cVar4 = e4cVar3;
+ 321: perfListenerException = new PerfListenerException(name, thA);
+ 322: o1dVar3 = f09.g;
+ 323: if (o1dVar3 != null && o1dVar3.b(c6aVar3)) {
+ 324: o1dVar3.c(c6aVar3, str8, "PerfListener callback failed, listener=".concat(name), perfListenerException);
+ 325: }
+ 326: } else {
+ 327: e4cVar4 = e4cVar3;
+ 328: }
+ 329: if (n4gVar instanceof n4g) {
+ 330: obj2 = e4cVar4;
+ 331: } else {
+ 332: obj2 = n4gVar;
+ 333: }
+ 334: e4cVar2.l((kig) obj2);
+ 335: e4cVar.l(e4cVar2);
+ 336: e4cVar.l(xsbVarY.g);
+ 337: str5 = wudVar4.b;
+ 338: o1dVar = f09.g;
+ 339: if (o1dVar != null && o1dVar.b(c6aVar)) {
+ 340: o1dVar.c(c6aVar, str5, pq0.j(wud.y(xsbVarY), ": ", "Local props in start of collect -> " + e4cVar), null);
+ 341: }
+ 342: e4c e4cVar8 = wudVar4.c;
+ 343: str6 = ntdVar.a;
+ 344: xsbVar2 = (xsb) e4cVar8.d(new lmj(str6));
+ 345: if (xsbVar2 == null) {
+ 346: str7 = h09.a;
+ 347: o1dVar2 = f09.g;
+ 348: if (o1dVar2 != null && o1dVar2.b(c6aVar3)) {
+ 349: o1dVar2.c(c6aVar3, str7, "No metric for such traceId->".concat(lmj.a(str6)), null);
+ 350: }
+ 351: } else {
+ 352: xsbVar2.g.g();
+ 353: xsbVar2.g.l(e4cVar);
+ 354: }
+ 355: }
+ 356: erVar = this;
+ 357: }
+ 358: str3 = str2;
+ 359: kigVar = ntdVar.b;
+ 360: j = ntdVar.c;
+ 361: zB = e4cVar6.b(new lmj(ntdVar.a));
+ 362: str4 = ntdVar.a;
+ 363: if (zB) {
+ 364: objD = e4cVar6.d(new lmj(str4));
+ 365: if (objD != null) {
+ 366: k3g.t("Required value was null.");
+ 367: return null;
+ 368: }
+ 369: xsb xsbVar5 = (xsb) objD;
+ 370: xsbVar5.f.b(new rxh(j));
+ 371: xsbVar5.g.l(kigVar);
+ 372: } else {
+ 373: lmj lmjVar2 = new lmj(str4);
+ 374: x3c x3cVarC2 = inc.c(new rxh(j));
+ 375: e4c e4cVar9 = new e4c(kigVar.e);
+ 376: e4cVar9.l(kigVar);
+ 377: qzd qzdVar2 = fe6.b;
+ 378: e4cVar6.o(lmjVar2, new xsb(str3, str4, 0L, 0L, false, x3cVarC2, e4cVar9));
+ 379: }
+ 380: xsbVarY = f09.y(wudVar4.c, ntdVar.a);
+ 381: if (xsbVarY == null) {
+ 382: str10 = ntdVar.a;
+ 383: str11 = wudVar4.b;
+ 384: o1dVar5 = f09.g;
+ 385: if (o1dVar5 != null) {
+ 386: o1dVar5.c(c6aVar3, str11, wudVar4.z(str10).concat(": handleStartMetric: metric not found in storage right after start, skipping"), null);
+ 387: }
+ 388: } else {
+ 389: long[] jArr2 = lig.a;
+ 390: e4cVar = new e4c();
+ 391: e4cVar2 = new e4c();
+ 392: objArr = wudVar4.a.e.a;
+ 393: i2 = 0;
+ 394: while (i2 < i) {
+ 395: Object[] objArr3 = objArr;
+ 396: wtdVar = (wtd) objArr[i2];
+ 397: obj3 = lig.b;
+ 398: n4gVar2 = wtdVar.d(xsbVarY);
+ 399: thA2 = p4g.a(n4gVar2);
+ 400: if (thA2 != null) {
+ 401: i3 = i;
+ 402: name2 = wtdVar.getClass().getName();
+ 403: i4 = i2;
+ 404: str9 = wudVar4.b;
+ 405: perfListenerException2 = new PerfListenerException(name2, thA2);
+ 406: o1dVar4 = f09.g;
+ 407: if (o1dVar4 != null) {
+ 408: o1dVar4.c(c6aVar3, str9, "PerfListener callback failed, listener=".concat(name2), perfListenerException2);
+ 409: }
+ 410: } else {
+ 411: i3 = i;
+ 412: i4 = i2;
+ 413: }
+ 414: if (n4gVar2 instanceof n4g) {
+ 415: obj3 = n4gVar2;
+ 416: }
+ 417: e4cVar2.l((kig) obj3);
+ 418: i2 = i4 + 1;
+ 419: objArr = objArr3;
+ 420: }
+ 421: e4cVar3 = lig.b;
+ 422: n4gVar = wudVar4.d(xsbVarY);
+ 423: thA = p4g.a(n4gVar);
+ 424: if (thA != null) {
+ 425: name = wudVar4.getClass().getName();
+ 426: str8 = wudVar4.b;
+ 427: e4cVar4 = e4cVar3;
+ 428: perfListenerException = new PerfListenerException(name, thA);
+ 429: o1dVar3 = f09.g;
+ 430: if (o1dVar3 != null) {
+ 431: o1dVar3.c(c6aVar3, str8, "PerfListener callback failed, listener=".concat(name), perfListenerException);
+ 432: }
+ 433: } else {
+ 434: e4cVar4 = e4cVar3;
+ 435: }
+ 436: if (n4gVar instanceof n4g) {
+ 437: obj2 = e4cVar4;
+ 438: } else {
+ 439: obj2 = n4gVar;
+ 440: }
+ 441: e4cVar2.l((kig) obj2);
+ 442: e4cVar.l(e4cVar2);
+ 443: e4cVar.l(xsbVarY.g);
+ 444: str5 = wudVar4.b;
+ 445: o1dVar = f09.g;
+ 446: if (o1dVar != null) {
+ 447: o1dVar.c(c6aVar, str5, pq0.j(wud.y(xsbVarY), ": ", "Local props in start of collect -> " + e4cVar), null);
+ 448: }
+ 449: e4c e4cVar10 = wudVar4.c;
+ 450: str6 = ntdVar.a;
+ 451: xsbVar2 = (xsb) e4cVar10.d(new lmj(str6));
+ 452: if (xsbVar2 == null) {
+ 453: str7 = h09.a;
+ 454: o1dVar2 = f09.g;
+ 455: if (o1dVar2 != null) {
+ 456: o1dVar2.c(c6aVar3, str7, "No metric for such traceId->".concat(lmj.a(str6)), null);
+ 457: }
+ 458: } else {
+ 459: xsbVar2.g.g();
+ 460: xsbVar2.g.l(e4cVar);
+ 461: }
+ 462: }
+ 463: erVar = this;
+ 464: } else {
+ 465: s1kVar2 = s1kVar2;
+ 466: c6aVar2 = c6aVar2;
+ 467: if (ptdVar instanceof ctd) {
+ 468: erVar = this;
+ 469: ?? r2 = (wud) erVar.h;
+ 470: ctd ctdVar = (ctd) ptdVar;
+ 471: erVar.g = ptdVar;
+ 472: erVar.f = (byte) 1;
+ 473: e4c e4cVar11 = r2.c;
+ 474: String str19 = ctdVar.a;
+ 475: xsb xsbVar6 = (xsb) e4cVar11.d(new lmj(str19));
+ 476: if (xsbVar6 == null) {
+ 477: String str20 = h09.a;
+ 478: o1d o1dVar14 = f09.g;
+ 479: if (o1dVar14 != null && o1dVar14.b(c6aVar3)) {
+ 480: o1dVar14.c(c6aVar3, str20, "No metric for such traceId->".concat(lmj.a(str19)), null);
+ 481: }
+ 482: } else {
+ 483: xsbVar6.f.b(new nxh(ctdVar.c, ctdVar.d, ctdVar.e, ctdVar.g));
+ 484: }
+ 485: if (f09.y(r2.c, ctdVar.a) != null) {
+ 486: r2.t();
+ 487: } else {
+ 488: String str21 = ctdVar.a;
+ 489: String str22 = r2.b;
+ 490: o1d o1dVar15 = f09.g;
+ 491: if (o1dVar15 != null && o1dVar15.b(c6aVar3)) {
+ 492: r9 = 0;
+ 493: o1dVar15.c(c6aVar3, str22, r2.z(str21).concat(": handleSpan: metric not found in storage, listeners not notified"), null);
+ 494: }
+ 495: if (ctdVar.f \|\| (objO = r2.o(ctdVar.a, r9, r9, erVar)) != ka5Var) {
+ 496: Object objO = s1kVar2;
+ 497: }
+ 498: }
+ 499: r9 = 0;
+ 500: if (ctdVar.f) {
+ 501: Object objO2 = s1kVar2;
+ 502: } else {
+ 503: Object objO3 = s1kVar2;
+ 504: }
+ 505: } else {
+ 506: erVar = this;
+ 507: if (ptdVar instanceof btd) {
+ 508: wud wudVar5 = (wud) erVar.h;
+ 509: btd btdVar = (btd) ptdVar;
+ 510: e4c e4cVar12 = wudVar5.c;
+ 511: String str23 = btdVar.a;
+ 512: long j2 = btdVar.c;
+ 513: xsb xsbVar7 = (xsb) e4cVar12.d(new lmj(str23));
+ 514: if (xsbVar7 == null) {
+ 515: String str24 = h09.a;
+ 516: o1d o1dVar16 = f09.g;
+ 517: if (o1dVar16 != null && o1dVar16.b(c6aVar3)) {
+ 518: o1dVar16.c(c6aVar3, str24, "No metric for such traceId->".concat(lmj.a(str23)), null);
+ 519: }
+ 520: } else {
+ 521: xsbVar7.f.b(new pxh(j2));
+ 522: }
+ 523: if (f09.y(wudVar5.c, btdVar.a) != null) {
+ 524: wudVar5.t();
+ 525: } else {
+ 526: String str25 = btdVar.a;
+ 527: String str26 = wudVar5.b;
+ 528: o1d o1dVar17 = f09.g;
+ 529: if (o1dVar17 != null && o1dVar17.b(c6aVar3)) {
+ 530: o1dVar17.c(c6aVar3, str26, wudVar5.z(str25).concat(": handleRetryBoundary: metric not found in storage, listeners not notified"), null);
+~~~
+
+Поздние сигнатуры: 776 public final Object invoke(Object obj, Object obj2) throws Throwable {; 815 public final b55 u(b55 b55Var, Object obj) {; 891 public final java.lang.Object w(java.lang.Object r28) throws java.lang.Throwable {
+
+## defpackage/e7a.java (29 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: /* JADX INFO: loaded from: classes.dex */
+   4: public final class e7a extends d55 {
+   5: public long d;
+   6: public long e;
+   7: public String f;
+   8: public b7a g;
+   9: public int h;
+  10: public int i;
+  11: public boolean j;
+  12: public boolean k;
+  13: public /* synthetic */ Object l;
+  14: public final /* synthetic */ g7a m;
+  15: public int n;
+  16: 
+  17: /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+  18: public e7a(g7a g7aVar, d55 d55Var) {
+  19: super(d55Var);
+  20: this.m = g7aVar;
+  21: }
+  22: 
+  23: @Override // defpackage.hv0
+  24: public final Object w(Object obj) {
+  25: this.l = obj;
+  26: this.n \|= Integer.MIN_VALUE;
+  27: return this.m.a(0L, null, 0, null, false, false, this);
+  28: }
+  29: }
+~~~
+
+## defpackage/z7a.java (8 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: /* JADX INFO: loaded from: classes.dex */
+   4: public abstract class z7a extends yt6 {
+   5: public z7a(Throwable th) {
+   6: super(s1k.a, th);
+   7: }
+   8: }
+~~~
+
+## defpackage/e9a.java (13 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: /* JADX INFO: loaded from: classes.dex */
+   4: public final class e9a extends fk3 {
+   5: public static final e9a c;
+   6: public static final dn5 d;
+   7: 
+   8: static {
+   9: e9a e9aVar = new e9a((byte) 2);
+  10: c = e9aVar;
+  11: d = fk3.e(e9aVar, ":logout", new String[0], kwm.d, 10);
+  12: }
+  13: }
+~~~
+
+## defpackage/k6a.java (37 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: /* JADX INFO: loaded from: classes3.dex */
+   4: public final class k6a {
+   5: public final int a;
+   6: public final long b;
+   7: public final long c;
+   8: public final long d;
+   9: 
+  10: public k6a(int i, long j, long j2, long j3) {
+  11: this.a = i;
+  12: this.b = j;
+  13: this.c = j2;
+  14: this.d = j3;
+  15: }
+  16: 
+  17: public final boolean equals(Object obj) {
+  18: if (this == obj) {
+  19: return true;
+  20: }
+  21: if (!(obj instanceof k6a)) {
+  22: return false;
+  23: }
+  24: k6a k6aVar = (k6a) obj;
+  25: return this.a == k6aVar.a && this.b == k6aVar.b && this.c == k6aVar.c && this.d == k6aVar.d;
+  26: }
+  27: 
+  28: public final int hashCode() {
+  29: return Long.hashCode(this.d) + s95.h(s95.h(Integer.hashCode(this.a) * 31, 31, this.b), 31, this.c);
+  30: }
+  31: 
+  32: public final String toString() {
+  33: StringBuilder sbS = a15.s(this.a, this.b, "ThrottleInfo(count=", ", totalIntervalMs=");
+  34: s95.B(this.c, ", intervalMinMs=", ", intervalMaxMs=", sbS);
+  35: return vg9.x(this.d, ")", sbS);
+  36: }
+  37: }
+~~~
+
+## defpackage/d5h.java (15 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: /* JADX INFO: loaded from: classes.dex */
+   4: public final class d5h extends u6j {
+   5: @Override // defpackage.u6j
+   6: public final short k() {
+   7: cp5 cp5Var = tdd.c;
+   8: return (short) 6;
+   9: }
+  10: 
+  11: @Override // defpackage.u6j
+  12: public final boolean o() {
+  13: return false;
+  14: }
+  15: }
+~~~
+
+## defpackage/acc.java (1285 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: import java.io.IOException;
+   4: import java.util.ArrayList;
+   5: import java.util.Collections;
+   6: import java.util.Iterator;
+   7: import java.util.List;
+   8: import java.util.Locale;
+   9: import java.util.Map;
+  10: import java.util.concurrent.atomic.AtomicInteger;
+  11: import me.leolin.shortcutbadger.BuildConfig;
+  12: import net.jpountz.lz4.LZ4Exception;
+  13: import ru.ok.tamtam.api.CorruptedInputDataException;
+  14: import ru.ok.tamtam.api.SessionSenderUnexpectedException;
+  15: import ru.ok.tamtam.api.UnknownOpcodeException;
+  16: import ru.ok.tamtam.internal.MalformedPacketException;
+  17: 
+  18: /* JADX INFO: loaded from: classes.dex */
+  19: public final class acc implements Runnable {
+  20: public final /* synthetic */ byte a;
+  21: public final /* synthetic */ bcc b;
+  22: 
+  23: public /* synthetic */ acc(bcc bccVar, byte b) {
+  24: this.a = b;
+  25: this.b = bccVar;
+  26: }
+  27: 
+  28: public boolean a(fld fldVar) {
+  29: bcc bccVar = this.b;
+  30: if (bccVar.c.get() != 2 && !bccVar.d(fldVar, k7a.class)) {
+  31: return false;
+  32: }
+  33: fldVar.b.c.f(new l6j("session.state", "session is in logged in state or login already in progress", null));
+  34: return true;
+  35: }
+  36: 
+  37: /* JADX WARN: Code duplicated, block: B:91:0x0271 A[Catch: all -> 0x0265, Exception -> 0x0268, IOException -> 0x026d, TRY_ENTER, TRY_LEAVE, TryCatch #2 {all -> 0x0265, blocks: (B:81:0x0231, B:83:0x0237, B:91:0x0271, B:92:0x0273, B:96:0x0293, B:98:0x02c7, B:107:0x0304, B:109:0x0327, B:113:0x034f, B:112:0x032d, B:114:0x0374), top: B:135:0x0
+  38: /* JADX WARN: Code duplicated, block: B:94:0x0291  */
+  39: /* JADX WARN: Code duplicated, block: B:95:0x0292  */
+  40: public void b() {
+  41: cld cldVar;
+  42: eld eldVar;
+  43: short s;
+  44: short s2;
+  45: short s3;
+  46: eld eldVar2;
+  47: u6j u6jVar;
+  48: u6j u6jVar2;
+  49: if (!this.b.l() \|\| this.b.v.isEmpty()) {
+  50: return;
+  51: }
+  52: ArrayList arrayList = new ArrayList();
+  53: AtomicInteger atomicInteger = new AtomicInteger();
+  54: for (fld fldVar : this.b.v) {
+  55: if (!this.b.l() \|\| this.b.k()) {
+  56: f09.d0(this.b.a, "packet_sender, detect INACTIVE session or has NO connection", new Object[0]);
+  57: break;
+  58: }
+  59: int i = fldVar.a;
+  60: byte b = 2;
+  61: if (i == 1 && (eldVar = fldVar.b) != null) {
+  62: u6j u6jVar3 = eldVar.a;
+  63: boolean z = u6jVar3 instanceof k7a;
+  64: boolean z2 = u6jVar3 instanceof d9a;
+  65: boolean z3 = u6jVar3 instanceof d5h;
+  66: int iP = u6jVar3.p();
+  67: cld cldVarA = null;
+  68: if (iP == -1 \|\| iP == this.b.l.get()) {
+  69: if (!z && !z2) {
+  70: bcc bccVar = this.b;
+  71: Iterator it = bccVar.v.iterator();
+  72: while (true) {
+  73: if (it.hasNext()) {
+  74: eld eldVar3 = ((fld) it.next()).b;
+  75: if (eldVar3 == null \|\| (u6jVar2 = eldVar3.a) == null \|\| !(u6jVar2 instanceof d9a)) {
+  76: }
+  77: } else {
+  78: Iterator it2 = bccVar.u.entrySet().iterator();
+  79: while (true) {
+  80: if (it2.hasNext()) {
+  81: eld eldVar4 = ((dld) ((Map.Entry) it2.next()).getValue()).b.b;
+  82: if (eldVar4 == null \|\| (u6jVar = eldVar4.a) == null \|\| !(u6jVar instanceof d9a)) {
+  83: }
+  84: }
+  85: }
+  86: }
+  87: f09.p(this.b.a, "Skipping " + fldVar.b.a.getClass().getName() + " because logout task in queue");
+  88: }
+  89: }
+  90: if (fldVar.b.a.o() && this.b.c.get() != 2) {
+  91: short sK = fldVar.b.a.k();
+  92: cp5 cp5Var = tdd.c;
+  93: if (sK != 5) {
+  94: f09.p(this.b.a, "Skipping " + fldVar.b.a.getClass().getName() + " because need login");
+  95: }
+  96: } else if (this.b.h.get() \|\| z3) {
+  97: if (z3) {
+  98: bcc bccVar2 = this.b;
+  99: if (bccVar2.h.get()) {
+ 100: fldVar.b.c.f(new l6j("session.state", "SESSION_INIT already initialized", null));
+ 101: } else if (bccVar2.d(fldVar, d5h.class)) {
+ 102: fldVar.b.c.f(new l6j("session.state", "SESSION_INIT already requested", null));
+ 103: }
+ 104: f09.d0(this.b.a, "Double session init detected, skipping", new Object[0]);
+ 105: arrayList.add(fldVar);
+ 106: }
+ 107: if (fldVar.e) {
+ 108: f09.d0(this.b.a, "packet_sender: task %s is cancelled", fldVar.b.a);
+ 109: } else {
+ 110: long jK = fe6.k(fldVar.c) - System.currentTimeMillis();
+ 111: bcc bccVar3 = this.b;
+ 112: if (jK > 0) {
+ 113: String str = bccVar3.a;
+ 114: o1d o1dVar = f09.g;
+ 115: if (o1dVar != null) {
+ 116: c6a c6aVar = c6a.d;
+ 117: if (o1dVar.b(c6aVar)) {
+ 118: vg9.J(vg9.B(jK, "Skipping ", fldVar.b.a.getClass().getName(), " because to early for queue, left "), "ms", o1dVar, c6aVar, str);
+ 119: }
+ 120: }
+ 121: } else {
+ 122: AtomicInteger atomicInteger2 = bccVar3.b;
+ 123: atomicInteger2.incrementAndGet();
+ 124: short sShortValue = atomicInteger2.shortValue();
+ 125: if (z) {
+ 126: try {
+ 127: try {
+ 128: try {
+ 129: if (a(fldVar)) {
+ 130: f09.d0(this.b.a, "Skipping " + fldVar.b.a.getClass().getName() + " because already login", new Object[0]);
+ 131: } else {
+ 132: try {
+ 133: dld dldVar = new dld(fldVar.b.c, fldVar, System.currentTimeMillis());
+ 134: this.b.u.put(Short.valueOf(sShortValue), dldVar);
+ 135: eldVar2 = fldVar.b;
+ 136: u6j u6jVar4 = eldVar2.a;
+ 137: if (eldVar2.b) {
+ 138: b = 0;
+ 139: }
+ 140: cldVarA = cld.a(u6jVar4, b, (short) 0);
+ 141: this.b.p.getClass();
+ 142: byte[] bArrC = cldVarA.c(sShortValue);
+ 143: s2 = sShortValue;
+ 144: try {
+ 145: this.b.n(l5a.c, fldVar.b.c.p(), s2, fldVar.b.a.k(), true, fldVar.b.a.toString(), null, bArrC.length);
+ 146: atomicInteger.set(this.b.l.get());
+ 147: this.b.K.b(bArrC);
+ 148: dldVar.d = bArrC.length;
+ 149: this.b.s.p.obtainMessage(3, fldVar.b.a.k(), bArrC.length).sendToTarget();
+ 150: } catch (IOException e) {
+ 151: e = e;
+ 152: s = s2;
+ 153: short s4 = s;
+ 154: this.b.m(l5a.d, fldVar.b.c.p(), s4, fldVar.b.a.k(), true, e.getMessage());
+ 155: fldVar.b.c.f(new g6j("send_io"));
+ 156: this.b.u.remove(Short.valueOf(s4));
+ 157: this.b.j(atomicInteger.get());
+ 158: this.b.s(e, false);
+ 159: arrayList.add(fldVar);
+ 160: this.b.v.removeAll(arrayList);
+ 161: arrayList.clear();
+ 162: } catch (Exception e2) {
+ 163: e = e2;
+ 164: this.b.m(l5a.d, fldVar.b.c.p(), s2, fldVar.b.a.k(), true, e.getMessage());
+ 165: s3 = s2;
+ 166: if (e instanceof ArrayIndexOutOfBoundsException) {
+ 167: f09.e0(this.b.a, e, "exception in LZ4, packet = " + e1n.c(cldVarA.b(s3), 0), new Object[0]);
+ 168: } else {
+ 169: f09.e0(this.b.a, e, "exception in LZ4, packet = " + e1n.c(cldVarA.b(s3), 0), new Object[0]);
+ 170: }
+ 171: fldVar.b.c.f(new g6j("send_error"));
+ 172: this.b.u.remove(Short.valueOf(s3));
+ 173: this.b.s(new SessionSenderUnexpectedException(e), false);
+ 174: }
+ 175: } catch (IOException e3) {
+ 176: e = e3;
+ 177: s2 = sShortValue;
+ 178: }
+ 179: }
+ 180: } catch (Throwable th) {
+ 181: arrayList.add(fldVar);
+ 182: throw th;
+ 183: }
+ 184: } catch (Exception e4) {
+ 185: e = e4;
+ 186: s2 = sShortValue;
+ 187: this.b.m(l5a.d, fldVar.b.c.p(), s2, fldVar.b.a.k(), true, e.getMessage());
+ 188: s3 = s2;
+ 189: if (((e instanceof ArrayIndexOutOfBoundsException) \|\| (e instanceof LZ4Exception)) && cldVarA != null) {
+ 190: f09.e0(this.b.a, e, "exception in LZ4, packet = " + e1n.c(cldVarA.b(s3), 0), new Object[0]);
+ 191: }
+ 192: fldVar.b.c.f(new g6j("send_error"));
+ 193: this.b.u.remove(Short.valueOf(s3));
+ 194: this.b.s(new SessionSenderUnexpectedException(e), false);
+ 195: arrayList.add(fldVar);
+ 196: }
+ 197: } catch (IOException e5) {
+ 198: e = e5;
+ 199: s = sShortValue;
+ 200: short s5 = s;
+ 201: this.b.m(l5a.d, fldVar.b.c.p(), s5, fldVar.b.a.k(), true, e.getMessage());
+ 202: fldVar.b.c.f(new g6j("send_io"));
+ 203: this.b.u.remove(Short.valueOf(s5));
+ 204: this.b.j(atomicInteger.get());
+ 205: this.b.s(e, false);
+ 206: arrayList.add(fldVar);
+ 207: this.b.v.removeAll(arrayList);
+ 208: arrayList.clear();
+ 209: }
+ 210: } else {
+ 211: dld dldVar2 = new dld(fldVar.b.c, fldVar, System.currentTimeMillis());
+ 212: this.b.u.put(Short.valueOf(sShortValue), dldVar2);
+ 213: eldVar2 = fldVar.b;
+ 214: u6j u6jVar5 = eldVar2.a;
+ 215: if (eldVar2.b) {
+ 216: b = 0;
+ 217: }
+ 218: cldVarA = cld.a(u6jVar5, b, (short) 0);
+ 219: this.b.p.getClass();
+ 220: byte[] bArrC2 = cldVarA.c(sShortValue);
+ 221: s2 = sShortValue;
+ 222: this.b.n(l5a.c, fldVar.b.c.p(), s2, fldVar.b.a.k(), true, fldVar.b.a.toString(), null, bArrC2.length);
+ 223: atomicInteger.set(this.b.l.get());
+ 224: this.b.K.b(bArrC2);
+ 225: dldVar2.d = bArrC2.length;
+ 226: this.b.s.p.obtainMessage(3, fldVar.b.a.k(), bArrC2.length).sendToTarget();
+ 227: }
+ 228: arrayList.add(fldVar);
+ 229: }
+ 230: }
+ 231: } else {
+ 232: f09.p(this.b.a, "Skipping " + fldVar.b.a.getClass().getName() + " because session not initialized");
+ 233: }
+ 234: } else {
+ 235: f09.F(this.b.a, vg9.y("Removing ", fldVar.b.a.getClass().getName(), " because it has wrong connection number"), new Object[0]);
+ 236: fldVar.b.c.f(new l6j("session.sequence", "Task has wrong connection number", null));
+ 237: arrayList.add(fldVar);
+ 238: }
+ 239: } else if (i == 2 && (cldVar = fldVar.d) != null) {
+ 240: try {
+ 241: try {
+ 242: this.b.m(l5a.e, 0L, cldVar.c, cldVar.d, true, BuildConfig.FLAVOR);
+ 243: atomicInteger.set(this.b.l.get());
+ 244: bcc bccVar4 = this.b;
+ 245: cld cldVar2 = fldVar.d;
+ 246: bccVar4.K.b(cldVar2.b(cldVar2.c));
+ 247: } catch (IOException e6) {
+ 248: bcc bccVar5 = this.b;
+ 249: l5a l5aVar = l5a.d;
+ 250: cld cldVar3 = fldVar.d;
+ 251: bccVar5.m(l5aVar, 0L, cldVar3.c, cldVar3.d, true, e6.getMessage());
+ 252: this.b.j(atomicInteger.get());
+ 253: this.b.s(e6, false);
+ 254: }
+ 255: arrayList.add(fldVar);
+ 256: } catch (Throwable th2) {
+ 257: arrayList.add(fldVar);
+ 258: throw th2;
+ 259: }
+ 260: }
+~~~
+
+Поздние сигнатуры: 279 public void c(byte[] bArr, cld cldVar, e6j e6jVar) throws Throwable {; 1028 public void d() throws Throwable {; 1195 public final void run() {
+
+## defpackage/n4a.java (73 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: import java.io.Serializable;
+   4: 
+   5: /* JADX INFO: loaded from: classes3.dex */
+   6: public final class n4a implements Serializable {
+   7: public static final n4a g = new n4a(1.401298464324817E-45d, 1.401298464324817E-45d, 0.0d, 0.0f, 0.0f, 0.0f);
+   8: public final double a;
+   9: public final double b;
+  10: public final double c;
+  11: public final float d;
+  12: public final float e;
+  13: public final float f;
+  14: 
+  15: public n4a(double d, double d2) {
+  16: this.a = d;
+  17: this.b = d2;
+  18: this.c = 0.0d;
+  19: this.d = 0.0f;
+  20: this.e = 0.0f;
+  21: this.f = 0.0f;
+  22: }
+  23: 
+  24: public final boolean equals(Object obj) {
+  25: if (this == obj) {
+  26: return true;
+  27: }
+  28: if (obj != null && n4a.class == obj.getClass()) {
+  29: n4a n4aVar = (n4a) obj;
+  30: if (Double.compare(n4aVar.a, this.a) == 0 && Double.compare(n4aVar.b, this.b) == 0 && Double.compare(n4aVar.c, this.c) == 0 && Float.compare(n4aVar.d, this.d) == 0 && Float.compare(n4aVar.e, this.e) == 0 && Float.compare(n4aVar.f, this.f) == 0) {
+  31: return true;
+  32: }
+  33: }
+  34: return false;
+  35: }
+  36: 
+  37: public final int hashCode() {
+  38: long jDoubleToLongBits = Double.doubleToLongBits(this.a);
+  39: long jDoubleToLongBits2 = Double.doubleToLongBits(this.b);
+  40: int i = (((int) (jDoubleToLongBits ^ (jDoubleToLongBits >>> 32))) * 31) + ((int) (jDoubleToLongBits2 ^ (jDoubleToLongBits2 >>> 32)));
+  41: long jDoubleToLongBits3 = Double.doubleToLongBits(this.c);
+  42: int i2 = ((i * 31) + ((int) ((jDoubleToLongBits3 >>> 32) ^ jDoubleToLongBits3))) * 31;
+  43: float f = this.d;
+  44: int iFloatToIntBits = (i2 + (f != 0.0f ? Float.floatToIntBits(f) : 0)) * 31;
+  45: float f2 = this.e;
+  46: int iFloatToIntBits2 = (iFloatToIntBits + (f2 != 0.0f ? Float.floatToIntBits(f2) : 0)) * 31;
+  47: float f3 = this.f;
+  48: return iFloatToIntBits2 + (f3 != 0.0f ? Float.floatToIntBits(f3) : 0);
+  49: }
+  50: 
+  51: public final String toString() {
+  52: StringBuilder sb = new StringBuilder("LocationData{latitude=");
+  53: sb.append(this.a);
+  54: sb.append(", longitude=");
+  55: sb.append(this.b);
+  56: sb.append(", altitude=");
+  57: sb.append(this.c);
+  58: sb.append(", accuracy=");
+  59: vg9.F(sb, this.d, ", bearing=", this.e, ", speed=");
+  60: sb.append(this.f);
+  61: sb.append("}");
+  62: return sb.toString();
+  63: }
+  64: 
+  65: public n4a(double d, double d2, double d3, float f, float f2, float f3) {
+  66: this.a = d;
+  67: this.b = d2;
+  68: this.c = d3;
+  69: this.d = f;
+  70: this.e = f2;
+  71: this.f = f3;
+  72: }
+  73: }
+~~~
+
