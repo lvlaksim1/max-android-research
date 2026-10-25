@@ -6,6 +6,10 @@ on:
       - ".github/workflows/max-auth-analysis.yml"
       - "scripts/max_auth_static_analysis.py"
 
+concurrency:
+  group: max-auth-analysis-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: write
 
@@ -74,4 +78,11 @@ jobs:
           git add docs/auth-code-index-26.35.1.md evidence/auth-code-matches-26.35.1.md evidence/auth-command-constructors-26.35.1.md evidence/auth-command-references-26.35.1.md
           git diff --cached --quiet && exit 0
           git commit -m "Record static MAX authentication code index from verified APK"
-          git push
+          for attempt in 1 2 3; do
+            if git push; then exit 0; fi
+            sleep 5
+            git fetch origin main
+            git rebase origin/main
+          done
+          echo "Unable to push static evidence after 3 attempts" >&2
+          exit 1
