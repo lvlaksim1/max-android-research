@@ -1829,7 +1829,7 @@
   64: AtomicReference atomicReference = this.i;
   65: String str = this.k;
   66: if (i == 0) {
-  67: f09.f0(str, "onNoNet");
+  67: f09.d0(str, "onNoNet", new Object[0]);
   68: i((bcc) atomicReference.get());
   69: return;
   70: }
@@ -1953,12 +1953,12 @@
  188: f09.p(str, "updateSession");
  189: rp9 rp9Var = this.h;
  190: if (!((es4) rp9Var.getValue()).a().g()) {
- 191: f09.f0(str, "updateSession, seems there is NO net");
+ 191: f09.d0(str, "updateSession, seems there is NO net", new Object[0]);
  192: bccVar.w(false);
  193: } else if (((es4) rp9Var.getValue()).e()) {
  194: bccVar.w(true);
  195: } else {
- 196: f09.f0(str, "updateSession, connection is NOT permitted");
+ 196: f09.d0(str, "updateSession, connection is NOT permitted", new Object[0]);
  197: bccVar.w(false);
  198: }
  199: }
@@ -6723,7 +6723,7 @@
  273: xnm.y(objI0);
  274: }
  275: if (((x6j) objI0) == null) {
- 276: f09.f0(this.s, "logoutAndSessionClose: timeout!");
+ 276: f09.d0(this.s, "logoutAndSessionClose: timeout!", new Object[0]);
  277: }
  278: ((bcc) g().i.get()).b(true);
  279: f09.E(this.s, "logoutAndSessionClose finished", null);
@@ -10335,5 +10335,1134 @@
   71: this.f = f3;
   72: }
   73: }
+~~~
+
+## defpackage/dtc.java (42 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: /* JADX INFO: loaded from: classes.dex */
+   4: public final class dtc {
+   5: public final rp9 a;
+   6: public final rp9 b;
+   7: 
+   8: public dtc(rp9 rp9Var, rp9 rp9Var2) {
+   9: this.a = rp9Var;
+  10: this.b = rp9Var2;
+  11: }
+  12: 
+  13: public final dle a() {
+  14: return (dle) this.a.getValue();
+  15: }
+  16: 
+  17: public final boolean b() {
+  18: String string;
+  19: return (a().a.s() == -1 \|\| (string = a().d.d.getString("auth.token", null)) == null \|\| string.length() == 0) ? false : true;
+  20: }
+  21: 
+  22: public final String c() {
+  23: String string;
+  24: if (a().a.s() != 0 && (string = a().d.d.getString("auth.token", null)) != null && string.length() != 0) {
+  25: return a().d.d.getString("auth.token", null);
+  26: }
+  27: f09.d0(dtc.class.getName(), "Early return in peekToken cuz of prefs.client().userId == 0L \|\| prefs.auth().token.isNullOrEmpty()", new Object[0]);
+  28: return null;
+  29: }
+  30: 
+  31: public final void d(boolean z, boolean z2) {
+  32: f09.p("dtc", "removeAccount");
+  33: a().d.b();
+  34: if (z) {
+  35: ((l9a) this.b.getValue()).a(z2);
+  36: }
+  37: }
+  38: 
+  39: public final void e(String str) {
+  40: a().d.e("auth.token", str);
+  41: }
+  42: }
+~~~
+
+## defpackage/qi0.java (5 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: /* JADX INFO: loaded from: classes.dex */
+   4: public final class qi0 extends a4 {
+   5: }
+~~~
+
+## defpackage/e5h.java (62 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: /* JADX INFO: loaded from: classes.dex */
+   4: public final class e5h extends x6j {
+   5: public String c;
+   6: public int d;
+   7: public t80 e;
+   8: public String f;
+   9: public Long g;
+  10: public final int h;
+  11: public boolean i;
+  12: 
+  13: public e5h(beb bebVar, int i) {
+  14: super(bebVar);
+  15: this.h = i;
+  16: }
+  17: 
+  18: @Override // defpackage.x6j
+  19: public final void c(beb bebVar, String str) {
+  20: str.getClass();
+  21: switch (str) {
+  22: case "callsSeed":
+  23: this.g = Long.valueOf(e0c.o0(bebVar, 0L));
+  24: break;
+  25: case "isVpn":
+  26: this.i = e0c.g0(bebVar);
+  27: break;
+  28: case "reg-country-code":
+  29: this.e = t80.g(bebVar);
+  30: break;
+  31: case "app-update-type":
+  32: this.d = e0c.m0(bebVar, 0);
+  33: break;
+  34: case "location":
+  35: this.c = e0c.r0(bebVar);
+  36: break;
+  37: case "recovery-url":
+  38: this.f = e0c.r0(bebVar);
+  39: break;
+  40: default:
+  41: bebVar.N();
+  42: break;
+  43: }
+  44: }
+  45: 
+  46: @Override // defpackage.mv0
+  47: public final String toString() {
+  48: String str = this.c;
+  49: int i = this.d;
+  50: String strValueOf = String.valueOf(this.e);
+  51: String str2 = this.f;
+  52: Long l = this.g;
+  53: boolean z = this.i;
+  54: StringBuilder sbA = vg9.A(i, "{locationCountryCode='", str, "', appUpdateType=", ", regCountryCode=");
+  55: w7g.D(sbA, strValueOf, ", recoveryUrl='", str2, "', callsSeed=");
+  56: sbA.append(l);
+  57: sbA.append(", isVpn=");
+  58: sbA.append(z);
+  59: sbA.append("}");
+  60: return sbA.toString();
+  61: }
+  62: }
+~~~
+
+## defpackage/j6h.java (15 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: /* JADX INFO: loaded from: classes.dex */
+   4: public final class j6h {
+   5: public final g7j a;
+   6: 
+   7: public j6h(h7j h7jVar) {
+   8: g7j g7jVar = h7jVar instanceof g7j ? (g7j) h7jVar : null;
+   9: this.a = g7jVar == null ? new g7j(h7jVar) : g7jVar;
+  10: }
+  11: 
+  12: public final Thread a(Runnable runnable, String str) {
+  13: return this.a.a(str).newThread(runnable);
+  14: }
+  15: }
+~~~
+
+## defpackage/f6h.java (174 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: import android.os.Handler;
+   4: import android.os.HandlerThread;
+   5: import java.util.ArrayList;
+   6: import java.util.concurrent.CopyOnWriteArraySet;
+   7: import java.util.concurrent.locks.Lock;
+   8: import java.util.concurrent.locks.ReentrantLock;
+   9: 
+  10: /* JADX INFO: loaded from: classes.dex */
+  11: public final class f6h implements c6h {
+  12: public final wag a;
+  13: public final yw6 b;
+  14: public final s8a c;
+  15: public final yi1 d;
+  16: public final long e;
+  17: public final String f;
+  18: public final rp9 g;
+  19: public final rp9 h;
+  20: public final rp9 i;
+  21: public final ArrayList j;
+  22: public final Object k;
+  23: public final ArrayList l;
+  24: public final CopyOnWriteArraySet m;
+  25: public final String[] n;
+  26: public final String[] o;
+  27: public final Handler p;
+  28: public volatile int q;
+  29: public final r4i r;
+  30: public final dmf s;
+  31: public volatile byte t;
+  32: public final f3c u;
+  33: public final f4j v;
+  34: public p2 w;
+  35: 
+  36: public f6h(wag wagVar, rp9 rp9Var, rp9 rp9Var2, rp9 rp9Var3, yw6 yw6Var, s8a s8aVar, yi1 yi1Var, boolean z) {
+  37: qzd qzdVar = fe6.b;
+  38: long jU = az7.U(5, me6.f);
+  39: this.a = wagVar;
+  40: this.b = yw6Var;
+  41: this.c = s8aVar;
+  42: this.d = yi1Var;
+  43: this.e = jU;
+  44: String name = f6h.class.getName();
+  45: this.f = name;
+  46: this.g = rp9Var;
+  47: this.h = rp9Var2;
+  48: this.i = rp9Var3;
+  49: this.j = new ArrayList(4);
+  50: this.k = z ? new duf() : new ReentrantLock();
+  51: this.l = new ArrayList(1);
+  52: this.m = new CopyOnWriteArraySet();
+  53: this.n = new String[]{"no_net", "disconnected", "connected", "logged_in"};
+  54: this.o = new String[]{"disconnected", "connected", "logged_in"};
+  55: r4i r4iVarC = az7.c(Integer.valueOf(this.q));
+  56: this.r = r4iVarC;
+  57: this.s = new dmf(r4iVarC);
+  58: this.u = new f3c(tdd.Z3.a());
+  59: this.v = new f4j((byte) 0);
+  60: HandlerThread handlerThread = new HandlerThread("session-state");
+  61: handlerThread.start();
+  62: this.p = new Handler(handlerThread.getLooper(), new wz9(this, (byte) 2));
+  63: ((ms4) rp9Var.getValue()).d(new g8c(this, (byte) 1));
+  64: wagVar.e(new ky(this, (byte) 3));
+  65: o1d o1dVar = f09.g;
+  66: if (o1dVar == null) {
+  67: return;
+  68: }
+  69: c6a c6aVar = c6a.d;
+  70: if (o1dVar.b(c6aVar)) {
+  71: o1dVar.c(c6aVar, name, "ctor, " + this, null);
+  72: }
+  73: }
+  74: 
+  75: public final void b(String str, e46 e46Var) {
+  76: String str2 = this.f;
+  77: o1d o1dVar = f09.g;
+  78: if (o1dVar != null) {
+  79: c6a c6aVar = c6a.d;
+  80: if (o1dVar.b(c6aVar)) {
+  81: o1dVar.c(c6aVar, str2, "onDisconnected for sessionId=" + str + " with reason=" + e46Var, null);
+  82: }
+  83: }
+  84: this.p.obtainMessage(0, new e6h(str, e46Var)).sendToTarget();
+  85: }
+  86: 
+  87: public final void c(b6h b6hVar) {
+  88: f(new yr4(this, b6hVar, true, 1 == true ? 1 : 0));
+  89: this.p.obtainMessage(10).sendToTarget();
+  90: }
+  91: 
+  92: public final void d(b6h b6hVar) {
+  93: f(new yr4(this, b6hVar, false, (byte) 1));
+  94: this.p.obtainMessage(11).sendToTarget();
+  95: }
+  96: 
+  97: public final void e() {
+  98: int i;
+  99: int i2 = 0;
+ 100: if (((ms4) this.g.getValue()).g()) {
+ 101: i = 1;
+ 102: if (this.t != 0) {
+ 103: if (this.t == 1) {
+ 104: i = 2;
+ 105: } else {
+ 106: if (this.t != 2) {
+ 107: k3g.o(w7g.E(this.t, "Unknown connection status="));
+ 108: return;
+ 109: }
+ 110: i = 3;
+ 111: }
+ 112: }
+ 113: } else {
+ 114: i = 0;
+ 115: }
+ 116: if (i != this.q) {
+ 117: this.q = i;
+ 118: String str = this.f;
+ 119: o1d o1dVar = f09.g;
+ 120: if (o1dVar != null) {
+ 121: c6a c6aVar = c6a.d;
+ 122: if (o1dVar.b(c6aVar)) {
+ 123: o1dVar.c(c6aVar, str, "updateState, " + this, null);
+ 124: }
+ 125: }
+ 126: while (i2 < this.j.size()) {
+ 127: int i3 = i2 + 1;
+ 128: b6h b6hVar = (b6h) this.j.get(i2);
+ 129: euf eufVar = new euf();
+ 130: f(new u6(this, b6hVar, eufVar, (byte) 13));
+ 131: if (!eufVar.a) {
+ 132: b6hVar.c(this.q);
+ 133: }
+ 134: i2 = i3;
+ 135: }
+ 136: r4i r4iVar = this.r;
+ 137: Integer numValueOf = Integer.valueOf(this.q);
+ 138: r4iVar.getClass();
+ 139: r4iVar.j(null, numValueOf);
+ 140: String str2 = this.f;
+ 141: o1d o1dVar2 = f09.g;
+ 142: if (o1dVar2 == null) {
+ 143: return;
+ 144: }
+ 145: c6a c6aVar2 = c6a.c;
+ 146: if (o1dVar2.b(c6aVar2)) {
+ 147: vg9.E("notifyListeners, sent ", this.n[this.q], o1dVar2, c6aVar2, str2);
+ 148: }
+ 149: }
+ 150: }
+ 151: 
+ 152: public final void f(o08 o08Var) {
+ 153: Object obj = this.k;
+ 154: if (obj instanceof duf) {
+ 155: ((duf) obj).a(o08Var);
+ 156: return;
+ 157: }
+ 158: if (!(obj instanceof ReentrantLock)) {
+ 159: k3g.o("Unexpected lock type");
+ 160: return;
+ 161: }
+ 162: Lock lock = (Lock) obj;
+ 163: lock.lock();
+ 164: try {
+ 165: o08Var.c();
+ 166: } finally {
+ 167: lock.unlock();
+ 168: }
+ 169: }
+ 170: 
+ 171: public final String toString() {
+ 172: return "SessionStateInfoImpl@" + Integer.toHexString(hashCode()) + "(connStatus=" + this.o[this.t] + ") -> " + this.n[this.q];
+ 173: }
+ 174: }
+~~~
+
+## defpackage/st5.java (59 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: /* JADX INFO: loaded from: classes.dex */
+   4: public final class st5 {
+   5: public final q1a a;
+   6: public final rp9 b;
+   7: public final rp9 c;
+   8: public final rp9 d;
+   9: public final rp9 e;
+  10: public final rp9 f;
+  11: public final rp9 g;
+  12: public final rp9 h;
+  13: public final rp9 i;
+  14: public final rp9 j;
+  15: public final rp9 k;
+  16: public final rp9 l;
+  17: public final rp9 m;
+  18: public volatile r1g n;
+  19: public final z3j o;
+  20: 
+  21: public st5(rp9 rp9Var, rp9 rp9Var2, rp9 rp9Var3, rp9 rp9Var4, rp9 rp9Var5, rp9 rp9Var6, rp9 rp9Var7, rp9 rp9Var8, rp9 rp9Var9, rp9 rp9Var10, q1a q1aVar, rp9 rp9Var11, rp9 rp9Var12, vck vckVar) {
+  22: this.a = q1aVar;
+  23: this.b = rp9Var;
+  24: this.c = rp9Var2;
+  25: this.d = rp9Var3;
+  26: this.e = rp9Var4;
+  27: this.f = rp9Var5;
+  28: this.g = rp9Var6;
+  29: this.h = rp9Var7;
+  30: this.i = rp9Var8;
+  31: this.j = rp9Var9;
+  32: this.k = rp9Var10;
+  33: this.l = rp9Var11;
+  34: this.m = rp9Var12;
+  35: this.o = new z3j(new u6(vckVar, this, rp9Var2, (byte) 3));
+  36: }
+  37: 
+  38: public final o1h a() {
+  39: return (o1h) this.c.getValue();
+  40: }
+  41: 
+  42: public final Object b(kgc kgcVar, x1j x1jVar) {
+  43: boolean zD0 = ((dle) this.b.getValue()).a.d0();
+  44: s1k s1kVar = s1k.a;
+  45: if (zD0) {
+  46: f09.d0("NotifListenerImpl", "internalOnNotifMessage: ignore! ok push disabled", new Object[0]);
+  47: return s1kVar;
+  48: }
+  49: Object objA = a().a(kgcVar, x1jVar);
+  50: return objA == ka5.a ? objA : s1kVar;
+  51: }
+  52: 
+  53: public final void c(tdd tddVar, e18 e18Var) {
+  54: r1g r1gVar = this.n;
+  55: if (r1gVar != null) {
+  56: nm9.J(r1gVar.h(), null, 0, new y30(e18Var, tddVar, null, (byte) 2), 3);
+  57: }
+  58: }
+  59: }
+~~~
+
+## defpackage/o57.java (239 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: import java.io.IOException;
+   4: import java.net.Socket;
+   5: import java.net.SocketTimeoutException;
+   6: import java.util.Iterator;
+   7: import java.util.Locale;
+   8: import java.util.concurrent.ConcurrentHashMap;
+   9: import java.util.concurrent.CopyOnWriteArrayList;
+  10: import java.util.concurrent.atomic.AtomicInteger;
+  11: import java.util.regex.Pattern;
+  12: import ru.ok.android.onelog.impl.BuildConfig;
+  13: 
+  14: /* JADX INFO: loaded from: classes.dex */
+  15: public final class o57 {
+  16: public final p7c a;
+  17: public final nt4 b;
+  18: public final ru5 c;
+  19: public final ks4 d;
+  20: public final lr4 e;
+  21: public final ConcurrentHashMap f;
+  22: public final m66 g;
+  23: public final mxf h;
+  24: public final boolean i;
+  25: public final yi1 j;
+  26: public final ib0 k;
+  27: public final zr4 l;
+  28: public final CopyOnWriteArrayList m;
+  29: 
+  30: static {
+  31: Pattern.compile("^(([0-9]\|[1-9][0-9]\|1[0-9]{2}\|2[0-4][0-9]\|25[0-5]).){3}([0-9]\|[1-9][0-9]\|1[0-9]{2}\|2[0-4][0-9]\|25[0-5])$");
+  32: }
+  33: 
+  34: /* JADX WARN: Code duplicated, block: B:16:0x0031  */
+  35: /* JADX WARN: Code duplicated, block: B:9:0x001d  */
+  36: public o57(p7c p7cVar, ru5 ru5Var, nt4 nt4Var, m66 m66Var, mxf mxfVar, boolean z, yi1 yi1Var, boolean z2) {
+  37: String str;
+  38: yx9 yx9Var = p7cVar.e;
+  39: dle dleVar = p7cVar.c;
+  40: n3a n3aVar = dleVar.a;
+  41: n3a n3aVar2 = dleVar.a;
+  42: String strU = n3aVar.U();
+  43: if (strU == null) {
+  44: yx9Var.getClass();
+  45: strU = "api2.oneme.ru";
+  46: } else {
+  47: strU = strU.length() <= 0 ? null : strU;
+  48: if (strU == null) {
+  49: yx9Var.getClass();
+  50: strU = "api2.oneme.ru";
+  51: }
+  52: }
+  53: String strV = n3aVar2.V();
+  54: if (strV == null) {
+  55: yx9Var.getClass();
+  56: str = "443";
+  57: } else {
+  58: str = strV.length() > 0 ? strV : null;
+  59: if (str == null) {
+  60: yx9Var.getClass();
+  61: str = "443";
+  62: }
+  63: }
+  64: ks4 ks4Var = new ks4(strU, str, n3aVar2.X());
+  65: this.e = new lr4(new f4j((byte) 0));
+  66: this.f = new ConcurrentHashMap();
+  67: this.a = p7cVar;
+  68: this.b = nt4Var;
+  69: this.c = ru5Var;
+  70: this.d = ks4Var;
+  71: this.g = m66Var;
+  72: this.h = mxfVar;
+  73: this.i = z;
+  74: this.j = yi1Var;
+  75: ib0 ib0Var = new ib0();
+  76: ib0Var.d = this;
+  77: ib0Var.b = new f4j((byte) 3);
+  78: ib0Var.a = this.i;
+  79: ib0Var.c = this.g;
+  80: this.k = ib0Var;
+  81: me6 me6Var = me6.e;
+  82: qzd qzdVar = fe6.b;
+  83: this.l = new zr4(p7cVar, new f4j((byte) 2), z ? az7.U(1, me6Var) : az7.U(BuildConfig.COUNT_TO_UPLOAD, me6.d), z ? az7.U(10, me6Var) : az7.U(3, me6Var), az7.U(z ? 100 : 96, me6Var), z2);
+  84: this.m = new CopyOnWriteArrayList();
+  85: }
+  86: 
+  87: public static void a(Socket socket) {
+  88: if (socket != null) {
+  89: o1d o1dVar = f09.g;
+  90: if (o1dVar != null) {
+  91: c6a c6aVar = c6a.c;
+  92: if (o1dVar.b(c6aVar)) {
+  93: o1dVar.c(c6aVar, "o57", String.format(Locale.ROOT, "closeSocketSafely, %s", socket), null);
+  94: }
+  95: }
+  96: try {
+  97: socket.close();
+  98: } catch (IOException e) {
+  99: o1d o1dVar2 = f09.g;
+ 100: if (o1dVar2 == null) {
+ 101: return;
+ 102: }
+ 103: c6a c6aVar2 = c6a.f;
+ 104: if (o1dVar2.b(c6aVar2)) {
+ 105: o1dVar2.c(c6aVar2, "o57", String.format(Locale.ROOT, "closeSocketSafely, failed for %s", socket), e);
+ 106: }
+ 107: }
+ 108: }
+ 109: }
+ 110: 
+ 111: public final u34 b() {
+ 112: c6a c6aVar = c6a.c;
+ 113: o1d o1dVar = f09.g;
+ 114: if (o1dVar != null && o1dVar.b(c6aVar)) {
+ 115: ks4 ks4Var = this.d;
+ 116: String str = ks4Var.a;
+ 117: vg9.K(vg9.A(((Number) ks4Var.d.getValue()).intValue(), "createConnection -> to ", str, ":", ", with rbc="), this.i, o1dVar, c6aVar, "FastClient");
+ 118: }
+ 119: yaj yajVar = new yaj(this.k);
+ 120: n57 n57Var = new n57(yajVar);
+ 121: this.m.add(n57Var);
+ 122: try {
+ 123: try {
+ 124: ks4 ks4Var2 = this.d;
+ 125: String str2 = ks4Var2.a;
+ 126: int iIntValue = ((Number) ks4Var2.d.getValue()).intValue();
+ 127: qzd qzdVar = fe6.b;
+ 128: u34 u34VarB = yajVar.b(az7.U(15000, me6.d), str2, iIntValue);
+ 129: o1d o1dVar2 = f09.g;
+ 130: if (o1dVar2 != null) {
+ 131: c6a c6aVar2 = c6a.e;
+ 132: if (o1dVar2.b(c6aVar2)) {
+ 133: o1dVar2.c(c6aVar2, "FastClient", "<- createConnection, SUCCESS for " + u34VarB, null);
+ 134: }
+ 135: }
+ 136: this.l.c();
+ 137: if (this.i) {
+ 138: u34VarB.d = this.l;
+ 139: }
+ 140: this.m.remove(n57Var);
+ 141: return u34VarB;
+ 142: } catch (IOException e) {
+ 143: if (e.getCause() instanceof SocketTimeoutException) {
+ 144: o1d o1dVar3 = f09.g;
+ 145: if (o1dVar3 != null) {
+ 146: c6a c6aVar3 = c6a.f;
+ 147: if (o1dVar3.b(c6aVar3)) {
+ 148: o1dVar3.c(c6aVar3, "FastClient", "createConnection, reset dns after socket timeout", null);
+ 149: }
+ 150: }
+ 151: m66 m66Var = this.g;
+ 152: String str3 = this.d.a;
+ 153: String str4 = m66Var.e;
+ 154: o1d o1dVar4 = f09.g;
+ 155: if (o1dVar4 != null && o1dVar4.b(c6aVar)) {
+ 156: o1dVar4.c(c6aVar, str4, "resetHost, ".concat(str3), null);
+ 157: }
+ 158: wl8 wl8VarA = m66Var.a(str3);
+ 159: if (wl8VarA != null) {
+ 160: wl8VarA.b();
+ 161: }
+ 162: }
+ 163: this.l.b();
+ 164: throw e;
+ 165: }
+ 166: } catch (Throwable th) {
+ 167: this.m.remove(n57Var);
+ 168: throw th;
+ 169: }
+ 170: }
+ 171: 
+ 172: public final void c() {
+ 173: nt4 nt4Var = this.b;
+ 174: ((AtomicInteger) nt4Var.c).incrementAndGet();
+ 175: String name = nt4.class.getName();
+ 176: o1d o1dVar = f09.g;
+ 177: if (o1dVar == null) {
+ 178: return;
+ 179: }
+ 180: c6a c6aVar = c6a.d;
+ 181: if (o1dVar.b(c6aVar)) {
+ 182: ihk.k("tryNextRequestTimeout ", ((AtomicInteger) nt4Var.c).get(), o1dVar, c6aVar, name);
+ 183: }
+ 184: }
+ 185: 
+ 186: public final void d(boolean z) {
+ 187: vaj vajVar;
+ 188: Iterator it = this.m.iterator();
+ 189: while (it.hasNext()) {
+ 190: yaj yajVar = ((n57) it.next()).a;
+ 191: String str = yajVar.m;
+ 192: o1d o1dVar = f09.g;
+ 193: if (o1dVar != null) {
+ 194: c6a c6aVar = c6a.c;
+ 195: if (o1dVar.b(c6aVar)) {
+ 196: s95.F("setTryToConnect, ", z, o1dVar, c6aVar, str);
+ 197: }
+ 198: }
+ 199: boolean z2 = !z;
+ 200: if (z && (vajVar = (vaj) yajVar.h.get()) != null && ((o57) yajVar.a.d).a.a.g() && !vajVar.c && yajVar.d()) {
+ 201: synchronized (yajVar.c) {
+ 202: if (yajVar.d()) {
+ 203: if (yajVar.j.get() < yajVar.k.get()) {
+ 204: yajVar.l.set(true);
+ 205: yajVar.c.notifyAll();
+ 206: } else {
+ 207: z2 = true;
+ 208: }
+ 209: if (!z2) {
+ 210: String str2 = yajVar.m;
+ 211: o1d o1dVar2 = f09.g;
+ 212: if (o1dVar2 != null) {
+ 213: c6a c6aVar2 = c6a.f;
+ 214: if (o1dVar2.b(c6aVar2)) {
+ 215: o1dVar2.c(c6aVar2, str2, "setTryToConnect, force new connect", null);
+ 216: }
+ 217: }
+ 218: }
+ 219: }
+ 220: }
+ 221: }
+ 222: if (z2 && !yajVar.e.get()) {
+ 223: synchronized (yajVar.c) {
+ 224: if (yajVar.e.compareAndSet(false, true)) {
+ 225: yajVar.c.notifyAll();
+ 226: String str3 = yajVar.m;
+ 227: o1d o1dVar3 = f09.g;
+ 228: if (o1dVar3 != null) {
+ 229: c6a c6aVar3 = c6a.f;
+ 230: if (o1dVar3.b(c6aVar3)) {
+ 231: o1dVar3.c(c6aVar3, str3, "abort", null);
+ 232: }
+ 233: }
+ 234: }
+ 235: }
+ 236: }
+ 237: }
+ 238: }
+ 239: }
+~~~
+
+## defpackage/v6j.java (12 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: import java.util.Arrays;
+   4: import java.util.List;
+   5: 
+   6: /* JADX INFO: loaded from: classes.dex */
+   7: public interface v6j {
+   8: public static final List F0 = Arrays.asList("session.state", "proto.state", "proto.payload", "internal", "service.unavailable", "service.timeout", "proto.ver", "error.call.history.inconsistency", "errors.event.unavailable", "login.flood", "login.blocked");
+   9: public static final jl9 G0 = new jl9();
+  10: 
+  11: long a(float f, int i, long j);
+  12: }
+~~~
+
+## defpackage/i00.java (83 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: import java.util.Collection;
+   4: import java.util.Iterator;
+   5: import java.util.Map;
+   6: import java.util.Set;
+   7: 
+   8: /* JADX INFO: loaded from: classes.dex */
+   9: public final class i00 extends uph implements Map {
+  10: public c00 d;
+  11: public e00 e;
+  12: public g00 f;
+  13: 
+  14: @Override // java.util.Map
+  15: public final Set entrySet() {
+  16: c00 c00Var = this.d;
+  17: if (c00Var != null) {
+  18: return c00Var;
+  19: }
+  20: c00 c00Var2 = new c00(this);
+  21: this.d = c00Var2;
+  22: return c00Var2;
+  23: }
+  24: 
+  25: public final boolean j(Collection collection) {
+  26: Iterator it = collection.iterator();
+  27: while (it.hasNext()) {
+  28: if (!super.containsKey(it.next())) {
+  29: return false;
+  30: }
+  31: }
+  32: return true;
+  33: }
+  34: 
+  35: public final boolean k(Collection collection) {
+  36: int i = this.c;
+  37: Iterator it = collection.iterator();
+  38: while (it.hasNext()) {
+  39: super.remove(it.next());
+  40: }
+  41: return i != this.c;
+  42: }
+  43: 
+  44: @Override // java.util.Map
+  45: public final Set keySet() {
+  46: e00 e00Var = this.e;
+  47: if (e00Var != null) {
+  48: return e00Var;
+  49: }
+  50: e00 e00Var2 = new e00(this);
+  51: this.e = e00Var2;
+  52: return e00Var2;
+  53: }
+  54: 
+  55: public final boolean l(Collection collection) {
+  56: int i = this.c;
+  57: for (int i2 = i - 1; i2 >= 0; i2--) {
+  58: if (!collection.contains(f(i2))) {
+  59: g(i2);
+  60: }
+  61: }
+  62: return i != this.c;
+  63: }
+  64: 
+  65: @Override // java.util.Map
+  66: public final void putAll(Map map) {
+  67: b(map.size() + this.c);
+  68: for (Map.Entry entry : map.entrySet()) {
+  69: put(entry.getKey(), entry.getValue());
+  70: }
+  71: }
+  72: 
+  73: @Override // java.util.Map
+  74: public final Collection values() {
+  75: g00 g00Var = this.f;
+  76: if (g00Var != null) {
+  77: return g00Var;
+  78: }
+  79: g00 g00Var2 = new g00(this);
+  80: this.f = g00Var2;
+  81: return g00Var2;
+  82: }
+  83: }
+~~~
+
+## defpackage/jn0.java (28 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: /* JADX INFO: loaded from: classes2.dex */
+   4: public final class jn0 {
+   5: public final Integer a;
+   6: 
+   7: public jn0(Integer num) {
+   8: this.a = num;
+   9: }
+  10: 
+  11: public final boolean equals(Object obj) {
+  12: if (obj == this) {
+  13: return true;
+  14: }
+  15: if (obj instanceof jn0) {
+  16: return this.a.equals(((jn0) obj).a);
+  17: }
+  18: return false;
+  19: }
+  20: 
+  21: public final int hashCode() {
+  22: return this.a.hashCode() ^ 1000003;
+  23: }
+  24: 
+  25: public final String toString() {
+  26: return "ProductData{productId=" + this.a + "}";
+  27: }
+  28: }
+~~~
+
+## defpackage/pck.java (8 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: /* JADX INFO: loaded from: classes2.dex */
+   4: public interface pck {
+   5: Object g(vi viVar, b55 b55Var);
+   6: 
+   7: boolean p();
+   8: }
+~~~
+
+## defpackage/i9g.java (300 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: import com.google.protobuf.nano.InvalidProtocolBufferNanoException;
+   4: import java.util.List;
+   5: import java.util.Map;
+   6: import java.util.concurrent.ConcurrentHashMap;
+   7: import java.util.concurrent.atomic.AtomicInteger;
+   8: import kotlin.NoWhenBranchMatchedException;
+   9: import kotlin.collections.a;
+  10: import org.webrtc.PeerConnectionFactory;
+  11: import ru.ok.tamtam.nano.ProtoException;
+  12: 
+  13: /* JADX INFO: loaded from: classes.dex */
+  14: public final class i9g {
+  15: public final String a = i9g.class.getName();
+  16: public final rp9 b;
+  17: 
+  18: public i9g(rp9 rp9Var) {
+  19: this.b = rp9Var;
+  20: }
+  21: 
+  22: public static rwd e(swd swdVar, byte[] bArr) throws e5f {
+  23: try {
+  24: switch (swdVar.ordinal()) {
+  25: case 0:
+  26: case 15:
+  27: case 18:
+  28: case 34:
+  29: case 35:
+  30: return null;
+  31: case 1:
+  32: return m3n.b(bArr);
+  33: case 2:
+  34: return u3n.b(bArr);
+  35: case 3:
+  36: return ken.a(bArr);
+  37: case 4:
+  38: return fen.b(bArr);
+  39: case 5:
+  40: return f09.R(bArr);
+  41: case 6:
+  42: return t6n.b(bArr);
+  43: case 7:
+  44: return c8n.c(bArr);
+  45: case 8:
+  46: return q3n.b(bArr);
+  47: case 9:
+  48: return n6n.b(bArr);
+  49: case 10:
+  50: return gxm.e(bArr);
+  51: case 11:
+  52: return o7n.b(bArr);
+  53: case 12:
+  54: laj lajVar = new laj();
+  55: try {
+  56: mcb.c(lajVar, bArr);
+  57: d4h d4hVar = new d4h(lajVar.b, lajVar.c, lajVar.d, f0c.f(dx5.d, Integer.valueOf(lajVar.e)));
+  58: f09.p(d4hVar.f, "parseFrom");
+  59: return d4hVar;
+  60: } catch (InvalidProtocolBufferNanoException e) {
+  61: throw new ProtoException(e);
+  62: }
+  63: case 13:
+  64: return a8n.a(bArr);
+  65: case 14:
+  66: return m7n.b(bArr);
+  67: case PeerConnectionFactory.Options.ADAPTER_TYPE_LOOPBACK /* 16 */:
+  68: return a4n.b(bArr);
+  69: case 17:
+  70: return s7n.b(bArr);
+  71: case 19:
+  72: return w7n.c(bArr);
+  73: case 20:
+  74: return ejn.b(bArr);
+  75: case 21:
+  76: return ugn.a(bArr);
+  77: case 22:
+  78: return o3n.a(bArr);
+  79: case 23:
+  80: return p6n.a(bArr);
+  81: case 24:
+  82: return y3n.a(bArr);
+  83: case 25:
+  84: return tkn.a(bArr);
+  85: case 26:
+  86: a3h.g.getClass();
+  87: return jl9.o(bArr);
+  88: case 27:
+  89: return z5n.b(bArr);
+  90: case 28:
+  91: return swm.c(bArr);
+  92: case 29:
+  93: int i = d20.i;
+  94: return iym.b(bArr);
+  95: case 30:
+  96: int i2 = j20.j;
+  97: return kym.b(bArr);
+  98: case 31:
+  99: int i3 = n20.i;
+ 100: return oym.c(bArr);
+ 101: case PeerConnectionFactory.Options.ADAPTER_TYPE_ANY /* 32 */:
+ 102: int i4 = l20.k;
+ 103: return mym.b(bArr);
+ 104: case 33:
+ 105: return x6n.c(bArr);
+ 106: case 36:
+ 107: return com.k(bArr);
+ 108: case 37:
+ 109: return v5n.a(bArr);
+ 110: case 38:
+ 111: z9j z9jVar = new z9j();
+ 112: try {
+ 113: mcb.c(z9jVar, bArr);
+ 114: return new kc5(z9jVar.b, new os(z9jVar.c, z9jVar.d, z9jVar.e, z9jVar.f, z9jVar.g, (Map) e0c.C(z9jVar.h)));
+ 115: } catch (InvalidProtocolBufferNanoException e2) {
+ 116: throw new ProtoException(e2);
+ 117: }
+ 118: case 39:
+ 119: return pdn.b(bArr);
+ 120: case 40:
+ 121: return u7n.b(bArr);
+ 122: case 41:
+ 123: AtomicInteger atomicInteger = j4h.f;
+ 124: j9j j9jVar = new j9j((byte) 1);
+ 125: try {
+ 126: mcb.c(j9jVar, bArr);
+ 127: return new j4h(j9jVar.c, j9jVar.e, a.k0(j9jVar.d));
+ 128: } catch (InvalidProtocolBufferNanoException e3) {
+ 129: throw new ProtoException(e3);
+ 130: }
+ 131: case 42:
+ 132: ConcurrentHashMap concurrentHashMap = h2h.j;
+ 133: return ein.c(bArr);
+ 134: case 43:
+ 135: int i5 = n2h.i;
+ 136: return gin.b(bArr);
+ 137: case 44:
+ 138: int i6 = c2h.h;
+ 139: return din.c(bArr);
+ 140: case 45:
+ 141: return k44.t(bArr);
+ 142: case 46:
+ 143: return q8n.b(bArr);
+ 144: case 47:
+ 145: return s8n.a(bArr);
+ 146: case 48:
+ 147: String str = uc4.i;
+ 148: return rc4.d(bArr);
+ 149: case 49:
+ 150: return efn.a(bArr);
+ 151: case 50:
+ 152: return s8n.b(bArr);
+ 153: default:
+ 154: throw new NoWhenBranchMatchedException();
+ 155: }
+ 156: } catch (ProtoException e4) {
+ 157: throw new e5f(e4);
+ 158: }
+ 159: throw new e5f(e4);
+ 160: }
+ 161: 
+ 162: public final Object a(long j, d55 d55Var) {
+ 163: Object objK = az7.K(d55Var, b().a, false, true, new rj7(j, (byte) 8));
+ 164: s1k s1kVar = s1k.a;
+ 165: ka5 ka5Var = ka5.a;
+ 166: if (objK != ka5Var) {
+ 167: objK = s1kVar;
+ 168: }
+ 169: return objK == ka5Var ? objK : s1kVar;
+ 170: }
+ 171: 
+ 172: public final raj b() {
+ 173: return (raj) this.b.getValue();
+ 174: }
+ 175: 
+ 176: public final Object c(rwd rwdVar, long j, int i, d55 d55Var) {
+ 177: raj rajVarB = b();
+ 178: return az7.K(d55Var, rajVarB.a, false, true, new so((Object) rajVarB, (Object) new h8j(rwdVar.getId(), rwdVar.getType(), e9j.b, 0, j, i, rwdVar.l(), System.currentTimeMillis()), (byte) 25));
+ 179: }
+ 180: 
+ 181: public final List d(List list) {
+ 182: return j0h.T(j0h.K(new tsj(new q00(list, (byte) 1), new s14(1, this, i9g.class, "taskDbFromEntity", "taskDbFromEntity(Lone/me/sdk/tasks/db/TaskEntity;)Lone/me/sdk/tasks/db/TaskDb;", 0, (byte) 7))));
+ 183: }
+ 184: 
+ 185: /* JADX WARN: Code duplicated, block: B:7:0x0013  */
+ 186: public final Object f(swd swdVar, d55 d55Var) {
+ 187: g9g g9gVar;
+ 188: if (d55Var instanceof g9g) {
+ 189: g9gVar = (g9g) d55Var;
+ 190: int i = g9gVar.g;
+ 191: if ((i & Integer.MIN_VALUE) != 0) {
+ 192: g9gVar.g = i - Integer.MIN_VALUE;
+ 193: } else {
+ 194: g9gVar = new g9g(this, d55Var);
+ 195: }
+ 196: } else {
+ 197: g9gVar = new g9g(this, d55Var);
+ 198: }
+ 199: Object objK = g9gVar.e;
+ 200: int i2 = g9gVar.g;
+ 201: if (i2 == 0) {
+ 202: xnm.y(objK);
+ 203: raj rajVarB = b();
+ 204: g9gVar.d = this;
+ 205: g9gVar.g = 1;
+ 206: objK = az7.K(g9gVar, rajVarB.a, true, false, new g4h(rajVarB, swdVar));
+ 207: ka5 ka5Var = ka5.a;
+ 208: if (objK == ka5Var) {
+ 209: return ka5Var;
+ 210: }
+ 211: } else {
+ 212: if (i2 != 1) {
+ 213: k3g.o("call to 'resume' before 'invoke' with coroutine");
+ 214: return null;
+ 215: }
+ 216: this = g9gVar.d;
+ 217: xnm.y(objK);
+ 218: }
+ 219: return this.d((List) objK);
+ 220: }
+ 221: 
+ 222: /* JADX WARN: Code duplicated, block: B:7:0x0013  */
+ 223: public final Object g(long j, d55 d55Var) {
+ 224: h9g h9gVar;
+ 225: if (d55Var instanceof h9g) {
+ 226: h9gVar = (h9g) d55Var;
+ 227: int i = h9gVar.f;
+ 228: if ((i & Integer.MIN_VALUE) != 0) {
+ 229: h9gVar.f = i - Integer.MIN_VALUE;
+ 230: } else {
+ 231: h9gVar = new h9g(this, d55Var);
+ 232: }
+ 233: } else {
+ 234: h9gVar = new h9g(this, d55Var);
+ 235: }
+ 236: Object objK = h9gVar.d;
+ 237: int i2 = h9gVar.f;
+ 238: if (i2 == 0) {
+ 239: xnm.y(objK);
+ 240: raj rajVarB = b();
+ 241: h9gVar.f = 1;
+ 242: objK = az7.K(h9gVar, rajVarB.a, true, false, new rj7(j, rajVarB, (byte) 7));
+ 243: ka5 ka5Var = ka5.a;
+ 244: if (objK == ka5Var) {
+ 245: return ka5Var;
+ 246: }
+ 247: } else {
+ 248: if (i2 != 1) {
+ 249: k3g.o("call to 'resume' before 'invoke' with coroutine");
+ 250: return null;
+ 251: }
+ 252: xnm.y(objK);
+ 253: }
+ 254: h8j h8jVar = (h8j) objK;
+ 255: if (h8jVar != null) {
+ 256: return i(h8jVar);
+ 257: }
+ 258: return null;
+ 259: }
+ 260: 
+~~~
+
+Поздние сигнатуры: 261 public final Object h(int i, d55 d55Var) {; 270 public final g8j i(h8j h8jVar) {
+
+## defpackage/f4j.java (64 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: import android.os.SystemClock;
+   4: 
+   5: /* JADX INFO: loaded from: classes.dex */
+   6: public final class f4j extends q2 {
+   7: public final /* synthetic */ byte d;
+   8: 
+   9: /* JADX WARN: Illegal instructions before constructor call */
+  10: public f4j(byte b) {
+  11: this.d = b;
+  12: me6 me6Var = me6.d;
+  13: switch (b) {
+  14: case 2:
+  15: super(me6Var);
+  16: break;
+  17: case 3:
+  18: super(me6Var);
+  19: break;
+  20: default:
+  21: super(me6Var);
+  22: break;
+  23: }
+  24: }
+  25: 
+  26: @Override // defpackage.q2
+  27: public final long U0() {
+  28: switch (this.d) {
+  29: case 0:
+  30: return System.currentTimeMillis();
+  31: case 1:
+  32: return System.nanoTime();
+  33: case 2:
+  34: return SystemClock.elapsedRealtime();
+  35: default:
+  36: return SystemClock.uptimeMillis();
+  37: }
+  38: }
+  39: 
+  40: public final long V0() {
+  41: byte b = this.d;
+  42: me6 me6Var = me6.d;
+  43: switch (b) {
+  44: case 0:
+  45: qzd qzdVar = fe6.b;
+  46: return az7.V(System.currentTimeMillis(), me6Var);
+  47: case 1:
+  48: qzd qzdVar2 = fe6.b;
+  49: return az7.V(System.nanoTime(), me6.b);
+  50: case 2:
+  51: qzd qzdVar3 = fe6.b;
+  52: return az7.V(SystemClock.elapsedRealtime(), me6Var);
+  53: default:
+  54: qzd qzdVar4 = fe6.b;
+  55: return az7.V(SystemClock.uptimeMillis(), me6Var);
+  56: }
+  57: }
+  58: 
+  59: /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+  60: public /* synthetic */ f4j(me6 me6Var) {
+  61: super(me6Var);
+  62: this.d = (byte) 1;
+  63: }
+  64: }
+~~~
+
+## defpackage/o6a.java (6 строк)
+
+~~~java
+   1: package defpackage;
+   2: 
+   3: /* JADX INFO: loaded from: classes.dex */
+   4: public interface o6a {
+   5: Object f(Object obj, String str);
+   6: }
 ~~~
 

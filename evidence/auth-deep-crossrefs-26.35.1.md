@@ -164,7 +164,7 @@
  131: if (!(obj instanceof n4g)) {
  132: fi0 fi0Var = (fi0) obj;
  133: if (!fi0Var.c.containsKey("LOGIN")) {
- 134: f09.f0(this.f, "Can't auth with password because loginToken empty");
+ 134: f09.d0(this.f, "Can't auth with password because loginToken empty", new Object[0]);
  135: this.u = null;
  136: this.r.e(new exj(0, 6, dnm.e(null)));
  137: return s1kVar;
@@ -2022,9 +2022,9 @@
  430: TamErrorException tamErrorException = th;
  431: String str3 = tamErrorException.a.b;
  432: if (g4a.c(str3, "session.sequence")) {
- 433: f09.f0(this.j, "login2_error: SESSION_SEQUENCE");
+ 433: f09.d0(this.j, "login2_error: SESSION_SEQUENCE", new Object[0]);
  434: } else if (g4a.c(str3, "client.task.ignored")) {
- 435: f09.f0(this.j, "login2_error: TASK_IGNORED");
+ 435: f09.d0(this.j, "login2_error: TASK_IGNORED", new Object[0]);
  436: } else {
  437: ((d8a) this.g.getValue()).a(tamErrorException.a, 2);
 --
@@ -2212,7 +2212,7 @@
  131: if (!(obj instanceof n4g)) {
  132: fi0 fi0Var = (fi0) obj;
  133: if (!fi0Var.c.containsKey("LOGIN")) {
- 134: f09.f0(this.f, "Can't auth with password because loginToken empty");
+ 134: f09.d0(this.f, "Can't auth with password because loginToken empty", new Object[0]);
  135: this.u = null;
  136: this.r.e(new exj(0, 6, dnm.e(null)));
  137: return s1kVar;
@@ -2627,7 +2627,7 @@
   71: if (i5 == 0) {
   72: xnm.y(n4gVar);
   73: if (str4 == null \|\| zti.n0(str4)) {
-  74: f09.f0(ug9.class.getName(), "link or chatAccessToken must not be null");
+  74: f09.d0(ug9.class.getName(), "link or chatAccessToken must not be null", new Object[0]);
   75: return null;
   76: }
   77: zsc zscVar = (zsc) this.a.getValue();
@@ -5932,6 +5932,1900 @@
 1033: } else {
 1034: if (!z2) {
 1035: k3g.o("call to 'resume' before 'invoke' with coroutine");
+--
+~~~
+
+## exact account token keys
+Файлов с совпадениями (первые 95): 10
+
+### defpackage/dtc.java
+~~~text
+  15: }
+  16: 
+  17: public final boolean b() {
+  18: String string;
+  19: return (a().a.s() == -1 \|\| (string = a().d.d.getString("auth.token", null)) == null \|\| string.length() == 0) ? false : true;
+  20: }
+  21: 
+  22: public final String c() {
+  23: String string;
+  24: if (a().a.s() != 0 && (string = a().d.d.getString("auth.token", null)) != null && string.length() != 0) {
+--
+  25: return a().d.d.getString("auth.token", null);
+  26: }
+  27: f09.d0(dtc.class.getName(), "Early return in peekToken cuz of prefs.client().userId == 0L \|\| prefs.auth().token.isNullOrEmpty()", new Object[0]);
+  28: return null;
+  29: }
+--
+  30: 
+--
+  36: }
+  37: }
+  38: 
+  39: public final void e(String str) {
+  40: a().d.e("auth.token", str);
+  41: }
+  42: }
+--
+~~~
+
+### defpackage/esd.java
+~~~text
+ 494: if (str.startsWith("turn")) {
+ 495: if (!iceServer.username.isEmpty() && !iceServer.password.isEmpty()) {
+ 496: arrayList.add(iceServer);
+ 497: if (i > 0) {
+ 498: arrayList.add(PeerConnection.IceServer.builder(iceServer.uri.concat("?transport=tcp")).setUsername(iceServer.username).setPassword(iceServer.password).setTlsCertPolicy(iceServer.tlsCertPolicy).setHostname(iceServer.hostname).createIceServer());
+ 499: i--;
+ 500: }
+ 501: z = true;
+ 502: }
+ 503: } else if (iceServer.uri.startsWith("stun")) {
+--
+~~~
+
+### defpackage/g6g.java
+~~~text
+ 408: ArrayList arrayList = new ArrayList(xa4.p0(abstractList, 10));
+ 409: Iterator it = abstractList.iterator();
+ 410: while (it.hasNext()) {
+ 411: PeerConnection.IceServer iceServer = (PeerConnection.IceServer) it.next();
+ 412: arrayList.add(PeerConnection.IceServer.builder(iceServer.urls).setUsername(iceServer.username).setHostname(iceServer.hostname).setTlsAlpnProtocols(iceServer.tlsAlpnProtocols).setTlsCertPolicy(iceServer.tlsCertPolicy).setTlsEllipticCurves(iceServer.tlsEllipticCurves).setPassword("broken password").createIceServer());
+ 413: }
+ 414: return arrayList;
+ 415: }
+ 416: 
+ 417: @Override // defpackage.v6a
+--
+~~~
+
+### defpackage/hog.java
+~~~text
+  94: this.x = new zcg(luf.a(Boolean.class), (SharedPreferences) this.d, (Object) bool, "notif.isVisible");
+  95: this.y = new zcg(luf.a(Boolean.class), (SharedPreferences) this.d, (Object) bool, "app.forceConnection");
+  96: this.z = new zcg(luf.a(Long.class), (SharedPreferences) this.d, (Object) 0L, "app.lastSuccessfulRequestTime");
+  97: this.A = new zcg(luf.a(Long.class), (SharedPreferences) this.d, (Object) 0L, "user.contactSortLastSync");
+  98: this.B = new zcg(luf.a(Long.class), (SharedPreferences) this.d, (Object) 0L, "user.phonesSortLastSync");
+  99: this.C = new zcg(luf.a(String.class), (SharedPreferences) this.d, (Object) null, "user.reservedPushToken");
+ 100: this.D = new zcg(luf.a(Long.class), (SharedPreferences) this.d, (Object) (-1L), "user.pushOptions");
+ 101: this.E = new zcg(luf.a(String.class), (SharedPreferences) this.d, (Object) null, "user.okToken");
+ 102: this.F = new zcg(luf.a(Long.class), (SharedPreferences) this.d, (Object) 0L, "app.last.firebase_push_time");
+ 103: this.G = new zcg(luf.a(Long.class), (SharedPreferences) this.d, (Object) 0L, "app.ok.update_time");
+--
+~~~
+
+### defpackage/j6j.java
+~~~text
+ 201: return;
+ 202: }
+ 203: }
+ 204: if (dtcVar.b()) {
+ 205: string = dtcVar.a().d.d.getString("auth.account.name", null);
+ 206: } else {
+ 207: f09.d0(dtc.class.getName(), "Early return in getAccountName cuz of !isAuthorized", new Object[0]);
+ 208: string = null;
+ 209: }
+ 210: j6jVar2.a = string;
+--
+~~~
+
+### defpackage/l15.java
+~~~text
+  69: case 7:
+  70: return s1kVar;
+  71: case 8:
+  72: PeerConnection.IceServer iceServer = (PeerConnection.IceServer) obj;
+  73: return (iceServer == null \|\| (str = iceServer.hostname) == null) ? BuildConfig.FLAVOR : str;
+  74: case 9:
+  75: Map.Entry entry = (Map.Entry) obj;
+  76: String str3 = (String) entry.getKey();
+  77: Object value = entry.getValue();
+  78: StringBuilder sb = new StringBuilder();
+--
+~~~
+
+### defpackage/n3a.java
+~~~text
+  60: 
+  61: public n3a(Context context, uc7 uc7Var, q1a q1aVar, rp9 rp9Var, rp9 rp9Var2) {
+  62: super(context, q1aVar.a("user", "prefs"), uc7Var, rp9Var2);
+  63: this.j0 = rp9Var;
+  64: this.k0 = new zcg(luf.a(String.class), (SharedPreferences) this.d, (Object) null, "user.Phone.Code");
+  65: this.l0 = new zcg(luf.a(String.class), (SharedPreferences) this.d, (Object) null, "user.Phone");
+  66: this.m0 = new zcg(luf.a(String.class), (SharedPreferences) this.d, (Object) null, "app.location.country.code");
+  67: this.n0 = new zcg(luf.a(String.class), (SharedPreferences) this.d, (Object) null, "server.host");
+  68: this.o0 = new zcg(luf.a(String.class), (SharedPreferences) this.d, (Object) null, "server.port");
+  69: Boolean bool = Boolean.TRUE;
+--
+  70: this.p0 = new zcg(luf.a(Boolean.class), (SharedPreferences) this.d, (Object) bool, "server.useTls");
+--
+  71: this.q0 = new zcg(luf.a(String.class), (SharedPreferences) this.d, (Object) null, "server.loginError");
+  72: Boolean bool2 = Boolean.FALSE;
+--
+  73: new zcg(luf.a(Boolean.class), (SharedPreferences) this.d, (Object) bool2, "user.dev.options.roaming");
+--
+  74: this.r0 = new zcg(luf.a(Boolean.class), (SharedPreferences) this.d, (Object) bool2, "app.call.add.dontshowconfirmation");
+  75: luf.a(Integer.class);
+--
+~~~
+
+### defpackage/s85.java
+~~~text
+  61: if (abstractList != null) {
+  62: ArrayList arrayList = new ArrayList();
+  63: for (Object obj : abstractList) {
+  64: PeerConnection.IceServer iceServer = (PeerConnection.IceServer) obj;
+  65: if ((iceServer != null ? iceServer.hostname : null) != null && hui.Z(iceServer.hostname, "turn", false)) {
+  66: arrayList.add(obj);
+  67: }
+  68: }
+  69: strS0 = va4.S0(arrayList, ",", null, null, new l15((byte) 8), 30);
+  70: } else {
+--
+~~~
+
+### defpackage/u6.java
+~~~text
+ 130: dtc dtcVar = (dtc) f0fVar.f.getValue();
+ 131: String strA = cqeVar.a.a();
+ 132: qi0 qi0Var = dtcVar.a().d;
+ 133: if (strA != null) {
+ 134: qi0Var.e("auth.account.name", strA);
+ 135: }
+ 136: qi0Var.e("auth.token", str2);
+ 137: return s1k.a;
+ 138: case 12:
+ 139: return fa5.F(fa5.F((p9g) this.b, ((r1g) this.c).n), (x95) ((z3j) this.d).getValue());
+--
+ 140: case 13:
+ 141: f6h f6hVar = (f6h) this.b;
+--
+~~~
+
+### org/webrtc/PeerConnection.java
+~~~text
+ 816: if (!(obj instanceof IceServer)) {
+ 817: return false;
+ 818: }
+ 819: IceServer iceServer = (IceServer) obj;
+ 820: return this.uri.equals(iceServer.uri) && this.urls.equals(iceServer.urls) && this.username.equals(iceServer.username) && this.password.equals(iceServer.password) && this.tlsCertPolicy.equals(iceServer.tlsCertPolicy) && this.hostname.equals(iceServer.hostname) && this.tlsAlpnProtocols.equals(iceServer.tlsAlpnProtocols) && this.tlsEllipticC
+ 821: }
+ 822: 
+ 823: public String getHostname() {
+ 824: return this.hostname;
+ 825: }
+--
+~~~
+
+## packet/session encoder
+Файлов с совпадениями (первые 60): 60
+
+### com/facebook/imagepipeline/platform/GingerbreadPurgeableDecoder.java
+~~~text
+  47: lhe lheVar2 = new lhe((c5b) z74Var.w());
+  48: try {
+  49: ns9Var = new ns9(lheVar2, i);
+  50: try {
+  51: outputStream2 = memoryFile.getOutputStream();
+  52: outputStream2.getClass();
+  53: byte[] bArr2 = new byte[4096];
+  54: while (true) {
+  55: int i2 = ns9Var.read(bArr2);
+  56: if (i2 == -1) {
+--
+~~~
+
+### com/facebook/soloader/a.java
+~~~text
+  49: public final void p(File file) throws IOException {
+  50: o37[] o37VarArrU = u();
+  51: byte[] bArr = new byte[PeerConnection.PORTALLOCATOR_ENABLE_ANY_ADDRESS_PORTS];
+  52: for (o37 o37Var : o37VarArrU) {
+  53: InputStream inputStream = this.b.getInputStream(o37Var.c);
+  54: try {
+  55: hc7 hc7Var = new hc7(o37Var, inputStream);
+  56: inputStream = null;
+  57: try {
+  58: e.a(hc7Var, bArr, file);
+--
+~~~
+
+### defpackage/abj.java
+~~~text
+  46: httpURLConnection.setChunkedStreamingMode(0);
+  47: }
+  48: nb6.k(httpURLConnection);
+  49: if (n23VarN != null) {
+  50: OutputStream outputStream = httpURLConnection.getOutputStream();
+  51: BufferedOutputStream bufferedOutputStream = outputStream instanceof BufferedOutputStream ? (BufferedOutputStream) outputStream : new BufferedOutputStream(outputStream, 8192);
+  52: try {
+  53: n23VarN.e(bufferedOutputStream);
+  54: bufferedOutputStream.close();
+  55: } catch (Throwable th) {
+--
+~~~
+
+### defpackage/aj.java
+~~~text
+   5: import android.security.NetworkSecurityPolicy;
+   6: import java.util.ArrayList;
+   7: import java.util.Iterator;
+   8: import java.util.List;
+   9: import javax.net.ssl.SSLSocket;
+  10: import javax.net.ssl.X509TrustManager;
+  11: import kotlin.collections.a;
+  12: 
+  13: /* JADX INFO: loaded from: classes.dex */
+  14: public final class aj extends k6e {
+--
+  42: return qjVar != null ? qjVar : super.b(x509TrustManager);
+  43: }
+  44: 
+  45: @Override // defpackage.k6e
+  46: public final void d(SSLSocket sSLSocket, String str, List list) {
+  47: Object next;
+  48: Iterator it = this.c.iterator();
+  49: do {
+  50: if (!it.hasNext()) {
+  51: next = null;
+--
+  52: break;
+  53: }
+  54: next = it.next();
+  55: } while (!((dwh) next).a(sSLSocket));
+  56: dwh dwhVar = (dwh) next;
+  57: if (dwhVar != null) {
+  58: dwhVar.d(sSLSocket, str, list);
+  59: }
+  60: }
+--
+  61: 
+  62: @Override // defpackage.k6e
+  63: public final String f(SSLSocket sSLSocket) {
+--
+  64: Object next;
+  65: Iterator it = this.c.iterator();
+  66: do {
+  67: if (!it.hasNext()) {
+  68: next = null;
+--
+~~~
+
+### defpackage/al.java
+~~~text
+   2: 
+   3: import java.lang.reflect.InvocationTargetException;
+   4: import java.lang.reflect.Method;
+   5: import java.util.List;
+   6: import javax.net.ssl.SSLSocket;
+   7: 
+   8: /* JADX INFO: loaded from: classes.dex */
+   9: public class al implements dwh {
+  10: public static final cg6 f = new cg6(10);
+  11: public final Class a;
+--
+  22: this.e = cls.getMethod("setAlpnProtocols", byte[].class);
+  23: }
+  24: 
+  25: @Override // defpackage.dwh
+  26: public final boolean a(SSLSocket sSLSocket) {
+  27: return this.a.isInstance(sSLSocket);
+  28: }
+  29: 
+  30: @Override // defpackage.dwh
+  31: public final boolean b() {
+--
+  32: boolean z = uk.e;
+--
+  33: return svm.b();
+  34: }
+  35: 
+  36: @Override // defpackage.dwh
+  37: public final String c(SSLSocket sSLSocket) {
+  38: if (this.a.isInstance(sSLSocket)) {
+  39: try {
+  40: byte[] bArr = (byte[]) this.d.invoke(sSLSocket, null);
+  41: if (bArr != null) {
+  42: return new String(bArr, o53.a);
+--
+  43: }
+--
+~~~
+
+### defpackage/azc.java
+~~~text
+  48: import javax.net.ssl.SSLEngine;
+  49: import javax.net.ssl.SSLEngineResult;
+  50: import me.leolin.shortcutbadger.BuildConfig;
+  51: import one.video.calls.sdk.net.signaling.wt.nal.internal.WebTransportSocket;
+  52: import one.video.upload.exceptions.TlsBufferOverflowException;
+  53: import one.video.upload.exceptions.TlsBufferUnderflowException;
+  54: import one.video.upload.exceptions.TlsConnectionClosedException;
+  55: import one.video.upload.exceptions.TlsHandshakeEndOfStreamException;
+  56: import org.json.JSONException;
+  57: import org.json.JSONObject;
+--
+  58: import org.webrtc.SessionDescription;
+--
+  59: import ru.ok.android.externcalls.sdk.h;
+--
+  60: import ru.ok.android.externcalls.sdk.i;
+--
+ 595: byte b2 = 0;
+ 596: ByteBuffer byteBufferAllocate = ByteBuffer.allocate(0);
+ 597: while (true) {
+ 598: SSLEngineResult.HandshakeStatus handshakeStatus = sSLEngine.getHandshakeStatus();
+ 599: zhVar.a("TLSHandshakeHelper", new hfh((Object) handshakeStatus, (byte) 18));
+ 600: int i = handshakeStatus == null ? -1 : c5j.b[handshakeStatus.ordinal()];
+ 601: final byte b3 = 1;
+ 602: if (i == 1) {
+ 603: z5kVar.p();
+ 604: return;
+--
+~~~
+
+### defpackage/bf7.java
+~~~text
+ 235: File file3 = new File(file, zipEntryNextElement.getName());
+ 236: File parentFile = file3.getParentFile();
+ 237: if (parentFile != null && (parentFile.exists() \|\| parentFile.mkdirs())) {
+ 238: FileOutputStream fileOutputStream = new FileOutputStream(file3);
+ 239: InputStream inputStream = zipFile.getInputStream(zipEntryNextElement);
+ 240: int i = 0;
+ 241: try {
+ 242: h(inputStream, fileOutputStream);
+ 243: Closeable[] closeableArr = {inputStream, fileOutputStream};
+ 244: while (i < 2) {
+--
+~~~
+
+### defpackage/bgm.java
+~~~text
+  33: if (i3 < 3) {
+  34: try {
+  35: processExec = runtime.exec(strArr2[i3]);
+  36: try {
+  37: BufferedReader bufferedReader2 = new BufferedReader(new InputStreamReader(processExec.getInputStream()));
+  38: try {
+  39: StringBuilder sb = new StringBuilder();
+  40: while (true) {
+  41: String line = bufferedReader2.readLine();
+  42: if (line == null) {
+--
+~~~
+
+### defpackage/bi6.java
+~~~text
+  60: ja5 ja5Var = (ja5) this.f;
+  61: xnm.y(obj);
+  62: try {
+  63: r6aVar.d = Runtime.getRuntime().exec(new String[]{"logcat", "-v", "tag", "-T", new SimpleDateFormat("MM-dd HH:mm:ss.SSS", Locale.US).format(new Date())});
+  64: BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(r6aVar.d.getInputStream()));
+  65: while (fa5.B(ja5Var)) {
+  66: try {
+  67: String line = bufferedReader.readLine();
+  68: if (line != null) {
+  69: r6aVar.c.d(line);
+--
+~~~
+
+### defpackage/bj.java
+~~~text
+   1: package defpackage;
+   2: 
+   3: import android.net.ssl.SSLSockets;
+   4: import android.os.Build;
+   5: import java.io.IOException;
+   6: import java.util.List;
+   7: import javax.net.ssl.SSLParameters;
+   8: import javax.net.ssl.SSLSocket;
+--
+   9: import me.leolin.shortcutbadger.BuildConfig;
+  10: 
+  11: /* JADX INFO: loaded from: classes.dex */
+  12: public final class bj implements dwh {
+  13: @Override // defpackage.dwh
+--
+  14: public final boolean a(SSLSocket sSLSocket) {
+  15: return SSLSockets.isSupportedSocket(sSLSocket);
+  16: }
+  17: 
+  18: @Override // defpackage.dwh
+  19: public final boolean b() {
+--
+  20: k6e k6eVar = k6e.a;
+--
+  21: return f0c.k() && Build.VERSION.SDK_INT >= 29;
+  22: }
+  23: 
+  24: @Override // defpackage.dwh
+  25: public final String c(SSLSocket sSLSocket) {
+  26: String applicationProtocol = sSLSocket.getApplicationProtocol();
+  27: if (applicationProtocol == null ? true : applicationProtocol.equals(BuildConfig.FLAVOR)) {
+  28: return null;
+  29: }
+  30: return applicationProtocol;
+--
+~~~
+
+### defpackage/cfj.java
+~~~text
+  45: URL url = new URL(sb.toString());
+  46: try {
+  47: int i5 = this.a;
+  48: int i6 = this.b;
+  49: InputStream inputStream = url.openConnection().getInputStream();
+  50: ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+  51: g4a.m(inputStream, "from must not be null.");
+  52: byte[] bArr = new byte[4096];
+  53: while (true) {
+  54: int i7 = inputStream.read(bArr);
+--
+~~~
+
+### defpackage/cg6.java
+~~~text
+   4: import android.content.Intent;
+   5: import android.net.Uri;
+   6: import java.util.Iterator;
+   7: import java.util.List;
+   8: import javax.net.ssl.SSLSocket;
+   9: import kotlin.NoWhenBranchMatchedException;
+  10: import one.me.android.MainActivity;
+  11: import one.me.android.initialization.AccountInitializer;
+  12: 
+  13: /* JADX INFO: loaded from: classes.dex */
+--
+ 567: luVar.startActivity(intent);
+ 568: }
+ 569: 
+ 570: @Override // defpackage.sw5
+ 571: public boolean a(SSLSocket sSLSocket) {
+ 572: return hui.Z(sSLSocket.getClass().getName(), "com.google.android.gms.org.conscrypt.", false);
+ 573: }
+ 574: 
+ 575: @Override // defpackage.xr4
+ 576: public void b(byte[] bArr) {
+--
+ 577: throw new IllegalStateException("No connection");
+--
+ 592: throw new IllegalStateException("No connection");
+ 593: }
+ 594: 
+ 595: @Override // defpackage.sw5
+ 596: public dwh e(SSLSocket sSLSocket) {
+ 597: Class<?> cls = sSLSocket.getClass();
+ 598: Class<?> superclass = cls;
+ 599: while (!superclass.getSimpleName().equals("OpenSSLSocketImpl")) {
+ 600: superclass = superclass.getSuperclass();
+ 601: if (superclass == null) {
+--
+ 602: m00.r(cls, "No OpenSSLSocketImpl superclass of socket of type ");
+--
+~~~
+
+### defpackage/ct4.java
+~~~text
+  38: }
+  39: 
+  40: public final void d(ikj... ikjVarArr) {
+  41: if (!this.a) {
+  42: k3g.t("no TLS versions for cleartext connections");
+  43: return;
+  44: }
+  45: ArrayList arrayList = new ArrayList(ikjVarArr.length);
+  46: for (ikj ikjVar : ikjVarArr) {
+  47: arrayList.add(ikjVar.a);
+--
+  51: }
+  52: 
+  53: public final void e(String... strArr) {
+  54: if (!this.a) {
+  55: k3g.t("no TLS versions for cleartext connections");
+  56: } else if (strArr.length != 0) {
+  57: this.c = (String[]) strArr.clone();
+  58: } else {
+  59: k3g.t("At least one TLS version is required");
+  60: }
+--
+  61: }
+  62: }
+--
+~~~
+
+### defpackage/dt4.java
+~~~text
+   3: import java.util.ArrayList;
+   4: import java.util.Arrays;
+   5: import java.util.List;
+   6: import java.util.Objects;
+   7: import javax.net.ssl.SSLSocket;
+   8: 
+   9: /* JADX INFO: loaded from: classes.dex */
+  10: public final class dt4 {
+  11: public static final dt4 e;
+  12: public static final dt4 f;
+--
+  65: }
+  66: return va4.r1(arrayList);
+  67: }
+  68: 
+  69: public final boolean b(SSLSocket sSLSocket) {
+  70: if (!this.a) {
+  71: return false;
+  72: }
+  73: String[] strArr = this.d;
+  74: if (strArr != null && !rgk.j(strArr, sSLSocket.getEnabledProtocols(), r6c.a)) {
+--
+  75: return false;
+  76: }
+  77: String[] strArr2 = this.c;
+  78: return strArr2 == null \|\| rgk.j(strArr2, sSLSocket.getEnabledCipherSuites(), g44.c);
+  79: }
+--
+  80: 
+  81: public final List c() {
+  82: String[] strArr = this.d;
+  83: if (strArr == null) {
+--
+ 124: return "ConnectionSpec()";
+ 125: }
+ 126: StringBuilder sb = new StringBuilder("ConnectionSpec(cipherSuites=");
+ 127: sb.append(Objects.toString(a(), "[all enabled]"));
+ 128: sb.append(", tlsVersions=");
+ 129: sb.append(Objects.toString(c(), "[all enabled]"));
+ 130: sb.append(", supportsTlsExtensions=");
+ 131: return w7g.x(sb, this.b, ')');
+ 132: }
+ 133: }
+--
+~~~
+
+### defpackage/dwh.java
+~~~text
+   1: package defpackage;
+   2: 
+   3: import java.util.List;
+   4: import javax.net.ssl.SSLSocket;
+   5: 
+   6: /* JADX INFO: loaded from: classes.dex */
+   7: public interface dwh {
+   8: boolean a(SSLSocket sSLSocket);
+   9: 
+--
+  10: boolean b();
+  11: 
+  12: String c(SSLSocket sSLSocket);
+  13: 
+--
+  14: void d(SSLSocket sSLSocket, String str, List list);
+  15: }
+--
+--
+~~~
+
+### defpackage/e9c.java
+~~~text
+   2: 
+   3: import android.net.ConnectivityManager;
+   4: import android.net.Network;
+   5: import javax.net.SocketFactory;
+   6: import javax.net.ssl.SSLSocketFactory;
+   7: 
+   8: /* JADX INFO: loaded from: classes3.dex */
+   9: public final class e9c extends ConnectivityManager.NetworkCallback {
+  10: public final /* synthetic */ byte a = 1;
+  11: public final Object b;
+--
+  43: }
+  44: }
+  45: spc spcVarA = ((t6j) rp9Var.getValue()).a().a();
+  46: SocketFactory socketFactory = network.getSocketFactory();
+  47: if (socketFactory instanceof SSLSocketFactory) {
+  48: throw new IllegalArgumentException("socketFactory instanceof SSLSocketFactory");
+  49: }
+  50: if (!socketFactory.equals(spcVarA.n)) {
+  51: spcVarA.A = null;
+  52: }
+--
+  53: spcVarA.n = socketFactory;
+--
+~~~
+
+### defpackage/ecm.java
+~~~text
+   1: package defpackage;
+   2: 
+   3: /* JADX INFO: loaded from: classes3.dex */
+   4: public enum ecm {
+   5: TLS_AES_128_GCM_SHA256(4865),
+   6: TLS_AES_256_GCM_SHA384(4866),
+   7: TLS_CHACHA20_POLY1305_SHA256(4867),
+   8: TLS_AES_128_CCM_SHA256(4868),
+   9: TLS_AES_128_CCM_8_SHA256(4869);
+  10: 
+--
+  11: public final short a;
+--
+  12: 
+--
+  13: ecm(int i) {
+--
+  14: this.a = (short) i;
+--
+~~~
+
+### defpackage/er0.java
+~~~text
+ 709: if (iHashCode != 79201641) {
+ 710: if (iHashCode != 79923350) {
+ 711: switch (iHashCode) {
+ 712: case -503070503:
+ 713: if (str.equals("TLSv1.1")) {
+ 714: return ikj.d;
+ 715: }
+ 716: break;
+ 717: case -503070502:
+ 718: if (str.equals("TLSv1.2")) {
+--
+ 719: return ikj.c;
+ 720: }
+ 721: break;
+ 722: case -503070501:
+ 723: if (str.equals("TLSv1.3")) {
+--
+ 724: return ikj.b;
+ 725: }
+ 726: break;
+ 727: }
+ 728: } else if (str.equals("TLSv1")) {
+--
+ 729: return ikj.e;
+ 730: }
+ 731: } else if (str.equals("SSLv3")) {
+ 732: return ikj.f;
+ 733: }
+--
+ 734: k3g.t("Unexpected TLS version: ".concat(str));
+ 735: return null;
+ 736: }
+ 737: 
+ 738: public static fr0 m(String str, boolean z) {
+ 739: return new fr0(str.concat(z ? "Dark" : "Light"));
+--
+~~~
+
+### defpackage/esd.java
+~~~text
+ 494: if (str.startsWith("turn")) {
+ 495: if (!iceServer.username.isEmpty() && !iceServer.password.isEmpty()) {
+ 496: arrayList.add(iceServer);
+ 497: if (i > 0) {
+ 498: arrayList.add(PeerConnection.IceServer.builder(iceServer.uri.concat("?transport=tcp")).setUsername(iceServer.username).setPassword(iceServer.password).setTlsCertPolicy(iceServer.tlsCertPolicy).setHostname(iceServer.hostname).createIceServer());
+ 499: i--;
+ 500: }
+ 501: z = true;
+ 502: }
+ 503: } else if (iceServer.uri.startsWith("stun")) {
+--
+~~~
+
+### defpackage/et4.java
+~~~text
+   2: 
+   3: import java.net.UnknownServiceException;
+   4: import java.util.Arrays;
+   5: import java.util.List;
+   6: import javax.net.ssl.SSLSocket;
+   7: 
+   8: /* JADX INFO: loaded from: classes.dex */
+   9: public final class et4 {
+  10: public final List a;
+  11: public int b;
+--
+  15: public et4(List list) {
+  16: this.a = list;
+  17: }
+  18: 
+  19: public final dt4 a(SSLSocket sSLSocket) throws UnknownServiceException {
+  20: dt4 dt4Var;
+  21: int i;
+  22: boolean z;
+  23: int i2 = this.b;
+  24: List list = this.a;
+--
+  28: dt4Var = null;
+  29: break;
+  30: }
+  31: dt4Var = (dt4) list.get(i2);
+  32: if (dt4Var.b(sSLSocket)) {
+  33: this.b = i2 + 1;
+  34: break;
+  35: }
+  36: i2++;
+  37: }
+--
+  39: StringBuilder sb = new StringBuilder("Unable to find acceptable protocols. isFallback=");
+  40: sb.append(this.d);
+  41: sb.append(", modes=");
+  42: sb.append(list);
+  43: String string = Arrays.toString(sSLSocket.getEnabledProtocols());
+  44: sb.append(", supported protocols=");
+  45: sb.append(string);
+  46: throw new UnknownServiceException(sb.toString());
+  47: }
+  48: String[] strArr = dt4Var.c;
+--
+  54: if (i3 >= size2) {
+  55: z = false;
+  56: break;
+  57: }
+  58: if (((dt4) list.get(i3)).b(sSLSocket)) {
+  59: z = true;
+  60: break;
+  61: }
+  62: i3++;
+  63: }
+--
+~~~
+
+### defpackage/fkj.java
+~~~text
+ 241: e = exc2;
+ 242: l4cVar2 = l4cVar3;
+ 243: this.j = null;
+ 244: this.k = null;
+ 245: throw new UploadUnhandledException.ChannelConnectException("Can't connect to a TLS channel", e);
+ 246: } catch (Throwable th2) {
+ 247: th = th2;
+ 248: l4cVar2.m(null);
+ 249: throw th;
+ 250: }
+--
+ 290: }
+ 291: l4cVar2 = l4cVar3;
+ 292: this.j = null;
+ 293: this.k = null;
+ 294: throw new UploadUnhandledException.ChannelConnectException("Can't connect to a TLS channel", e);
+ 295: } else {
+ 296: i3 = akjVar.i;
+ 297: i2 = akjVar.h;
+ 298: l4cVar = akjVar.e;
+ 299: str2 = akjVar.d;
+--
+ 464: throw e;
+ 465: } catch (UploadUnhandledException e2) {
+ 466: throw e2;
+ 467: } catch (Throwable th) {
+ 468: throw new UploadUnhandledException.ChannelReadException("Exception while reading from tls channel", th);
+ 469: }
+ 470: }
+ 471: 
+ 472: /* JADX WARN: Code duplicated, block: B:7:0x0013  */
+ 473: public final Object i(ByteBuffer byteBuffer, d55 d55Var) throws UploadUnhandledException {
+--
+ 510: throw e;
+ 511: } catch (UploadUnhandledException e2) {
+ 512: throw e2;
+ 513: } catch (Throwable th) {
+ 514: throw new UploadUnhandledException.ChannelWriteException("Exception while writing to tls channel", th);
+ 515: }
+ 516: }
+ 517: }
+--
+~~~
+
+### defpackage/fs5.java
+~~~text
+ 113: return httpURLConnection;
+ 114: }
+ 115: httpURLConnection.setFixedLengthStreamingMode(bArr.length);
+ 116: httpURLConnection.connect();
+ 117: OutputStream outputStream = httpURLConnection.getOutputStream();
+ 118: outputStream.write(bArr);
+ 119: outputStream.close();
+ 120: return httpURLConnection;
+ 121: }
+ 122: 
+--
+ 241: }
+ 242: this.m = jMax != -1 ? jMax - j2 : -1L;
+ 243: }
+ 244: try {
+ 245: this.j = httpURLConnectionG.getInputStream();
+ 246: if (zEqualsIgnoreCase) {
+ 247: this.j = new GZIPInputStream(this.j);
+ 248: }
+ 249: this.k = true;
+ 250: e(hj5Var);
+--
+~~~
+
+### defpackage/fu8.java
+~~~text
+  30: if (uRLConnectionOpenConnection.getContentLength() > 1048576) {
+  31: kw7.m("Content-Length exceeds max size of 1048576");
+  32: return null;
+  33: }
+  34: InputStream inputStream = uRLConnectionOpenConnection.getInputStream();
+  35: try {
+  36: byte[] bArrC = m3n.c(new jd1(inputStream));
+  37: if (inputStream != null) {
+  38: inputStream.close();
+  39: }
+--
+~~~
+
+### defpackage/g44.java
+~~~text
+  44: r74.b("SSL_DH_anon_WITH_RC4_128_MD5");
+  45: r74.b("SSL_DH_anon_EXPORT_WITH_DES40_CBC_SHA");
+  46: r74.b("SSL_DH_anon_WITH_DES_CBC_SHA");
+  47: r74.b("SSL_DH_anon_WITH_3DES_EDE_CBC_SHA");
+  48: r74.b("TLS_KRB5_WITH_DES_CBC_SHA");
+  49: r74.b("TLS_KRB5_WITH_3DES_EDE_CBC_SHA");
+  50: r74.b("TLS_KRB5_WITH_RC4_128_SHA");
+  51: r74.b("TLS_KRB5_WITH_DES_CBC_MD5");
+  52: r74.b("TLS_KRB5_WITH_3DES_EDE_CBC_MD5");
+  53: r74.b("TLS_KRB5_WITH_RC4_128_MD5");
+--
+  54: r74.b("TLS_KRB5_EXPORT_WITH_DES_CBC_40_SHA");
+--
+  55: r74.b("TLS_KRB5_EXPORT_WITH_RC4_40_SHA");
+--
+  56: r74.b("TLS_KRB5_EXPORT_WITH_DES_CBC_40_MD5");
+--
+  57: r74.b("TLS_KRB5_EXPORT_WITH_RC4_40_MD5");
+--
+~~~
+
+### defpackage/g6g.java
+~~~text
+ 408: ArrayList arrayList = new ArrayList(xa4.p0(abstractList, 10));
+ 409: Iterator it = abstractList.iterator();
+ 410: while (it.hasNext()) {
+ 411: PeerConnection.IceServer iceServer = (PeerConnection.IceServer) it.next();
+ 412: arrayList.add(PeerConnection.IceServer.builder(iceServer.urls).setUsername(iceServer.username).setHostname(iceServer.hostname).setTlsAlpnProtocols(iceServer.tlsAlpnProtocols).setTlsCertPolicy(iceServer.tlsCertPolicy).setTlsEllipticCurves(iceServer.tlsEllipticCurves).setPassword("broken password").createIceServer());
+ 413: }
+ 414: return arrayList;
+ 415: }
+ 416: 
+ 417: @Override // defpackage.v6a
+--
+~~~
+
+### defpackage/g91.java
+~~~text
+  13: import java.util.regex.Pattern;
+  14: import javax.net.ssl.HostnameVerifier;
+  15: import javax.net.ssl.SSLHandshakeException;
+  16: import javax.net.ssl.SSLPeerUnverifiedException;
+  17: import javax.net.ssl.SSLSocketFactory;
+  18: import okhttp3.internal.connection.RouteException;
+  19: import okhttp3.internal.http2.ConnectionShutdownException;
+  20: import ru.ok.messages.http.UnknownOkhttpException;
+  21: 
+  22: /* JADX INFO: loaded from: classes.dex */
+--
+  44: public final m3g a(pmf pmfVar) throws IOException {
+  45: boolean z;
+  46: o3g o3gVar;
+  47: m3g m3gVarB;
+  48: SSLSocketFactory sSLSocketFactory;
+  49: HostnameVerifier hostnameVerifier;
+  50: sy2 sy2Var;
+  51: switch (this.a) {
+  52: case 0:
+  53: tdc tdcVar = (tdc) this.b;
+--
+ 140: wo8 wo8Var = kmfVar.d;
+ 141: sp8 sp8Var2 = o0gVarB.a;
+ 142: tpc tpcVar = kmfVar.a;
+ 143: if (sp8Var2.i) {
+ 144: SSLSocketFactory sSLSocketFactory2 = tpcVar.o;
+ 145: if (sSLSocketFactory2 == null) {
+ 146: k3g.o("CLEARTEXT-only client");
+ 147: return null;
+ 148: }
+ 149: HostnameVerifier hostnameVerifier2 = tpcVar.s;
+--
+ 150: sy2Var = tpcVar.t;
+--
+ 151: sSLSocketFactory = sSLSocketFactory2;
+ 152: hostnameVerifier = hostnameVerifier2;
+ 153: } else {
+ 154: sSLSocketFactory = null;
+ 155: hostnameVerifier = null;
+ 156: sy2Var = null;
+--
+~~~
+
+### defpackage/gfm.java
+~~~text
+  35: } catch (Exception unused) {
+  36: strA = h6c.a("a54e499adc2827c9ff2d6ed1f5693cc0fb2d6ec0e83b21d7ba2b21c1e3");
+  37: }
+  38: } else {
+  39: InputStream inputStream = httpURLConnection.getInputStream();
+  40: try {
+  41: strA = new String(usc.B(inputStream), o53.a);
+  42: inputStream.close();
+  43: } catch (Throwable th3) {
+  44: try {
+--
+  80: }
+  81: }
+  82: }
+  83: httpURLConnection.setFixedLengthStreamingMode(bArr.length);
+  84: OutputStream outputStream = httpURLConnection.getOutputStream();
+  85: try {
+  86: outputStream.write(bArr);
+  87: outputStream.close();
+  88: } catch (Throwable th3) {
+  89: try {
+--
+~~~
+
+### defpackage/gtb.java
+~~~text
+ 250: HttpsURLConnection httpsURLConnection = (HttpsURLConnection) new URL((String) y1hVar.c).openConnection();
+ 251: SSLContext sSLContext = (SSLContext) this.b;
+ 252: if (sSLContext != null) {
+ 253: try {
+ 254: httpsURLConnection.setSSLSocketFactory(sSLContext.getSocketFactory());
+ 255: } catch (Exception unused) {
+ 256: }
+ 257: }
+ 258: Iterator it = ((uo8) y1hVar.d).iterator();
+ 259: while (true) {
+--
+ 272: httpsURLConnection.setChunkedStreamingMode(0);
+ 273: }
+ 274: h(httpsURLConnection);
+ 275: if (n23Var != null) {
+ 276: BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(httpsURLConnection.getOutputStream());
+ 277: try {
+ 278: n23Var.e(bufferedOutputStream);
+ 279: bufferedOutputStream.close();
+ 280: } catch (Throwable th) {
+ 281: try {
+--
+~~~
+
+### defpackage/h8l.java
+~~~text
+ 777: 
+ 778: public im0 r() {
+ 779: String strConcat = ((String) this.d) == null ? " transportName" : BuildConfig.FLAVOR;
+ 780: if (((sq6) this.b) == null) {
+ 781: strConcat = strConcat.concat(" encodedPayload");
+ 782: }
+ 783: if (((Long) this.c) == null) {
+ 784: strConcat = strConcat.concat(" eventMillis");
+ 785: }
+ 786: if (((Long) this.e) == null) {
+--
+~~~
+
+### defpackage/hg7.java
+~~~text
+ 102: return Long.parseLong(str.substring(0, str.length() - 1));
+ 103: }
+ 104: 
+ 105: public static sm0 e(HttpURLConnection httpURLConnection) throws IOException {
+ 106: InputStream inputStream = httpURLConnection.getInputStream();
+ 107: JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, e));
+ 108: jy7 jy7VarA = do0.a();
+ 109: jsonReader.beginObject();
+ 110: String strNextString = null;
+ 111: String strNextString2 = null;
+--
+ 144: return new sm0(strNextString, strNextString2, strNextString3, do0Var, 1);
+ 145: }
+ 146: 
+ 147: public static do0 f(HttpURLConnection httpURLConnection) throws IOException {
+ 148: InputStream inputStream = httpURLConnection.getInputStream();
+ 149: JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, e));
+ 150: jy7 jy7VarA = do0.a();
+ 151: jsonReader.beginObject();
+ 152: while (jsonReader.hasNext()) {
+ 153: String strNextName = jsonReader.nextName();
+--
+ 191: }
+ 192: }
+ 193: 
+ 194: public static void i(HttpURLConnection httpURLConnection, byte[] bArr) throws IOException {
+ 195: OutputStream outputStream = httpURLConnection.getOutputStream();
+ 196: if (outputStream == null) {
+ 197: kw7.m("Cannot send request to FIS servers. No OutputStream available.");
+ 198: return;
+ 199: }
+ 200: GZIPOutputStream gZIPOutputStream = new GZIPOutputStream(outputStream);
+--
+~~~
+
+### defpackage/hog.java
+~~~text
+   7: import me.leolin.shortcutbadger.BuildConfig;
+   8: 
+   9: /* JADX INFO: loaded from: classes.dex */
+  10: public abstract class hog extends a4 implements c74 {
+  11: public static final /* synthetic */ zm9[] i0 = {new c4c(hog.class, "_userId", "get_userId()J"), a15.f(luf.a, hog.class, "contactsLastSync", "getContactsLastSync()J"), new c4c(hog.class, "currentProxyList", "getCurrentProxyList()Ljava/lang/String;"), new c4c(hog.class, "currentProxyListTtlInSec", "getCurrentProxyListTtlInSec()I"), new c4c(
+  12: public final zcg A;
+  13: public final zcg B;
+  14: public final zcg C;
+  15: public final zcg D;
+  16: public final zcg E;
+--
+~~~
+
+### defpackage/hsb.java
+~~~text
+ 523: A("Found %s! Extracting...", strD);
+ 524: try {
+ 525: if (fileY.exists() \|\| fileY.createNewFile()) {
+ 526: try {
+ 527: inputStream = zipFile.getInputStream((ZipEntry) qc0VarS.b);
+ 528: try {
+ 529: fileOutputStream = new FileOutputStream(fileY);
+ 530: try {
+ 531: try {
+ 532: byte[] bArr = new byte[4096];
+--
+~~~
+
+### defpackage/ht.java
+~~~text
+  26: import javax.net.ssl.SSLEngine;
+  27: import javax.net.ssl.SSLException;
+  28: import javax.net.ssl.SSLParameters;
+  29: import javax.net.ssl.SSLSession;
+  30: import javax.net.ssl.SSLSocket;
+  31: import javax.net.ssl.X509ExtendedTrustManager;
+  32: import javax.security.auth.x500.X500Principal;
+  33: import kotlin.collections.a;
+  34: import one.me.sdk.net.ssl.tm.ApiTrustManager$CertPathCertificateException;
+  35: import one.me.sdk.net.ssl.tm.ApiTrustManager$NotInHandshakeCertificateException;
+--
+ 164: @Override // javax.net.ssl.X509ExtendedTrustManager
+ 165: public final void checkClientTrusted(X509Certificate[] x509CertificateArr, String str, Socket socket) throws ApiTrustManager$NotInHandshakeCertificateException, HostnameVerifier$NoSubjectAltNamesCertificateException {
+ 166: SSLSession sSLSession;
+ 167: SSLParameters sSLParameters;
+ 168: if (socket instanceof SSLSocket) {
+ 169: SSLSocket sSLSocket = (SSLSocket) socket;
+ 170: SSLSession handshakeSession = sSLSocket.getHandshakeSession();
+ 171: if (handshakeSession == null) {
+ 172: throw new ApiTrustManager$NotInHandshakeCertificateException();
+ 173: }
+--
+ 174: sSLParameters = sSLSocket.getSSLParameters();
+--
+ 175: sSLSession = handshakeSession;
+--
+ 176: } else {
+ 177: sSLSession = null;
+ 178: sSLParameters = null;
+ 179: }
+--
+~~~
+
+### defpackage/hwh.java
+~~~text
+   5: import android.net.SSLSessionCache;
+   6: import java.io.IOException;
+   7: import java.net.InetAddress;
+   8: import java.net.Socket;
+   9: import javax.net.ssl.SSLSocketFactory;
+  10: 
+  11: /* JADX INFO: loaded from: classes.dex */
+  12: public final class hwh extends SSLSocketFactory {
+  13: public final uia a;
+  14: public final String b = pq0.g(System.identityHashCode(this), hwh.class.getName(), "@");
+--
+  15: public final SSLCertificateSocketFactory c;
+  16: 
+  17: public hwh(Context context, uia uiaVar) {
+--
+  47: this.a.b(str);
+  48: }
+  49: }
+  50: 
+  51: @Override // javax.net.ssl.SSLSocketFactory
+  52: public final Socket createSocket(final Socket socket, final String str, final int i, final boolean z) {
+  53: return a(str, new o08() { // from class: gwh
+  54: @Override // defpackage.o08
+  55: public final Object c() {
+  56: return this.a.c.createSocket(socket, str, i, z);
+--
+  57: }
+  58: });
+  59: }
+  60: 
+  61: @Override // javax.net.ssl.SSLSocketFactory
+  62: public final String[] getDefaultCipherSuites() {
+  63: return this.c.getDefaultCipherSuites();
+  64: }
+  65: 
+  66: @Override // javax.net.ssl.SSLSocketFactory
+--
+  67: public final String[] getSupportedCipherSuites() {
+  68: return this.c.getSupportedCipherSuites();
+  69: }
+  70: 
+  71: @Override // javax.net.SocketFactory
+--
+~~~
+
+### defpackage/ib0.java
+~~~text
+   5: import java.io.IOException;
+   6: import java.net.InetAddress;
+   7: import java.net.Socket;
+   8: import java.net.SocketException;
+   9: import javax.net.ssl.SSLSocket;
+  10: 
+  11: /* JADX INFO: loaded from: classes.dex */
+  12: public final class ib0 {
+  13: public boolean a;
+  14: public Object b;
+--
+  36: } catch (Exception unused) {
+  37: }
+  38: }
+  39: 
+  40: public void c(String str, SSLSocket sSLSocket, lr4 lr4Var) throws IOException {
+  41: o1d o1dVar = f09.g;
+  42: if (o1dVar != null) {
+  43: c6a c6aVar = c6a.c;
+  44: if (o1dVar.b(c6aVar)) {
+  45: o1dVar.c(c6aVar, "FastClient", "connectTls -> " + sSLSocket, null);
+--
+  46: }
+  47: }
+  48: try {
+  49: InetAddress inetAddress = sSLSocket.getInetAddress();
+  50: if (inetAddress == null) {
+--
+  51: throw new SocketException("Has no remote address, " + sSLSocket + ".");
+  52: }
+  53: aj4 aj4VarJ0 = ((f4j) this.b).J0();
+  54: m66 m66Var = (m66) this.c;
+--
+  55: o57 o57Var = (o57) this.d;
+  56: m66Var.g(str, inetAddress);
+--
+~~~
+
+### defpackage/if9.java
+~~~text
+   5: import java.lang.reflect.Proxy;
+   6: import java.util.ArrayList;
+   7: import java.util.Iterator;
+   8: import java.util.List;
+   9: import javax.net.ssl.SSLSocket;
+  10: 
+  11: /* JADX INFO: loaded from: classes2.dex */
+  12: public final class if9 extends k6e {
+  13: public final Method c;
+  14: public final Method d;
+--
+  24: this.g = cls2;
+  25: }
+  26: 
+  27: @Override // defpackage.k6e
+  28: public final void a(SSLSocket sSLSocket) {
+  29: try {
+  30: this.e.invoke(null, sSLSocket);
+  31: } catch (IllegalAccessException e) {
+  32: throw new AssertionError("failed to remove ALPN", e);
+  33: } catch (InvocationTargetException e2) {
+--
+  34: throw new AssertionError("failed to remove ALPN", e2);
+  35: }
+--
+  36: }
+  37: 
+  38: @Override // defpackage.k6e
+  39: public final void d(SSLSocket sSLSocket, String str, List list) {
+  40: ArrayList arrayList = new ArrayList();
+  41: for (Object obj : list) {
+  42: if (((o5f) obj) != o5f.b) {
+  43: arrayList.add(obj);
+  44: }
+--
+  48: while (it.hasNext()) {
+  49: arrayList2.add(((o5f) it.next()).a);
+  50: }
+  51: try {
+  52: this.c.invoke(null, sSLSocket, Proxy.newProxyInstance(k6e.class.getClassLoader(), new Class[]{this.f, this.g}, new hf9(arrayList2)));
+  53: } catch (IllegalAccessException e) {
+  54: throw new AssertionError("failed to set ALPN", e);
+  55: } catch (InvocationTargetException e2) {
+  56: throw new AssertionError("failed to set ALPN", e2);
+  57: }
+--
+~~~
+
+### defpackage/ikj.java
+~~~text
+   3: /* JADX WARN: $VALUES field not found */
+   4: /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
+   5: /* JADX INFO: loaded from: classes.dex */
+   6: public final class ikj {
+   7: public static final ikj b = new ikj("TLS_1_3", 0, "TLSv1.3");
+   8: public static final ikj c = new ikj("TLS_1_2", 1, "TLSv1.2");
+   9: public static final ikj d = new ikj("TLS_1_1", 2, "TLSv1.1");
+  10: public static final ikj e = new ikj("TLS_1_0", 3, "TLSv1");
+  11: public static final ikj f = new ikj("SSL_3_0", 4, "SSLv3");
+  12: public final String a;
+--
+  13: 
+--
+  14: public ikj(String str, int i, String str2) {
+--
+  15: super(str, i);
+--
+~~~
+
+### defpackage/im0.java
+~~~text
+  45: h8lVar.d = str;
+  46: h8lVar.a = this.b;
+  47: sq6 sq6Var = this.c;
+  48: if (sq6Var == null) {
+  49: k3g.q("Null encodedPayload");
+  50: return null;
+  51: }
+  52: h8lVar.b = sq6Var;
+  53: h8lVar.c = Long.valueOf(this.d);
+  54: h8lVar.e = Long.valueOf(this.e);
+--
+  85: return this.f.hashCode() ^ ((i ^ ((int) (j2 ^ (j2 >>> 32)))) * 1000003);
+  86: }
+  87: 
+  88: public final String toString() {
+  89: return "EventInternal{transportName=" + this.a + ", code=" + this.b + ", encodedPayload=" + this.c + ", eventMillis=" + this.d + ", uptimeMillis=" + this.e + ", autoMetadata=" + this.f + "}";
+  90: }
+  91: }
+--
+~~~
+
+### defpackage/im6.java
+~~~text
+  18: public im6(ZipFile zipFile, ZipEntry zipEntry) throws IOException {
+  19: this.c = zipFile;
+  20: this.b = zipEntry;
+  21: this.d = zipEntry.getSize();
+  22: InputStream inputStream = zipFile.getInputStream(zipEntry);
+  23: this.a = inputStream;
+  24: if (inputStream != null) {
+  25: return;
+  26: }
+  27: fu5.j(zipEntry.getName(), "'s InputStream is null");
+--
+  72: if (j >= j4) {
+  73: inputStream.skip(j - j4);
+  74: } else {
+  75: inputStream.close();
+  76: InputStream inputStream2 = this.c.getInputStream(zipEntry);
+  77: this.a = inputStream2;
+  78: if (inputStream2 == null) {
+  79: fu5.j(zipEntry.getName(), "'s InputStream is null");
+  80: return 0;
+  81: }
+--
+~~~
+
+### defpackage/j1m.java
+~~~text
+  86: }
+  87: 
+  88: public final byte[] d(byte[] bArr, String str, short s) {
+  89: Charset charset = q;
+  90: byte[] bytes = "tls13 ".getBytes(charset);
+  91: ByteBuffer byteBufferAllocate = ByteBuffer.allocate(bytes.length + 3 + str.getBytes(charset).length + 1 + BuildConfig.FLAVOR.getBytes(charset).length);
+  92: byteBufferAllocate.putShort(s);
+  93: byteBufferAllocate.put((byte) (bytes.length + str.getBytes().length));
+  94: byteBufferAllocate.put(bytes);
+  95: byteBufferAllocate.put(str.getBytes(charset));
+--
+~~~
+
+### defpackage/j9e.java
+~~~text
+  14: import ru.ok.android.onelog.impl.BuildConfig;
+  15: 
+  16: /* JADX INFO: loaded from: classes.dex */
+  17: public final class j9e implements SharedPreferences.OnSharedPreferenceChangeListener {
+  18: public static final /* synthetic */ zm9[] w8 = {vg9.t(j9e.class, "set-unread-timeout", "setUnreadTimeout()Lone/me/sdk/prefs/PmsProperty;", 0), vg9.t(j9e.class, "debug-mode", "debugMode()Lone/me/sdk/prefs/PmsProperty;", 0), vg9.t(j9e.class, "min-log-level", "getMin-log-level()Lone/me/sdk/prefs/PmsProperty;", 0), vg9.t(j9e.class, "user-debu
+  19: public final g9e A;
+  20: public final g9e A0;
+  21: public final g9e A1;
+  22: public final g9e A2;
+  23: public final g9e A3;
+--
+ 620: return new String[]{"profile - кодировать в Main вместо High", "level - проставлять уровень по разрешению, fps и битрейту"};
+ 621: case 14:
+ 622: return new String[]{"0 - Медиа всегда снизу", "1 - Медиа всегда сверху", "2 - Медиа сверху только в постах каналов", "3 - Порядок управляется с бека"};
+ 623: case 15:
+ 624: return "Control tls timeout in net client";
+ 625: case PeerConnectionFactory.Options.ADAPTER_TYPE_LOOPBACK /* 16 */:
+ 626: return "Presence не-legacy сравнение";
+ 627: case 17:
+ 628: return new ArrayMap(400);
+ 629: case 18:
+--
+ 697: return new String[]{"profile - кодировать в Main вместо High", "level - проставлять уровень по разрешению, fps и битрейту"};
+ 698: case 14:
+ 699: return new String[]{"0 - Медиа всегда снизу", "1 - Медиа всегда сверху", "2 - Медиа сверху только в постах каналов", "3 - Порядок управляется с бека"};
+ 700: case 15:
+ 701: return "Control tls timeout in net client";
+ 702: case PeerConnectionFactory.Options.ADAPTER_TYPE_LOOPBACK /* 16 */:
+ 703: return "Presence не-legacy сравнение";
+ 704: case 17:
+ 705: return new ArrayMap(400);
+ 706: case 18:
+--
+4196: return new String[]{"profile - кодировать в Main вместо High", "level - проставлять уровень по разрешению, fps и битрейту"};
+4197: case 14:
+4198: return new String[]{"0 - Медиа всегда снизу", "1 - Медиа всегда сверху", "2 - Медиа сверху только в постах каналов", "3 - Порядок управляется с бека"};
+4199: case 15:
+4200: return "Control tls timeout in net client";
+4201: case PeerConnectionFactory.Options.ADAPTER_TYPE_LOOPBACK /* 16 */:
+4202: return "Presence не-legacy сравнение";
+4203: case 17:
+4204: return new ArrayMap(400);
+4205: case 18:
+--
+4266: return new String[]{"profile - кодировать в Main вместо High", "level - проставлять уровень по разрешению, fps и битрейту"};
+4267: case 14:
+4268: return new String[]{"0 - Медиа всегда снизу", "1 - Медиа всегда сверху", "2 - Медиа сверху только в постах каналов", "3 - Порядок управляется с бека"};
+4269: case 15:
+4270: return "Control tls timeout in net client";
+4271: case PeerConnectionFactory.Options.ADAPTER_TYPE_LOOPBACK /* 16 */:
+4272: return "Presence не-legacy сравнение";
+4273: case 17:
+4274: return new ArrayMap(400);
+4275: case 18:
+--
+~~~
+
+### defpackage/jf9.java
+~~~text
+   3: import java.util.ArrayList;
+   4: import java.util.Iterator;
+   5: import java.util.List;
+   6: import javax.net.ssl.SSLParameters;
+   7: import javax.net.ssl.SSLSocket;
+   8: import me.leolin.shortcutbadger.BuildConfig;
+   9: 
+  10: /* JADX INFO: loaded from: classes2.dex */
+  11: public final class jf9 extends k6e {
+  12: public static final boolean c;
+--
+  16: Integer numQ = property != null ? gui.Q(property) : null;
+  17: boolean z = false;
+  18: if (numQ == null) {
+  19: try {
+  20: SSLSocket.class.getMethod("getApplicationProtocol", null);
+  21: z = true;
+  22: } catch (NoSuchMethodException unused) {
+  23: }
+  24: } else if (numQ.intValue() >= 9) {
+  25: z = true;
+--
+  27: c = z;
+  28: }
+  29: 
+  30: @Override // defpackage.k6e
+  31: public final void d(SSLSocket sSLSocket, String str, List list) {
+  32: SSLParameters sSLParameters = sSLSocket.getSSLParameters();
+  33: ArrayList arrayList = new ArrayList();
+  34: for (Object obj : list) {
+  35: if (((o5f) obj) != o5f.b) {
+  36: arrayList.add(obj);
+--
+  37: }
+--
+  41: while (it.hasNext()) {
+  42: arrayList2.add(((o5f) it.next()).a);
+  43: }
+  44: sSLParameters.setApplicationProtocols((String[]) arrayList2.toArray(new String[0]));
+  45: sSLSocket.setSSLParameters(sSLParameters);
+  46: }
+  47: 
+  48: @Override // defpackage.k6e
+  49: public final String f(SSLSocket sSLSocket) {
+  50: try {
+--
+~~~
+
+### defpackage/k44.java
+~~~text
+ 162: builderAppendPath.appendQueryParameter("type", String.valueOf(16));
+ 163: URLConnection uRLConnectionOpenConnection = new URL(builderAppendPath.toString()).openConnection();
+ 164: uRLConnectionOpenConnection.setConnectTimeout(3000);
+ 165: uRLConnectionOpenConnection.setReadTimeout(3000);
+ 166: BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(uRLConnectionOpenConnection.getInputStream(), o53.a), 8192);
+ 167: try {
+ 168: String strG = a08.G(bufferedReader);
+ 169: bufferedReader.close();
+ 170: try {
+ 171: JSONObject jSONObject = new JSONObject(strG).getJSONArray("Answer").getJSONObject(0);
+--
+~~~
+
+### defpackage/k6e.java
+~~~text
+  15: import java.util.Map;
+  16: import java.util.logging.Level;
+  17: import java.util.logging.Logger;
+  18: import javax.net.ssl.SSLContext;
+  19: import javax.net.ssl.SSLSocket;
+  20: import javax.net.ssl.SSLSocketFactory;
+  21: import javax.net.ssl.TrustManager;
+  22: import javax.net.ssl.TrustManagerFactory;
+  23: import javax.net.ssl.X509TrustManager;
+  24: 
+--
+  25: /* JADX INFO: loaded from: classes.dex */
+--
+ 141: public static void i(int i, String str, Throwable th) {
+ 142: b.log(i == 5 ? Level.WARNING : Level.INFO, str, th);
+ 143: }
+ 144: 
+ 145: public void a(SSLSocket sSLSocket) {
+ 146: }
+ 147: 
+ 148: public yl5 b(X509TrustManager x509TrustManager) {
+ 149: return new vy0(c(x509TrustManager));
+ 150: }
+--
+ 153: X509Certificate[] acceptedIssuers = x509TrustManager.getAcceptedIssuers();
+ 154: return new yy0((X509Certificate[]) Arrays.copyOf(acceptedIssuers, acceptedIssuers.length));
+ 155: }
+ 156: 
+ 157: public void d(SSLSocket sSLSocket, String str, List list) {
+ 158: }
+ 159: 
+ 160: public void e(Socket socket, InetSocketAddress inetSocketAddress, int i) throws IOException {
+ 161: socket.connect(inetSocketAddress, i);
+ 162: }
+--
+ 163: 
+ 164: public String f(SSLSocket sSLSocket) {
+ 165: return null;
+ 166: }
+ 167: 
+ 168: public Object g() {
+ 169: if (b.isLoggable(Level.FINE)) {
+--
+~~~
+
+### defpackage/kim.java
+~~~text
+  67: try {
+  68: try {
+  69: String strA = vim.a(arrayList);
+  70: HttpsURLConnection httpsURLConnectionB = vimVar.b();
+  71: OutputStream outputStream = httpsURLConnectionB.getOutputStream();
+  72: try {
+  73: outputStream.write(strA.getBytes(o53.a));
+  74: outputStream.flush();
+  75: outputStream.close();
+  76: try {
+--
+~~~
+
+### defpackage/knm.java
+~~~text
+   1: package defpackage;
+   2: 
+   3: import java.util.Arrays;
+   4: import javax.net.ssl.SSLSocket;
+   5: 
+   6: /* JADX INFO: loaded from: classes2.dex */
+   7: public abstract class knm {
+   8: public static final int[] a = {1769172845, 1769172786, 1769172787, 1769172788, 1769172789, 1769172790, 1769172793, 1635148593, 1752589105, 1751479857, 1635135537, 1836069937, 1836069938, 862401121, 862401122, 862417462, 862417718, 862414134, 862414646, 1295275552, 1295270176, 1714714144, 1801741417, 1295275600, 1903435808, 1297305174, 168
+   9: 
+--
+  12: if (Integer.parseInt(System.getProperty("java.specification.version", "unknown")) < 9) {
+  13: try {
+  14: Class<?> cls = Class.forName("org.eclipse.jetty.alpn.ALPN", true, null);
+  15: Class<?> cls2 = Class.forName("org.eclipse.jetty.alpn.ALPN$Provider", true, null);
+  16: return new if9(cls.getMethod("put", SSLSocket.class, cls2), cls.getMethod("get", SSLSocket.class), cls.getMethod("remove", SSLSocket.class), Class.forName("org.eclipse.jetty.alpn.ALPN$ClientProvider", true, null), Class.forName("org.eclipse.jetty.alpn.ALPN$ServerProvider", true, null));
+  17: } catch (ClassNotFoundException \| NoSuchMethodException unused) {
+  18: }
+  19: }
+  20: return null;
+  21: } catch (NumberFormatException unused2) {
+--
+~~~
+
+### defpackage/ks4.java
+~~~text
+  28: return Boolean.hashCode(this.c) + a15.e(this.a.hashCode() * 31, 31, this.b);
+  29: }
+  30: 
+  31: public final String toString() {
+  32: return s95.r(pq0.s("ConnectionHost{host=", this.a, "\|port=", this.b, "\|tls="), this.c, "}");
+  33: }
+  34: }
+--
+~~~
+
+### defpackage/l1d.java
+~~~text
+  77: }
+  78: throw th3;
+  79: } finally {
+  80: try {
+  81: processStart.getInputStream().close();
+  82: n4gVar = n4gVar3;
+  83: } catch (Throwable th4) {
+  84: n4gVar = new n4g(th4);
+  85: }
+  86: Throwable thA = p4g.a(n4gVar);
+--
+  87: if (thA != null) {
+  88: f09.c0("OneMeLogcatLogger", "Failed to close process stream", thA);
+  89: }
+  90: try {
+  91: processStart.getOutputStream().close();
+  92: n4gVar2 = n4gVar3;
+  93: } catch (Throwable th5) {
+  94: n4gVar2 = new n4g(th5);
+  95: }
+  96: Throwable thA2 = p4g.a(n4gVar2);
+--
+~~~
+
+### defpackage/l1m.java
+~~~text
+  43: 
+  44: public final void b(g1m g1mVar, ecm ecmVar, c5m c5mVar) {
+  45: j1m j1mVar;
+  46: j1m j1mVar2;
+  47: if (ecmVar == ecm.TLS_AES_128_GCM_SHA256) {
+  48: j1mVar = new j1m(c5mVar, 1, this.d, (byte) 0);
+  49: j1mVar2 = new j1m(c5mVar, 2, this.d, (byte) 0);
+  50: } else if (ecmVar == ecm.TLS_AES_256_GCM_SHA384) {
+  51: j1mVar = new k1m(c5mVar, 1, this.d, (byte) 0);
+  52: j1mVar2 = new k1m(c5mVar, 2, this.d, (byte) 0);
+--
+  53: } else if (ecmVar != ecm.TLS_CHACHA20_POLY1305_SHA256) {
+  54: m00.h(ecmVar, "unsupported cipher suite ");
+  55: return;
+--
+  56: } else {
+  57: j1mVar = new j1m(c5mVar, 1, this.d, (byte) 1);
+  58: j1mVar2 = new j1m(c5mVar, 2, this.d, (byte) 1);
+--
+~~~
+
+### defpackage/lb6.java
+~~~text
+  50: public volatile long q;
+  51: public final boolean r;
+  52: public gdm s;
+  53: 
+  54: @Metadata(d1 = {"\u0000d\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0002\b\u0003\n\u0002\u0010\u000e\n\u0002\b\u0003\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002
+  55: public static final class a {
+  56: 
+  57: /* JADX INFO: renamed from: a, reason: from kotlin metadata */
+  58: public Application application;
+  59: 
+--
+  69: /* JADX INFO: renamed from: g, reason: from kotlin metadata */
+  70: public String apiKey;
+  71: 
+  72: /* JADX INFO: renamed from: i, reason: from kotlin metadata */
+  73: public boolean tlsCheckEnabled;
+  74: 
+  75: /* JADX INFO: renamed from: k, reason: from kotlin metadata */
+  76: public iem httpClient;
+  77: 
+  78: /* JADX INFO: renamed from: d, reason: from kotlin metadata */
+--
+ 143: this.random = nhfVar;
+ 144: }
+ 145: 
+ 146: public final a I(boolean enabled) {
+ 147: this.tlsCheckEnabled = enabled;
+ 148: return this;
+ 149: }
+ 150: 
+ 151: public final void J(boolean z) {
+ 152: this.tlsCheckEnabled = z;
+--
+ 153: }
+ 154: 
+ 155: public final a K(final String userId) {
+ 156: this.userIdSupplier = new bdk() { // from class: hb6
+ 157: @Override // defpackage.bdk
+--
+ 232: return this.random;
+ 233: }
+ 234: 
+ 235: /* JADX INFO: renamed from: o, reason: from getter */
+ 236: public final boolean getTlsCheckEnabled() {
+ 237: return this.tlsCheckEnabled;
+ 238: }
+ 239: 
+ 240: /* JADX INFO: renamed from: p, reason: from getter */
+ 241: public final bdk getUserIdSupplier() {
+--
+~~~
+
+### defpackage/mf8.java
+~~~text
+  41: for (Certificate certificate : listA) {
+  42: arrayList.add(certificate instanceof X509Certificate ? ((X509Certificate) certificate).getSubjectDN().toString() : certificate.getType());
+  43: }
+  44: String string = arrayList.toString();
+  45: StringBuilder sb = new StringBuilder("Handshake{tlsVersion=");
+  46: sb.append(this.a);
+  47: sb.append(" cipherSuite=");
+  48: sb.append(this.b);
+  49: sb.append(" peerCertificates=");
+  50: sb.append(string);
+--
+~~~
+
+### defpackage/mji.java
+~~~text
+ 331: case 26:
+ 332: ((ms4) ((rp9) this.b).getValue()).f((ls4) ((z3j) this.c).getValue());
+ 333: return s1k.a;
+ 334: case 27:
+ 335: return WSSignaling.sslSocketFactory_delegate$lambda$0((qeg) this.b, (WSSignaling) this.c);
+ 336: case 28:
+ 337: return WSSignaling.http_delegate$lambda$0((fph) this.b, (WSSignaling) this.c);
+ 338: default:
+ 339: WebAppSettingsScreen webAppSettingsScreen = (WebAppSettingsScreen) this.b;
+ 340: Bundle bundle6 = (Bundle) this.c;
+--
+~~~
+
+### defpackage/mr4.java
+~~~text
+  39: StringBuilder sbZ = w7g.z(this.g, "ConnectionStat(n=", "\|", this.e, ":");
+  40: vg9.H(sbZ, this.f, "\|total=", this.a);
+  41: s95.B(this.b, "\|dns=", "\|tcp=", sbZ);
+  42: sbZ.append(this.c);
+  43: return a15.j(this.d, "\|tls=", ")", sbZ);
+  44: }
+  45: }
+--
+~~~
+
+### defpackage/n1m.java
+~~~text
+  81: this.p = byteBufferAllocate.get(0);
+  82: byteBufferAllocate.put(0, (byte) 0);
+  83: this.o = byteBufferAllocate.getInt();
+  84: if (this.o > this.k) {
+  85: throw new o("TLS message size too large: " + this.o, bcm.internal_error);
+  86: }
+  87: this.n = true;
+  88: j -= 4;
+  89: }
+  90: if (this.n && j >= this.o) {
+--
+~~~
+
+### defpackage/n3a.java
+~~~text
+   6: import java.util.Map;
+   7: 
+   8: /* JADX INFO: loaded from: classes.dex */
+   9: public final class n3a extends hog {
+  10: public static final /* synthetic */ zm9[] g1 = {new c4c(n3a.class, "phoneCode", "getPhoneCode()Ljava/lang/String;"), a15.f(luf.a, n3a.class, "phoneNumber", "getPhoneNumber()Ljava/lang/String;"), new c4c(n3a.class, "locationCountryCode", "getLocationCountryCode()Ljava/lang/String;"), new c4c(n3a.class, "serverHost", "getServerHost()Ljava/l
+  11: public final zcg A0;
+  12: public final zcg B0;
+  13: public final zcg C0;
+  14: public final zcg D0;
+  15: public final zcg E0;
+--
+  66: this.m0 = new zcg(luf.a(String.class), (SharedPreferences) this.d, (Object) null, "app.location.country.code");
+  67: this.n0 = new zcg(luf.a(String.class), (SharedPreferences) this.d, (Object) null, "server.host");
+  68: this.o0 = new zcg(luf.a(String.class), (SharedPreferences) this.d, (Object) null, "server.port");
+  69: Boolean bool = Boolean.TRUE;
+  70: this.p0 = new zcg(luf.a(Boolean.class), (SharedPreferences) this.d, (Object) bool, "server.useTls");
+  71: this.q0 = new zcg(luf.a(String.class), (SharedPreferences) this.d, (Object) null, "server.loginError");
+  72: Boolean bool2 = Boolean.FALSE;
+  73: new zcg(luf.a(Boolean.class), (SharedPreferences) this.d, (Object) bool2, "user.dev.options.roaming");
+  74: this.r0 = new zcg(luf.a(Boolean.class), (SharedPreferences) this.d, (Object) bool2, "app.call.add.dontshowconfirmation");
+  75: luf.a(Integer.class);
+--
+~~~
+
+### defpackage/nmf.java
+~~~text
+  23: import javax.net.ssl.SSLException;
+  24: import javax.net.ssl.SSLHandshakeException;
+  25: import javax.net.ssl.SSLPeerUnverifiedException;
+  26: import javax.net.ssl.SSLSession;
+  27: import javax.net.ssl.SSLSocket;
+  28: import javax.net.ssl.SSLSocketFactory;
+  29: import kotlin.collections.a;
+  30: import okhttp3.internal.connection.RouteException;
+  31: import ru.ok.android.onelog.impl.BuildConfig;
+  32: 
+--
+  33: /* JADX INFO: loaded from: classes.dex */
+--
+ 182: k6e.a.e(socketCreateSocket, this.b.c, i);
+ 183: try {
+ 184: Logger logger = dqc.a;
+ 185: ewh ewhVar = new ewh(socketCreateSocket);
+ 186: this.h = new gmf(new l70(ewhVar, new l70(socketCreateSocket.getInputStream(), ewhVar, b), (byte) 0));
+ 187: ewh ewhVar2 = new ewh(socketCreateSocket);
+ 188: this.i = new emf(new k70(ewhVar2, new k70(socketCreateSocket.getOutputStream(), ewhVar2)));
+ 189: } catch (NullPointerException e) {
+ 190: if (g4a.c(e.getMessage(), "throw with null exception")) {
+ 191: throw new IOException(e);
+--
+ 192: }
+ 193: }
+--
+ 244: }
+ 245: if (gmfVar.b.m() && emfVar.b.m()) {
+ 246: return;
+ 247: }
+ 248: kw7.m("TLS tunnel buffered too many bytes!");
+ 249: }
+ 250: 
+ 251: public final void g(et4 et4Var, int i, ew6 ew6Var) throws Throwable {
+ 252: SSLSocket sSLSocket;
+ 253: String strF;
+--
+~~~
+
+### defpackage/no8.java
+~~~text
+  16: import java.util.List;
+  17: import java.util.Locale;
+  18: import java.util.Map;
+  19: import javax.net.ssl.HttpsURLConnection;
+  20: import javax.net.ssl.SSLSocketFactory;
+  21: 
+  22: /* JADX INFO: loaded from: classes.dex */
+  23: public final class no8 {
+  24: public final int a;
+  25: public final int b;
+--
+ 117: try {
+ 118: peg pegVar = (peg) this.k.getValue();
+ 119: u6a u6aVar = pegVar.d;
+ 120: try {
+ 121: httpsURLConnection2.setSSLSocketFactory((SSLSocketFactory) ((neg) pegVar.e.getValue()).b.getValue());
+ 122: a(httpsURLConnection2, dp8Var);
+ 123: h(httpsURLConnection2, dp8Var);
+ 124: ip8 ip8VarE = e(httpsURLConnection2);
+ 125: httpsURLConnection2.disconnect();
+ 126: return ip8VarE;
+--
+ 175: }
+ 176: 
+ 177: public final ip8 e(HttpsURLConnection httpsURLConnection) throws VkpnsRequestException, IOException {
+ 178: try {
+ 179: BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpsURLConnection.getResponseCode() >= 400 ? httpsURLConnection.getErrorStream() : httpsURLConnection.getInputStream(), StandardCharsets.UTF_8));
+ 180: try {
+ 181: String strG = a08.G(bufferedReader);
+ 182: bufferedReader.close();
+ 183: int responseCode = httpsURLConnection.getResponseCode();
+ 184: String responseMessage = httpsURLConnection.getResponseMessage();
+--
+ 252: return;
+ 253: }
+ 254: try {
+ 255: httpsURLConnection.setDoOutput(true);
+ 256: OutputStream outputStream = httpsURLConnection.getOutputStream();
+ 257: try {
+ 258: outputStream.write(strA.getBytes(StandardCharsets.UTF_8));
+ 259: outputStream.flush();
+ 260: outputStream.close();
+ 261: } catch (Throwable th) {
+--
+~~~
+
+### defpackage/nrk.java
+~~~text
+ 109: httpURLConnectionR = wp8Var.R(vp8Var.b.a.b, 5);
+ 110: try {
+ 111: vp8Var.e = wp8Var.l.now();
+ 112: if (httpURLConnectionR != null) {
+ 113: inputStream = httpURLConnectionR.getInputStream();
+ 114: wt8Var.c(inputStream, -1);
+ 115: }
+ 116: if (inputStream != null) {
+ 117: try {
+ 118: inputStream.close();
+--
+~~~
+
+### defpackage/o4m.java
+~~~text
+ 198: httpURLConnection2.setUseCaches(false);
+ 199: httpURLConnection2.setDoOutput(true);
+ 200: try {
+ 201: httpURLConnection2.setRequestProperty("Content-Encoding", "gzip");
+ 202: gZIPOutputStream2 = new GZIPOutputStream(new BufferedOutputStream(httpURLConnection2.getOutputStream()));
+ 203: try {
+ 204: az7.j("HttpCoreReal: populating post request body using gzip");
+ 205: gZIPOutputStream2.write(byteArray);
+ 206: gZIPOutputStream2.finish();
+ 207: gZIPOutputStream2.close();
+--
+ 214: }
+ 215: if (responseCode == 200) {
+ 216: try {
+ 217: az7.j("HttpCoreReal: processing server response");
+ 218: bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection2.getInputStream()));
+ 219: try {
+ 220: StringBuilder sb = new StringBuilder();
+ 221: while (true) {
+ 222: String line = bufferedReader.readLine();
+ 223: if (line == null) {
+--
+~~~
+
+### defpackage/o81.java
+~~~text
+   7: import java.security.Provider;
+   8: import java.util.Arrays;
+   9: import java.util.List;
+  10: import javax.net.ssl.SSLContext;
+  11: import javax.net.ssl.SSLSocket;
+  12: import javax.net.ssl.TrustManager;
+  13: import javax.net.ssl.TrustManagerFactory;
+  14: import javax.net.ssl.X509TrustManager;
+  15: import org.bouncycastle.jsse.provider.BouncyCastleJsseProvider;
+  16: 
+--
+  29: d = z;
+  30: }
+  31: 
+  32: @Override // defpackage.k6e
+  33: public final void d(SSLSocket sSLSocket, String str, List list) {
+  34: }
+  35: 
+  36: @Override // defpackage.k6e
+  37: public final String f(SSLSocket sSLSocket) {
+  38: return null;
+--
+  39: }
+  40: 
+  41: @Override // defpackage.k6e
+  42: public final SSLContext k() {
+--
+  43: return SSLContext.getInstance("TLS", this.c);
+  44: }
+  45: 
+  46: @Override // defpackage.k6e
+  47: public final X509TrustManager m() throws NoSuchAlgorithmException, KeyStoreException, NoSuchProviderException {
+  48: TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance("PKIX", "BCJSSE");
 --
 ~~~
 
