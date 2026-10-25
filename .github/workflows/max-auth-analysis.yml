@@ -1,0 +1,77 @@
+name: Inspect MAX authorization code
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/max-auth-analysis.yml"
+      - "scripts/max_auth_static_analysis.py"
+
+permissions:
+  contents: write
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+      - name: Load original APK and verify sample hash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/max-auth
+          gh release download apk-26.35.1-6867 --pattern base.apk --dir /tmp/max-auth
+          python3 - <<'PY'
+          import hashlib, json, pathlib
+          info = json.loads(pathlib.Path("evidence/sample.json").read_text())
+          p = pathlib.Path("/tmp/max-auth/base.apk")
+          assert p.stat().st_size == info["bytes"], "Wrong APK size"
+          actual = hashlib.file_digest(p.open("rb"), "sha256").hexdigest()
+          assert actual == info["sha256"], "Wrong APK digest"
+          print("Reference APK verified:", p.stat().st_size, actual)
+          PY
+      - name: Download JADX from its official GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          sleep 5
+          gh api repos/skylot/jadx/releases/latest \
+            --jq '.assets[] | select(.name | test("^jadx-[0-9].*\\.zip$")) | .browser_download_url' \
+            | head -1 > /tmp/max-auth/jadx-url.txt
+          test -s /tmp/max-auth/jadx-url.txt
+          sleep 5
+          curl -fsSL --retry 3 --retry-delay 5 --max-time 240 \
+            "$(cat /tmp/max-auth/jadx-url.txt)" -o /tmp/max-auth/jadx.zip
+          unzip -q /tmp/max-auth/jadx.zip -d /tmp/max-auth/jadx-bin
+          chmod +x /tmp/max-auth/jadx-bin/bin/jadx
+          /tmp/max-auth/jadx-bin/bin/jadx --version
+      - name: Offline decompilation and structured search
+        env:
+          JAVA_OPTS: -Xmx4g
+        run: |
+          set -euo pipefail
+          /tmp/max-auth/jadx-bin/bin/jadx \
+            --no-res --show-bad-code --threads-count 2 \
+            --output-dir /tmp/max-auth/out /tmp/max-auth/base.apk \
+            || echo "JADX reported some decompilation errors; index is partial"
+          python3 scripts/max_auth_static_analysis.py \
+            /tmp/max-auth/out/sources /tmp/max-auth/base.apk
+          test -s docs/auth-code-index-26.35.1.md
+          test -s evidence/auth-code-matches-26.35.1.md
+      - name: Commit validated text-only indices
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/auth-code-index-26.35.1.md evidence/auth-code-matches-26.35.1.md
+          git diff --cached --quiet && exit 0
+          git commit -m "Record static MAX authentication code index from verified APK"
+          git push
