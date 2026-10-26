@@ -117,6 +117,23 @@ for name, (lo, hi) in deep_classes.items():
         md.append("(class not found)")
     md.extend(["```",""])
 
+md.extend(["## Сетевая реализация запроса и обратная доставка", ""])
+network_classes={"bol": (1,250),"qrk":(1,230),"gj9":(1,90),"qi4":(1,155)}
+for name,(lo,hi) in network_classes.items():
+    path=src/"defpackage"/(name+".java")
+    md.extend([f"### `{path.relative_to(src)}`", "", "```java"])
+    if path.exists():
+        lines=path.read_text(encoding="utf-8",errors="replace").splitlines()
+        md.append(f"Total lines: {len(lines)}, excerpt: {lo}–{min(hi,len(lines))}")
+        for idx in range(lo-1,min(hi,len(lines))):
+            line=lines[idx]
+            if len(line)>600 or "@Metadata(" in line:
+                line="[long generated metadata omitted]"
+            md.append(f"{idx+1:>5}: {line[:350].replace(chr(96), chr(39))}")
+    else:
+        md.append("(class not found)")
+    md.extend(["```",""])
+
 md.extend([
     "## Применение результатов",
     "",
