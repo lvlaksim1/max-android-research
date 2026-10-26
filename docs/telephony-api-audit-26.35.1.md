@@ -34,14 +34,14 @@
 
 ### `getNetworkOperator(`
 
-- `defpackage/lb6.java:673` — `n4gVar = telephonyManager != null ? telephonyManager.getNetworkOperator() + ':' + telephonyManager.getNetworkOperatorName() : null;`
+- `defpackage/lb6.java:670` — `n4gVar = telephonyManager != null ? telephonyManager.getNetworkOperator() + ':' + telephonyManager.getNetworkOperatorName() : null;`
 - `defpackage/t5a.java:232` — `n4gVar = telephonyManager != null ? telephonyManager.getNetworkOperator() + ":" + telephonyManager.getNetworkOperatorName() : null;`
 - `defpackage/yr0.java:96` — `n4gVar = telephonyManager.getNetworkOperator() + ":" + telephonyManager.getNetworkOperatorName();`
 - `defpackage/yr0.java:180` — `n4gVar = telephonyManager.getNetworkOperator() + ":" + telephonyManager.getNetworkOperatorName();`
 
 ### `getNetworkOperatorName(`
 
-- `defpackage/lb6.java:673` — `n4gVar = telephonyManager != null ? telephonyManager.getNetworkOperator() + ':' + telephonyManager.getNetworkOperatorName() : null;`
+- `defpackage/lb6.java:670` — `n4gVar = telephonyManager != null ? telephonyManager.getNetworkOperator() + ':' + telephonyManager.getNetworkOperatorName() : null;`
 - `defpackage/t5a.java:232` — `n4gVar = telephonyManager != null ? telephonyManager.getNetworkOperator() + ":" + telephonyManager.getNetworkOperatorName() : null;`
 - `defpackage/tul.java:111` — `String networkOperatorName = telephonyManager != null ? telephonyManager.getNetworkOperatorName() : null;`
 - `defpackage/yr0.java:96` — `n4gVar = telephonyManager.getNetworkOperator() + ":" + telephonyManager.getNetworkOperatorName();`
@@ -62,7 +62,7 @@
 - `defpackage/ey2.java:122` — `h8lVarC.p("mcc_mnc", ((TelephonyManager) context.getSystemService("phone")).getSimOperator());`
 - `defpackage/ey2.java:142` — `h8lVarC.p("mcc_mnc", ((TelephonyManager) context2.getSystemService("phone")).getSimOperator());`
 - `defpackage/lb6.java:6` — `import android.telephony.TelephonyManager;`
-- `defpackage/lb6.java:672` — `TelephonyManager telephonyManager = systemService instanceof TelephonyManager ? (TelephonyManager) systemService : null;`
+- `defpackage/lb6.java:669` — `TelephonyManager telephonyManager = systemService instanceof TelephonyManager ? (TelephonyManager) systemService : null;`
 - `defpackage/o4n.java:6` — `import android.telephony.TelephonyManager;`
 - `defpackage/o4n.java:13` — `TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService("phone");`
 - `defpackage/sgk.java:15` — `import android.telephony.TelephonyManager;`

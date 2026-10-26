@@ -123,7 +123,7 @@ Lines 1–101:
    33:         if (zContains) {
    34:             return (str.equals("WebAppVerifyMobileId") && (objF = f(str2, (d55) b55Var)) == ka5.a) ? objF : s1kVar;
    35:         }
-   36:         f09.f0(dol.class.getName(), "Unknown method with name = " + str + " in JsDelegate: " + this);
+   36:         f09.d0(dol.class.getName(), "Unknown method with name = " + str + " in JsDelegate: " + this, new Object[0]);
    37:         return s1kVar;
    38:     }
    39: 
@@ -132,7 +132,7 @@ Lines 1–101:
    42:         if (str.equals("WebAppVerifyMobileId")) {
    43:             return true;
    44:         }
-   45:         f09.f0(dol.class.getName(), "Unknown method with name = " + str + " in JsDelegate: " + this);
+   45:         f09.d0(dol.class.getName(), "Unknown method with name = " + str + " in JsDelegate: " + this, new Object[0]);
    46:         return false;
    47:     }
    48: 
@@ -1490,7 +1490,7 @@ Total lines: 79, excerpt: 1–79
    35:             xnm.y(obj);
    36:             f09.p(qi4.class.getName(), "Error in method: " + xclVar.c() + " - " + ij9Var2.a(xclVar.h()));
    37:             if (str == null) {
-   38:                 f09.f0(qi4.class.getName(), "No request id or wrong type");
+   38:                 f09.d0(qi4.class.getName(), "No request id or wrong type", new Object[0]);
    39:                 return s1kVar;
    40:             }
    41:             String strC = xclVar.c();
@@ -1532,6 +1532,604 @@ Total lines: 79, excerpt: 1–79
    77:         return s1kVar;
    78:     }
    79: }
+```
+
+## Трассировка выбора сети и обработки результата
+
+### `defpackage/ekl.java` — опорные фрагменты
+
+```java
+Total lines: 820; matches: 5
+Excerpt 1–55
+    1: package defpackage;
+    2: 
+    3: import android.content.ContentResolver;
+    4: import android.content.ContentValues;
+    5: import android.content.Context;
+    6: import android.media.MediaScannerConnection;
+    7: import android.net.ConnectivityManager;
+    8: import android.net.NetworkRequest;
+    9: import android.net.Uri;
+   10: import android.os.Build;
+   11: import android.os.Environment;
+   12: import android.provider.MediaStore;
+   13: import android.webkit.MimeTypeMap;
+   14: import io.jsonwebtoken.JwtParser;
+   15: import java.io.File;
+   16: import java.io.IOException;
+   17: import java.io.OutputStream;
+   18: import java.util.ArrayList;
+   19: import java.util.HashSet;
+   20: import java.util.Iterator;
+   21: import java.util.List;
+   22: import java.util.Locale;
+   23: import java.util.concurrent.ConcurrentHashMap;
+   24: import java.util.concurrent.atomic.AtomicBoolean;
+   25: import kotlin.collections.a;
+   26: import me.leolin.shortcutbadger.BuildConfig;
+   27: 
+   28: /* JADX INFO: loaded from: classes3.dex */
+   29: public final class ekl extends oyk {
+   30:     public static final /* synthetic */ zm9[] Q1 = {new c4c(ekl.class, "reloadWebAppJob", "getReloadWebAppJob()Lkotlinx/coroutines/Job;"), a15.f(luf.a, ekl.class, "openInternalLinkJob", "getOpenInternalLinkJob()Lkotlinx/coroutines/Job;"), new c4c(ekl.class, "sharingMaxJob", "getSharingMaxJob()Lkotlinx/coroutines/Job;"), new c4c(ekl.class,
+   31:     public static final String[] R1 = {"image/*", "video/*"};
+   32:     public static final HashSet S1;
+   33:     public final rp9 A;
+   34:     public final z3j A1;
+   35:     public final rp9 B;
+   36:     public final rp9 B1;
+   37:     public final String C;
+   38:     public final r4i C1;
+   39:     public u5l D;
+   40:     public final dmf D1;
+   41:     public final z9g E;
+   42:     public aj9 E1;
+   43:     public final z9g F;
+   44:     public m9l F1;
+   45:     public final fj9 G;
+   46:     public rll G1;
+   47:     public final AtomicBoolean H;
+   48:     public qll H1;
+   49:     public final r4i I;
+   50:     public y8l I1;
+   51:     public final r4i J;
+   52:     public aj9 J1;
+   53:     public final ConcurrentHashMap K1;
+   54:     public g0i L1;
+   55:     public final ConcurrentHashMap M1;
+Excerpt 271–316
+  271:         }
+  272:         if (kklVar == null) {
+  273:             z9gVarQ.y(this, Q1[4], oyk.Z0(this, null, new wjl(this, (b55) null, (byte) 0), 1));
+  274:             if (!ms4Var.g()) {
+  275:                 r4iVarC.setValue(gld.a);
+  276:             }
+  277:         }
+  278:         e0c.M(h6c.p(new dk7(g4a.E((bb1) fj9Var.f), new yjl(2, this, ekl.class, "processEvent", "processEvent(Lone/me/webapp/domain/jsbridge/JsBridgeActions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;", 0, (byte) 0), (byte) 3), ((vxc) e1()).a()), this.b);
+  279:         if (zD) {
+  280:             fcl fclVar = (fcl) rp9Var17.getValue();
+  281:             Context context = (Context) rp9Var12.getValue();
+  282:             fclVar.getClass();
+  283:             ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService("connectivity");
+  284:             synchronized (fclVar.e) {
+  285:                 fclVar.f = connectivityManager;
+  286:                 int i2 = fclVar.g + 1;
+  287:                 fclVar.g = i2;
+  288:                 z = i2 == 1;
+  289:             }
+  290:             if (z) {
+  291:                 connectivityManager.requestNetwork(new NetworkRequest.Builder().addTransportType(0).addCapability(12).build(), fclVar.k);
+  292:             }
+  293:             String str4 = fclVar.d;
+  294:             o1d o1dVar2 = f09.g;
+  295:             if (o1dVar2 == null) {
+  296:                 return;
+  297:             }
+  298:             c6a c6aVar2 = c6a.d;
+  299:             if (o1dVar2.b(c6aVar2)) {
+  300:                 o1dVar2.c(c6aVar2, str4, "WebAppHttpClient registered", null);
+  301:             }
+  302:         }
+  303:     }
+  304: 
+  305:     public static String c1(String str, String str2) {
+  306:         if (str == null || str.length() == 0) {
+  307:             return str2 == null ? BuildConfig.FLAVOR : str2;
+  308:         }
+  309:         return (str2 == null || str2.length() == 0) ? str : vg9.y(str, "\n", str2);
+  310:     }
+  311: 
+  312:     public static void u1(ekl eklVar, String str, String str2, int i) {
+  313:         String str3 = (i & 1) != 0 ? null : str;
+  314:         String str4 = (i & 2) != 0 ? null : str2;
+  315:         boolean z = (i & 4) == 0;
+  316:         eklVar.getClass();
+Excerpt 325–362
+  325:             synchronized (fclVar.e) {
+  326:                 int i = fclVar.g;
+  327:                 z = false;
+  328:                 if (i != 0) {
+  329:                     int i2 = i - 1;
+  330:                     fclVar.g = i2;
+  331:                     if (i2 == 0) {
+  332:                         z = true;
+  333:                     }
+  334:                 }
+  335:             }
+  336:             if (z) {
+  337:                 ConnectivityManager connectivityManager = fclVar.f;
+  338:                 if (connectivityManager != null) {
+  339:                     connectivityManager.unregisterNetworkCallback(fclVar.k);
+  340:                 }
+  341:                 fclVar.f = null;
+  342:                 fclVar.b(null);
+  343:             }
+  344:             String str = fclVar.d;
+  345:             o1d o1dVar = f09.g;
+  346:             if (o1dVar != null) {
+  347:                 c6a c6aVar = c6a.d;
+  348:                 if (o1dVar.b(c6aVar)) {
+  349:                     o1dVar.c(c6aVar, str, "WebAppHttpClient unregistered", null);
+  350:                 }
+  351:             }
+  352:         }
+  353:         kal kalVar = (kal) this.y.getValue();
+  354:         ((gc1) kalVar.a.getValue()).f(kalVar);
+  355:         this.D = null;
+  356:         Iterator it = ((List) this.G.c).iterator();
+  357:         while (it.hasNext()) {
+  358:             ((kj9) it.next()).e(null);
+  359:         }
+  360:     }
+  361: 
+  362:     public final b7l d1() {
+```
+
+### `defpackage/qrk.java` — опорные фрагменты
+
+```java
+Total lines: 849; matches: 14
+Excerpt 2–39
+    2: 
+    3: import android.util.Base64;
+    4: import android.util.Size;
+    5: import java.io.File;
+    6: import java.io.Serializable;
+    7: import java.util.ArrayList;
+    8: import java.util.Collections;
+    9: import java.util.Iterator;
+   10: import java.util.List;
+   11: import java.util.concurrent.CancellationException;
+   12: import me.leolin.shortcutbadger.BuildConfig;
+   13: import one.me.chatscreen.videomsg.VideoMessageWidget;
+   14: import one.me.webapp.util.WebAppHttpClient$WebAppNoNetworkException;
+   15: import org.json.JSONObject;
+   16: import org.webrtc.PeerConnectionFactory;
+   17: 
+   18: /* JADX INFO: loaded from: classes3.dex */
+   19: public final class qrk extends x1j implements e18 {
+   20:     public final /* synthetic */ byte e;
+   21:     public boolean f;
+   22:     public Object g;
+   23:     public Object h;
+   24:     public final /* synthetic */ Object i;
+   25: 
+   26:     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+   27:     public /* synthetic */ qrk(Object obj, Object obj2, Object obj3, b55 b55Var, byte b) {
+   28:         super(2, b55Var);
+   29:         this.e = b;
+   30:         this.g = obj;
+   31:         this.h = obj2;
+   32:         this.i = obj3;
+   33:     }
+   34: 
+   35:     @Override // defpackage.e18
+   36:     public final Object invoke(Object obj, Object obj2) {
+   37:         byte b = this.e;
+   38:         s1k s1kVar = s1k.a;
+   39:         switch (b) {
+Excerpt 54–99
+   54:             case 7:
+   55:                 return ((qrk) u((b55) obj2, (s1k) obj)).w(s1kVar);
+   56:             case 8:
+   57:                 return ((qrk) u((b55) obj2, (s1k) obj)).w(s1kVar);
+   58:             case 9:
+   59:                 return ((qrk) u((b55) obj2, (s1k) obj)).w(s1kVar);
+   60:             case 10:
+   61:                 return ((qrk) u((b55) obj2, (s1k) obj)).w(s1kVar);
+   62:             case 11:
+   63:                 return ((qrk) u((b55) obj2, (s1k) obj)).w(s1kVar);
+   64:             case 12:
+   65:                 return ((qrk) u((b55) obj2, (Throwable) obj)).w(s1kVar);
+   66:             case 13:
+   67:                 return ((qrk) u((b55) obj2, (ja5) obj)).w(s1kVar);
+   68:             case 14:
+   69:                 return ((qrk) u((b55) obj2, (s1k) obj)).w(s1kVar);
+   70:             case 15:
+   71:                 return ((qrk) u((b55) obj2, (s1k) obj)).w(s1kVar);
+   72:             case PeerConnectionFactory.Options.ADAPTER_TYPE_LOOPBACK /* 16 */:
+   73:                 return ((qrk) u((b55) obj2, (s1k) obj)).w(s1kVar);
+   74:             case 17:
+   75:                 return ((qrk) u((b55) obj2, (Throwable) obj)).w(s1kVar);
+   76:             case 18:
+   77:                 return ((qrk) u((b55) obj2, obj)).w(s1kVar);
+   78:             case 19:
+   79:                 return ((qrk) u((b55) obj2, (ja5) obj)).w(s1kVar);
+   80:             default:
+   81:                 return ((qrk) u((b55) obj2, (ja5) obj)).w(s1kVar);
+   82:         }
+   83:     }
+   84: 
+   85:     @Override // defpackage.hv0
+   86:     public final b55 u(b55 b55Var, Object obj) {
+   87:         byte b = this.e;
+   88:         Object obj2 = this.i;
+   89:         switch (b) {
+   90:             case 0:
+   91:                 return new qrk((hqk) this.g, (trk) this.h, (File) obj2, b55Var, (byte) 0);
+   92:             case 1:
+   93:                 return new qrk((va0) this.h, (isk) obj2, b55Var, (byte) 1);
+   94:             case 2:
+   95:                 qrk qrkVar = new qrk((List) this.h, (vsk) obj2, b55Var, (byte) 2);
+   96:                 qrkVar.g = obj;
+   97:                 return qrkVar;
+   98:             case 3:
+   99:                 return new qrk((VideoMessageWidget) this.g, (guf) this.h, (nok) obj2, b55Var, (byte) 3);
+Excerpt 110–158
+  110:             case 8:
+  111:                 return new qrk((cbl) this.g, (ccl) this.h, (ybl) obj2, b55Var, (byte) 8);
+  112:             case 9:
+  113:                 return new qrk((dbl) this.g, (ccl) this.h, (ybl) obj2, b55Var, (byte) 9);
+  114:             case 10:
+  115:                 return new qrk((xdl) this.g, (ael) this.h, (sdl) obj2, b55Var, (byte) 10);
+  116:             case 11:
+  117:                 return new qrk((whl) this.g, (nhl) this.h, (zhl) obj2, b55Var, (byte) 11);
+  118:             case 12:
+  119:                 qrk qrkVar3 = new qrk((fil) this.h, (iil) obj2, b55Var, (byte) 12);
+  120:                 qrkVar3.g = obj;
+  121:                 return qrkVar3;
+  122:             case 13:
+  123:                 qrk qrkVar4 = new qrk((ekl) this.h, (bol) obj2, b55Var, (byte) 13);
+  124:                 qrkVar4.g = obj;
+  125:                 return qrkVar4;
+  126:             case 14:
+  127:                 return new qrk((dml) this.g, (jml) this.h, (xll) obj2, b55Var, (byte) 14);
+  128:             case 15:
+  129:                 return new qrk((sml) this.g, (knl) this.h, (fnl) obj2, b55Var, (byte) 15);
+  130:             case PeerConnectionFactory.Options.ADAPTER_TYPE_LOOPBACK /* 16 */:
+  131:                 return new qrk((nnl) this.g, (knl) this.h, (fnl) obj2, b55Var, (byte) 16);
+  132:             case 17:
+  133:                 qrk qrkVar5 = new qrk((dol) this.h, (gol) obj2, b55Var, (byte) 17);
+  134:                 qrkVar5.g = obj;
+  135:                 return qrkVar5;
+  136:             case 18:
+  137:                 qrk qrkVar6 = new qrk((String) this.h, (e18) obj2, b55Var, (byte) 18);
+  138:                 qrkVar6.g = obj;
+  139:                 return qrkVar6;
+  140:             case 19:
+  141:                 return new qrk((kt4) this.g, (qvl) this.h, (brc) obj2, b55Var, (byte) 19);
+  142:             default:
+  143:                 qrk qrkVar7 = new qrk((mxl) this.h, (o0g) obj2, b55Var, (byte) 20);
+  144:                 qrkVar7.g = obj;
+  145:                 return qrkVar7;
+  146:         }
+  147:     }
+  148: 
+  149:     @Override // defpackage.hv0
+  150:     public final Object w(Object obj) {
+  151:         ua0 ua0Var;
+  152:         ua0 ua0Var2;
+  153:         Object objA;
+  154:         Object objG;
+  155:         o1l o1lVar;
+  156:         n4c n4cVar;
+  157:         ij9 gj9Var;
+  158:         Object objA2;
+Excerpt 575–612
+  575:                     this.f = true;
+  576:                     if (qi4Var2.a(bb1Var7, ij9Var, dilVar, str13, this) == ka5Var13) {
+  577:                         return ka5Var13;
+  578:                     }
+  579:                 } else {
+  580:                     if (!z14) {
+  581:                         k3g.o("call to 'resume' before 'invoke' with coroutine");
+  582:                         return null;
+  583:                     }
+  584:                     xnm.y(obj);
+  585:                 }
+  586:                 return s1k.a;
+  587:             case 13:
+  588:                 bol bolVar = (bol) this.i;
+  589:                 ja5 ja5Var2 = (ja5) this.g;
+  590:                 ka5 ka5Var14 = ka5.a;
+  591:                 boolean z15 = this.f;
+  592:                 try {
+  593:                     if (!z15) {
+  594:                         xnm.y(obj);
+  595:                         ekl eklVar = (ekl) this.h;
+  596:                         zm9[] zm9VarArr2 = ekl.Q1;
+  597:                         fcl fclVar = (fcl) eklVar.A.getValue();
+  598:                         String str14 = bolVar.c;
+  599:                         this.g = ja5Var2;
+  600:                         this.f = true;
+  601:                         objA2 = fclVar.a(str14, this);
+  602:                         if (objA2 == ka5Var14) {
+  603:                             return ka5Var14;
+  604:                         }
+  605:                     } else {
+  606:                         if (!z15) {
+  607:                             k3g.o("call to 'resume' before 'invoke' with coroutine");
+  608:                             return null;
+  609:                         }
+  610:                         xnm.y(obj);
+  611:                         objA2 = obj;
+  612:                     }
+Excerpt 615–652
+  615:                         o3g o3gVar = m3gVar.g;
+  616:                         n4gVar = o3gVar != null ? Base64.encodeToString(o3gVar.a(), 2) : null;
+  617:                     } catch (Throwable th5) {
+  618:                         n4gVar = new n4g(th5);
+  619:                     }
+  620:                     if (!(n4gVar instanceof n4g)) {
+  621:                         obj2 = n4gVar;
+  622:                     }
+  623:                     String str15 = (String) obj2;
+  624:                     if (str15 == null) {
+  625:                         str15 = BuildConfig.FLAVOR;
+  626:                     }
+  627:                     bolVar.a(new ajk(m3gVar.d, str15, jfa.M(m3gVar.f)));
+  628:                     break;
+  629:                 } catch (CancellationException e2) {
+  630:                     bolVar.b(e2);
+  631:                     throw e2;
+  632:                 } catch (Throwable th6) {
+  633:                     bolVar.b(th6);
+  634:                 }
+  635:                 return s1k.a;
+  636:             case 14:
+  637:                 dml dmlVar = (dml) this.g;
+  638:                 ka5 ka5Var15 = ka5.a;
+  639:                 boolean z16 = this.f;
+  640:                 if (!z16) {
+  641:                     xnm.y(obj);
+  642:                     mj9 mj9Var6 = dmlVar.a;
+  643:                     String str16 = ((jml) this.h).a;
+  644:                     oml omlVar = pml.Companion;
+  645:                     nml nmlVar = new nml(str16);
+  646:                     mj9Var6.getClass();
+  647:                     String strB3 = mj9Var6.b(nml.Companion.serializer(), nmlVar);
+  648:                     bb1 bb1Var8 = dmlVar.f;
+  649:                     bj9 bj9Var6 = new bj9(((xll) this.i).a, strB3, false);
+  650:                     this.f = true;
+  651:                     if (bb1Var8.b(this, bj9Var6) == ka5Var15) {
+  652:                         return ka5Var15;
+Excerpt 703–751
+  703:                     if (bb1Var10.b(this, bj9Var8) == ka5Var17) {
+  704:                         return ka5Var17;
+  705:                     }
+  706:                 } else {
+  707:                     if (!z18) {
+  708:                         k3g.o("call to 'resume' before 'invoke' with coroutine");
+  709:                         return null;
+  710:                     }
+  711:                     xnm.y(obj);
+  712:                 }
+  713:                 knlVar2.k(fnlVar2.a);
+  714:                 return s1k.a;
+  715:             case 17:
+  716:                 dol dolVar = (dol) this.h;
+  717:                 Throwable th7 = (Throwable) this.g;
+  718:                 ka5 ka5Var18 = ka5.a;
+  719:                 boolean z19 = this.f;
+  720:                 if (!z19) {
+  721:                     xnm.y(obj);
+  722:                     ij9 gj9Var2 = th7 instanceof CancellationException ? new gj9(new jj9("cancelled", 0)) : th7 instanceof WebAppHttpClient$WebAppNoNetworkException ? new gj9(new jj9("no_cellular", 1)) : hj9.d;
+  723:                     qi4 qi4Var3 = (qi4) dolVar.b.getValue();
+  724:                     bb1 bb1Var11 = dolVar.d;
+  725:                     zik zikVar = zik.a;
+  726:                     String str19 = ((gol) this.i).a;
+  727:                     this.g = null;
+  728:                     this.f = true;
+  729:                     if (qi4Var3.a(bb1Var11, gj9Var2, zikVar, str19, this) == ka5Var18) {
+  730:                         return ka5Var18;
+  731:                     }
+  732:                 } else {
+  733:                     if (!z19) {
+  734:                         k3g.o("call to 'resume' before 'invoke' with coroutine");
+  735:                         return null;
+  736:                     }
+  737:                     xnm.y(obj);
+  738:                 }
+  739:                 return s1k.a;
+  740:             case 18:
+  741:                 Object obj3 = this.g;
+  742:                 ka5 ka5Var19 = ka5.a;
+  743:                 boolean z20 = this.f;
+  744:                 if (!z20) {
+  745:                     xnm.y(obj);
+  746:                     String str20 = (String) this.h;
+  747:                     if (str20 != null && (o1dVar = f09.g) != null) {
+  748:                         c6a c6aVar3 = c6a.c;
+  749:                         if (o1dVar.b(c6aVar3)) {
+  750:                             vg9.D("Collected event -> ", obj3, o1dVar, c6aVar3, str20);
+  751:                         }
+```
+
+### `defpackage/aj9.java` — опорные фрагменты
+
+```java
+Total lines: 412; matches: 8
+Excerpt 1–45
+    1: package defpackage;
+    2: 
+    3: /* JADX INFO: loaded from: classes3.dex */
+    4: public abstract class aj9 implements dj9 {
+    5:     public final bb1 a = az7.b(Integer.MAX_VALUE, 0, null, 6);
+    6:     public final ok4 b = new ok4();
+    7: 
+    8:     public final void a(Object obj) {
+    9:         this.a.c(null);
+   10:         this.b.Z(new p4g(obj));
+   11:     }
+   12: 
+   13:     public final void b(Throwable th) {
+   14:         this.a.c(null);
+   15:         this.b.n0(th);
+   16:     }
+   17: 
+   18:     /* JADX WARN: Code duplicated, block: B:7:0x0013  */
+   19:     /* JADX WARN: Multi-variable type inference failed */
+   20:     public final Object c(e18 e18Var, d55 d55Var) {
+   21:         xi9 xi9Var;
+   22:         int i;
+   23:         Object obj;
+   24:         int i2;
+   25:         e18 e18Var2;
+   26:         if (d55Var instanceof xi9) {
+   27:             xi9Var = (xi9) d55Var;
+   28:             int i3 = xi9Var.j;
+   29:             if ((i3 & Integer.MIN_VALUE) != 0) {
+   30:                 xi9Var.j = i3 - Integer.MIN_VALUE;
+   31:             } else {
+   32:                 xi9Var = new xi9(this, d55Var);
+   33:             }
+   34:         } else {
+   35:             xi9Var = new xi9(this, d55Var);
+   36:         }
+   37:         Object obj2 = xi9Var.h;
+   38:         int i4 = xi9Var.j;
+   39:         Object obj3 = ka5.a;
+   40:         try {
+   41:             if (i4 == 0) {
+   42:                 xnm.y(obj2);
+   43:                 ok4 ok4Var = this.b;
+   44:                 xi9Var.d = (x1j) e18Var;
+   45:                 xi9Var.e = this;
+Excerpt 95–132
+   95: 
+   96:     /* JADX WARN: Code duplicated, block: B:34:0x008b A[Catch: all -> 0x00ac, TryCatch #4 {all -> 0x00ac, blocks: (B:32:0x0083, B:34:0x008b, B:36:0x0091, B:43:0x00ae, B:44:0x00b5), top: B:67:0x0083 }] */
+   97:     /* JADX WARN: Code duplicated, block: B:36:0x0091 A[Catch: all -> 0x00ac, TryCatch #4 {all -> 0x00ac, blocks: (B:32:0x0083, B:34:0x008b, B:36:0x0091, B:43:0x00ae, B:44:0x00b5), top: B:67:0x0083 }] */
+   98:     /* JADX WARN: Code duplicated, block: B:38:0x00a3  */
+   99:     /* JADX WARN: Code duplicated, block: B:39:0x00a4  */
+  100:     /* JADX WARN: Code duplicated, block: B:43:0x00ae A[Catch: all -> 0x00ac, TryCatch #4 {all -> 0x00ac, blocks: (B:32:0x0083, B:34:0x008b, B:36:0x0091, B:43:0x00ae, B:44:0x00b5), top: B:67:0x0083 }] */
+  101:     /* JADX WARN: Code duplicated, block: B:45:0x00b6  */
+  102:     /* JADX WARN: Code duplicated, block: B:55:0x00cc  */
+  103:     /* JADX WARN: Code duplicated, block: B:57:0x00de A[RETURN] */
+  104:     /* JADX WARN: Code duplicated, block: B:68:? A[RETURN, SYNTHETIC] */
+  105:     /* JADX WARN: Code duplicated, block: B:69:? A[RETURN, SYNTHETIC] */
+  106:     /* JADX WARN: Code duplicated, block: B:7:0x0013  */
+  107:     public final Object d(e18 e18Var, d55 d55Var) {
+  108:         yi9 yi9Var;
+  109:         e18 e18Var2;
+  110:         int i;
+  111:         Object obj;
+  112:         int i2;
+  113:         Object obj2;
+  114:         e18 e18Var3;
+  115:         Throwable thA;
+  116:         aj9 aj9Var;
+  117:         int i3;
+  118:         Object n4gVar;
+  119:         Throwable thA2;
+  120:         if (d55Var instanceof yi9) {
+  121:             yi9Var = (yi9) d55Var;
+  122:             int i4 = yi9Var.k;
+  123:             if ((i4 & Integer.MIN_VALUE) != 0) {
+  124:                 yi9Var.k = i4 - Integer.MIN_VALUE;
+  125:             } else {
+  126:                 yi9Var = new yi9(this, d55Var);
+  127:             }
+  128:         } else {
+  129:             yi9Var = new yi9(this, d55Var);
+  130:         }
+  131:         Object obj3 = yi9Var.i;
+  132:         int i5 = yi9Var.k;
+Excerpt 366–403
+  366:             yi9Var.f = n4gVar;
+  367:             yi9Var.g = i;
+  368:             yi9Var.h = 0;
+  369:             yi9Var.k = 3;
+  370:             if (e18Var3.invoke(thA2, yi9Var) != ka5Var) {
+  371:                 return this;
+  372:             }
+  373:         }
+  374:         return ka5Var;
+  375:     }
+  376: 
+  377:     /* JADX WARN: Code duplicated, block: B:7:0x0013  */
+  378:     public final Object e(v9l v9lVar, d55 d55Var) {
+  379:         zi9 zi9Var;
+  380:         if (d55Var instanceof zi9) {
+  381:             zi9Var = (zi9) d55Var;
+  382:             int i = zi9Var.g;
+  383:             if ((i & Integer.MIN_VALUE) != 0) {
+  384:                 zi9Var.g = i - Integer.MIN_VALUE;
+  385:             } else {
+  386:                 zi9Var = new zi9(this, d55Var);
+  387:             }
+  388:         } else {
+  389:             zi9Var = new zi9(this, d55Var);
+  390:         }
+  391:         Object obj = zi9Var.e;
+  392:         int i2 = zi9Var.g;
+  393:         byte b = 1;
+  394:         b55 b55Var = null;
+  395:         if (i2 != 0) {
+  396:             if (i2 != 1) {
+  397:                 k3g.o("call to 'resume' before 'invoke' with coroutine");
+  398:                 return null;
+  399:             }
+  400:             aj9 aj9Var = zi9Var.d;
+  401:             xnm.y(obj);
+  402:             return aj9Var;
+  403:         }
+```
+
+### `defpackage/n9l.java` — опорные фрагменты
+
+```java
+Total lines: 5; matches: 0
+```
+
+### `defpackage/zik.java` — опорные фрагменты
+
+```java
+Total lines: 35; matches: 1
+Excerpt 1–35
+    1: package defpackage;
+    2: 
+    3: /* JADX WARN: $VALUES field not found */
+    4: /* JADX WARN: Failed to restore enum class, 'enum' modifier and super class removed */
+    5: /* JADX INFO: loaded from: classes3.dex */
+    6: public final class zik implements xcl {
+    7:     public static final zik a;
+    8:     public static final /* synthetic */ ut6 b;
+    9: 
+   10:     static {
+   11:         zik zikVar = new zik("VERIFY_MOBILE_ID", 0);
+   12:         a = zikVar;
+   13:         b = new ut6(new zik[]{zikVar});
+   14:     }
+   15: 
+   16:     @Override // defpackage.xcl
+   17:     public final Integer a() {
+   18:         return null;
+   19:     }
+   20: 
+   21:     @Override // defpackage.xcl
+   22:     public final String c() {
+   23:         return "WebAppVerifyMobileId";
+   24:     }
+   25: 
+   26:     @Override // defpackage.xcl
+   27:     public final String h() {
+   28:         return "verify_mobile_id";
+   29:     }
+   30: 
+   31:     @Override // defpackage.xcl
+   32:     public final boolean i() {
+   33:         return true;
+   34:     }
+   35: }
 ```
 
 ## Применение результатов
