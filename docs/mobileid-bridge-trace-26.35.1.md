@@ -123,7 +123,7 @@ Lines 1–101:
    33:         if (zContains) {
    34:             return (str.equals("WebAppVerifyMobileId") && (objF = f(str2, (d55) b55Var)) == ka5.a) ? objF : s1kVar;
    35:         }
-   36:         f09.d0(dol.class.getName(), "Unknown method with name = " + str + " in JsDelegate: " + this, new Object[0]);
+   36:         f09.f0(dol.class.getName(), "Unknown method with name = " + str + " in JsDelegate: " + this);
    37:         return s1kVar;
    38:     }
    39: 
@@ -132,7 +132,7 @@ Lines 1–101:
    42:         if (str.equals("WebAppVerifyMobileId")) {
    43:             return true;
    44:         }
-   45:         f09.d0(dol.class.getName(), "Unknown method with name = " + str + " in JsDelegate: " + this, new Object[0]);
+   45:         f09.f0(dol.class.getName(), "Unknown method with name = " + str + " in JsDelegate: " + this);
    46:         return false;
    47:     }
    48: 
@@ -1490,7 +1490,7 @@ Total lines: 79, excerpt: 1–79
    35:             xnm.y(obj);
    36:             f09.p(qi4.class.getName(), "Error in method: " + xclVar.c() + " - " + ij9Var2.a(xclVar.h()));
    37:             if (str == null) {
-   38:                 f09.d0(qi4.class.getName(), "No request id or wrong type", new Object[0]);
+   38:                 f09.f0(qi4.class.getName(), "No request id or wrong type");
    39:                 return s1kVar;
    40:             }
    41:             String strC = xclVar.c();
@@ -2130,6 +2130,372 @@ Excerpt 1–35
    33:         return true;
    34:     }
    35: }
+```
+
+## Сотовый HTTP-клиент (проверка тайм-аутов и результата)
+
+### `defpackage/fcl.java`
+
+```java
+Lines: 144; printed first 144
+    1: package defpackage;
+    2: 
+    3: import android.net.ConnectivityManager;
+    4: import android.net.Network;
+    5: import java.io.IOException;
+    6: import java.util.Iterator;
+    7: import one.me.webapp.util.WebAppHttpClient$WebAppNoNetworkException;
+    8: 
+    9: /* JADX INFO: loaded from: classes3.dex */
+   10: public final class fcl {
+   11:     public final rp9 a;
+   12:     public final rp9 b;
+   13:     public final rp9 c;
+   14:     public final String d = fcl.class.getName();
+   15:     public final Object e = new Object();
+   16:     public volatile ConnectivityManager f;
+   17:     public int g;
+   18:     public tpc h;
+   19:     public String i;
+   20:     public Network j;
+   21:     public final e9c k;
+   22: 
+   23:     public fcl(rp9 rp9Var, rp9 rp9Var2, rp9 rp9Var3) {
+   24:         this.a = rp9Var;
+   25:         this.b = rp9Var2;
+   26:         this.c = rp9Var3;
+   27:         this.k = new e9c(this, rp9Var);
+   28:     }
+   29: 
+   30:     /* JADX WARN: Code duplicated, block: B:7:0x0013  */
+   31:     /* JADX WARN: Multi-variable type inference failed */
+   32:     /* JADX WARN: Type inference failed for: r2v0, types: [int, iuf] */
+   33:     public final Object a(String str, d55 d55Var) throws IOException {
+   34:         ecl eclVar;
+   35:         tpc tpcVar;
+   36:         if (d55Var instanceof ecl) {
+   37:             eclVar = (ecl) d55Var;
+   38:             int i = eclVar.h;
+   39:             if ((i & Integer.MIN_VALUE) != 0) {
+   40:                 eclVar.h = i - Integer.MIN_VALUE;
+   41:             } else {
+   42:                 eclVar = new ecl(this, d55Var);
+   43:             }
+   44:         } else {
+   45:             eclVar = new ecl(this, d55Var);
+   46:         }
+   47:         Object obj = eclVar.f;
+   48:         ka5 ka5Var = ka5.a;
+   49:         ?? r2 = eclVar.h;
+   50:         try {
+   51:             if (r2 != 0) {
+   52:                 if (r2 == 1) {
+   53:                     o0g o0gVar = eclVar.e;
+   54:                     iuf iufVar = eclVar.d;
+   55:                     xnm.y(obj);
+   56:                     return obj;
+   57:                 }
+   58:                 if (r2 == 2) {
+   59:                     xnm.y(obj);
+   60:                     return obj;
+   61:                 }
+   62:                 k3g.o("call to 'resume' before 'invoke' with coroutine");
+   63:                 return null;
+   64:             }
+   65:             xnm.y(obj);
+   66:             f09.p(this.d, "Start requesting url=" + c(str));
+   67:             iuf iufVar2 = new iuf();
+   68:             synchronized (this.e) {
+   69:                 tpcVar = this.h;
+   70:                 iufVar2.a = this.j;
+   71:             }
+   72:             if (tpcVar == null || !((ms4) this.b.getValue()).g()) {
+   73:                 f09.f0(this.d, "cellular network is disabled");
+   74:                 throw new WebAppHttpClient$WebAppNoNetworkException();
+   75:             }
+   76:             ly lyVar = new ly();
+   77:             lyVar.f(str);
+   78:             o0g o0gVarA = lyVar.a();
+   79:             kmf kmfVarB = tpcVar.b(o0gVarA);
+   80:             eclVar.d = iufVar2;
+   81:             eclVar.e = o0gVarA;
+   82:             eclVar.h = 1;
+   83:             Object objA = z5n.a(kmfVarB, eclVar);
+   84:             return objA == ka5Var ? ka5Var : objA;
+   85:         } catch (IOException e) {
+   86:             String str2 = this.d;
+   87:             o1d o1dVar = f09.g;
+   88:             if (o1dVar != null) {
+   89:                 c6a c6aVar = c6a.f;
+   90:                 if (o1dVar.b(c6aVar)) {
+   91:                     vg9.E("Network request over cellular was failed due to: ", e.getLocalizedMessage(), o1dVar, c6aVar, str2);
+   92:                 }
+   93:             }
+   94:             Iterator it = j0h.O(new pqk((byte) 5), e).iterator();
+   95:             while (it.hasNext()) {
+   96:                 String message = ((Throwable) it.next()).getMessage();
+   97:                 if (message != null && zti.a0(message, "EPERM", false)) {
+   98:                     Network network = (Network) r2.a;
+   99:                     if (network != null) {
+  100:                         ConnectivityManager connectivityManager = this.f;
+  101:                         if ((connectivityManager != null ? connectivityManager.getNetworkCapabilities(network) : null) != null) {
+  102:                             kmf kmfVarB2 = ((t6j) this.a.getValue()).a().b(str);
+  103:                             eclVar.d = null;
+  104:                             eclVar.e = null;
+  105:                             eclVar.h = 2;
+  106:                             Object objA2 = z5n.a(kmfVarB2, eclVar);
+  107:                             if (objA2 != ka5Var) {
+  108:                                 return objA2;
+  109:                             }
+  110:                         }
+  111:                     }
+  112:                     b((Network) r2.a);
+  113:                     throw new WebAppHttpClient$WebAppNoNetworkException();
+  114:                 }
+  115:             }
+  116:             throw e;
+  117:         }
+  118:     }
+  119: 
+  120:     public final void b(Network network) {
+  121:         synchronized (this.e) {
+  122:             if (network != null) {
+  123:                 try {
+  124:                     if (g4a.c(network.toString(), this.i)) {
+  125:                         this.h = null;
+  126:                         this.i = null;
+  127:                         this.j = null;
+  128:                     }
+  129:                 } catch (Throwable th) {
+  130:                     throw th;
+  131:                 }
+  132:             } else {
+  133:                 this.h = null;
+  134:                 this.i = null;
+  135:                 this.j = null;
+  136:             }
+  137:         }
+  138:     }
+  139: 
+  140:     public final String c(String str) {
+  141:         ((nvc) this.c.getValue()).getClass();
+  142:         return f09.a() ? str : zti.L0(20, str);
+  143:     }
+  144: }
+```
+
+### `defpackage/m3g.java`
+
+```java
+Lines: 81; printed first 81
+    1: package defpackage;
+    2: 
+    3: import java.io.Closeable;
+    4: 
+    5: /* JADX INFO: loaded from: classes.dex */
+    6: public final class m3g implements Closeable {
+    7:     public final o0g a;
+    8:     public final o5f b;
+    9:     public final String c;
+   10:     public final int d;
+   11:     public final mf8 e;
+   12:     public final ug8 f;
+   13:     public final o3g g;
+   14:     public final m3g h;
+   15:     public final m3g i;
+   16:     public final m3g j;
+   17:     public final long k;
+   18:     public final long l;
+   19:     public final dx6 m;
+   20: 
+   21:     public m3g(o0g o0gVar, o5f o5fVar, String str, int i, mf8 mf8Var, ug8 ug8Var, o3g o3gVar, m3g m3gVar, m3g m3gVar2, m3g m3gVar3, long j, long j2, dx6 dx6Var) {
+   22:         this.a = o0gVar;
+   23:         this.b = o5fVar;
+   24:         this.c = str;
+   25:         this.d = i;
+   26:         this.e = mf8Var;
+   27:         this.f = ug8Var;
+   28:         this.g = o3gVar;
+   29:         this.h = m3gVar;
+   30:         this.i = m3gVar2;
+   31:         this.j = m3gVar3;
+   32:         this.k = j;
+   33:         this.l = j2;
+   34:         this.m = dx6Var;
+   35:     }
+   36: 
+   37:     public static String a(m3g m3gVar, String str) {
+   38:         String strA = m3gVar.f.a(str);
+   39:         if (strA == null) {
+   40:             return null;
+   41:         }
+   42:         return strA;
+   43:     }
+   44: 
+   45:     @Override // java.io.Closeable, java.lang.AutoCloseable
+   46:     public final void close() {
+   47:         o3g o3gVar = this.g;
+   48:         if (o3gVar != null) {
+   49:             o3gVar.close();
+   50:         } else {
+   51:             k3g.o("response is not eligible for a body and must not be closed");
+   52:         }
+   53:     }
+   54: 
+   55:     public final boolean m() {
+   56:         int i = this.d;
+   57:         return 200 <= i && i < 300;
+   58:     }
+   59: 
+   60:     public final l3g p() {
+   61:         l3g l3gVar = new l3g();
+   62:         l3gVar.a = this.a;
+   63:         l3gVar.b = this.b;
+   64:         l3gVar.c = this.d;
+   65:         l3gVar.d = this.c;
+   66:         l3gVar.e = this.e;
+   67:         l3gVar.f = this.f.c();
+   68:         l3gVar.g = this.g;
+   69:         l3gVar.h = this.h;
+   70:         l3gVar.i = this.i;
+   71:         l3gVar.j = this.j;
+   72:         l3gVar.k = this.k;
+   73:         l3gVar.l = this.l;
+   74:         l3gVar.m = this.m;
+   75:         return l3gVar;
+   76:     }
+   77: 
+   78:     public final String toString() {
+   79:         return "Response{protocol=" + this.b + ", code=" + this.d + ", message=" + this.c + ", url=" + this.a.a + '}';
+   80:     }
+   81: }
+```
+
+### `defpackage/bcl.java`
+
+```java
+Lines: 23; printed first 23
+    1: package defpackage;
+    2: 
+    3: /* JADX INFO: loaded from: classes3.dex */
+    4: public final class bcl extends d55 {
+    5:     public ybl d;
+    6:     public dbl e;
+    7:     public /* synthetic */ Object f;
+    8:     public final /* synthetic */ ccl g;
+    9:     public int h;
+   10: 
+   11:     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+   12:     public bcl(ccl cclVar, d55 d55Var) {
+   13:         super(d55Var);
+   14:         this.g = cclVar;
+   15:     }
+   16: 
+   17:     @Override // defpackage.hv0
+   18:     public final Object w(Object obj) {
+   19:         this.f = obj;
+   20:         this.h |= Integer.MIN_VALUE;
+   21:         return this.g.j(null, this);
+   22:     }
+   23: }
+```
+
+### `defpackage/dcl.java`
+
+```java
+Lines: 92; printed first 92
+    1: package defpackage;
+    2: 
+    3: import java.io.IOException;
+    4: 
+    5: /* JADX INFO: loaded from: classes3.dex */
+    6: public final class dcl extends ew6 {
+    7:     public final /* synthetic */ fcl b;
+    8: 
+    9:     public dcl(fcl fclVar) {
+   10:         this.b = fclVar;
+   11:     }
+   12: 
+   13:     @Override // defpackage.ew6
+   14:     public final void a(kmf kmfVar) {
+   15:         String str = this.b.d;
+   16:         o1d o1dVar = f09.g;
+   17:         if (o1dVar == null) {
+   18:             return;
+   19:         }
+   20:         c6a c6aVar = c6a.d;
+   21:         if (o1dVar.b(c6aVar)) {
+   22:             vg9.E("Call end: ", f(kmfVar), o1dVar, c6aVar, str);
+   23:         }
+   24:     }
+   25: 
+   26:     @Override // defpackage.ew6
+   27:     public final void b(kmf kmfVar, IOException iOException) {
+   28:         String str = this.b.d;
+   29:         o1d o1dVar = f09.g;
+   30:         if (o1dVar == null) {
+   31:             return;
+   32:         }
+   33:         c6a c6aVar = c6a.f;
+   34:         if (o1dVar.b(c6aVar)) {
+   35:             o1dVar.c(c6aVar, str, w7g.v("Call (url=", f(kmfVar), ") failed with error=", iOException.getMessage(), "}"), null);
+   36:         }
+   37:     }
+   38: 
+   39:     @Override // defpackage.ew6
+   40:     public final void c(kmf kmfVar) {
+   41:         String str = this.b.d;
+   42:         o1d o1dVar = f09.g;
+   43:         if (o1dVar == null) {
+   44:             return;
+   45:         }
+   46:         c6a c6aVar = c6a.d;
+   47:         if (o1dVar.b(c6aVar)) {
+   48:             vg9.E("Call start: ", f(kmfVar), o1dVar, c6aVar, str);
+   49:         }
+   50:     }
+   51: 
+   52:     @Override // defpackage.ew6
+   53:     public final void d(kmf kmfVar, IOException iOException) {
+   54:         String str = this.b.d;
+   55:         o1d o1dVar = f09.g;
+   56:         if (o1dVar == null) {
+   57:             return;
+   58:         }
+   59:         c6a c6aVar = c6a.f;
+   60:         if (o1dVar.b(c6aVar)) {
+   61:             o1dVar.c(c6aVar, str, pq0.k("Connect (url=", f(kmfVar), ") failed with error: ", iOException.getMessage()), null);
+   62:         }
+   63:     }
+   64: 
+   65:     @Override // defpackage.ew6
+   66:     public final void e(m3g m3gVar) {
+   67:         int i = m3gVar.d;
+   68:         if (i != 307 && i != 308) {
+   69:             switch (i) {
+   70:             }
+   71:             return;
+   72:         }
+   73:         fcl fclVar = this.b;
+   74:         String str = fclVar.d;
+   75:         o1d o1dVar = f09.g;
+   76:         if (o1dVar == null) {
+   77:             return;
+   78:         }
+   79:         c6a c6aVar = c6a.f;
+   80:         if (o1dVar.b(c6aVar)) {
+   81:             String strA = m3gVar.f.a("Location");
+   82:             if (strA == null) {
+   83:                 strA = null;
+   84:             }
+   85:             vg9.E("Redirect to ", strA != null ? fclVar.c(strA) : null, o1dVar, c6aVar, str);
+   86:         }
+   87:     }
+   88: 
+   89:     public final String f(kmf kmfVar) {
+   90:         return this.b.c(kmfVar.b.a.h);
+   91:     }
+   92: }
 ```
 
 ## Применение результатов
