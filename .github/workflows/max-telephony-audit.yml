@@ -6,6 +6,7 @@ on:
       - ".github/workflows/max-telephony-audit.yml"
       - "scripts/max_telephony_audit.py"
       - "scripts/max_mobileid_trace.py"
+      - "scripts/max_bridge_sms_inspection.py"
 
 permissions:
   contents: write
@@ -63,12 +64,14 @@ jobs:
           test -s docs/telephony-api-audit-26.35.1.md
           python3 scripts/max_mobileid_trace.py /tmp/max-sim/out/sources /tmp/max-sim/base.apk
           test -s docs/mobileid-bridge-trace-26.35.1.md
+          python3 scripts/max_bridge_sms_inspection.py /tmp/max-sim/out/sources /tmp/max-sim/base.apk
+          test -s docs/webapp-jsbridge-inspection-26.35.1.md
       - name: Commit read-only findings
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/telephony-api-audit-26.35.1.md docs/mobileid-bridge-trace-26.35.1.md
+          git add docs/telephony-api-audit-26.35.1.md docs/mobileid-bridge-trace-26.35.1.md docs/webapp-jsbridge-inspection-26.35.1.md
           if git diff --cached --quiet; then
             exit 0
           fi
