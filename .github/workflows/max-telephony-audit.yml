@@ -1,0 +1,79 @@
+name: Audit MAX APK phone-number APIs
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/max-telephony-audit.yml"
+      - "scripts/max_telephony_audit.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: max-telephony-audit-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+      - name: Obtain exact source APK
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/max-sim
+          gh release download apk-26.35.1-6867 --pattern base.apk --dir /tmp/max-sim
+          python3 - <<'PY'
+          import hashlib, json, pathlib
+          apk = pathlib.Path("/tmp/max-sim/base.apk")
+          info = json.loads(pathlib.Path("evidence/sample.json").read_text())
+          with apk.open("rb") as f:
+              sha = hashlib.file_digest(f, "sha256").hexdigest()
+          assert sha == info["sha256"] and apk.stat().st_size == info["bytes"]
+          print("Verified sample", sha)
+          PY
+      - name: Load official JADX
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh api repos/skylot/jadx/releases/latest --jq '.assets[] | select(.name | test("^jadx-[0-9].*\\.zip$")) | .browser_download_url' | head -1 > /tmp/max-sim/jadx-url.txt
+          test -s /tmp/max-sim/jadx-url.txt
+          sleep 5
+          curl -fsSL --retry 3 --retry-delay 5 --max-time 240 "$(cat /tmp/max-sim/jadx-url.txt)" -o /tmp/max-sim/jadx.zip
+          unzip -q /tmp/max-sim/jadx.zip -d /tmp/max-sim/jadx-bin
+          chmod +x /tmp/max-sim/jadx-bin/bin/jadx
+      - name: Offline full-source API audit
+        env:
+          JAVA_OPTS: -Xmx4g
+        run: |
+          set -euo pipefail
+          /tmp/max-sim/jadx-bin/bin/jadx --no-res --show-bad-code --threads-count 2 --output-dir /tmp/max-sim/out /tmp/max-sim/base.apk || echo "JADX partial decompilation; inspect report limits"
+          python3 scripts/max_telephony_audit.py /tmp/max-sim/out/sources /tmp/max-sim/base.apk
+          test -s docs/telephony-api-audit-26.35.1.md
+      - name: Commit read-only findings
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/telephony-api-audit-26.35.1.md
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "Report static telephony API references from verified MAX 26.35.1 APK"
+          for attempt in 1 2 3; do
+            if git push; then exit 0; fi
+            sleep 5
+            git fetch origin main
+            git rebase origin/main
+          done
+          exit 1
