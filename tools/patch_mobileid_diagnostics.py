@@ -105,15 +105,15 @@ def main():
     parser.add_argument("decoded", type=Path)
     root = parser.parse_args().decoded
     application = find(root, "one/me/android/OneMeApplication.smali")
-    delegate = find(root, "defpackage/dol.smali")
-    cellular = find(root, "defpackage/fcl.smali")
+    delegate = find(root, "dol.smali")
+    cellular = find(root, "fcl.smali")
     patch_method(application, r"\sonCreate\(\)V",
                  f"invoke-static {{p0}}, {PREFIX}->init(Landroid/content/Context;)V")
-    patch_method(delegate, r"\sa\(Ljava/lang/String;Ljava/lang/String;Ldefpackage/b55;\)Ljava/lang/Object;",
+    patch_method(delegate, r"\sa\(Ljava/lang/String;Ljava/lang/String;Lb55;\)Ljava/lang/Object;",
                  f"invoke-static {{}}, {PREFIX}->mobileIdRequest()V")
-    patch_method(cellular, r"\sa\(Ljava/lang/String;Ldefpackage/d55;\)Ljava/lang/Object;",
+    patch_method(cellular, r"\sa\(Ljava/lang/String;Ld55;\)Ljava/lang/Object;",
                  f"invoke-static {{}}, {PREFIX}->mobileIdHttp()V")
-    file = delegate.parent.parent / "ru/oneme/research/MobileIdTrace.smali"
+    file = delegate.parent / "ru/oneme/research/MobileIdTrace.smali"
     if file.exists():
         raise SystemExit("Already instrumented")
     file.parent.mkdir(parents=True, exist_ok=True)
