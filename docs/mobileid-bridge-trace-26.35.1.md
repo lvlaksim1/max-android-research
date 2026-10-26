@@ -1158,6 +1158,382 @@ Total lines: 234. Examined: 1–110.
   110:     /* JADX INFO: renamed from: h, reason: from getter */
 ```
 
+## Сетевая реализация запроса и обратная доставка
+
+### `defpackage/bol.java`
+
+```java
+Total lines: 10, excerpt: 1–10
+    1: package defpackage;
+    2: 
+    3: /* JADX INFO: loaded from: classes3.dex */
+    4: public final class bol extends aj9 {
+    5:     public final String c;
+    6: 
+    7:     public bol(String str) {
+    8:         this.c = str;
+    9:     }
+   10: }
+```
+
+### `defpackage/qrk.java`
+
+```java
+Total lines: 849, excerpt: 1–230
+    1: package defpackage;
+    2: 
+    3: import android.util.Base64;
+    4: import android.util.Size;
+    5: import java.io.File;
+    6: import java.io.Serializable;
+    7: import java.util.ArrayList;
+    8: import java.util.Collections;
+    9: import java.util.Iterator;
+   10: import java.util.List;
+   11: import java.util.concurrent.CancellationException;
+   12: import me.leolin.shortcutbadger.BuildConfig;
+   13: import one.me.chatscreen.videomsg.VideoMessageWidget;
+   14: import one.me.webapp.util.WebAppHttpClient$WebAppNoNetworkException;
+   15: import org.json.JSONObject;
+   16: import org.webrtc.PeerConnectionFactory;
+   17: 
+   18: /* JADX INFO: loaded from: classes3.dex */
+   19: public final class qrk extends x1j implements e18 {
+   20:     public final /* synthetic */ byte e;
+   21:     public boolean f;
+   22:     public Object g;
+   23:     public Object h;
+   24:     public final /* synthetic */ Object i;
+   25: 
+   26:     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+   27:     public /* synthetic */ qrk(Object obj, Object obj2, Object obj3, b55 b55Var, byte b) {
+   28:         super(2, b55Var);
+   29:         this.e = b;
+   30:         this.g = obj;
+   31:         this.h = obj2;
+   32:         this.i = obj3;
+   33:     }
+   34: 
+   35:     @Override // defpackage.e18
+   36:     public final Object invoke(Object obj, Object obj2) {
+   37:         byte b = this.e;
+   38:         s1k s1kVar = s1k.a;
+   39:         switch (b) {
+   40:             case 0:
+   41:                 return ((qrk) u((b55) obj2, (ja5) obj)).w(s1kVar);
+   42:             case 1:
+   43:                 return ((qrk) u((b55) obj2, (ja5) obj)).w(s1kVar);
+   44:             case 2:
+   45:                 return ((qrk) u((b55) obj2, (ja5) obj)).w(s1kVar);
+   46:             case 3:
+   47:                 return ((qrk) u((b55) obj2, (ja5) obj)).w(s1kVar);
+   48:             case 4:
+   49:                 return ((qrk) u((b55) obj2, (ja5) obj)).w(s1kVar);
+   50:             case 5:
+   51:                 return ((qrk) u((b55) obj2, (s1k) obj)).w(s1kVar);
+   52:             case 6:
+   53:                 return ((qrk) u((b55) obj2, (Throwable) obj)).w(s1kVar);
+   54:             case 7:
+   55:                 return ((qrk) u((b55) obj2, (s1k) obj)).w(s1kVar);
+   56:             case 8:
+   57:                 return ((qrk) u((b55) obj2, (s1k) obj)).w(s1kVar);
+   58:             case 9:
+   59:                 return ((qrk) u((b55) obj2, (s1k) obj)).w(s1kVar);
+   60:             case 10:
+   61:                 return ((qrk) u((b55) obj2, (s1k) obj)).w(s1kVar);
+   62:             case 11:
+   63:                 return ((qrk) u((b55) obj2, (s1k) obj)).w(s1kVar);
+   64:             case 12:
+   65:                 return ((qrk) u((b55) obj2, (Throwable) obj)).w(s1kVar);
+   66:             case 13:
+   67:                 return ((qrk) u((b55) obj2, (ja5) obj)).w(s1kVar);
+   68:             case 14:
+   69:                 return ((qrk) u((b55) obj2, (s1k) obj)).w(s1kVar);
+   70:             case 15:
+   71:                 return ((qrk) u((b55) obj2, (s1k) obj)).w(s1kVar);
+   72:             case PeerConnectionFactory.Options.ADAPTER_TYPE_LOOPBACK /* 16 */:
+   73:                 return ((qrk) u((b55) obj2, (s1k) obj)).w(s1kVar);
+   74:             case 17:
+   75:                 return ((qrk) u((b55) obj2, (Throwable) obj)).w(s1kVar);
+   76:             case 18:
+   77:                 return ((qrk) u((b55) obj2, obj)).w(s1kVar);
+   78:             case 19:
+   79:                 return ((qrk) u((b55) obj2, (ja5) obj)).w(s1kVar);
+   80:             default:
+   81:                 return ((qrk) u((b55) obj2, (ja5) obj)).w(s1kVar);
+   82:         }
+   83:     }
+   84: 
+   85:     @Override // defpackage.hv0
+   86:     public final b55 u(b55 b55Var, Object obj) {
+   87:         byte b = this.e;
+   88:         Object obj2 = this.i;
+   89:         switch (b) {
+   90:             case 0:
+   91:                 return new qrk((hqk) this.g, (trk) this.h, (File) obj2, b55Var, (byte) 0);
+   92:             case 1:
+   93:                 return new qrk((va0) this.h, (isk) obj2, b55Var, (byte) 1);
+   94:             case 2:
+   95:                 qrk qrkVar = new qrk((List) this.h, (vsk) obj2, b55Var, (byte) 2);
+   96:                 qrkVar.g = obj;
+   97:                 return qrkVar;
+   98:             case 3:
+   99:                 return new qrk((VideoMessageWidget) this.g, (guf) this.h, (nok) obj2, b55Var, (byte) 3);
+  100:             case 4:
+  101:                 return new qrk((o1l) obj2, b55Var);
+  102:             case 5:
+  103:                 return new qrk((b8l) this.g, (e8l) this.h, (r7l) obj2, b55Var, (byte) 5);
+  104:             case 6:
+  105:                 qrk qrkVar2 = new qrk((x9l) this.h, (aal) obj2, b55Var, (byte) 6);
+  106:                 qrkVar2.g = obj;
+  107:                 return qrkVar2;
+  108:             case 7:
+  109:                 return new qrk((bbl) this.g, (ccl) this.h, (ybl) obj2, b55Var, (byte) 7);
+  110:             case 8:
+  111:                 return new qrk((cbl) this.g, (ccl) this.h, (ybl) obj2, b55Var, (byte) 8);
+  112:             case 9:
+  113:                 return new qrk((dbl) this.g, (ccl) this.h, (ybl) obj2, b55Var, (byte) 9);
+  114:             case 10:
+  115:                 return new qrk((xdl) this.g, (ael) this.h, (sdl) obj2, b55Var, (byte) 10);
+  116:             case 11:
+  117:                 return new qrk((whl) this.g, (nhl) this.h, (zhl) obj2, b55Var, (byte) 11);
+  118:             case 12:
+  119:                 qrk qrkVar3 = new qrk((fil) this.h, (iil) obj2, b55Var, (byte) 12);
+  120:                 qrkVar3.g = obj;
+  121:                 return qrkVar3;
+  122:             case 13:
+  123:                 qrk qrkVar4 = new qrk((ekl) this.h, (bol) obj2, b55Var, (byte) 13);
+  124:                 qrkVar4.g = obj;
+  125:                 return qrkVar4;
+  126:             case 14:
+  127:                 return new qrk((dml) this.g, (jml) this.h, (xll) obj2, b55Var, (byte) 14);
+  128:             case 15:
+  129:                 return new qrk((sml) this.g, (knl) this.h, (fnl) obj2, b55Var, (byte) 15);
+  130:             case PeerConnectionFactory.Options.ADAPTER_TYPE_LOOPBACK /* 16 */:
+  131:                 return new qrk((nnl) this.g, (knl) this.h, (fnl) obj2, b55Var, (byte) 16);
+  132:             case 17:
+  133:                 qrk qrkVar5 = new qrk((dol) this.h, (gol) obj2, b55Var, (byte) 17);
+  134:                 qrkVar5.g = obj;
+  135:                 return qrkVar5;
+  136:             case 18:
+  137:                 qrk qrkVar6 = new qrk((String) this.h, (e18) obj2, b55Var, (byte) 18);
+  138:                 qrkVar6.g = obj;
+  139:                 return qrkVar6;
+  140:             case 19:
+  141:                 return new qrk((kt4) this.g, (qvl) this.h, (brc) obj2, b55Var, (byte) 19);
+  142:             default:
+  143:                 qrk qrkVar7 = new qrk((mxl) this.h, (o0g) obj2, b55Var, (byte) 20);
+  144:                 qrkVar7.g = obj;
+  145:                 return qrkVar7;
+  146:         }
+  147:     }
+  148: 
+  149:     @Override // defpackage.hv0
+  150:     public final Object w(Object obj) {
+  151:         ua0 ua0Var;
+  152:         ua0 ua0Var2;
+  153:         Object objA;
+  154:         Object objG;
+  155:         o1l o1lVar;
+  156:         n4c n4cVar;
+  157:         ij9 gj9Var;
+  158:         Object objA2;
+  159:         Object n4gVar;
+  160:         o1d o1dVar;
+  161:         Object objA3;
+  162:         oqk oqkVar = null;
+  163:         Object obj2 = null;
+  164:         oqkVar = null;
+  165:         oqkVar = null;
+  166:         switch (this.e) {
+  167:             case 0:
+  168:                 ka5 ka5Var = ka5.a;
+  169:                 boolean z = this.f;
+  170:                 if (z) {
+  171:                     if (z) {
+  172:                         xnm.y(obj);
+  173:                         return obj;
+  174:                     }
+  175:                     k3g.o("call to 'resume' before 'invoke' with coroutine");
+  176:                     return null;
+  177:                 }
+  178:                 xnm.y(obj);
+  179:                 hqk hqkVar = (hqk) this.g;
+  180:                 trk trkVar = (trk) this.h;
+  181:                 File file = (File) this.i;
+  182:                 this.f = true;
+  183:                 Serializable serializableZ = trk.z(hqkVar, trkVar, file, this);
+  184:                 return serializableZ == ka5Var ? ka5Var : serializableZ;
+  185:             case 1:
+  186:                 c6a c6aVar = c6a.d;
+  187:                 ka5 ka5Var2 = ka5.a;
+  188:                 boolean z2 = this.f;
+  189:                 try {
+  190:                     if (z2) {
+  191:                         if (!z2) {
+  192:                             k3g.o("call to 'resume' before 'invoke' with coroutine");
+  193:                             return null;
+  194:                         }
+  195:                         ua0Var2 = (ua0) this.g;
+  196:                         try {
+  197:                             xnm.y(obj);
+  198:                             ua0Var = ua0Var2;
+  199:                             objA = obj;
+  200:                         } catch (Throwable th) {
+  201:                             th = th;
+  202:                             ua0Var = ua0Var2;
+  203:                             objA = new n4g(th);
+  204:                         }
+  205:                         break;
+  206:                     } else {
+  207:                         xnm.y(obj);
+  208:                         ua0Var = ((va0) this.h).d;
+  209:                         if (ua0Var == null || ua0Var.b != 2) {
+  210:                             return Boolean.FALSE;
+  211:                         }
+  212:                         alk alkVarA = ((clk) ((isk) this.i).a.getValue()).a(((va0) this.h).t);
+  213:                         isk iskVar = (isk) this.i;
+  214:                         if (alkVarA != null) {
+  215:                             String str = iskVar.d;
+  216:                             va0 va0Var = (va0) this.h;
+  217:                             o1d o1dVar2 = f09.g;
+  218:                             if (o1dVar2 != null && o1dVar2.b(c6aVar)) {
+  219:                                 vg9.E("Content already in cache for ", va0Var.t, o1dVar2, c6aVar, str);
+  220:                             }
+  221:                             return Boolean.TRUE;
+  222:                         }
+  223:                         va0 va0Var2 = (va0) this.h;
+  224:                         try {
+  225:                             tqk tqkVar = (tqk) iskVar.b.getValue();
+  226:                             String str2 = va0Var2.t;
+  227:                             this.g = ua0Var;
+  228:                             this.f = true;
+  229:                             objA = tqkVar.a(str2, this);
+  230:                             if (objA == ka5Var2) {
+```
+
+### `defpackage/gj9.java`
+
+```java
+Total lines: 31, excerpt: 1–31
+    1: package defpackage;
+    2: 
+    3: /* JADX INFO: loaded from: classes3.dex */
+    4: public final class gj9 extends ij9 {
+    5:     public final jj9 d;
+    6: 
+    7:     public gj9(jj9 jj9Var) {
+    8:         super("client", 1, jj9Var);
+    9:         this.d = jj9Var;
+   10:     }
+   11: 
+   12:     @Override // defpackage.ij9
+   13:     public final jj9 b() {
+   14:         return this.d;
+   15:     }
+   16: 
+   17:     public final boolean equals(Object obj) {
+   18:         if (this == obj) {
+   19:             return true;
+   20:         }
+   21:         return (obj instanceof gj9) && this.d.equals(((gj9) obj).d);
+   22:     }
+   23: 
+   24:     public final int hashCode() {
+   25:         return this.d.hashCode();
+   26:     }
+   27: 
+   28:     public final String toString() {
+   29:         return "ClientError(reason=" + this.d + ")";
+   30:     }
+   31: }
+```
+
+### `defpackage/qi4.java`
+
+```java
+Total lines: 79, excerpt: 1–79
+    1: package defpackage;
+    2: 
+    3: /* JADX INFO: loaded from: classes3.dex */
+    4: public final class qi4 {
+    5:     public final mj9 a;
+    6:     public final rp9 b;
+    7:     public u5l c;
+    8: 
+    9:     public qi4(mj9 mj9Var, rp9 rp9Var) {
+   10:         this.a = mj9Var;
+   11:         this.b = rp9Var;
+   12:     }
+   13: 
+   14:     /* JADX WARN: Code duplicated, block: B:7:0x001b  */
+   15:     public final Object a(b13 b13Var, ij9 ij9Var, xcl xclVar, String str, b55 b55Var) {
+   16:         pi4 pi4Var;
+   17:         String str2;
+   18:         xcl xclVar2;
+   19:         ij9 ij9Var2 = ij9Var;
+   20:         if (b55Var instanceof pi4) {
+   21:             pi4Var = (pi4) b55Var;
+   22:             int i = pi4Var.i;
+   23:             if ((i & Integer.MIN_VALUE) != 0) {
+   24:                 pi4Var.i = i - Integer.MIN_VALUE;
+   25:             } else {
+   26:                 pi4Var = new pi4(this, b55Var);
+   27:             }
+   28:         } else {
+   29:             pi4Var = new pi4(this, b55Var);
+   30:         }
+   31:         Object obj = pi4Var.g;
+   32:         int i2 = pi4Var.i;
+   33:         s1k s1kVar = s1k.a;
+   34:         if (i2 == 0) {
+   35:             xnm.y(obj);
+   36:             f09.p(qi4.class.getName(), "Error in method: " + xclVar.c() + " - " + ij9Var2.a(xclVar.h()));
+   37:             if (str == null) {
+   38:                 f09.f0(qi4.class.getName(), "No request id or wrong type");
+   39:                 return s1kVar;
+   40:             }
+   41:             String strC = xclVar.c();
+   42:             gu6 gu6Var = new gu6(str, new fu6(ij9Var2.a(xclVar.h())));
+   43:             mj9 mj9Var = this.a;
+   44:             mj9Var.getClass();
+   45:             Object bj9Var = new bj9(strC, mj9Var.b(gu6.Companion.serializer(), gu6Var), xclVar.i());
+   46:             pi4Var.d = ij9Var2;
+   47:             pi4Var.e = xclVar;
+   48:             pi4Var.f = strC;
+   49:             pi4Var.i = 1;
+   50:             Object objB = b13Var.b(pi4Var, bj9Var);
+   51:             Object obj2 = ka5.a;
+   52:             if (objB == obj2) {
+   53:                 return obj2;
+   54:             }
+   55:             str2 = strC;
+   56:             xclVar2 = xclVar;
+   57:         } else {
+   58:             if (i2 != 1) {
+   59:                 k3g.o("call to 'resume' before 'invoke' with coroutine");
+   60:                 return null;
+   61:             }
+   62:             String str3 = pi4Var.f;
+   63:             xclVar2 = pi4Var.e;
+   64:             ij9 ij9Var3 = pi4Var.d;
+   65:             xnm.y(obj);
+   66:             str2 = str3;
+   67:             ij9Var2 = ij9Var3;
+   68:         }
+   69:         byte b = ij9Var2.b;
+   70:         Integer numA = xclVar2.a();
+   71:         jj9 jj9VarB = ij9Var2.b();
+   72:         Integer num = jj9VarB != null ? new Integer(jj9VarB.b) : null;
+   73:         u5l u5lVar = this.c;
+   74:         if (u5lVar != null) {
+   75:             o8l.a((o8l) this.b.getValue(), str2, u5lVar.a, u5lVar.b, false, b, numA, num, 128);
+   76:         }
+   77:         return s1kVar;
+   78:     }
+   79: }
+```
+
 ## Применение результатов
 
 Этот отчёт предназначен для ручной проверки того, какие поля, обработчики и результаты связаны с вызовом мини-приложения.
