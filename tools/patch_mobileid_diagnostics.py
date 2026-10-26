@@ -108,7 +108,7 @@ def main():
     delegate = find(root, "dol.smali")
     cellular = find(root, "fcl.smali")
     patch_method(application, r"\sonCreate\(\)V",
-                 f"invoke-static {{p0}}, {PREFIX}->init(Landroid/content/Context;)V")
+                 f"invoke-static/range {{p0 .. p0}}, {PREFIX}->init(Landroid/content/Context;)V")
     patch_method(delegate, r"\sa\(Ljava/lang/String;Ljava/lang/String;Lb55;\)Ljava/lang/Object;",
                  f"invoke-static {{}}, {PREFIX}->mobileIdRequest()V")
     patch_method(cellular, r"\sa\(Ljava/lang/String;Ld55;\)Ljava/lang/Object;",
