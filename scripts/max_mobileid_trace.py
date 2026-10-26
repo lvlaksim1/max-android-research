@@ -169,6 +169,19 @@ for name,queries in focus.items():
         md.append("(class not found)")
     md.extend(["```",""])
 
+md.extend(["## Сотовый HTTP-клиент (проверка тайм-аутов и результата)", ""])
+for name,lim in [("fcl",380),("m3g",100),("bcl",130),("dcl",130)]:
+    path=src/"defpackage"/(name+".java")
+    md.extend([f"### `{path.relative_to(src)}`", "", "```java"])
+    if path.exists():
+        lines=path.read_text(encoding="utf-8",errors="replace").splitlines()
+        md.append(f"Lines: {len(lines)}; printed first {min(len(lines),lim)}")
+        for idx,line in enumerate(lines[:lim],1):
+            if "@Metadata(" in line or len(line)>600:line="[generated metadata omitted]"
+            md.append(f"{idx:>5}: {line[:400].replace(chr(96), chr(39))}")
+    else: md.append("(class not found)")
+    md.extend(["```",""])
+
 md.extend([
     "## Применение результатов",
     "",
