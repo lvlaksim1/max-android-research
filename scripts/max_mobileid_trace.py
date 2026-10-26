@@ -22,11 +22,11 @@ if digest != sample["sha256"] or apk.stat().st_size != sample["bytes"]:
 
 targets={
     "a8l": [r"WebAppVerifyMobileId",r"jolVar",r"verifyMobileId"],
-    "dol": [r"WebAppVerifyMobileId",r"public final Object f\\("],
+    "dol": [r"WebAppVerifyMobileId",r"public final Object f\("],
     "jol": [r"class jol",r"String",r"serializer"],
     "ajk": [r"class ajk",r"code",r"toString"],
     "bj9": [r"class bj9",r"public bj9",r"boolean"],
-    "mj9": [r"class mj9",r"public .* b\\("],
+    "mj9": [r"class mj9",r"public .* b\("],
     "s1k": [r"class s1k",r"WebApp",r"verify"],
 }
 patterns=[
