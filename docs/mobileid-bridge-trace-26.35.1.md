@@ -123,7 +123,7 @@ Lines 1–101:
    33:         if (zContains) {
    34:             return (str.equals("WebAppVerifyMobileId") && (objF = f(str2, (d55) b55Var)) == ka5.a) ? objF : s1kVar;
    35:         }
-   36:         f09.d0(dol.class.getName(), "Unknown method with name = " + str + " in JsDelegate: " + this, new Object[0]);
+   36:         f09.f0(dol.class.getName(), "Unknown method with name = " + str + " in JsDelegate: " + this);
    37:         return s1kVar;
    38:     }
    39: 
@@ -132,7 +132,7 @@ Lines 1–101:
    42:         if (str.equals("WebAppVerifyMobileId")) {
    43:             return true;
    44:         }
-   45:         f09.d0(dol.class.getName(), "Unknown method with name = " + str + " in JsDelegate: " + this, new Object[0]);
+   45:         f09.f0(dol.class.getName(), "Unknown method with name = " + str + " in JsDelegate: " + this);
    46:         return false;
    47:     }
    48: 
@@ -1490,7 +1490,7 @@ Total lines: 79, excerpt: 1–79
    35:             xnm.y(obj);
    36:             f09.p(qi4.class.getName(), "Error in method: " + xclVar.c() + " - " + ij9Var2.a(xclVar.h()));
    37:             if (str == null) {
-   38:                 f09.d0(qi4.class.getName(), "No request id or wrong type", new Object[0]);
+   38:                 f09.f0(qi4.class.getName(), "No request id or wrong type");
    39:                 return s1kVar;
    40:             }
    41:             String strC = xclVar.c();
@@ -2210,7 +2210,7 @@ Lines: 144; printed first 144
    70:                 iufVar2.a = this.j;
    71:             }
    72:             if (tpcVar == null || !((ms4) this.b.getValue()).g()) {
-   73:                 f09.d0(this.d, "cellular network is disabled", new Object[0]);
+   73:                 f09.f0(this.d, "cellular network is disabled");
    74:                 throw new WebAppHttpClient$WebAppNoNetworkException();
    75:             }
    76:             ly lyVar = new ly();

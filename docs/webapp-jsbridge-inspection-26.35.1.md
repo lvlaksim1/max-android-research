@@ -97,7 +97,7 @@ APK sha256: `e809176d6bf6ff69247274433ec170a5db8a5687a02a04299a78a2ae978119fc`.
 33:         if (zContains) {
 34:             return (str.equals("WebAppVerifyMobileId") && (objF = f(str2, (d55) b55Var)) == ka5.a) ? objF : s1kVar;
 35:         }
-36:         f09.d0(dol.class.getName(), "Unknown method with name = " + str + " in JsDelegate: " + this, new Object[0]);
+36:         f09.f0(dol.class.getName(), "Unknown method with name = " + str + " in JsDelegate: " + this);
 37:         return s1kVar;
 38:     }
 39: 
@@ -106,7 +106,7 @@ APK sha256: `e809176d6bf6ff69247274433ec170a5db8a5687a02a04299a78a2ae978119fc`.
 42:         if (str.equals("WebAppVerifyMobileId")) {
 43:             return true;
 44:         }
-45:         f09.d0(dol.class.getName(), "Unknown method with name = " + str + " in JsDelegate: " + this, new Object[0]);
+45:         f09.f0(dol.class.getName(), "Unknown method with name = " + str + " in JsDelegate: " + this);
 46:         return false;
 47:     }
 48: 
@@ -572,4 +572,538 @@ APK sha256: `e809176d6bf6ff69247274433ec170a5db8a5687a02a04299a78a2ae978119fc`.
 62:     }
 63: 
 64:     void applyTo(WebView webView, Consumer<BiConsumer<Integer, Object>> consumer);
+```
+
+## Exact client-error serialization structures
+
+### `gu6.java`
+
+```java
+1: package defpackage;
+2: 
+3: /* JADX INFO: loaded from: classes3.dex */
+4: @x0h
+5: public final class gu6 {
+6:     public static final cu6 Companion = new cu6();
+7:     public final String a;
+8:     public final fu6 b;
+9: 
+10:     public /* synthetic */ gu6(int i, String str, fu6 fu6Var) {
+11:         if (3 != (i & 3)) {
+12:             az7.S(i, 3, bu6.a.d());
+13:             throw null;
+14:         }
+15:         this.a = str;
+16:         this.b = fu6Var;
+17:     }
+18: 
+19:     public final boolean equals(Object obj) {
+20:         if (this == obj) {
+21:             return true;
+22:         }
+23:         if (!(obj instanceof gu6)) {
+24:             return false;
+25:         }
+26:         gu6 gu6Var = (gu6) obj;
+27:         return g4a.c(this.a, gu6Var.a) && g4a.c(this.b, gu6Var.b);
+28:     }
+29: 
+30:     public final int hashCode() {
+31:         return this.b.hashCode() + (this.a.hashCode() * 31);
+32:     }
+33: 
+34:     public final String toString() {
+35:         return "ErrorResponse(requestId=" + this.a + ", error=" + this.b + ")";
+36:     }
+37: 
+38:     public gu6(String str, fu6 fu6Var) {
+39:         this.a = str;
+40:         this.b = fu6Var;
+41:     }
+42: }
+```
+
+### `fu6.java`
+
+```java
+1: package defpackage;
+2: 
+3: /* JADX INFO: loaded from: classes3.dex */
+4: @x0h
+5: public final class fu6 {
+6:     public static final eu6 Companion = new eu6();
+7:     public final String a;
+8: 
+9:     public /* synthetic */ fu6(int i, String str) {
+10:         if (1 == (i & 1)) {
+11:             this.a = str;
+12:         } else {
+13:             az7.S(i, 1, du6.a.d());
+14:             throw null;
+15:         }
+16:     }
+17: 
+18:     public fu6(String str) {
+19:         this.a = str;
+20:     }
+21: }
+```
+
+### `jj9.java`
+
+```java
+1: package defpackage;
+2: 
+3: /* JADX INFO: loaded from: classes3.dex */
+4: public final class jj9 {
+5:     public final String a;
+6:     public final int b;
+7: 
+8:     public jj9(String str, int i) {
+9:         this.a = str;
+10:         this.b = i;
+11:     }
+12: 
+13:     public final boolean equals(Object obj) {
+14:         if (this == obj) {
+15:             return true;
+16:         }
+17:         if (!(obj instanceof jj9)) {
+18:             return false;
+19:         }
+20:         jj9 jj9Var = (jj9) obj;
+21:         return this.a.equals(jj9Var.a) && this.b == jj9Var.b;
+22:     }
+23: 
+24:     public final int hashCode() {
+25:         return Integer.hashCode(this.b) + (this.a.hashCode() * 31);
+26:     }
+27: 
+28:     public final String toString() {
+29:         return vg9.w(this.b, "JsBridgeMethodErrorReason(title=", this.a, ", code=", ")");
+30:     }
+31: }
+```
+
+### `gj9.java`
+
+```java
+1: package defpackage;
+2: 
+3: /* JADX INFO: loaded from: classes3.dex */
+4: public final class gj9 extends ij9 {
+5:     public final jj9 d;
+6: 
+7:     public gj9(jj9 jj9Var) {
+8:         super("client", 1, jj9Var);
+9:         this.d = jj9Var;
+10:     }
+11: 
+12:     @Override // defpackage.ij9
+13:     public final jj9 b() {
+14:         return this.d;
+15:     }
+16: 
+17:     public final boolean equals(Object obj) {
+18:         if (this == obj) {
+19:             return true;
+20:         }
+21:         return (obj instanceof gj9) && this.d.equals(((gj9) obj).d);
+22:     }
+23: 
+24:     public final int hashCode() {
+25:         return this.d.hashCode();
+26:     }
+27: 
+28:     public final String toString() {
+29:         return "ClientError(reason=" + this.d + ")";
+30:     }
+31: }
+```
+
+### `hj9.java`
+
+```java
+1: package defpackage;
+2: 
+3: /* JADX INFO: loaded from: classes3.dex */
+4: public final class hj9 extends ij9 {
+5:     public static final hj9 d = new hj9("unknown", 6, null);
+6: 
+7:     public final boolean equals(Object obj) {
+8:         return this == obj || (obj instanceof hj9);
+9:     }
+10: 
+11:     public final int hashCode() {
+12:         return -745687876;
+13:     }
+14: 
+15:     public final String toString() {
+16:         return "UnknownError";
+17:     }
+18: }
+```
+
+### `ij9.java`
+
+```java
+1: package defpackage;
+2: 
+3: /* JADX INFO: loaded from: classes3.dex */
+4: public abstract class ij9 {
+5:     public final String a;
+6:     public final byte b;
+7:     public final jj9 c;
+8: 
+9:     /* JADX WARN: Multi-variable type inference failed */
+10:     public ij9(String str, int i, jj9 jj9Var) {
+11:         this.a = str;
+12:         this.b = i;
+13:         this.c = jj9Var;
+14:     }
+15: 
+16:     public final String a(String str) {
+17:         StringBuilder sb = new StringBuilder(this.a.concat("."));
+18:         sb.append(str);
+19:         jj9 jj9VarB = b();
+20:         if (jj9VarB != null) {
+21:             sb.append(".".concat(jj9VarB.a));
+22:         }
+23:         return sb.toString();
+24:     }
+25: 
+26:     public jj9 b() {
+27:         return this.c;
+28:     }
+29: }
+```
+
+### `qi4.java`
+
+```java
+1: package defpackage;
+2: 
+3: /* JADX INFO: loaded from: classes3.dex */
+4: public final class qi4 {
+5:     public final mj9 a;
+6:     public final rp9 b;
+7:     public u5l c;
+8: 
+9:     public qi4(mj9 mj9Var, rp9 rp9Var) {
+10:         this.a = mj9Var;
+11:         this.b = rp9Var;
+12:     }
+13: 
+14:     /* JADX WARN: Code duplicated, block: B:7:0x001b  */
+15:     public final Object a(b13 b13Var, ij9 ij9Var, xcl xclVar, String str, b55 b55Var) {
+16:         pi4 pi4Var;
+17:         String str2;
+18:         xcl xclVar2;
+19:         ij9 ij9Var2 = ij9Var;
+20:         if (b55Var instanceof pi4) {
+21:             pi4Var = (pi4) b55Var;
+22:             int i = pi4Var.i;
+23:             if ((i & Integer.MIN_VALUE) != 0) {
+24:                 pi4Var.i = i - Integer.MIN_VALUE;
+25:             } else {
+26:                 pi4Var = new pi4(this, b55Var);
+27:             }
+28:         } else {
+29:             pi4Var = new pi4(this, b55Var);
+30:         }
+31:         Object obj = pi4Var.g;
+32:         int i2 = pi4Var.i;
+33:         s1k s1kVar = s1k.a;
+34:         if (i2 == 0) {
+35:             xnm.y(obj);
+36:             f09.p(qi4.class.getName(), "Error in method: " + xclVar.c() + " - " + ij9Var2.a(xclVar.h()));
+37:             if (str == null) {
+38:                 f09.f0(qi4.class.getName(), "No request id or wrong type");
+39:                 return s1kVar;
+40:             }
+41:             String strC = xclVar.c();
+42:             gu6 gu6Var = new gu6(str, new fu6(ij9Var2.a(xclVar.h())));
+43:             mj9 mj9Var = this.a;
+44:             mj9Var.getClass();
+45:             Object bj9Var = new bj9(strC, mj9Var.b(gu6.Companion.serializer(), gu6Var), xclVar.i());
+46:             pi4Var.d = ij9Var2;
+47:             pi4Var.e = xclVar;
+48:             pi4Var.f = strC;
+49:             pi4Var.i = 1;
+50:             Object objB = b13Var.b(pi4Var, bj9Var);
+51:             Object obj2 = ka5.a;
+52:             if (objB == obj2) {
+53:                 return obj2;
+54:             }
+55:             str2 = strC;
+56:             xclVar2 = xclVar;
+57:         } else {
+58:             if (i2 != 1) {
+59:                 k3g.o("call to 'resume' before 'invoke' with coroutine");
+60:                 return null;
+61:             }
+62:             String str3 = pi4Var.f;
+63:             xclVar2 = pi4Var.e;
+64:             ij9 ij9Var3 = pi4Var.d;
+65:             xnm.y(obj);
+66:             str2 = str3;
+67:             ij9Var2 = ij9Var3;
+68:         }
+69:         byte b = ij9Var2.b;
+70:         Integer numA = xclVar2.a();
+71:         jj9 jj9VarB = ij9Var2.b();
+72:         Integer num = jj9VarB != null ? new Integer(jj9VarB.b) : null;
+73:         u5l u5lVar = this.c;
+74:         if (u5lVar != null) {
+75:             o8l.a((o8l) this.b.getValue(), str2, u5lVar.a, u5lVar.b, false, b, numA, num, 128);
+76:         }
+77:         return s1kVar;
+78:     }
+79: }
+```
+
+### `jql.java`
+
+```java
+1: package defpackage;
+2: 
+3: import android.webkit.JavascriptInterface;
+4: 
+5: /* JADX INFO: loaded from: classes3.dex */
+6: public final class jql {
+7:     public final ekl a;
+8: 
+9:     public jql(ekl eklVar) {
+10:         this.a = eklVar;
+11:     }
+12: 
+13:     @JavascriptInterface
+14:     public final void postEvent(String str, String str2) {
+15:         this.a.j1(str, str2, false);
+16:     }
+17: 
+18:     @JavascriptInterface
+19:     public final void resolveShare(String str, byte[] bArr, String str2, String str3) {
+20:         ekl eklVar = this.a;
+21:         eklVar.getClass();
+22:         oyk.Z0(eklVar, null, new m60(eklVar, str, bArr, str2, str3, null, (byte) 14), 3);
+23:     }
+24: }
+```
+
+### `koe.java`
+
+```java
+1: package defpackage;
+2: 
+3: import android.webkit.JavascriptInterface;
+4: 
+5: /* JADX INFO: loaded from: classes3.dex */
+6: public final class koe {
+7:     public final ekl a;
+8: 
+9:     public koe(ekl eklVar) {
+10:         this.a = eklVar;
+11:     }
+12: 
+13:     @JavascriptInterface
+14:     public final void postEvent(String str, String str2) {
+15:         this.a.j1(str, str2, true);
+16:     }
+17: }
+```
+
+### `ypl.java`
+
+```java
+1: package defpackage;
+2: 
+3: import android.content.ActivityNotFoundException;
+4: import android.content.Context;
+5: import android.content.Intent;
+6: import android.content.SharedPreferences;
+7: import android.content.res.ColorStateList;
+8: import android.graphics.Rect;
+9: import android.graphics.drawable.Drawable;
+10: import android.graphics.drawable.LayerDrawable;
+11: import android.graphics.drawable.ShapeDrawable;
+12: import android.graphics.drawable.shapes.OvalShape;
+13: import android.hardware.camera2.CameraCharacteristics;
+14: import android.hardware.camera2.CaptureRequest;
+15: import android.media.metrics.LogSessionId;
+16: import android.net.Uri;
+17: import android.os.Build;
+18: import android.os.Handler;
+19: import android.text.TextUtils;
+20: import android.util.Log;
+21: import android.view.Surface;
+22: import android.view.View;
+23: import android.webkit.URLUtil;
+24: import androidx.camera.video.internal.encoder.EncodeException;
+25: import com.vk.push.pushsdk.receiver.OneTimePushReceiveHelper$SyncTimeoutExceededException;
+26: import java.io.BufferedReader;
+27: import java.io.IOException;
+28: import java.lang.ref.WeakReference;
+29: import java.net.CookieManager;
+30: import java.net.HttpURLConnection;
+31: import java.net.URI;
+32: import java.util.ArrayDeque;
+33: import java.util.ArrayList;
+34: import java.util.Collection;
+35: import java.util.Collections;
+36: import java.util.HashMap;
+37: import java.util.Iterator;
+38: import java.util.List;
+39: import java.util.Locale;
+40: import java.util.Map;
+41: import java.util.concurrent.CountDownLatch;
+42: import java.util.concurrent.ScheduledThreadPoolExecutor;
+43: import java.util.concurrent.TimeUnit;
+44: import java.util.concurrent.atomic.AtomicBoolean;
+45: import me.leolin.shortcutbadger.BuildConfig;
+46: import one.me.calls.ui.ui.call.panels.VpnPanelWidget;
+47: import one.me.sdk.transfer.exceptions.HttpUrlExpiredException;
+48: import one.video.upload.exceptions.UploadUrlExpiredException;
+49: 
+50: /* JADX INFO: loaded from: classes3.dex */
+51: public final class ypl implements xpl, h84, sk4, pxl, di, u7k, y18, xq6, g3j {
+52:     public Object a;
+53:     public Object b;
+54:     public Object c;
+55: 
+56:     public ypl(b07 b07Var, Context context) {
+57:         this.c = b07Var;
+58:         this.a = new WeakReference(context);
+59:         hn3 hn3Var = new hn3(this, (byte) 1);
+60:         this.b = hn3Var;
+61:         context.registerDeviceIdChangeListener(new a07(((d4j) b07Var.w).a(b07Var.u, null), (byte) 0), hn3Var);
+62:     }
+63: 
+64:     /* JADX WARN: Code duplicated, block: B:28:0x0059  */
+65:     public static vgm G(HttpURLConnection httpURLConnection, int i) {
+66:         String headerField = httpURLConnection.getHeaderField("Location");
+67:         if (headerField == null || headerField.isEmpty()) {
+68:             return new vgm(2, i, null, "empty redirection");
+69:         }
+70:         try {
+71:             String string = httpURLConnection.getURL().toURI().resolve(new URI(headerField)).toString();
+72:             boolean z = Build.VERSION.SDK_INT < 28 || URLUtil.isHttpsUrl(string);
+73:             if (!TextUtils.isEmpty(string)) {
+74:                 for (int i2 = 0; i2 < 13; i2++) {
+75:                     if (!string.startsWith(gom.a[i2])) {
+76:                     }
+77:                 }
+78:                 if (!z) {
+79:                     return new vgm(2, i, null, pq0.i("cleartext redirect blocked: ", string));
+80:                 }
+81:             } else if (!z) {
+82:                 return new vgm(2, i, null, pq0.i("cleartext redirect blocked: ", string));
+83:             }
+84:             return new vgm(1, i, string, null);
+85:         } catch (Throwable unused) {
+86:             return new vgm(0, i, headerField, null);
+87:         }
+88:     }
+89: 
+90:     public static void J(ypl yplVar) {
+91:         Context context = (Context) ((WeakReference) yplVar.a).get();
+92:         if (context == null) {
+93:             return;
+94:         }
+95:         context.unregisterDeviceIdChangeListener((hn3) yplVar.b);
+96:     }
+97: 
+98:     public static ypl N(SharedPreferences sharedPreferences, ScheduledThreadPoolExecutor scheduledThreadPoolExecutor) {
+99:         ypl yplVar = new ypl();
+100:         yplVar.b = new ArrayDeque();
+101:         yplVar.a = sharedPreferences;
+102:         yplVar.c = scheduledThreadPoolExecutor;
+103:         synchronized (((ArrayDeque) yplVar.b)) {
+104:             try {
+105:                 ((ArrayDeque) yplVar.b).clear();
+106:                 String string = ((SharedPreferences) yplVar.a).getString("topic_operation_queue", BuildConfig.FLAVOR);
+107:                 if (!TextUtils.isEmpty(string) && string.contains(",")) {
+108:                     String[] strArrSplit = string.split(",", -1);
+109:                     if (strArrSplit.length == 0) {
+110:                         Log.e("FirebaseMessaging", "Corrupted queue. Please check the queue contents and item separator provided");
+111:                     }
+112:                     for (String str : strArrSplit) {
+113:                         if (!TextUtils.isEmpty(str)) {
+114:                             ((ArrayDeque) yplVar.b).add(str);
+115:                         }
+116:                     }
+117:                     return yplVar;
+118:                 }
+119:                 return yplVar;
+120:             } catch (Throwable th) {
+121:                 throw th;
+122:             }
+123:         }
+124:     }
+125: 
+126:     @Override // defpackage.pxl
+127:     public ow5 A(hbk hbkVar) {
+128:         return hbkVar.h(Collections.singletonList(CaptureRequest.SCALER_CROP_REGION));
+129:     }
+130: 
+131:     @Override // defpackage.xpl
+132:     public void B(String str) {
+133:         pol polVar = (pol) this.c;
+134:         String str2 = polVar.g;
+135:         lmj lmjVar = str2 != null ? new lmj(str2) : null;
+136:         String str3 = lmjVar != null ? lmjVar.a : null;
+137:         if (str3 == null || str3.length() == 0) {
+138:             String str4 = polVar.b;
+139:             o1d o1dVar = f09.g;
+140:             if (o1dVar != null) {
+141:                 c6a c6aVar = c6a.f;
+142:                 if (o1dVar.b(c6aVar)) {
+143:                     o1dVar.c(c6aVar, str4, "Invoked 'webapp_nav_start', but traceId is null or empty!", null);
+144:                 }
+145:             }
+146:         } else {
+147:             wud.h(polVar, "nav_start", 2, str3, false, null, null, 120);
+148:         }
+149:         ((ekl) this.a).o1(str, false);
+150:     }
+151: 
+152:     @Override // defpackage.pxl
+153:     public ow5 C(float f, hbk hbkVar) {
+154:         Rect rect = (Rect) this.c;
+155:         if (Math.abs(f) < ((double) Math.ulp(Math.abs(f))) * 2.0d) {
+156:             if (ywm.i(5, "CXCP")) {
+157:                 Log.w("CXCP", "ZoomCompat: Invalid zoom ratio of 0.0f passed in, defaulting to 1.0f");
+158:             }
+159:             f = 1.0f;
+160:         }
+161:         float fWidth = rect.width() / f;
+162:         float fHeight = rect.height() / f;
+163:         float fWidth2 = (rect.width() - fWidth) / 2.0f;
+164:         float fHeight2 = (rect.height() - fHeight) / 2.0f;
+165:         Rect rect2 = new Rect((int) fWidth2, (int) fHeight2, (int) (fWidth2 + fWidth), (int) (fHeight2 + fHeight));
+166:         this.b = rect2;
+167:         return hbkVar.k(Collections.singletonMap(CaptureRequest.SCALER_CROP_REGION, rect2), fbk.b);
+168:     }
+169: 
+170:     @Override // defpackage.xq6
+171:     public void D(v93 v93Var) {
+172:         ((wsf) this.c).I = v93Var;
+173:     }
+174: 
+175:     @Override // defpackage.di
+176:     public synchronized int E() {
+177:         ((ys5) this.c).c.getClass();
+178:         return 65536;
+179:     }
+180: 
+181:     /* JADX WARN: Code duplicated, block: B:7:0x0013  */
+182:     public Object F(String str, d55 d55Var) {
+183:         fcm fcmVar;
+184:         if (d55Var instanceof fcm) {
+185:             fcmVar = (fcm) d55Var;
+186:             int i = fcmVar.f;
+187:             if ((i & Integer.MIN_VALUE) != 0) {
+188:                 fcmVar.f = i - Integer.MIN_VALUE;
+189:             } else {
+190:                 fcmVar = new fcm(this, d55Var);
 ```
