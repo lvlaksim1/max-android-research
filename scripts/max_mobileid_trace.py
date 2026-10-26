@@ -134,6 +134,41 @@ for name,(lo,hi) in network_classes.items():
         md.append("(class not found)")
     md.extend(["```",""])
 
+md.extend(["## Трассировка выбора сети и обработки результата", ""])
+focus={
+ "ekl": ["verifyMobileIdJob","NetworkRequest.Builder","ConnectivityManager","addTransportType","requestNetwork","getSocketFactory","bindProcessToNetwork","TRANSPORT_CELLULAR","new qrk","bol"],
+ "qrk": ["case 13:","case 17:","WebAppNoNetworkException","ajk","dol","gol"],
+ "aj9": ["class aj9","public final","collect"," c("],
+ "n9l": ["getSocketFactory","NetworkRequest"],
+ "zik": ["VERIFY_MOBILE_ID"],
+}
+for name,queries in focus.items():
+    path=src/"defpackage"/(name+".java")
+    md.extend([f"### `{path.relative_to(src)}` — опорные фрагменты", "", "```java"])
+    if path.exists():
+        lines=path.read_text(encoding="utf-8",errors="replace").splitlines()
+        hits=[i for i,l in enumerate(lines) if any(q in l for q in queries)]
+        ranges=[]
+        for i in hits:
+            a=max(0,i-12); b=min(len(lines),i+26)
+            if ranges and a<=ranges[-1][1]:
+                ranges[-1]=(ranges[-1][0],max(ranges[-1][1],b))
+            else: ranges.append((a,b))
+        md.append(f"Total lines: {len(lines)}; matches: {len(hits)}")
+        used=0
+        for a,b in ranges:
+            if used>=520: break
+            md.append(f"Excerpt {a+1}–{b}")
+            for n in range(a,b):
+                if used>=520:break
+                line=lines[n]
+                if "@Metadata(" in line or len(line)>600:line="[compiler metadata omitted]"
+                md.append(f"{n+1:>5}: {line[:340].replace(chr(96), chr(39))}")
+                used+=1
+    else:
+        md.append("(class not found)")
+    md.extend(["```",""])
+
 md.extend([
     "## Применение результатов",
     "",
