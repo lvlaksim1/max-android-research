@@ -90,6 +90,33 @@ for name,anchors in targets.items():
     md.extend([f"### `defpackage/{name}.java`", "", "```java"])
     md.extend(excerpt(path,anchors,radius=25 if name in ("a8l","dol") else 17,limit=5))
     md.extend(["```",""])
+md.extend(["## Углублённое изучение обработчика и его зависимостей", ""])
+deep_classes = {
+    "dol": (100, 240),
+    "gol": (1, 120),
+    "hol": (1, 115),
+    "eol": (1, 155),
+    "zik": (1, 110),
+    "ajk": (1, 60),
+    "col": (1, 100),
+    "ekl": (1, 160),
+    "j01": (1, 110)
+}
+for name, (lo, hi) in deep_classes.items():
+    path=src/"defpackage"/(name+".java")
+    md.extend([f"### `{path.relative_to(src)}`", "", "```java"])
+    if path.exists():
+        lines=path.read_text(encoding="utf-8",errors="replace").splitlines()
+        md.append(f"Total lines: {len(lines)}. Examined: {lo}–{min(hi,len(lines))}.")
+        for idx in range(lo-1,min(hi,len(lines))):
+            line=lines[idx]
+            if len(line)>600 or "@Metadata(" in line:
+                line="[long Kotlin metadata/codegen omitted]"
+            md.append(f"{idx+1:>5}: {line[:380].replace(chr(96), chr(39))}")
+    else:
+        md.append("(class not found)")
+    md.extend(["```",""])
+
 md.extend([
     "## Применение результатов",
     "",
