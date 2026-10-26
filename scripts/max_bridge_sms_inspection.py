@@ -47,6 +47,16 @@ for p,n,m in founds:
     report.extend(["```",""])
     included+=1
     if included>=48:break
+report.extend(["## Exact client-error serialization structures", ""])
+for name in ["gu6","fu6","jj9","gj9","hj9","ij9","qi4","jql","koe","ypl"]:
+    path=src/"defpackage"/(name+".java")
+    report.extend([f"### `{name}.java`","","```java"])
+    if path.exists():
+        lines=path.read_text(encoding="utf-8",errors="replace").splitlines()
+        for i,line in enumerate(lines[:190],1):
+            if "@Metadata(" in line or len(line)>600:line="[generated annotation omitted]"
+            report.append(f"{i}: {line[:430].replace(chr(96),chr(39))}")
+    report.extend(["```",""])
 dst=pathlib.Path("docs/webapp-jsbridge-inspection-26.35.1.md")
 dst.write_text("\n".join(report),encoding="utf-8")
 print("Found",len(founds),"related Java classes, reported",included,"; bytes",dst.stat().st_size)
