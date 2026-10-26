@@ -1,0 +1,50 @@
+name: Inspect public MAX WebApp Bridge interface
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/inspect-max-bridge-js.yml"
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch public MAX bridge and extract interface names
+        run: |
+          set -euo pipefail
+          curl -fL --retry 2 --retry-delay 5 --max-time 45 'https://st.max.ru/js/max-web-app.js' -o /tmp/max-web-app.js
+          python3 - <<'PY'
+          import pathlib,re
+          s=pathlib.Path("/tmp/max-web-app.js").read_text(encoding="utf-8",errors="replace")
+          terms=["PrivateWebViewHandler","WebViewHandler","WebAppVerifyMobileId","receiveEvent","receive_event","postEvent","onEvent","no_cellular","WebAppRequestPhone","web_app_request_phone"]
+          out=["# Public MAX Bridge JS interface audit","",
+            "Source: https://st.max.ru/js/max-web-app.js",
+            f"Size of examined JS: {len(s)} characters. Short contextual snippets only.","",
+            "This is inspection of the public MAX Bridge library, not a signed mini-app URL.",""]
+          for term in terms:
+              hits=[m.start() for m in re.finditer(re.escape(term),s,re.I)]
+              out += [f"## \`{term}\`: {len(hits)} occurrences",""]
+              for i in hits[:8]:
+                  start=max(0,i-180);end=min(len(s),i+240)
+                  snippet=s[start:end].replace("\`","'").replace("\\n"," ")
+                  out += ["\`\`\`text",snippet,"\`\`\`",""]
+          pathlib.Path("docs/public-max-bridge-js-sms-2026-10-27.md").write_text("\\n".join(out))
+          PY
+      - name: Publish nonsecret short quotes and counts
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/public-max-bridge-js-sms-2026-10-27.md
+          git diff --cached --quiet && exit 0
+          git commit -m "Index public MAX JS mini-app bridge behavior"
+          for attempt in 1 2 3; do
+            if git push; then exit 0; fi
+            sleep 5
+            git fetch origin main
+            git rebase origin/main
+          done
+          exit 1
