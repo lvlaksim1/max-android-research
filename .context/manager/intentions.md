@@ -1,7 +1,19 @@
-# Manager intentions and commitments
+# Активные обязательства менеджера
 
-Record commitments using the Contract lifecycle:
+## I-001 — проверяемость эталонного образца
+- status: active
+- Сверять заявленную контрольную сумму исходного APK с доступным разрешённым образцом и сохранять воспроизводимый перечень содержимого; завершение — только после фактической сверки.
+- source: `.context/current/next.md`, `.context/project/goals.md`
+- authority: verified-repository project plan
 
-`proposed → accepted/active → completed | cancelled | invalidated | superseded`
+## I-002 — исследование компонентов и обменов
+- status: active
+- Продолжать статический разбор DEX и библиотек; при получении разрешённых журналов сверить фактический обмен отдельно, сохраняя различие статических выводов и наблюдений.
+- source: `.context/current/next.md`
+- authority: verified-repository project plan
 
-Only accepted/active items are continuing manager responsibility. Record the verification basis for completion and the reason for cancellation, invalidation, or supersession when significant. An explicit statement that there are no active commitments is valid state once verified.
+## I-003 — сохранение доказательств и приватности
+- status: active
+- Публиковать только проверенные небольшие результаты без личных и секретных данных; сохранять неизменность исходного APK и политику хранения GitHub Release.
+- source: `.context/project/constraints.md`, `.context/current/next.md`
+- authority: verified-repository; owner-directive recorded in repository
